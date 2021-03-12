@@ -123,13 +123,14 @@ return [
             'plans' => [
                 [
                     'name' => 'Standard',
-                    'short_description' => 'This is a short, human friendly description of the plan.',
+                    'short_description' => 'Upon subscribing, you\'ll immediately get access to your own page hosted by us. From there, you can add
+                    as many forms as you like, as well as view analytics on responses.',
                     'monthly_id' => 'price_1ITyCHIi2QHxCfvnqiOOGi4t',
                     'yearly_id' => 'price_1ITyCHIi2QHxCfvnskSxKDPI',
                     'features' => [
-                        'Feature 1',
-                        'Feature 2',
-                        'Feature 3',
+                        'Collects leads for you',
+                        'Custom domains',
+                        'Unlimited forms',
                     ],
                 ],
             ],
