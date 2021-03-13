@@ -12,7 +12,8 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                sans: ['Segoe UI', ...defaultTheme.fontFamily.sans],
+                // Nunito was the old font
             },
         },
     },

@@ -20,6 +20,11 @@ class User extends Authenticatable
     use TwoFactorAuthenticatable;
     use Billable;
 
+    public function leads()
+    {
+        return $this->hasMany(Lead::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

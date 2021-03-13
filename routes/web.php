@@ -32,3 +32,9 @@ Route::middleware(['auth:sanctum', 'verified', 'subscribed'])->group(function() 
 
 
 });
+
+// the forms route:
+Route::resource('form', 'App\Http\Controllers\FormController');
+
+// the leads controller
+Route::resource('response', 'App\Http\Controllers\LeadController');
