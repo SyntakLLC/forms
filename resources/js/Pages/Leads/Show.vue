@@ -1,7 +1,7 @@
 <template>
     <app-layout>
 
-        <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+        <div class="px-4 sm:px-0 max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="flex-row">
                 <h3 class="text-lg leading-6 font-medium text-gray-900 flex-row justify-between">
                     {{ $page['props']['lead']['first'] + " " + $page['props']['lead']['last'] }}

@@ -26,7 +26,7 @@
                         <ul class="space-y-12 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:grid-cols-4 2xl:grid-cols-6 lg:gap-x-8">
                             <!--CUSTOM FORM BUTTON-->
                             <li>
-                                <inertia-link :href="route('form.create')">
+                                <inertia-link :href="route('form.edit', $page['props']['user'])">
                                     <div class="space-y-4">
                                         <div class="aspect-w-3 aspect-h-2 border-2 border-gray-300 border-dashed rounded-lg">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-8 -8 40 40"

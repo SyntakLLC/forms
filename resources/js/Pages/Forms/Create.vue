@@ -1,16 +1,21 @@
 <template>
+    <app-layout>
 <!--    <flow-form v-bind:questions="questions" v-bind:language="language" />-->
     <flow-form/>
+    </app-layout>
 </template>
 
 <script>
 // Import necessary components and classes
-import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
+import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form';
+import AppLayout from "@/Layouts/AppLayout";
+
 
 export default {
     name: 'Create.vue',
     components: {
-        FlowForm
+        AppLayout,
+        FlowForm,
     },
     data() {
         return {
