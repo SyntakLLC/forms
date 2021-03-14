@@ -88,8 +88,8 @@
                                         </inertia-link>
 
                                         <!--NEW FORM-->
-                                        <inertia-link :href="route('form.create')">
-                                            <a v-if="route().current('form.create')" href="#" class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md" aria-current="page">
+                                        <inertia-link :href="route('form.index')">
+                                            <a v-if="route().current('form.index')" href="#" class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md" aria-current="page">
 
                                                 <svg class="text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -249,8 +249,8 @@
                                 </inertia-link>
 
                                 <!--NEW FORM-->
-                                <inertia-link :href="route('form.create')">
-                                    <a v-if="route().current('form.create')" href="#" class="bg-gray-200 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <inertia-link :href="route('form.index')">
+                                    <a v-if="route().current('form.index')" href="#" class="bg-gray-200 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
 
                                         <svg class="text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />

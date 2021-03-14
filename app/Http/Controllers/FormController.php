@@ -9,9 +9,10 @@ use Inertia\Inertia;
 class FormController extends Controller
 {
     public function index(Request $request) {
-        return Inertia::render('Leads/Index', [
-            'leads' => $request->user()->forms,
-        ]);
+        return Inertia::render('Forms/Index');
+//        return Inertia::render('Leads/Index', [
+//            'leads' => $request->user()->forms,
+//        ]);
     }
 
     public function show(Form $form) {
@@ -22,5 +23,9 @@ class FormController extends Controller
 
     public function create(Request $request) {
         return Inertia::render('Forms/Create');
+    }
+
+    public function store(Request $request) {
+
     }
 }

@@ -27,6 +27,7 @@
         "vue-loader": "^16.1.2"
     },
     "dependencies": {
-        "@ditdot-dev/vue-flow-form": "^1.1.7"
+        "@ditdot-dev/vue-flow-form": "^1.1.7",
+        "vue-template-compiler": "^2.6.12"
     }
 }
