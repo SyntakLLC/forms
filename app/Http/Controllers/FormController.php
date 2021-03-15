@@ -11,13 +11,27 @@ use Inertia\Inertia;
 class FormController extends Controller
 {
     public function index(Request $request) {
-        return Inertia::render('Forms/Index');
+        return Inertia::render('Forms/Index', [
+            'forms' => $request->user()->forms,
+        ]);
     }
 
     public function show(Form $form) {
         return Inertia::render('Leads/Show', [
             'lead' => $form,
         ]);
+    }
+
+    public function edit(Form $form) {
+
+        return Inertia::render('Forms/Edit', [
+            'form' => $form,
+            'questions' => Form::findByUuid($form->uuid)->questions,
+        ]);
+    }
+
+    public function create(Request $request) {
+        return Inertia::render('Forms/Create');
     }
 
     public function custom(Request $request) {
@@ -50,29 +64,6 @@ class FormController extends Controller
             ]),
         ];
 
-        return Redirect::route('form.edit', $form->uuid)->with([
-            'form' => $form,
-            'questions' => $questions,
-        ]);
-//        return Inertia::render('Forms/Edit', [
-//            'form' => $form,
-//            'questions' => $questions,
-//        ]);
-    }
-
-    public function edit(Request $request) {
-
-        return Inertia::render('Forms/Edit', [
-            'form' => session()->get('form'),
-            'questions' => session()->get('questions'),
-        ]);
-    }
-
-    public function create(Request $request) {
-        return Inertia::render('Forms/Create');
-    }
-
-    public function store(Request $request) {
-
+        return Redirect::route('form.edit', $form->uuid);
     }
 }

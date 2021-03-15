@@ -44,3 +44,13 @@ Route::post('form/custom', 'App\Http\Controllers\FormController@custom');
 Route::post('form/home_worth', 'App\Http\Controllers\FormController@homeWorth');
 Route::post('form/apartment', 'App\Http\Controllers\FormController@apartment');
 Route::post('form/buy_home', 'App\Http\Controllers\FormController@buyHome');
+
+// when adding a question, we have 5 different vue forms as options
+Route::post('form/add_text', 'App\Http\Controllers\QuestionController@addText');
+Route::post('form/add_email', 'App\Http\Controllers\QuestionController@addEmail');
+Route::post('form/add_phone', 'App\Http\Controllers\QuestionController@addPhone');
+Route::post('form/add_multiple_choice', 'App\Http\Controllers\QuestionController@addMultipleChoice');
+Route::post('form/add_section_break', 'App\Http\Controllers\QuestionController@addSectionBreak');
+
+// when deleting a question
+Route::post('form/delete_question', 'App\Http\Controllers\QuestionController@destroy');

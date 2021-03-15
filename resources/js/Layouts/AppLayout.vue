@@ -13,16 +13,7 @@
                     leave-class="opacity-100"
                     leave-to-class="opacity-0">
                 <div v-show="showingNavigationDropdown" class="fixed inset-0 flex z-40">
-                    <!--
-                      Off-canvas menu overlay, show/hide based on off-canvas menu state.
 
-                      Entering: "transition-opacity ease-linear duration-300"
-                        From: "opacity-0"
-                        To: "opacity-100"
-                      Leaving: "transition-opacity ease-linear duration-300"
-                        From: "opacity-100"
-                        To: "opacity-0"
-                    -->
                     <transition
                         enter-active-class="transition-opacity ease-linear duration-300"
                         enter-from-class="opacity-0"
@@ -34,16 +25,7 @@
                             <div class="absolute inset-0 bg-gray-600 opacity-75"></div>
                         </div>
                     </transition>
-                    <!--
-                      Off-canvas menu, show/hide based on off-canvas menu state.
 
-                      Entering: "transition ease-in-out duration-300 transform"
-                        From: "-translate-x-full"
-                        To: "translate-x-0"
-                      Leaving: "transition ease-in-out duration-300 transform"
-                        From: "translate-x-0"
-                        To: "-translate-x-full"
-                    -->
                     <transition
                         enter-active-class="transition ease-in-out duration-300 transform"
                         enter-from-class="-translate-x-full"
@@ -291,12 +273,14 @@
                                     Teams
                                 </h3>
                                 <div class="mt-1 space-y-1" role="group" aria-labelledby="teams-headline">
-<!--                                    <a v-for="form in $page['props']['user']->['forms']" href="#" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:text-gray-900 hover:bg-gray-50">-->
-<!--                                        <span class="w-2.5 h-2.5 mr-4 bg-indigo-500 rounded-full" aria-hidden="true"></span>-->
-<!--                                        <span class="truncate">-->
-<!--                                        {{ form.title() }}-->
-<!--                                    </span>-->
-<!--                                    </a>-->
+                                    <a v-for="form in $page['props']['forms']"
+                                       href="#" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                                        <span class="w-2.5 h-2.5 mr-4 bg-indigo-500 rounded-full" aria-hidden="true"></span>
+                                        <span class="truncate">
+<!--                                        {{ form.title }}-->
+                                            aeruog
+                                    </span>
+                                    </a>
 
                                     <a href="#" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:text-gray-900 hover:bg-gray-50">
                                         <span class="w-2.5 h-2.5 mr-4 bg-green-500 rounded-full" aria-hidden="true"></span>

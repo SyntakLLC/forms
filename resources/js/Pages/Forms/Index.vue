@@ -1,5 +1,5 @@
 <template>
-    <app-layout>
+    <app-layout :forms="$page['props']['forms']">
 
         <div class="bg-white">
             <div class="mx-auto">
@@ -30,7 +30,7 @@
                                 <form @submit.prevent="customForm.post('/form/custom')">
 <!--                                <inertia-link @click="customForm.type = 'custom'"-->
 <!--                                              :href="route('form.edit', $page['props']['user'])">-->
-                                    <button type="submit" class="focus:outline-none">
+                                    <button type="submit" class="focus:outline-none w-full h-full">
                                     <div class="space-y-4">
                                         <div class="aspect-w-3 aspect-h-2 border-2 border-gray-300 border-dashed rounded-lg">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-8 -8 40 40"
