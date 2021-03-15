@@ -5,15 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Form;
 use App\Models\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class FormController extends Controller
 {
     public function index(Request $request) {
         return Inertia::render('Forms/Index');
-//        return Inertia::render('Leads/Index', [
-//            'leads' => $request->user()->forms,
-//        ]);
     }
 
     public function show(Form $form) {
@@ -22,8 +20,9 @@ class FormController extends Controller
         ]);
     }
 
-    public function edit(Request $request) {
+    public function custom(Request $request) {
         $form = Form::create([
+//            'user_id' => $request->get('user_id'),
             'user_id' => $request->user()->id,
             'title' => "Untitled Form",
         ]);
@@ -51,9 +50,21 @@ class FormController extends Controller
             ]),
         ];
 
-        return Inertia::render('Forms/Edit', [
+        return Redirect::route('form.edit', $form->uuid)->with([
             'form' => $form,
             'questions' => $questions,
+        ]);
+//        return Inertia::render('Forms/Edit', [
+//            'form' => $form,
+//            'questions' => $questions,
+//        ]);
+    }
+
+    public function edit(Request $request) {
+
+        return Inertia::render('Forms/Edit', [
+            'form' => session()->get('form'),
+            'questions' => session()->get('questions'),
         ]);
     }
 

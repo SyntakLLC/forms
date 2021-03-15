@@ -38,3 +38,9 @@ Route::resource('form', 'App\Http\Controllers\FormController');
 
 // the leads controller
 Route::resource('response', 'App\Http\Controllers\LeadController');
+
+// when creating a new form, we have 4 different vue forms as options
+Route::post('form/custom', 'App\Http\Controllers\FormController@custom');
+Route::post('form/home_worth', 'App\Http\Controllers\FormController@homeWorth');
+Route::post('form/apartment', 'App\Http\Controllers\FormController@apartment');
+Route::post('form/buy_home', 'App\Http\Controllers\FormController@buyHome');

@@ -24,9 +24,13 @@
 
                     <div class="px-4 sm:px-6 lg:px-8">
                         <ul class="space-y-12 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:grid-cols-4 2xl:grid-cols-6 lg:gap-x-8">
+
                             <!--CUSTOM FORM BUTTON-->
                             <li>
-                                <inertia-link :href="route('form.edit', $page['props']['user'])">
+                                <form @submit.prevent="customForm.post('/form/custom')">
+<!--                                <inertia-link @click="customForm.type = 'custom'"-->
+<!--                                              :href="route('form.edit', $page['props']['user'])">-->
+                                    <button type="submit" class="focus:outline-none">
                                     <div class="space-y-4">
                                         <div class="aspect-w-3 aspect-h-2 border-2 border-gray-300 border-dashed rounded-lg">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-8 -8 40 40"
@@ -44,11 +48,15 @@
 
                                         </div>
                                     </div>
-                                </inertia-link>
+<!--                                </inertia-link>-->
+                                    </button>
+                                </form>
                             </li>
                             <!--HOW MUCH IS MY HOME WORTH-->
                             <li>
-                                <inertia-link :href="route('form.store', 'How Much is my Home Worth?')">
+                                <form @submit.prevent="homeWorthForm.post('/form/home_worth')">
+<!--                                <inertia-link :href="route('form.store', 'How Much is my Home Worth?')">-->
+                                    <button type="submit" class="focus:outline-none">
                                     <div class="space-y-4">
                                         <div class="aspect-w-3 aspect-h-2">
                                             <img class="object-cover shadow-lg rounded-lg" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80" alt="">
@@ -62,11 +70,15 @@
 
                                         </div>
                                     </div>
-                                </inertia-link>
+<!--                                </inertia-link>-->
+                                    </button>
+                                </form>
                             </li>
                             <!--I'M LOOKING FOR AN APARTMENT-->
                             <li>
-                                <inertia-link :href="route('form.store', 'I\'m Looking for an Apartment')">
+                                <form @submit.prevent="apartmentForm.post('/form/apartment')">
+<!--                                <inertia-link :href="route('form.store', 'I\'m Looking for an Apartment')">-->
+                                    <button type="submit" class="focus:outline-none">
                                     <div class="space-y-4">
                                         <div class="aspect-w-3 aspect-h-2">
                                             <img class="object-cover shadow-lg rounded-lg" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80" alt="">
@@ -80,11 +92,15 @@
 
                                         </div>
                                     </div>
-                                </inertia-link>
+<!--                                </inertia-link>-->
+                                    </button>
+                                </form>
                             </li>
                             <!--I'M THINKING ABOUT BUYING A HOME-->
                             <li>
-                                <inertia-link :href="route('form.store', 'I\'m Thinking About Buying a Home')">
+                                <form @submit.prevent="buyHomeForm.post('/form/buy_home')">
+<!--                                <inertia-link :href="route('form.store', 'I\'m Thinking About Buying a Home')">-->
+                                    <button type="submit" class="focus:outline-none">
                                     <div class="space-y-4">
                                         <div class="aspect-w-3 aspect-h-2">
                                             <img class="object-cover shadow-lg rounded-lg" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80" alt="">
@@ -98,8 +114,11 @@
 
                                         </div>
                                     </div>
-                                </inertia-link>
+<!--                                </inertia-link>-->
+                                    </button>
+                                </form>
                             </li>
+
 
                         </ul>
                     </div>
@@ -112,10 +131,30 @@
 
 <script>
 import AppLayout from "@/Layouts/AppLayout";
+import Button from "@/Jetstream/Button";
 
 export default {
     name: "Index.vue",
-    components: {AppLayout}
+    components: {Button, AppLayout},
+
+    props: ['user'],
+
+    data: function () {
+        return {
+            customForm: this.$inertia.form({
+                // user_id: this.user.id,
+            }),
+            homeWorthForm: this.$inertia.form({
+                // user_id: this.user.id,
+            }),
+            apartmentForm: this.$inertia.form({
+                // user_id: this.user.id,
+            }),
+            buyHomeForm: this.$inertia.form({
+                // user_id: this.user.id,
+            }),
+        };
+    }
 }
 </script>
 
