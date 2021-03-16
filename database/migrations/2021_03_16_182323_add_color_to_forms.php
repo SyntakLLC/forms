@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDeletedAtToQuestions extends Migration
+class AddColorToForms extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddDeletedAtToQuestions extends Migration
      */
     public function up()
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->softDeletes();
+        Schema::table('forms', function (Blueprint $table) {
+            $table->string('id_color');
         });
     }
 
@@ -25,7 +25,7 @@ class AddDeletedAtToQuestions extends Migration
      */
     public function down()
     {
-        Schema::table('questions', function (Blueprint $table) {
+        Schema::table('forms', function (Blueprint $table) {
             //
         });
     }

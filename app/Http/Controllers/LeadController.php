@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lead;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class LeadController extends Controller
@@ -11,6 +13,7 @@ class LeadController extends Controller
     public function index(Request $request) {
         return Inertia::render('Leads/Index', [
             'leads' => $request->user()->leads,
+            'forms' => $request->user()->forms,
         ]);
     }
 
@@ -21,6 +24,7 @@ class LeadController extends Controller
         return Inertia::render('Leads/Show', [
             'lead' => $response,
             'responses' => $response->responses,
+            'forms' => Auth::user()->forms,
         ]);
     }
 }

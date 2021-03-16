@@ -115,29 +115,28 @@
                                     </div>
                                     <div class="mt-8">
                                         <h3 class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider" id="teams-headline">
-                                            Teams
+                                            Forms
                                         </h3>
                                         <div class="mt-1 space-y-1" role="group" aria-labelledby="teams-headline">
-                                            <a href="#" class="group flex items-center px-3 py-2 text-base leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
-                                                <span class="w-2.5 h-2.5 mr-4 bg-indigo-500 rounded-full" aria-hidden="true"></span>
-                                                <span class="truncate">
-                                              Engineering
-                                            </span>
-                                            </a>
+                                            <div v-if="$page['props']['forms'].length" v-for="form in $page['props']['forms']">
+                                                <inertia-link :href="route('form.edit', form.uuid)"
+                                                              class="group flex items-center px-3 py-2 text-base leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                                                    <span class="w-2.5 h-2.5 mr-4 rounded-full" :class="form.id_color" aria-hidden="true"></span>
+                                                    <span class="truncate">
+                                                        {{ form.title }}
+                                                    </span>
+                                                </inertia-link>
+                                            </div>
 
-                                            <a href="#" class="group flex items-center px-3 py-2 text-base leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
-                                                <span class="w-2.5 h-2.5 mr-4 bg-green-500 rounded-full" aria-hidden="true"></span>
-                                                <span class="truncate">
-                                                Human Resources
-                                            </span>
-                                            </a>
+                                            <!--IF NO FORMS-->
+                                            <div v-else>
+                                                <div class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                                                    <span class="truncate">
+                                                        You have no forms.
+                                                    </span>
+                                                </div>
+                                            </div>
 
-                                            <a href="#" class="group flex items-center px-3 py-2 text-base leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
-                                                <span class="w-2.5 h-2.5 mr-4 bg-yellow-500 rounded-full" aria-hidden="true"></span>
-                                                <span class="truncate">
-                                                Customer Success
-                                            </span>
-                                            </a>
                                         </div>
                                     </div>
                                 </nav>
@@ -270,31 +269,38 @@
                             <div class="mt-8">
                                 <!-- Secondary navigation -->
                                 <h3 class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider" id="teams-headline">
-                                    Teams
+                                    Forms
                                 </h3>
                                 <div class="mt-1 space-y-1" role="group" aria-labelledby="teams-headline">
-                                    <a v-for="form in $page['props']['forms']"
-                                       href="#" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:text-gray-900 hover:bg-gray-50">
-                                        <span class="w-2.5 h-2.5 mr-4 bg-indigo-500 rounded-full" aria-hidden="true"></span>
-                                        <span class="truncate">
-<!--                                        {{ form.title }}-->
-                                            aeruog
-                                    </span>
-                                    </a>
+                                    <div v-if="$page['props']['forms'].length" v-for="form in $page['props']['forms']">
+                                    <inertia-link :href="route('form.edit', form.uuid)">
+                                        <!--CURRENT-->
+                                        <a v-if="route().current('form.edit', form.uuid)" class="bg-gray-200 group flex items-center px-3 py-2 text-sm font-medium text-gray-900 rounded-md">
+                                            <span class="w-2.5 h-2.5 mr-4 rounded-full" :class="form.id_color" aria-hidden="true"></span>
+                                            <span class="truncate">
+                                                {{ form.title }}
+                                            </span>
+                                        </a>
 
-                                    <a href="#" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:text-gray-900 hover:bg-gray-50">
-                                        <span class="w-2.5 h-2.5 mr-4 bg-green-500 rounded-full" aria-hidden="true"></span>
-                                        <span class="truncate">
-                                        Human Resources
-                                    </span>
-                                    </a>
+                                        <!--INACTIVE-->
+                                        <a v-else class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                                            <span class="w-2.5 h-2.5 mr-4 rounded-full" :class="form.id_color" aria-hidden="true"></span>
+                                            <span class="truncate">
+                                                {{ form.title }}
+                                            </span>
+                                        </a>
+                                    </inertia-link>
+                                    </div>
 
-                                    <a href="#" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:text-gray-900 hover:bg-gray-50">
-                                        <span class="w-2.5 h-2.5 mr-4 bg-yellow-500 rounded-full" aria-hidden="true"></span>
-                                        <span class="truncate">
-                                        Customer Success
-                                    </span>
-                                    </a>
+                                    <!--IF NO FORMS-->
+                                    <div v-else>
+                                        <div class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                                            <span class="truncate">
+                                            You have no forms.
+                                        </span>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </nav>

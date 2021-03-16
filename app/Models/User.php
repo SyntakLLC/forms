@@ -25,6 +25,11 @@ class User extends Authenticatable
         return $this->hasMany(Lead::class);
     }
 
+    public function forms()
+    {
+        return $this->hasMany(Form::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

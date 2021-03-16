@@ -1,5 +1,5 @@
 <template>
-    <app-layout>
+    <app-layout :forms="$page['props']['forms']">
 
         <div class="px-4 sm:px-0 max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="flex-row">

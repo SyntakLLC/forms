@@ -17,7 +17,8 @@ class Form extends Model
 
     protected $fillable = [
         'user_id',
-        'title'
+        'title',
+        'id_color'
     ];
 
     public function getRouteKeyName()

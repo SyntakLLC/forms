@@ -1,5 +1,5 @@
 <template>
-    <app-layout>
+    <app-layout :forms="$page['props']['forms']">
 
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
 
@@ -24,15 +24,18 @@
 
                     <div v-for="question in $page['props']['questions']"
                          class="py-4 sm:py-5 sm:grid sm:grid-cols-9 sm:gap-4 items-center">
+
                         <dt class="text-sm font-medium text-gray-500 sm:col-span-2">
                             {{ question.type }}
                         </dt>
                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-6">
-                            <div class="mt-1 relative rounded-md shadow-sm">
+                            <div class="mt-1 relative rounded-md hover:shadow-sm">
                                 <input type="text"
-                                       class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-10 sm:text-sm border-gray-300 rounded-md"
+                                       class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-10 sm:text-sm border-gray-300 sm:border-transparent hover:border-gray-300 rounded-md"
                                        :value="question.title"
                                        placeholder="Start typing here...">
+
+<!--                                {{$page['props']['options']}}-->
                                 <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                                     <!-- Heroicon name: solid/question-mark-circle -->
                                     <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -40,9 +43,7 @@
                                     </svg>
                                 </div>
                             </div>
-<!--                            {{ question.title }}-->
                         </dd>
-
                         <!--DELETE ICON-->
                         <dt class="text-sm font-medium text-gray-400 items-center justify-end">
                             <form @submit.prevent="deleteQuestion.post('/form/delete_question')">
@@ -54,12 +55,54 @@
                                 </button>
                             </form>
                         </dt>
+
+
+                        <div v-for="nonoption in $page['props']['options']"
+                             v-if="question.type === 'Multiple Choice'"
+                            class="sm:col-span-9 sm:grid sm:grid-cols-9 sm:gap-4 items-center">
+                            <div v-for="option in nonoption.options"
+                                 class="sm:col-span-9 sm:grid sm:grid-cols-9 sm:gap-4 items-center">
+                            <div v-if="option.question_id === question.id"
+                                 class="sm:col-span-9 sm:grid sm:grid-cols-9 sm:gap-4 items-center">
+                                <dt class="sm:col-span-1"></dt>
+                                <dt class="text-sm font-medium text-gray-500 sm:col-span-1">
+                                    {{ convertToLetter(option.index) }}
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-6">
+                                    <div class="mt-1 relative rounded-md hover:shadow-sm">
+                                        <input type="text"
+                                               class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-10 sm:text-sm border-gray-300 sm:border-transparent hover:border-gray-300 rounded-md"
+                                               :value="option.title"
+                                               placeholder="Start typing here...">
+                                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                            <!-- Heroicon name: solid/question-mark-circle -->
+                                            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </dd>
+                                <!--DELETE ICON-->
+                                <dt class="text-sm font-medium text-gray-400 items-center justify-end">
+                                    <form @submit.prevent="deleteQuestion.post('/form/delete_question')">
+                                        <button class="focus:outline-none"
+                                                type="submit" @click="deleteQuestion.deletedUUID = question.uuid">
+                                            <svg class="h-5 w-5 w-full text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                            </svg>
+                                        </button>
+                                    </form>
+                                </dt>
+
+                            </div>
+                            </div>
+                        </div>
+
                     </div>
                 </dl>
             </div>
 
             <div class="relative">
-
 
                 <button @click="showingQuestionTypeDropdown=!showingQuestionTypeDropdown"
                         type="button"
@@ -70,7 +113,6 @@
                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                     </svg>
                 </button>
-
 
                 <transition
                     enter-active-class="transition ease-out duration-200"
@@ -235,6 +277,18 @@ export default {
             }),
         }
     },
+
+    methods: {
+        convertToLetter(number) {
+            let alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+
+            if (number > alphabet.length) {
+                return "A";
+            } else {
+                return alphabet[number];
+            }
+        }
+    }
 }
 </script>
 

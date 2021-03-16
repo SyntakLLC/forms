@@ -1,5 +1,5 @@
 <template>
-    <app-layout>
+    <app-layout :forms="$page['props']['forms']">
         <div class="h-screen flex overflow-hidden bg-white">
 
             <!-- Main column -->

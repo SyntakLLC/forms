@@ -1,5 +1,5 @@
 <template>
-    <app-layout>
+    <app-layout :forms="$page['props']['forms']">
 <!--    <flow-form v-bind:questions="questions" v-bind:language="language" />-->
     <flow-form/>
     </app-layout>

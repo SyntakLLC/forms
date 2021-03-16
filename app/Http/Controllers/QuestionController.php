@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Option;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreQuestionRequest;
@@ -16,6 +17,40 @@ class QuestionController extends Controller
             'title' => "",
 //            'tagline' => 'One more bit of contact...',
             'index' => $request->get('index'),
+        ]);
+
+        return Redirect::route('form.edit', $request->get('form_uuid'));
+    }
+
+    public function addSectionBreak(StoreQuestionRequest $request) {
+        $question = Question::create([
+            'form_id' => $request->get('form_id'),
+            'type' => 'Section Break',
+            'title' => "",
+            'index' => $request->get('index'),
+        ]);
+
+        return Redirect::route('form.edit', $request->get('form_uuid'));
+    }
+
+    public function addMultipleChoice(StoreQuestionRequest $request) {
+        $question = Question::create([
+            'form_id' => $request->get('form_id'),
+            'type' => 'Multiple Choice',
+            'title' => "",
+            'index' => $request->get('index'),
+        ]);
+
+        Option::create([
+            'question_id' => $question->id,
+            'title' => "",
+            'index' => 0,
+        ]);
+
+        Option::create([
+            'question_id' => $question->id,
+            'title' => "",
+            'index' => 1,
         ]);
 
         return Redirect::route('form.edit', $request->get('form_uuid'));

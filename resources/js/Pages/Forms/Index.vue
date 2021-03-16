@@ -140,9 +140,13 @@ export default {
     props: ['user'],
 
     data: function () {
+
         return {
+            formColor: Math.floor(Math.random()*16777215).toString(16),
+
             customForm: this.$inertia.form({
                 // user_id: this.user.id,
+                formColor: this.getNewIdColor(),
             }),
             homeWorthForm: this.$inertia.form({
                 // user_id: this.user.id,
@@ -154,6 +158,18 @@ export default {
                 // user_id: this.user.id,
             }),
         };
+    },
+
+    methods: {
+        getNewIdColor() {
+            let shades = [50, 100, 200, 300, 400, 500, 600, 700, 800];
+            let colors = ['gray', 'red', 'indigo', 'purple', 'green', 'yellow', 'blue', 'pink'];
+
+            return 'bg-' + colors[this.randomIntFromInterval(0, 7)] + '-500'
+        },
+        randomIntFromInterval(min, max) { // min and max included
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        },
     }
 }
 </script>

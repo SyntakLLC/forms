@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Form;
 use App\Models\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -19,6 +20,7 @@ class FormController extends Controller
     public function show(Form $form) {
         return Inertia::render('Leads/Show', [
             'lead' => $form,
+            'forms' => Auth::user()->forms,
         ]);
     }
 
@@ -27,16 +29,22 @@ class FormController extends Controller
         return Inertia::render('Forms/Edit', [
             'form' => $form,
             'questions' => Form::findByUuid($form->uuid)->questions,
+            'options' => Form::findByUuid($form->uuid)->questions->each(function ($question) {
+                return $question->options;
+            }),
+            'forms' => Auth::user()->forms,
         ]);
     }
 
     public function create(Request $request) {
-        return Inertia::render('Forms/Create');
+        return Inertia::render('Forms/Create', [
+            'forms' => $request->user()->forms,
+        ]);
     }
 
     public function custom(Request $request) {
         $form = Form::create([
-//            'user_id' => $request->get('user_id'),
+            'id_color' => $request->get('formColor'),
             'user_id' => $request->user()->id,
             'title' => "Untitled Form",
         ]);
