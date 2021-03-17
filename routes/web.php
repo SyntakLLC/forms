@@ -54,3 +54,6 @@ Route::post('form/add_section_break', 'App\Http\Controllers\QuestionController@a
 
 // when deleting a question
 Route::post('form/delete_question', 'App\Http\Controllers\QuestionController@destroy');
+
+// when adding an option
+Route::post('form/add_option', 'App\Http\Controllers\QuestionController@store');

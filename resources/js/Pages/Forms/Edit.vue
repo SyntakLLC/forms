@@ -96,6 +96,25 @@
 
                             </div>
                             </div>
+
+                            <dt class="sm:col-span-2"></dt>
+
+
+                        </div>
+
+                        <div v-if="$page['props']['options'].length && question.type === 'Multiple Choice'"
+                             class="sm:col-span-9 sm:grid sm:grid-cols-9 sm:gap-4 items-center">
+                        <div class="sm:col-span-9 sm:grid sm:grid-cols-9 sm:gap-4 items-center text-purple-500">
+                            <dt class="sm:col-span-2"></dt>
+
+                            <form @submit.prevent="addOption.post('/form/add_option')">
+                                <button type="submit"
+                                        @click="addOption.question_id = question.id; addOption.index = nonoption.options.length"
+                                        class="text-sm font-medium text-purple-500 sm:col-span-6 text-center">
+                                    Add Option
+                                </button>
+                            </form>
+                        </div>
                         </div>
 
                     </div>
@@ -263,6 +282,8 @@ export default {
         return {
             showingQuestionTypeDropdown: false,
             deletedUUID: 0,
+            question_id: 0,
+            optionIndex: 0,
 
             addText: this.$inertia.form({
                 form: this.form[0],
@@ -274,6 +295,11 @@ export default {
             deleteQuestion: this.$inertia.form({
                 form_uuid: this.form.uuid,
                 deletedUUID: this.deletedUUID,
+            }),
+            addOption: this.$inertia.form({
+                form_uuid: this.form.uuid,
+                question_id: this.question_id,
+                index: this.optionIndex,
             }),
         }
     },

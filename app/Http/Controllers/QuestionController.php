@@ -81,6 +81,18 @@ class QuestionController extends Controller
     }
 
 
+    public function store(Request $request)
+    {
+        Option::create([
+            'question_id' => $request->get('question_id'),
+            'title' => "",
+            'index' => $request->get('index'),
+        ]);
+
+        return Redirect::route('form.edit', $request->get('form_uuid'));
+    }
+
+
     public function destroy(Request $request)
     {
         Question::findByUuid($request->get('deletedUUID'))->delete();

@@ -150,12 +150,15 @@ export default {
             }),
             homeWorthForm: this.$inertia.form({
                 // user_id: this.user.id,
+                formColor: this.getNewIdColor(),
             }),
             apartmentForm: this.$inertia.form({
                 // user_id: this.user.id,
+                formColor: this.getNewIdColor(),
             }),
             buyHomeForm: this.$inertia.form({
                 // user_id: this.user.id,
+                formColor: this.getNewIdColor(),
             }),
         };
     },
