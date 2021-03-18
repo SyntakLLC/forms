@@ -29,67 +29,58 @@
 </template>
 
 <script>
-import { onMounted, onUnmounted } from "vue";
-
 export default {
-        emits: ['close'],
-
-        props: {
-            show: {
-                default: false
-            },
-            maxWidth: {
-                default: '2xl'
-            },
-            closeable: {
-                default: true
-            },
+    props: {
+        show: {
+            default: false
         },
-
-        watch: {
-            show: {
-                immediate: true,
-                handler: (show) => {
-                    if (show) {
-                        document.body.style.overflow = 'hidden'
-                    } else {
-                        document.body.style.overflow = null
-                    }
-                }
-            }
+        maxWidth: {
+            default: '2xl'
         },
-
-        setup(props, {emit}) {
-            const close = () => {
-                if (props.closeable) {
-                    emit('close')
-                }
-            }
-
-            const closeOnEscape = (e) => {
-                if (e.key === 'Escape' && props.show) {
-                    close()
-                }
-            }
-
-            onMounted(() => document.addEventListener('keydown', closeOnEscape))
-            onUnmounted(() => document.removeEventListener('keydown', closeOnEscape))
-
-            return {
-                close,
-            }
+        closeable: {
+            default: true
         },
-
-        computed: {
-            maxWidthClass() {
-                return {
-                    'sm': 'sm:max-w-sm',
-                    'md': 'sm:max-w-md',
-                    'lg': 'sm:max-w-lg',
-                    'xl': 'sm:max-w-xl',
-                    '2xl': 'sm:max-w-2xl',
-                }[this.maxWidth]
+    },
+    methods: {
+        close() {
+            if (this.closeable) {
+                this.$emit('close')
             }
         }
+    },
+    watch: {
+        show: {
+            immediate: true,
+            handler: (show) => {
+                if (show) {
+                    document.body.style.overflow = 'hidden'
+                } else {
+                    document.body.style.overflow = null
+                }
+            }
+        }
+    },
+    created() {
+        const closeOnEscape = (e) => {
+            if (e.key === 'Escape' && this.show) {
+                this.close()
+            }
+        }
+        document.addEventListener('keydown', closeOnEscape)
+        this.$once('hook:destroyed', () => {
+            document.removeEventListener('keydown', closeOnEscape)
+        })
+    },
+    computed: {
+        maxWidthClass() {
+            return {
+                'sm': 'sm:max-w-sm',
+                'md': 'sm:max-w-md',
+                'lg': 'sm:max-w-lg',
+                'xl': 'sm:max-w-xl',
+                '2xl': 'sm:max-w-2xl',
+            }[this.maxWidth]
+        }
     }
+}
 </script>

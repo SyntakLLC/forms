@@ -13,7 +13,7 @@ use Inertia\Inertia;
 class FormController extends Controller
 {
     public function index(Request $request) {
-        return Inertia::render('Forms/Index', [
+        return Inertia::render('Forms/Create', [
             'forms' => $request->user()->forms,
         ]);
     }

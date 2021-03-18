@@ -29,8 +29,6 @@
 </template>
 
 <script>
-import { onMounted, onUnmounted, ref } from "vue";
-
 export default {
     props: {
         align: {
@@ -43,31 +41,28 @@ export default {
             default: () => ['py-1', 'bg-white']
         }
     },
-
-    setup() {
-        let open = ref(false)
-
-        const closeOnEscape = (e) => {
-            if (open.value && e.keyCode === 27) {
-                open.value = false
-            }
-        }
-
-        onMounted(() => document.addEventListener('keydown', closeOnEscape))
-        onUnmounted(() => document.removeEventListener('keydown', closeOnEscape))
-
+    data() {
         return {
-            open,
+            open: false
         }
     },
-
+    created() {
+        const closeOnEscape = (e) => {
+            if (this.open && e.keyCode === 27) {
+                this.open = false
+            }
+        }
+        this.$once('hook:destroyed', () => {
+            document.removeEventListener('keydown', closeOnEscape)
+        })
+        document.addEventListener('keydown', closeOnEscape)
+    },
     computed: {
         widthClass() {
             return {
                 '48': 'w-48',
             }[this.width.toString()]
         },
-
         alignmentClasses() {
             if (this.align === 'left') {
                 return 'origin-top-left left-0'
