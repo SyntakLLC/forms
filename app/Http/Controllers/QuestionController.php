@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Form;
 use App\Models\Option;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreQuestionRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 
 class QuestionController extends Controller
 {
@@ -90,6 +93,18 @@ class QuestionController extends Controller
         ]);
 
         return Redirect::route('form.edit', $request->get('form_uuid'));
+    }
+
+
+    public function edit(Request $request, Form $form, Question $question)
+    {
+        return Inertia::render('Forms/EditSingle', [
+            'form' => $form,
+            'questions' => Form::findByUuid($form->uuid)->questions->sortBy('index'),
+            'options' => $question == null ? Form::findByUuid($form->uuid)->questions->first()->options : $question->options,
+            'forms' => Auth::user()->forms,
+            'question' => $question == null ? Form::findByUuid($form->uuid)->questions->first() : $question,
+        ]);
     }
 
 

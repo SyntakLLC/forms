@@ -1,279 +1,202 @@
 <template>
     <app-layout :forms="$page['props']['forms']">
+        <div>
+            <jet-banner />
 
-        <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+            <div class="h-screen flex overflow-hidden bg-white">
+                <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
+                <div class="lg:hidden">
+                    <transition
+                        enter-active-class="transition-opacity ease-linear duration-300"
+                        enter-class="opacity-0"
+                        enter-to-class="opacity-100"
+                        leave-active-class="transition-opacity ease-linear duration-300"
+                        leave-class="opacity-100"
+                        leave-to-class="opacity-0">
+                        <div v-show="showingNavigationDropdown" class="fixed inset-0 flex z-40">
 
-            <div class="px-4 sm:px-0 sm:flex sm:items-center sm:justify-between">
-                <div class="flex-1 min-w-0">
-                    <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
-                        {{ $page['props']['form']['title'] }}
-                    </h1>
-                    <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                        We've provided some default questions. Feel free to delete them if you wish.
-                    </p>
-                </div>
-                <div class="mt-4 flex sm:mt-0 sm:ml-4">
-
-                    <button type="button" class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 sm:ml-3">
-                        Save
-                    </button>
-                </div>
-            </div>
-            <div class="px-4 sm:px-0 mt-5 border-t border-b border-gray-200">
-                <dl class="sm:divide-y sm:divide-gray-200">
-
-                    <div v-for="question in $page['props']['questions']"
-                         class="py-4 sm:py-5 sm:grid sm:grid-cols-9 sm:gap-4 items-center">
-
-                        <dt class="text-sm font-medium text-gray-500 sm:col-span-2">
-                            {{ question.type }}
-                        </dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-6">
-                            <div class="mt-1 relative rounded-md hover:shadow-sm">
-                                <input type="text"
-                                       class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-10 sm:text-sm border-gray-300 sm:border-transparent hover:border-gray-300 rounded-md"
-                                       :value="question.title"
-                                       placeholder="Start typing here...">
-
-<!--                                {{$page['props']['options']}}-->
-                                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                    <!-- Heroicon name: solid/question-mark-circle -->
-                                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                                    </svg>
+                            <transition
+                                enter-active-class="transition-opacity ease-linear duration-300"
+                                enter-class="opacity-0"
+                                enter-to-class="opacity-100"
+                                leave-active-class="transition-opacity ease-linear duration-300"
+                                leave-class="opacity-100"
+                                leave-to-class="opacity-0">
+                                <div v-show="showingNavigationDropdown" class="fixed inset-0" aria-hidden="true">
+                                    <div class="absolute inset-0 bg-gray-600 opacity-75"></div>
                                 </div>
-                            </div>
-                        </dd>
-                        <!--DELETE ICON-->
-                        <dt class="text-sm font-medium text-gray-400 items-center justify-end">
-                            <form @submit.prevent="deleteQuestion.post('/form/delete_question')">
-                                <button class="focus:outline-none"
-                                        type="submit" @click="deleteQuestion.deletedUUID = question.uuid">
-                                    <svg class="h-5 w-5 w-full text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-                                    </svg>
-                                </button>
-                            </form>
-                        </dt>
+                            </transition>
 
-
-                        <div v-for="nonoption in $page['props']['options']"
-                             v-if="question.type === 'Multiple Choice'"
-                            class="sm:col-span-9 sm:grid sm:grid-cols-9 sm:gap-4 items-center">
-                            <div v-for="option in nonoption.options"
-                                 class="sm:col-span-9 sm:grid sm:grid-cols-9 sm:gap-4 items-center">
-                            <div v-if="option.question_id === question.id"
-                                 class="sm:col-span-9 sm:grid sm:grid-cols-9 sm:gap-4 items-center">
-                                <dt class="sm:col-span-1"></dt>
-                                <dt class="text-sm font-medium text-gray-500 sm:col-span-1">
-                                    {{ convertToLetter(option.index) }}
-                                </dt>
-                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-6">
-                                    <div class="mt-1 relative rounded-md hover:shadow-sm">
-                                        <input type="text"
-                                               class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-10 sm:text-sm border-gray-300 sm:border-transparent hover:border-gray-300 rounded-md"
-                                               :value="option.title"
-                                               placeholder="Start typing here...">
-                                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                            <!-- Heroicon name: solid/question-mark-circle -->
-                                            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </dd>
-                                <!--DELETE ICON-->
-                                <dt class="text-sm font-medium text-gray-400 items-center justify-end">
-                                    <form @submit.prevent="deleteQuestion.post('/form/delete_question')">
-                                        <button class="focus:outline-none"
-                                                type="submit" @click="deleteQuestion.deletedUUID = question.uuid">
-                                            <svg class="h-5 w-5 w-full text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                            <transition
+                                enter-active-class="transition ease-in-out duration-300 transform"
+                                enter-class="-translate-x-full"
+                                enter-to-class="translate-x-0"
+                                leave-active-class="transition ease-in-out duration-300 transform"
+                                leave-class="translate-x-0"
+                                leave-to-class="-translate-x-full">
+                                <div v-show="showingNavigationDropdown" class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-white">
+                                    <div class="absolute top-0 right-0 -mr-12 pt-2">
+                                        <button @click="showingNavigationDropdown=!showingNavigationDropdown"
+                                                class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                            <span class="sr-only">Close sidebar</span>
+                                            <!-- Heroicon name: outline/x -->
+                                            <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                                             </svg>
                                         </button>
-                                    </form>
-                                </dt>
+                                    </div>
+                                    <div class="flex-shrink-0 flex items-center px-4">
+                                        <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
+                                            {{ $page['props']['form']['title'] }}
+                                        </h1>
+                                    </div>
+                                    <div class="mt-5 flex-1 h-0 overflow-y-auto">
+                                        <nav class="px-2">
+                                            <div class="space-y-1">
 
+                                                <!--HOME-->
+                                                <inertia-link v-for="question in $page['props']['questions']" :href="route('form.question.edit', {
+                                                            form:  $page['props']['form'],
+                                                            question: question
+                                                        })">
+                                                    <a v-if="route().current('form.question.edit', {
+                                                        form:  $page['props']['form'],
+                                                        question: question
+                                                    })" href="#" class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md" aria-current="page">
+
+<!--                                                        <svg class="text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
+<!--                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />-->
+<!--                                                        </svg>-->
+                                                        {{ question.title == "" && question.content == "" || question.title == "" && question.content == null ? "Default: " + question.type : question.content == null ? question.title : question.title + question.content }}
+                                                    </a>
+                                                    <a v-else href="#" class="text-gray-600 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md">
+
+<!--                                                        <svg class="text-gray-400 group-hover:text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
+<!--                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />-->
+<!--                                                        </svg>-->
+                                                        {{ question.title == "" && question.content == "" || question.title == "" && question.content == null ? "Default: " + question.type : question.content == null ? question.title : question.title + question.content }}
+                                                    </a>
+                                                </inertia-link>
+
+                                            </div>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </transition>
+                            <div class="flex-shrink-0 w-14" aria-hidden="true">
+                                <!-- Dummy element to force sidebar to shrink to fit close icon -->
                             </div>
-                            </div>
-
-                            <dt class="sm:col-span-2"></dt>
-
-
                         </div>
+                    </transition>
+                </div>
 
-                        <div v-if="$page['props']['options'].length && question.type === 'Multiple Choice'"
-                             class="sm:col-span-9 sm:grid sm:grid-cols-9 sm:gap-4 items-center">
-                        <div class="sm:col-span-9 sm:grid sm:grid-cols-9 sm:gap-4 items-center text-purple-500">
-                            <dt class="sm:col-span-2"></dt>
-
-                            <form @submit.prevent="addOption.post('/form/add_option')">
-                                <button type="submit"
-                                        @click="addOption.question_id = question.id; addOption.index = nonoption.options.length"
-                                        class="text-sm font-medium text-purple-500 sm:col-span-6 text-center">
-                                    Add Option
-                                </button>
-                            </form>
+                <!-- Static sidebar for desktop -->
+                <div class="hidden lg:flex lg:flex-shrink-0">
+                    <div class="flex flex-col w-64 border-r border-gray-200 pt-5 pb-4 bg-white">
+                        <div class="flex items-center flex-shrink-0 px-6">
+                            <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
+                                {{ $page['props']['form']['title'] }}
+                            </h1>
                         </div>
-                        </div>
+                        <!-- Sidebar component, swap this element with another sidebar if you like -->
+                        <div class="h-0 flex-1 flex flex-col overflow-y-auto">
 
+                            <!-- Navigation -->
+                            <nav class="px-3 mt-6">
+                                <div class="space-y-1">
+                                    <!-- HOMEPAGE -->
+                                    <inertia-link v-for="question in $page['props']['questions']" :href="route('form.question.edit', {
+                                            form:  $page['props']['form'],
+                                            question: question
+                                        })">
+                                        <a v-if="route().current('form.question.edit', {
+                                            form:  $page['props']['form'],
+                                            question: question
+                                        })" href="#" class="bg-gray-200 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+
+<!--                                            <svg class="text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
+<!--                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />-->
+<!--                                            </svg>-->
+                                            {{ question.title == "" && question.content == "" || question.title == "" && question.content == null ? "Default: " + question.type : question.content == null ? question.title : question.title + question.content }}
+                                        </a>
+                                        <a v-else href="#" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+
+<!--                                            <svg class="text-gray-400 group-hover:text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
+<!--                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />-->
+<!--                                            </svg>-->
+                                            {{ question.title == "" && question.content == "" || question.title == "" && question.content == null ? "Default: " + question.type : question.content == null ? question.title : question.title + question.content }}
+                                        </a>
+                                    </inertia-link>
+
+
+                                </div>
+                            </nav>
+                        </div>
                     </div>
-                </dl>
-            </div>
-
-            <div class="relative">
-
-                <button @click="showingQuestionTypeDropdown=!showingQuestionTypeDropdown"
-                        type="button"
-                        class="ml-4 sm:ml-0 mt-8 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 ">
-                    + Add Question
-
-                    <svg class="text-white ml-2 h-5 w-5 group-hover:text-gray-200 transition ease-in-out duration-150" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
-                </button>
-
-                <transition
-                    enter-active-class="transition ease-out duration-200"
-                    enter-from-class="opacity-0 translate-y-1"
-                    enter-class="opacity-100 translate-y-0"
-                    leave-active-class="transition ease-in duration-150"
-                    leave-class="opacity-100 translate-y-0"
-                    leave-to-class="opacity-0 translate-y-1">
-                    <div v-if="showingQuestionTypeDropdown" class="absolute z-10 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-md sm:px-0 lg:max-w-3xl">
-                        <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-
-                            <div class="p-5 bg-gray-50 sm:p-8">
-                                <span class="flex items-center">
-                                    <span class="text-base font-medium text-gray-900">
-                                        Add Question
-                                    </span>
-                                </span>
-                                <span class="mt-1 block text-sm text-gray-500">
-                                    There are four different types of questions. Pick the one best suited for your need.
-                                </span>
+                </div>
+                <!-- Main column -->
+                <div class="flex flex-col w-0 flex-1 overflow-hidden">
+                    <!-- Search header -->
+                    <div class="relative z-10 flex-shrink-0 flex h-16 bg-white border-b border-gray-200 lg:hidden">
+                        <!-- Sidebar toggle, controls the 'sidebarOpen' sidebar state. -->
+                        <button @click="showingNavigationDropdown=!showingNavigationDropdown"
+                                class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 lg:hidden">
+                            <span class="sr-only">Open sidebar</span>
+                            <!-- Heroicon name: outline/menu-alt-1 -->
+                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+                            </svg>
+                        </button>
+                        <div class="flex-1 flex justify-between px-4 sm:px-6 lg:px-8">
+                            <div class="flex-1 flex">
+                                <form class="w-full flex md:ml-0" action="#" method="GET">
+                                    <label for="search_field" class="sr-only">Search</label>
+                                    <div class="relative w-full text-gray-400 focus-within:text-gray-600">
+                                        <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none">
+                                            <!-- Heroicon name: solid/search -->
+                                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                        <input id="search_field" name="search_field" class="block w-full h-full pl-8 pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-gray-400 sm:text-sm" placeholder="Search" type="search">
+                                    </div>
+                                </form>
                             </div>
-                            <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
-                                <form @submit.prevent="addText.post('/form/add_text')">
-                                    <button type="submit" class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">
-<!--                                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">-->
-                                    <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white sm:h-12 sm:w-12">
-                                        <!-- TEXT ICON -->
-                                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path>
-                                        </svg>
+                            <div class="flex items-center">
+                                <!-- Profile dropdown -->
+                                <div class="ml-3 relative">
+                                    <div>
+                                        <inertia-link :href="route('profile.show')">
+                                        </inertia-link>
                                     </div>
-                                    <div class="ml-4">
-                                        <p class="text-base font-medium text-gray-900">
-                                            Text
-                                        </p>
-                                        <p class="mt-1 text-sm text-gray-500">
-                                            Sufficient for most uses, this question allows for plain text input from the lead.
-                                        </p>
-                                    </div>
-<!--                                </a>-->
-                                    </button>
-                                </form>
 
-                                <!--EMAIL-->
-                                <form @submit.prevent="addText.post('/form/add_email')">
-                                    <button type="submit" class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">
-                                        <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white sm:h-12 sm:w-12">
-                                            <!-- EMAIL ICON -->
-                                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path>
-                                            </svg>
-                                        </div>
-                                        <div class="ml-4">
-                                            <p class="text-base font-medium text-gray-900">
-                                                Email
-                                            </p>
-                                            <p class="mt-1 text-sm text-gray-500">
-                                                The most common way to communicate with a lead.
-                                            </p>
-                                        </div>
-                                    </button>
-                                </form>
-
-                                <!--PHONE-->
-                                <form @submit.prevent="addText.post('/form/add_phone')">
-                                    <button type="submit" class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">
-                                        <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white sm:h-12 sm:w-12">
-                                            <!-- PHONE ICON -->
-                                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                                            </svg>
-                                        </div>
-                                        <div class="ml-4">
-                                            <p class="text-base font-medium text-gray-900">
-                                                Phone Number
-                                            </p>
-                                            <p class="mt-1 text-sm text-gray-500">
-                                                Useful if you want to contact the lead via phone number.
-                                            </p>
-                                        </div>
-                                    </button>
-                                </form>
-
-                                <!--MC-->
-                                <form @submit.prevent="addText.post('/form/add_multiple_choice')">
-                                    <button type="submit" class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">
-                                        <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white sm:h-12 sm:w-12">
-                                            <!-- MC ICON -->
-                                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                                            </svg>
-                                        </div>
-                                        <div class="ml-4">
-                                            <p class="text-base font-medium text-gray-900">
-                                                Multiple Choice
-                                            </p>
-                                            <p class="mt-1 text-sm text-gray-500">
-                                                If you want the lead to choose from a few options.
-                                            </p>
-                                        </div>
-                                    </button>
-                                </form>
-
-                                <!--SECTION BREAK-->
-                                <form @submit.prevent="addText.post('/form/add_section_break')">
-                                    <button type="submit" class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">
-                                        <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white sm:h-12 sm:w-12">
-                                            <!-- BREAK ICON -->
-                                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
-                                            </svg>
-                                        </div>
-                                        <div class="ml-4">
-                                            <p class="text-base font-medium text-gray-900">
-                                                Section Break
-                                            </p>
-                                            <p class="mt-1 text-sm text-gray-500">
-                                                Add a message in the middle of the form to keep things from feeling monotonous.
-                                            </p>
-                                        </div>
-                                    </button>
-                                </form>
-
+                                </div>
                             </div>
                         </div>
                     </div>
-                </transition>
+                    <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none" tabindex="0">
+                        <!-- Page title & actions -->
+                        <div>
+                            <slot />
+                        </div>
+                    </main>
+                </div>
             </div>
-
         </div>
-
     </app-layout>
 </template>
 
 <script>
 import AppLayout from "@/Layouts/AppLayout";
 import Button from "@/Jetstream/Button";
+import JetBanner from '@/Jetstream/Banner'
+
 export default {
     name: "Edit.vue",
     components: {
         Button,
-        AppLayout
+        AppLayout,
+        JetBanner
     },
 
     props: ['form', 'questions'],
@@ -281,6 +204,7 @@ export default {
     data() {
         return {
             showingQuestionTypeDropdown: false,
+            showingNavigationDropdown: false,
             deletedUUID: 0,
             question_id: 0,
             optionIndex: 0,

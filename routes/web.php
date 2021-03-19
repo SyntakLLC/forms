@@ -57,3 +57,6 @@ Route::post('form/delete_question', 'App\Http\Controllers\QuestionController@des
 
 // when adding an option
 Route::post('form/add_option', 'App\Http\Controllers\QuestionController@store');
+
+// the route that allows us to edit a single question while seeing all of them
+Route::get('form/{form}/edit/{question}', 'App\Http\Controllers\QuestionController@edit')->name('form.question.edit');

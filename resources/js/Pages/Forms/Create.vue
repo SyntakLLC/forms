@@ -1,6 +1,6 @@
 <template>
     <app-layout :forms="$page['props']['forms']">
-        <div>
+        <div class="-py-6">
             <header class="vff-header">
                 <div class="f-container">
                     <!-- Add custom logo here -->
@@ -284,5 +284,6 @@ export default {
 <style lang="css">
 /* If using the npm package, use the following lines instead of the one above */
  @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.css';
- @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.theme-minimal.css';
+ /*@import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.theme-minimal.css';*/
+ @import'../../../css/flow-form-amaan.css';
 </style>

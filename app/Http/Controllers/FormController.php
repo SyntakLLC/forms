@@ -13,7 +13,7 @@ use Inertia\Inertia;
 class FormController extends Controller
 {
     public function index(Request $request) {
-        return Inertia::render('Forms/Create', [
+        return Inertia::render('Forms/Index', [
             'forms' => $request->user()->forms,
         ]);
     }
@@ -27,13 +27,18 @@ class FormController extends Controller
 
     public function edit(Form $form) {
 
-        return Inertia::render('Forms/Edit', [
-            'form' => $form,
-            'questions' => array_sort(Form::findByUuid($form->uuid)->questions, 'index'),
-            'options' => array_sort(Form::findByUuid($form->uuid)->questions->each(function ($question) {
-                return $question->options;
-            }), 'index'),
-            'forms' => Auth::user()->forms,
+//        return Inertia::render('Forms/EditSingle', [
+//            'form' => $form,
+//            'questions' => Form::findByUuid($form->uuid)->questions->sortBy('index'),
+//            'options' => Form::findByUuid($form->uuid)->questions->sortBy('index')->each(function ($question) {
+//                return $question->options;
+//            })->sortBy('index'),
+//            'forms' => Auth::user()->forms,
+//        ]);
+
+        return Redirect::route('form.question.edit', [
+            'form' => $form->uuid,
+            'question' => Form::findByUuid($form->uuid)->questions->sortBy('index')->first()
         ]);
     }
 

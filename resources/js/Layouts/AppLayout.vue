@@ -7,8 +7,8 @@
             <div class="lg:hidden">
                 <transition
                     enter-active-class="transition-opacity ease-linear duration-300"
-                    enter-from-class="opacity-0"
-                    enter-class="opacity-100"
+                    enter-class="opacity-0"
+                    enter-to-class="opacity-100"
                     leave-active-class="transition-opacity ease-linear duration-300"
                     leave-class="opacity-100"
                     leave-to-class="opacity-0">
@@ -16,8 +16,8 @@
 
                     <transition
                         enter-active-class="transition-opacity ease-linear duration-300"
-                        enter-from-class="opacity-0"
-                        enter-class="opacity-100"
+                        enter-class="opacity-0"
+                        enter-to-class="opacity-100"
                         leave-active-class="transition-opacity ease-linear duration-300"
                         leave-class="opacity-100"
                         leave-to-class="opacity-0">
@@ -28,8 +28,8 @@
 
                     <transition
                         enter-active-class="transition ease-in-out duration-300 transform"
-                        enter-from-class="-translate-x-full"
-                        enter-class="translate-x-0"
+                        enter-class="-translate-x-full"
+                        enter-to-class="translate-x-0"
                         leave-active-class="transition ease-in-out duration-300 transform"
                         leave-class="translate-x-0"
                         leave-to-class="-translate-x-full">
@@ -249,7 +249,7 @@
 
                                 <!--LEADS-->
                                 <inertia-link :href="route('response.index')">
-                                    <a v-if="route().current('response.index')" href="#" class="bg-gray-200 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                    <a v-if="route().current('response.index') || route().current('response.show')" href="#" class="bg-gray-200 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
 
                                         <svg class="text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
@@ -275,7 +275,7 @@
                                     <div v-if="$page['props']['forms'].length" v-for="form in $page['props']['forms']">
                                     <inertia-link :href="route('form.edit', form.uuid)">
                                         <!--CURRENT-->
-                                        <a v-if="route().current('form.edit', form.uuid)" class="bg-gray-200 group flex items-center px-3 py-2 text-sm font-medium text-gray-900 rounded-md">
+                                        <a v-if="route().current('form.question.edit', form.uuid)" class="bg-gray-200 group flex items-center px-3 py-2 text-sm font-medium text-gray-900 rounded-md">
                                             <span class="w-2.5 h-2.5 mr-4 rounded-full" :class="form.id_color" aria-hidden="true"></span>
                                             <span class="truncate">
                                                 {{ form.title }}
@@ -353,7 +353,8 @@
                 </div>
                 <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none" tabindex="0">
                     <!-- Page title & actions -->
-                    <div class="py-6">
+<!--                    <div class="py-6">-->
+                    <div >
                         <slot />
                     </div>
                 </main>
