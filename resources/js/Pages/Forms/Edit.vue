@@ -96,6 +96,7 @@
                         <div class="flex items-center flex-shrink-0 px-6">
                             <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
                                 {{ $page['props']['form']['title'] }}
+<!--                                {{this.deletedUUID}}-->
                             </h1>
                         </div>
                         <!-- Sidebar component, swap this element with another sidebar if you like -->
@@ -208,6 +209,7 @@ export default {
             deletedUUID: 0,
             question_id: 0,
             optionIndex: 0,
+            sortedQuestions: 'this.questions',
 
             addText: this.$inertia.form({
                 form: this.form[0],
