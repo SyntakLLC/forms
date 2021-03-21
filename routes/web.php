@@ -56,7 +56,8 @@ Route::post('form/add_section_break', 'App\Http\Controllers\QuestionController@a
 Route::post('form/delete_question', 'App\Http\Controllers\QuestionController@destroy');
 
 // when submitting results from the typeform
-Route::post('form/submit_results', 'App\Http\Controllers\ResponseController@submitResults');
+Route::post('form/submit_results', 'App\Http\Controllers\ResponseController@store');
+//->name('form.submitResults');
 
 // when adding an option
 Route::post('form/add_option', 'App\Http\Controllers\QuestionController@store');

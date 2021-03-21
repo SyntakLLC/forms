@@ -13,7 +13,7 @@
                         leave-active-class="transition-opacity ease-linear duration-300"
                         leave-class="opacity-100"
                         leave-to-class="opacity-0">
-                        <div v-show="showingNavigationDropdown" class="fixed inset-0 flex z-40">
+                        <div v-show="showingQuestionsDropdown" class="fixed inset-0 flex z-40">
 
                             <transition
                                 enter-active-class="transition-opacity ease-linear duration-300"
@@ -22,7 +22,7 @@
                                 leave-active-class="transition-opacity ease-linear duration-300"
                                 leave-class="opacity-100"
                                 leave-to-class="opacity-0">
-                                <div v-show="showingNavigationDropdown" class="fixed inset-0" aria-hidden="true">
+                                <div v-show="showingQuestionsDropdown" class="fixed inset-0" aria-hidden="true">
                                     <div class="absolute inset-0 bg-gray-600 opacity-75"></div>
                                 </div>
                             </transition>
@@ -34,9 +34,9 @@
                                 leave-active-class="transition ease-in-out duration-300 transform"
                                 leave-class="translate-x-0"
                                 leave-to-class="-translate-x-full">
-                                <div v-show="showingNavigationDropdown" class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-white">
+                                <div v-show="showingQuestionsDropdown" class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-white">
                                     <div class="absolute top-0 right-0 -mr-12 pt-2">
-                                        <button @click="showingNavigationDropdown=!showingNavigationDropdown"
+                                        <button @click="showingQuestionsDropdown=!showingQuestionsDropdown"
                                                 class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                                             <span class="sr-only">Close sidebar</span>
                                             <!-- Heroicon name: outline/x -->
@@ -93,17 +93,16 @@
                 <!-- Static sidebar for desktop -->
                 <div class="hidden lg:flex lg:flex-shrink-0">
                     <div class="flex flex-col w-64 border-r border-gray-200 pt-5 pb-4 bg-white">
-                        <div class="flex items-center flex-shrink-0 px-6">
-                            <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
+                        <div class="flex items-center flex-shrink-0 px-6 border-b border-gray-200">
+                            <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate pb-4">
                                 {{ $page['props']['form']['title'] }}
-<!--                                {{this.deletedUUID}}-->
                             </h1>
                         </div>
                         <!-- Sidebar component, swap this element with another sidebar if you like -->
                         <div class="h-0 flex-1 flex flex-col overflow-y-auto">
 
                             <!-- Navigation -->
-                            <nav class="px-3 mt-6">
+                            <nav class="mt-6">
                                 <div class="space-y-1">
                                     <!-- HOMEPAGE -->
                                     <inertia-link v-for="question in $page['props']['questions']" :href="route('form.question.edit', {
@@ -113,19 +112,23 @@
                                         <a v-if="route().current('form.question.edit', {
                                             form:  $page['props']['form'],
                                             question: question
-                                        })" href="#" class="bg-gray-200 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                        })" href="#" class="bg-gray-200 text-gray-900 group flex items-center py-4 text-sm font-medium min-h-40">
 
+                                            <div class="px-3">
 <!--                                            <svg class="text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
 <!--                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />-->
 <!--                                            </svg>-->
-                                            {{ question.title == "" && question.content == "" || question.title == "" && question.content == null ? "Default: " + question.type : question.content == null ? question.title : question.title + question.content }}
+                                                {{ question.title == "" && question.content == "" || question.title == "" && question.content == null ? "Default: " + question.type : question.content == null ? question.title : question.title + question.content }}
+                                            </div>
                                         </a>
-                                        <a v-else href="#" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                        <a v-else href="#" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center py-4 text-sm font-medium min-h-40">
 
+                                            <div class="px-3">
 <!--                                            <svg class="text-gray-400 group-hover:text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
 <!--                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />-->
 <!--                                            </svg>-->
-                                            {{ question.title == "" && question.content == "" || question.title == "" && question.content == null ? "Default: " + question.type : question.content == null ? question.title : question.title + question.content }}
+                                                {{ question.title == "" && question.content == "" || question.title == "" && question.content == null ? "Default: " + question.type : question.content == null ? question.title : question.title + question.content }}
+                                            </div>
                                         </a>
                                     </inertia-link>
 
@@ -140,7 +143,7 @@
                     <!-- Search header -->
                     <div class="relative z-10 flex-shrink-0 flex h-16 bg-white border-b border-gray-200 lg:hidden">
                         <!-- Sidebar toggle, controls the 'sidebarOpen' sidebar state. -->
-                        <button @click="showingNavigationDropdown=!showingNavigationDropdown"
+                        <button @click="showingQuestionsDropdown=!showingQuestionsDropdown"
                                 class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 lg:hidden">
                             <span class="sr-only">Open sidebar</span>
                             <!-- Heroicon name: outline/menu-alt-1 -->
@@ -148,32 +151,6 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
                             </svg>
                         </button>
-                        <div class="flex-1 flex justify-between px-4 sm:px-6 lg:px-8">
-                            <div class="flex-1 flex">
-                                <form class="w-full flex md:ml-0" action="#" method="GET">
-                                    <label for="search_field" class="sr-only">Search</label>
-                                    <div class="relative w-full text-gray-400 focus-within:text-gray-600">
-                                        <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none">
-                                            <!-- Heroicon name: solid/search -->
-                                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                                            </svg>
-                                        </div>
-                                        <input id="search_field" name="search_field" class="block w-full h-full pl-8 pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-gray-400 sm:text-sm" placeholder="Search" type="search">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="flex items-center">
-                                <!-- Profile dropdown -->
-                                <div class="ml-3 relative">
-                                    <div>
-                                        <inertia-link :href="route('profile.show')">
-                                        </inertia-link>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none" tabindex="0">
                         <!-- Page title & actions -->
@@ -206,6 +183,7 @@ export default {
         return {
             showingQuestionTypeDropdown: false,
             showingNavigationDropdown: false,
+            showingQuestionsDropdown: false,
             deletedUUID: 0,
             question_id: 0,
             optionIndex: 0,

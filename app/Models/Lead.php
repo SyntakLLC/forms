@@ -21,7 +21,8 @@ class Lead extends Model
         'last',
         'email',
         'phone',
-        'viewed'
+        'viewed',
+        'form_filled'
     ];
 
     public function getRouteKeyName()

@@ -80,6 +80,7 @@ export default {
 
     data() {
         return {
+            showingQuestionsDropdown: false,
             submitted: false,
             completed: false,
             language: new LanguageModel(),

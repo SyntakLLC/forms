@@ -57,6 +57,8 @@
                     <p class="text-success" v-if="submitted">Submitted succesfully.</p>
                 </template>
             </flow-form>
+
+<!--            <form @submit.prevent="submitForm.post('/form/submit_results')" />-->
         </div>
 </template>
 
@@ -105,6 +107,10 @@ export default {
                     placeholder: question.type == "Text" ? 'Start typing here...' : question.type == "Section Break" ? '' : question.type == "Multiple Choice" ? '' : question.type == "Email" ? 'jane@doe.com' : '(###)-###-####',
                 })
             }),
+
+            // submitForm: this.$inertia.form({
+            //     data: this.getData(),
+            // }),
         }
     },
     mounted() {
@@ -140,20 +146,15 @@ export default {
             this.submitted = true
             /* eslint-disable-next-line no-unused-vars */
             const data = this.getData()
+            // data is an object of {questions, answers} where each is an array
+            // what we want is one array of 3 objects, [{question, array}, {question, array}, {question, array}]
+            let formattedData = data.questions.map((question, index) => {
+                return {question: question, answer: data.answers[index]}
+            })
 
-            // console.log(data.answers)
+            console.log(formattedData)
 
-            this.route.push('form/submit_results', data.answers)
-            /*
-              You can use Fetch API to send the data to your server, eg.:
-              fetch(url, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-              })
-            */
+            this.$inertia.post('/form/submit_results', formattedData)
         },
         getData() {
             const data = {

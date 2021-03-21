@@ -61,7 +61,7 @@
                             <h2 class="text-gray-500 text-xs font-medium uppercase tracking-wide">Leads</h2>
                         </div>
                         <ul class="mt-3 border-t border-gray-200 divide-y divide-gray-100">
-                            <li v-for="lead in $page['props']['leads']">
+                            <li v-for="lead in $page['props']['leads'].reverse()">
                                 <a href="#" class="group flex items-center justify-between px-4 py-4 hover:bg-gray-50 sm:px-6">
                                     <span class="flex items-center truncate space-x-3">
 <!--                                        <span class="w-2.5 h-2.5 flex-shrink-0 rounded-full bg-pink-600" aria-hidden="true"></span>-->
