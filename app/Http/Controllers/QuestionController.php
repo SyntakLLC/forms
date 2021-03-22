@@ -108,6 +108,21 @@ class QuestionController extends Controller
     }
 
 
+    public function update(Request $request)
+    {
+        $question = Question::find($request->get('question_id'));
+
+        $question->tagline = $request->get('tagline');
+
+        $question->save();
+
+        return Redirect::route('form.question.edit', [
+            'form' => Form::find($request->get('form_id')),
+            'question' => Question::find($request->get('question_id')),
+        ]);
+    }
+
+
     public function destroy(Request $request)
     {
         Question::findByUuid($request->get('deletedUUID'))->delete();

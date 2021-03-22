@@ -27,6 +27,7 @@
     "dependencies": {
         "@ditdot-dev/vue-flow-form": "^1.1.7",
         "@inertiajs/inertia-vue": "^0.5.4",
+        "@vuejs-community/vue-filter-date-format": "^1.6.3",
         "vue-template-compiler": "^2.6.12"
     }
 }

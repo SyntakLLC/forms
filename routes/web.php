@@ -57,7 +57,9 @@ Route::post('form/delete_question', 'App\Http\Controllers\QuestionController@des
 
 // when submitting results from the typeform
 Route::post('form/submit_results', 'App\Http\Controllers\ResponseController@store');
-//->name('form.submitResults');
+
+// to update the tagline
+Route::post('form/update_tagline', 'App\Http\Controllers\QuestionController@update');
 
 // when adding an option
 Route::post('form/add_option', 'App\Http\Controllers\QuestionController@store');

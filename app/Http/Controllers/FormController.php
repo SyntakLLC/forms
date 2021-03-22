@@ -233,4 +233,304 @@ class FormController extends Controller
 
         return Redirect::route('form.edit', $form->uuid);
     }
+
+    public function apartment(Request $request) {
+        $form = Form::create([
+            'id_color' => $request->get('formColor'),
+            'user_id' => $request->user()->id,
+            'title' => "Untitled Form",
+        ]);
+
+        // num of beds
+        $numOfBeds = Question::create([
+            'form_id' => $form->id,
+            'type' => 'Multiple Choice',
+            'title' => 'How many bedrooms do you want?',
+            'tagline' => 'Sounds good!',
+            'index' => 4,
+        ]);
+
+        // the $numOfBeds questions
+        Option::create([
+            'question_id' => $numOfBeds->id,
+            'title' => 'Studio',
+            'index' => 0,
+        ]);
+        Option::create([
+            'question_id' => $numOfBeds->id,
+            'title' => '1 bed',
+            'index' => 1,
+        ]);
+        Option::create([
+            'question_id' => $numOfBeds->id,
+            'title' => '2 beds',
+            'index' => 2,
+        ]);
+        Option::create([
+            'question_id' => $numOfBeds->id,
+            'title' => '3+ beds',
+            'index' => 3,
+        ]);
+
+        // laundry
+        $laundry = Question::create([
+            'form_id' => $form->id,
+            'type' => 'Multiple Choice',
+            'multiple' => true,
+            'title' => 'Which laundry option do you prefer?',
+            'index' => 5,
+        ]);
+
+        // the laundry options
+        Option::create([
+            'question_id' => $laundry->id,
+            'title' => 'On-site laundry',
+            'index' => 0,
+        ]);
+        Option::create([
+            'question_id' => $laundry->id,
+            'title' => 'In-unit laundry',
+            'index' => 1,
+        ]);
+        Option::create([
+            'question_id' => $laundry->id,
+            'title' => 'Washer-dryer connections',
+            'index' => 2,
+        ]);
+
+        // parking
+        $parking = Question::create([
+            'form_id' => $form->id,
+            'type' => 'Multiple Choice',
+            'multiple' => true,
+            'title' => 'And what about parking options?',
+            'index' => 6,
+        ]);
+
+        // the parking options
+        Option::create([
+            'question_id' => $parking->id,
+            'title' => 'Garage',
+            'index' => 0,
+        ]);
+        Option::create([
+            'question_id' => $parking->id,
+            'title' => 'Driveway',
+            'index' => 1,
+        ]);
+
+        // pets
+        $pets = Question::create([
+            'form_id' => $form->id,
+            'type' => 'Multiple Choice',
+            'multiple' => true,
+            'title' => 'Thanks! Now, do you have any pets?',
+            'allow_other' => true,
+            'index' => 7,
+        ]);
+
+        // the pets options
+        Option::create([
+            'question_id' => $pets->id,
+            'title' => 'Dog',
+            'index' => 0,
+        ]);
+        Option::create([
+            'question_id' => $pets->id,
+            'title' => 'Cat',
+            'index' => 1,
+        ]);
+
+        // evicted?
+        $evicted = Question::create([
+            'form_id' => $form->id,
+            'type' => 'Multiple Choice',
+            'title' => 'Have you ever been evicted?',
+            'index' => 8,
+        ]);
+
+        // the pets options
+        Option::create([
+            'question_id' => $evicted->id,
+            'title' => 'Yes',
+            'index' => 0,
+        ]);
+        Option::create([
+            'question_id' => $evicted->id,
+            'title' => 'No',
+            'index' => 1,
+        ]);
+
+        // cosign
+        $cosign = Question::create([
+            'form_id' => $form->id,
+            'type' => 'Multiple Choice',
+            'title' => 'Are you signing the lease with anyone else?',
+            'index' => 10,
+        ]);
+
+        // the cosign options
+        Option::create([
+            'question_id' => $cosign->id,
+            'title' => 'A cosigner',
+            'index' => 0,
+        ]);
+        Option::create([
+            'question_id' => $cosign->id,
+            'title' => 'Roommates, partner, etc.',
+            'index' => 1,
+        ]);
+        Option::create([
+            'question_id' => $cosign->id,
+            'title' => 'Just me',
+            'index' => 2,
+        ]);
+
+        // importance ranking
+        $importance = Question::create([
+            'form_id' => $form->id,
+            'type' => 'Multiple Choice',
+            'title' => 'Of these three, which is most important to you?',
+            'index' => 11,
+        ]);
+
+        // the importance options
+        Option::create([
+            'question_id' => $importance->id,
+            'title' => 'Lowest price',
+            'index' => 0,
+        ]);
+        Option::create([
+            'question_id' => $importance->id,
+            'title' => 'Getting all my preferences',
+            'index' => 1,
+        ]);
+        Option::create([
+            'question_id' => $importance->id,
+            'title' => 'Staying in the location I want',
+            'index' => 2,
+        ]);
+
+        // move in date ranking
+        $movein = Question::create([
+            'form_id' => $form->id,
+            'type' => 'Multiple Choice',
+            'title' => 'How important is a move-in date to you?',
+            'index' => 12,
+        ]);
+
+        // the movein options
+        Option::create([
+            'question_id' => $movein->id,
+            'title' => 'I\'m just looking',
+            'index' => 0,
+        ]);
+        Option::create([
+            'question_id' => $movein->id,
+            'title' => 'I want to move in, but no hurry',
+            'index' => 1,
+        ]);
+        Option::create([
+            'question_id' => $movein->id,
+            'title' => 'I need to move, but I\'m flexible',
+            'index' => 2,
+        ]);
+        Option::create([
+            'question_id' => $movein->id,
+            'title' => 'I need to move soon!',
+            'index' => 3,
+        ]);
+
+        // monthlyincome ranking
+        $monthlyincome = Question::create([
+            'form_id' => $form->id,
+            'type' => 'Multiple Choice',
+            'title' => 'What\'s your monthly household income, pre-tax?',
+            'index' => 15,
+        ]);
+
+        // the movein options
+        Option::create([
+            'question_id' => $monthlyincome->id,
+            'title' => 'Under $3,000',
+            'index' => 0,
+        ]);
+        Option::create([
+            'question_id' => $monthlyincome->id,
+            'title' => '$3,000-$9,000',
+            'index' => 1,
+        ]);
+        Option::create([
+            'question_id' => $monthlyincome->id,
+            'title' => 'Over $10,000',
+            'index' => 2,
+        ]);
+
+        $questions = [
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Text',
+                'title' => 'What is your full name?',
+                'tagline' => 'Let\'s get acquainted',
+                'index' => 0,
+            ]),
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Email',
+                'title' => 'Please provide your email.',
+                'tagline' => 'Nice to meet you',
+                'index' => 1,
+            ]),
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Phone Number',
+                'title' => 'What\'s your phone number?',
+                'tagline' => 'One more bit of contact...',
+                'index' => 2,
+            ]),
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Text',
+                'title' => 'What are you looking to pay per month?',
+                'index' => 3,
+            ]),
+            $numOfBeds,
+            $laundry,
+            $parking,
+            $pets,
+            $evicted,
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Text',
+                'title' => 'How long do you want your lease to be?',
+                'subtitle' => "(Approximately)",
+                'index' => 9,
+            ]),
+            $cosign,
+            $importance,
+            $movein,
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Text',
+                'title' => 'Is there any particular place you want to move in to?',
+                'index' => 13,
+            ]),
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Text',
+                'title' => 'And about when would you want to move in?',
+                'index' => 14,
+            ]),
+            $monthlyincome,
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Text',
+                'title' => 'Anything else you want to have?',
+                'subtitle' => 'Any "must-haves" like a dishwasher, patio, balcony, etc.?',
+                'index' => 16,
+            ]),
+        ];
+
+        return Redirect::route('form.edit', $form->uuid);
+    }
 }

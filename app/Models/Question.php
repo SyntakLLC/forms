@@ -24,7 +24,8 @@ class Question extends Model
         'description',
         'content',
         'multiple',
-        'index'
+        'index',
+        'allow_other'
     ];
 
     public function getRouteKeyName()

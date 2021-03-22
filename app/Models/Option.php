@@ -18,7 +18,7 @@ class Option extends Model
     protected $fillable = [
         'question_id',
         'title',
-        'index'
+        'index',
     ];
 
     public function getRouteKeyName()

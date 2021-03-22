@@ -134,7 +134,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right">
-                                                    {{lead.updated_at}}
+                                                    {{ new Date(Date.parse(lead.updated_at)) | dateFormat('MMMM DD, YYYY') }}
                                                 </td>
 <!--                                            </a>-->
                                         </tr>
@@ -151,10 +151,12 @@
 
 <script>
 import AppLayout from "@/Layouts/AppLayout";
+import VueFilterDateFormat from '@vuejs-community/vue-filter-date-format';
 
 export default {
     components: {
-        AppLayout
+        AppLayout,
+        VueFilterDateFormat
     },
 
     name: "Index.vue"

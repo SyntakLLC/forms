@@ -100,7 +100,7 @@ export default {
                             })
                         })
                     : null,
-
+                    allowOther: question.allow_other,
                     type: question.type == "Text" ? QuestionType.Text : question.type == "Section Break" ? QuestionType.SectionBreak : question.type == "Multiple Choice" ? QuestionType.MultipleChoice : question.type == "Email" ? QuestionType.Email : QuestionType.Phone,
                     multiple: question.type == "Multiple Choice" ? question.multiple : false,
                     required: true,
@@ -152,7 +152,7 @@ export default {
                 return {question: question, answer: data.answers[index]}
             })
 
-            console.log(formattedData)
+            // console.log(formattedData)
 
             this.$inertia.post('/form/submit_results', formattedData)
         },

@@ -3,6 +3,9 @@ require('./bootstrap');
 // Import modules...
 import Vue from 'vue';
 import {App as InertiaApp, plugin as InertiaPlugin} from '@inertiajs/inertia-vue';
+import VueFilterDateFormat from '@vuejs-community/vue-filter-date-format';
+
+Vue.use(VueFilterDateFormat);
 // import PortalVue from 'portal-vue';
 
 Vue.mixin({methods: {route}});
