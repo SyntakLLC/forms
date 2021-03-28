@@ -112,7 +112,16 @@ class QuestionController extends Controller
     {
         $question = Question::find($request->get('question_id'));
 
-        $question->tagline = $request->get('tagline');
+        if ($request->get('type') == 'tagline') {
+            $question->tagline = $request->get('tagline');
+        }
+        if ($request->get('type') == 'title') {
+            $question->title = $request->get('title');
+        }
+        if ($request->get('type') == 'subtitle') {
+            $question->subtitle = $request->get('subtitle');
+        }
+//        $question->tagline = $request->get('tagline');
 
         $question->save();
 

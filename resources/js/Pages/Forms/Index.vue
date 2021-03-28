@@ -1,6 +1,8 @@
 <template>
     <app-layout :forms="$page['props']['forms']">
 
+
+
         <div class="bg-white">
             <div class="mx-auto">
                 <div class="space-y-12">
@@ -10,6 +12,7 @@
                         <div class="flex-1 min-w-0">
                             <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
                                 New Form
+                                <button @click="apiTest">API Test</button>
                             </h1>
                         </div>
                         <!--                        <div class="mt-4 flex sm:mt-0 sm:ml-4">-->
@@ -173,6 +176,10 @@ export default {
         randomIntFromInterval(min, max) { // min and max included
             return Math.floor(Math.random() * (max - min + 1) + min);
         },
+        async apiTest() {
+            let response = await axios.get('/api/api-example')
+            console.log(response.data)
+        }
     }
 }
 </script>

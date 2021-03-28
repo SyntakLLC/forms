@@ -24,19 +24,11 @@
                                 <div class="q-inner">
                                     <div class="">
                                         <div class="fh2"><!---->
-
-
-<!--                                            <input type="text"-->
-<!--                                                   name="email"-->
-<!--                                                   id="email"-->
-<!--                                                   class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md f-tagline"-->
-<!--                                                   placeholder="you@example.com"-->
-<!--                                                   :value="question.tagline">-->
-                                            <span contenteditable class="f-tagline" @input="updateTagline">
-                                                {{ question.tagline }}
+                                            <span class="f-sub"><!----> <!---->
+                                                <span contenteditable class="f-help" placeholder="Tagline (optional)" @input="updateTagline">{{ question.tagline }}</span>
                                             </span>
 
-                                            <span class="f-text">
+                                            <span contenteditable class="f-text" placeholder="Title" @input="updateTitle">
                                                 {{ question.title }}&nbsp;
                                                 <span aria-label="This step is required" role="note" class="f-required">
                                                     <span aria-hidden="true">*</span>
@@ -44,7 +36,7 @@
                                             </span> <!---->
 
                                             <span class="f-sub"><!----> <!---->
-                                                <span class="f-help">{{ question.subtitle }}</span>
+                                                <span contenteditable class="f-help" placeholder="Subtitle (optional)" @input="updateSubtitle">{{ question.subtitle }}</span>
                                             </span>
 
                                             <span class="f-sub"><!----> <!---->
@@ -83,7 +75,7 @@
                                         <div class=""><!----> <!----> <!---->
                                             <div class="f-answer f-full-width">
                                                 <div class="f-content">
-                                                    <span class="f-section-text">{{ question.content }}</span>
+                                                    <span contenteditable class="f-section-text">{{ question.content == null ? "Message" : question.content }}</span>
                                                 </div>
                                             </div>
                                         </div> <!---->
@@ -105,19 +97,21 @@
                                     <div class="">
                                         <div class="fh2">
 
-                                            <span class="f-tagline">
-                                                {{ question.tagline }}
+                                            <span class="f-sub"><!----> <!---->
+                                                <span contenteditable class="f-help" placeholder="Tagline (optional)" @input="updateTagline">{{ question.tagline }}</span>
                                             </span>
 
                                             <span class="f-text">
-                                                {{ question.title }}&nbsp;
-                                                <span aria-label="This step is required" role="note" class="f-required">
-                                                    <span aria-hidden="true">*</span>
+                                                <span contenteditable placeholder="Title" @input="updateTitle">
+                                                    {{ question.title }}
+                                                    <span aria-label="This step is required" role="note" class="f-required">
+                                                        <span aria-hidden="true">*</span>
+                                                    </span> <!---->
                                                 </span> <!---->
-                                            </span> <!---->
+                                            </span>
 
                                             <span class="f-sub"><!----> <!---->
-                                                <span class="f-help">{{ question.subtitle }}</span>
+                                                <span contenteditable class="f-help" placeholder="Subtitle (optional)" @input="updateSubtitle">{{ question.subtitle }}</span>
                                             </span>
 
                                             <div class="f-answer f-full-width">
@@ -135,73 +129,8 @@
                     </div>
                 </div>
 
-                <div class="vff-footer">
-                    <div class="footer-inner-wrap">
-                        <div class="f-progress">
-                            <div class="f-progress-bar">
-                                <div class="f-progress-bar-inner" style="width: 0%;"></div>
-                            </div>
-                        </div>
-                        <div class="f-nav">
-                            <a href="#" role="button" aria-label="Previous step" class="f-prev">
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="42.333px" height="28.334px" viewBox="78.833 5.5 42.333 28.334" aria-hidden="true"><path d="M82.039,31.971L100,11.442l17.959,20.529L120,30.187L101.02,8.492c-0.258-0.295-0.629-0.463-1.02-0.463c-0.39,0-0.764,0.168-1.02,0.463L80,30.187L82.039,31.971z"></path></svg>
-                                <span aria-hidden="true" class="f-nav-text">Prev</span>
-                            </a>
-                            <a href="#" role="button" aria-label="Next step" class="f-next f-disabled">
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="42.333px" height="28.334px" viewBox="78.833 5.5 42.333 28.334" aria-hidden="true"><path d="M117.963,8.031l-17.961,20.529L82.042,8.031l-2.041,1.784l18.98,21.695c0.258,0.295,0.629,0.463,1.02,0.463c0.39,0,0.764-0.168,1.02-0.463l18.98-21.695L117.963,8.031z"></path></svg>
-                                <span aria-hidden="true" class="f-nav-text">Next</span>
-                            </a>
-                        </div> <!---->
-                    </div>
-                </div>
+
             </div>
-
-
-<!--            <flow-form-->
-<!--                ref="flowform"-->
-<!--                v-on:complete="onComplete"-->
-<!--                v-on:submit="onSubmit"-->
-<!--                v-bind:questions="questions"-->
-<!--                v-bind:language="language"-->
-<!--                v-bind:standalone="true"-->
-<!--            >-->
-<!--                &lt;!&ndash; Custom content for the Complete/Submit screen slots in the FlowForm component &ndash;&gt;-->
-<!--                &lt;!&ndash; We've overriden the default "complete" slot content &ndash;&gt;-->
-<!--                <template v-slot:complete>-->
-<!--                    <div class="f-section-wrap">-->
-<!--                        <p>-->
-<!--                            <span class="fh2">Thank you. 🙏</span>-->
-<!--                            <span class="f-section-text">-->
-<!--                                Great work, the survey is completed, and our demo is done. You can review your answers or press submit.-->
-<!--                            </span>-->
-<!--                        </p>-->
-<!--                        <p class="f-description">Note: No data will be saved and/or sent in this demo.</p>-->
-<!--                    </div>-->
-<!--                </template>-->
-
-<!--                &lt;!&ndash; We've overriden the default "completeButton" slot content &ndash;&gt;-->
-<!--                <template v-slot:completeButton>-->
-<!--                    <div class="f-submit" v-if="!submitted">-->
-<!--                        <button-->
-<!--                            class="o-btn-action"-->
-<!--                            ref="button"-->
-<!--                            type="submit"-->
-<!--                            href="#"-->
-<!--                            v-on:click.prevent="onSendData()"-->
-<!--                            aria-label="Press to submit"-->
-<!--                        >-->
-<!--                            <span>{{ language.submitText }}</span>-->
-<!--                        </button>-->
-<!--                        <a class="f-enter-desc"-->
-<!--                           href="#"-->
-<!--                           v-on:click.prevent="onSendData()"-->
-<!--                           v-html="language.formatString(language.pressEnter)">-->
-<!--                        </a>-->
-<!--                    </div>-->
-
-<!--                    <p class="text-success" v-if="submitted">Submitted succesfully.</p>-->
-<!--                </template>-->
-<!--            </flow-form>-->
         </div>
     </edit>
 </template>
@@ -267,9 +196,20 @@ export default {
         /**
          * Update fields
          */
-        updateTagline(e) {
-            let data = {'tagline': e.target.innerText, 'question_id': this.question.id, 'form_id': this.question.form_id}
-            this.$inertia.post('/form/update_tagline', data)
+        async updateTagline(e) {
+            let data = {'type': 'tagline', 'tagline': e.target.innerText, 'question_id': this.question.id, 'form_id': this.question.form_id}
+            // this.$inertia.post('/form/update_tagline', data)
+            let response = await axios.post('/api/update-form-question', data)
+        },
+        async updateTitle(e) {
+            let data = {'type': 'title', 'title': e.target.innerText, 'question_id': this.question.id, 'form_id': this.question.form_id}
+            // this.$inertia.post('/form/update_tagline', data)
+            let response = await axios.post('/api/update-form-question', data)
+        },
+        async updateSubtitle(e) {
+            let data = {'type': 'subtitle', 'subtitle': e.target.innerText, 'question_id': this.question.id, 'form_id': this.question.form_id}
+            // this.$inertia.post('/form/update_tagline', data)
+            let response = await axios.post('/api/update-form-question', data)
         },
 
         /**
@@ -410,4 +350,23 @@ export default {
 <style lang="css">
     @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.css';
     @import'../../../css/flow-form-amaan.css';
+
+    .f-tagline[contenteditable="true"]:focus {
+        /*background-color: rgba(217, 245, 255,0.5);*/
+        /*margin: 2px;*/
+        /*border-width: 0px;*/
+        /*border-color: #cbd5e0;*/
+        /*border-radius: 8px;*/
+    }
+    [contenteditable] {
+        outline: 0px solid transparent;
+    }
+
+    [contenteditable]:empty:before {
+        content: attr(placeholder);
+    }
+
+    input {
+        outline: 0px solid transparent;
+    }
 </style>

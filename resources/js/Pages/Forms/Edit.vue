@@ -55,7 +55,7 @@
                                             <div class="space-y-1">
 
                                                 <!--HOME-->
-                                                <inertia-link v-for="question in $page['props']['questions']" :href="route('form.question.edit', {
+                                                <inertia-link :key="index" v-for="(question, index) in $page['props']['questions']" :href="route('form.question.edit', {
                                                             form:  $page['props']['form'],
                                                             question: question
                                                         })">
@@ -246,7 +246,7 @@
                             <nav class="mt-6">
                                 <div class="space-y-1">
                                     <!-- HOMEPAGE -->
-                                    <inertia-link v-for="question in $page['props']['questions']" :href="route('form.question.edit', {
+                                    <inertia-link v-for="(question, index) in $page['props']['questions']" :key="index" :href="route('form.question.edit', {
                                             form:  $page['props']['form'],
                                             question: question
                                         })">

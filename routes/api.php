@@ -17,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/*
+ * The url will be example.com/api/api-example
+ */
+
+Route::get('api-example','\App\Http\Controllers\Api\ApiExampleController@get');
+
+// the Update form question
+Route::post('update-form-question','App\Http\Controllers\QuestionController@update');
