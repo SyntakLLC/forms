@@ -151,7 +151,7 @@ export default {
             let formattedData = data.questions.map((question, index) => {
                 return {question: question, answer: data.answers[index]}
             })
-
+            formattedData.unshift({form_id: this.form.uuid});
             // console.log(formattedData)
 
             this.$inertia.post('/form/submit_results', formattedData)

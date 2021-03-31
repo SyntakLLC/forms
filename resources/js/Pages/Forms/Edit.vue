@@ -1,7 +1,21 @@
 <template>
     <app-layout :forms="$page['props']['forms']">
         <div>
-            <jet-banner />
+            <div class="flex items-center flex-shrink-0 px-6 border-b border-gray-200">
+                <div class="flex-1 min-w-0">
+                    <h1 contenteditable @input="updateTitle" placeholder="Untitled Form" class="pt-4 text-lg font-medium leading-6 text-gray-900 sm:truncate pb-4">
+                        {{ $page['props']['form']['title'] }}
+                    </h1>
+                </div>
+
+                <div class="flex sm:ml-4">
+                    <inertia-link :href="route('form.show', form.uuid)" class="truncate hover:text-gray-600 block">
+                        <button type="button" class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 sm:ml-3">
+                            Preview
+                        </button>
+                    </inertia-link>
+                </div>
+            </div>
 
             <div class="h-screen flex overflow-hidden bg-white">
                 <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
@@ -233,17 +247,18 @@
 
                 <!-- Static sidebar for desktop -->
                 <div class="hidden lg:flex lg:flex-shrink-0">
-                    <div class="flex flex-col w-64 border-r border-gray-200 pt-5 pb-4 bg-white">
-                        <div class="flex items-center flex-shrink-0 px-6 border-b border-gray-200">
-                            <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate pb-4">
-                                {{ $page['props']['form']['title'] }}
-                            </h1>
-                        </div>
+                    <!--below thing used to be pt-5 and pb-4-->
+                    <div class="flex flex-col w-64 border-r border-gray-200 pt-0 pb-0 bg-white">
+<!--                        <div class="flex items-center flex-shrink-0 px-6 border-b border-gray-200">-->
+<!--                            <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate pb-4">-->
+<!--                                {{ $page['props']['form']['title'] }}-->
+<!--                            </h1>-->
+<!--                        </div>-->
                         <!-- Sidebar component, swap this element with another sidebar if you like -->
                         <div class="h-0 flex-1 flex flex-col overflow-y-auto">
 
-                            <!-- Navigation -->
-                            <nav class="mt-6">
+                            <!-- Navigation, below nav before was mt-6 -->
+                            <nav class="mt-0">
                                 <div class="space-y-1">
                                     <!-- HOMEPAGE -->
                                     <inertia-link v-for="(question, index) in $page['props']['questions']" :key="index" :href="route('form.question.edit', {
@@ -254,20 +269,23 @@
                                             form:  $page['props']['form'],
                                             question: question
                                         })" href="#" class="bg-gray-200 text-gray-900 group flex items-center py-4 text-sm font-medium h-15 truncate">
-
-                                            <div class="px-3">
-<!--                                            <svg class="text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
-<!--                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />-->
-<!--                                            </svg>-->
+                                            <!--both used to be px-3-->
+                                            <div class="pl-3 w-5">
+                                                <svg class="text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="returnQuestionSvg(question.type)" />
+                                                </svg>
+                                            </div>
+                                            <div class="px-6 truncate">
                                                 {{ question.title == "" && question.content == "" || question.title == "" && question.content == null ? "Default: " + question.type : question.content == null ? question.title : question.title + question.content }}
                                             </div>
                                         </a>
                                         <a v-else href="#" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center py-4 text-sm font-medium h-15 truncate">
-
-                                            <div class="px-3">
-<!--                                            <svg class="text-gray-400 group-hover:text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
-<!--                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />-->
-<!--                                            </svg>-->
+                                            <div class="pl-3 w-5">
+                                                <svg class="text-gray-400 group-hover:text-gray-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="returnQuestionSvg(question.type)" />
+                                                </svg>
+                                            </div>
+                                            <div class="px-6 truncate">
                                                 {{ question.title == "" && question.content == "" || question.title == "" && question.content == null ? "Default: " + question.type : question.content == null ? question.title : question.title + question.content }}
                                             </div>
                                         </a>
@@ -489,6 +507,11 @@ export default {
     },
 
     methods: {
+        async updateTitle(e) {
+            console.log(this.form.id);
+            let data = {'title': e.target.innerText, 'form_id': this.form.id}
+            let response = await axios.post('/api/update-title', data)
+        },
         convertToLetter(number) {
             let alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
@@ -497,6 +520,24 @@ export default {
             } else {
                 return alphabet[number];
             }
+        },
+        returnQuestionSvg(questionType) {
+            if (questionType === "Text") {
+                return "M4 6h16M4 12h8m-8 6h16";
+            }
+            if (questionType === "Email") {
+                return "M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207";
+            }
+            if (questionType === "Phone Number") {
+                return "M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z";
+            }
+            if (questionType === "Multiple Choice") {
+                return "M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z";
+            }
+            if (questionType === "Section Break") {
+                return "M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2";
+            }
+
         }
     }
 }
@@ -504,4 +545,17 @@ export default {
 
 <style scoped>
 
+[contenteditable] {
+    outline: 0px solid transparent;
+}
+
+[contenteditable]:empty:before {
+    content: attr(placeholder);
+    color: #999999;
+}
+[contenteditable]:focus {
+    border-width: 0px;
+    border-color: #cbd5e0;
+    border-radius: 8px;
+}
 </style>

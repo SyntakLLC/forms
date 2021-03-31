@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lead;
+use App\Models\Form;
+use App\Models\Response;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +15,12 @@ class LeadController extends Controller
     public function index(Request $request) {
         return Inertia::render('Leads/Index', [
             'leads' => $request->user()->leads,
+            'formsFilled' => $request->user()->leads->map(function ($lead) {
+                return Form::findByUuid($lead->form_filled);
+            }),
+            'responses' => $request->user()->leads->map(function ($lead) {
+                return $lead->responses;
+            }),
             'forms' => $request->user()->forms,
         ]);
     }

@@ -1,5 +1,5 @@
 <template>
-    <edit>
+    <edit :form="$page['props']['form']">
         <div>
             <header class="vff-header">
                 <div class="f-container">
@@ -46,7 +46,7 @@
                                             <div class="f-answer f-full-width">
                                                 <div class="f-radios-wrap">
                                                     <ul v-if="question.options.length" v-for="(option, index) in question.options" role="listbox" class="f-radios">
-                                                        <li :aria-label="'Press ' + mcLetters[index] + ' to select'" role="option" class="f-selected"><!---->
+                                                        <li :aria-label="'Press ' + mcLetters[index] + ' to select'" role="option" class=""><!---->
                                                             <div class="f-label-wrap">
                                                                 <span class="f-key">{{ mcLetters[index] }}</span>
                                                                 <span class="f-label">{{ option.title }}</span>

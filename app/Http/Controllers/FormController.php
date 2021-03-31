@@ -42,6 +42,12 @@ class FormController extends Controller
         ]);
     }
 
+    public function update(Request $request) {
+        $form = Form::find($request->get('form_id'));
+        $form->title = $request->get('title');
+        $form->save();
+    }
+
     public function custom(Request $request) {
         $form = Form::create([
             'id_color' => $request->get('formColor'),

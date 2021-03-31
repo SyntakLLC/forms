@@ -14,20 +14,21 @@ class ResponseController extends Controller
     public function store(Request $request) {
         $lead = Lead::create([
             'user_id' => Auth::user()->id,
-            'first' => $request[0]['answer'],
+            'first' => $request[1]['answer'],
             'last' => "",
-            'email' => $request[1]['answer'],
-            'form_filled' => "Untitled Form",
+            'email' => $request[2]['answer'],
+            'form_filled' => $request[0]['form_id'],
         ]);
 
         foreach ($request->all() as $key=>$value) {
-
-            Response::create([
-                'lead_id' => $lead->id,
-                'question' => $value['question'],
-                'response' => $value['answer'],
-                'index' => $key,
-            ]);
+            if ($key !== 0) {
+                Response::create([
+                    'lead_id' => $lead->id,
+                    'question' => $value['question'],
+                    'response' => $value['answer'],
+                    'index' => $key,
+                ]);
+            }
         }
 
 

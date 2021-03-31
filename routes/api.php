@@ -26,3 +26,6 @@ Route::get('api-example','\App\Http\Controllers\Api\ApiExampleController@get');
 
 // the Update form question
 Route::post('update-form-question','App\Http\Controllers\QuestionController@update');
+
+// the Updating Title
+Route::post('update-title','App\Http\Controllers\FormController@update');
