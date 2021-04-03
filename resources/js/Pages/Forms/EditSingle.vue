@@ -1,7 +1,7 @@
 <template>
     <edit :form="$page['props']['form']">
-        <div>
-            <header class="vff-header">
+        <div class="bg-white rounded-md h-screen">
+            <header class="vff-header rounded-t-md" :style="accentColor">
                 <div class="f-container">
                     <!-- Add custom logo here -->
                     <svg class="f-logo" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMid meet" viewBox="0 0 35.606 11.211">
@@ -28,12 +28,14 @@
                                                 <span contenteditable class="f-help" placeholder="Tagline (optional)" @input="updateTagline">{{ question.tagline }}</span>
                                             </span>
 
-                                            <span contenteditable class="f-text" placeholder="Title" @input="updateTitle">
-                                                {{ question.title }}&nbsp;
-                                                <span aria-label="This step is required" role="note" class="f-required">
-                                                    <span aria-hidden="true">*</span>
+                                            <span class="f-text">
+                                                <span contenteditable placeholder="Title" @input="updateTitle">
+                                                    {{ question.title }}&nbsp;
+                                                    <span aria-label="This step is required" role="note" class="f-required">
+                                                        <span aria-hidden="true">*</span>
+                                                    </span> <!---->
                                                 </span> <!---->
-                                            </span> <!---->
+                                            </span>
 
                                             <span class="f-sub"><!----> <!---->
                                                 <span contenteditable class="f-help" placeholder="Subtitle (optional)" @input="updateSubtitle">{{ question.subtitle }}</span>
@@ -149,7 +151,7 @@ export default {
         Edit
     },
 
-    props: ['question', 'options'],
+    props: ['question', 'options', 'user'],
 
     data() {
         return {
@@ -157,8 +159,6 @@ export default {
             QuestionType: QuestionType,
             dataValue: null,
             debounced: false,
-            showingQuestionTypeDropdown: false,
-            showingQuestionsDropdown: false,
             submitted: false,
             completed: false,
             language: new LanguageModel(),
@@ -181,7 +181,10 @@ export default {
                         required: true,
                     placeholder: this.question.type == "Text" ? 'Start typing here...' : this.question.type == "Section Break" ? '' : this.question.type == "Multiple Choice" ? '' : this.question.type == "Email" ? 'jane@doe.com' : '(###)-###-####',
                 }),
-            ]
+            ],
+            accentColor: {
+                'background-color': '#' + this.user.accent_color,
+            },
         }
     },
     mounted() {

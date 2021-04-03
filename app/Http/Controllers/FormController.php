@@ -21,6 +21,7 @@ class FormController extends Controller
     public function show(Form $form) {
         return Inertia::render('Forms/Show', [
             'form' => $form,
+//            'user' => Auth::user(),
             'questionlist' => $form->questions,
             'options' => $form->questions->each(function ($question) {
                 return $question->options;

@@ -18,11 +18,8 @@ class QuestionController extends Controller
             'form_id' => $request->get('form_id'),
             'type' => 'Text',
             'title' => "",
-//            'tagline' => 'One more bit of contact...',
             'index' => $request->get('index'),
         ]);
-
-        return Redirect::route('form.edit', $request->get('form_uuid'));
     }
 
     public function addSectionBreak(StoreQuestionRequest $request) {
@@ -100,6 +97,7 @@ class QuestionController extends Controller
     {
         return Inertia::render('Forms/EditSingle', [
             'form' => $form,
+            'user' => $request->user(),
             'questions' => Form::findByUuid($form->uuid)->questions->sortBy('index'),
             'options' => $question == null ? Form::findByUuid($form->uuid)->questions->first()->options : $question->options,
             'forms' => Auth::user()->forms,

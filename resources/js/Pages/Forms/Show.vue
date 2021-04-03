@@ -1,6 +1,6 @@
 <template>
         <div>
-            <header class="vff-header">
+            <header class="vff-header" :style="accentColor">
                 <div class="f-container">
                     <!-- Add custom logo here -->
                     <svg class="f-logo" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMid meet" viewBox="0 0 35.606 11.211">
@@ -76,7 +76,7 @@ export default {
         Edit
     },
 
-    props: ['form', 'questionlist', 'options'],
+    props: ['form', 'questionlist', 'options', 'user'],
 
     data() {
         return {
@@ -107,10 +107,9 @@ export default {
                     placeholder: question.type == "Text" ? 'Start typing here...' : question.type == "Section Break" ? '' : question.type == "Multiple Choice" ? '' : question.type == "Email" ? 'jane@doe.com' : '(###)-###-####',
                 })
             }),
-
-            // submitForm: this.$inertia.form({
-            //     data: this.getData(),
-            // }),
+            accentColor: {
+                'background-color': '#' + this.user.accent_color,
+            },
         }
     },
     mounted() {

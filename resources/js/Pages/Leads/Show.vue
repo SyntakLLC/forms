@@ -16,12 +16,12 @@
                         {{ $page['props']['lead']['phone'] }}
                     </span>
             </div>
-            <div class="mt-5 border-t border-gray-200">
-                <dl class="sm:divide-y sm:divide-gray-200">
-
-                    <ul>
-                        <li v-for="response in $page['props']['responses']" class="group">
-                            <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+            <div class="mt-5">
+                <ul>
+                    <li v-for="response in $page['props']['responses']" class="group">
+                        <div class="border-t border-gray-200">
+                            <dl class="sm:divide-y sm:divide-gray-200">
+                                <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
                                 <dt class="text-sm font-medium text-gray-500">
                                     {{ response.question }}
                                 </dt>
@@ -29,13 +29,12 @@
                                     {{ response.response }}
                                 </dd>
                             </div>
-                        </li>
-                    </ul>
-
-                </dl>
+                            </dl>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
-
     </app-layout>
 </template>
 

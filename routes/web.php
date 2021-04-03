@@ -26,9 +26,10 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified', 'subscribed'])->group(function() {
 
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+//    Route::get('/dashboard', function () {
+//        return Inertia::render('Dashboard');
+//    })->name('dashboard');
+    Route::get('/dashboard', 'App\Http\Controllers\Controller@dashboard')->name('dashboard');
 
 
 });
