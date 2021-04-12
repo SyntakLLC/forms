@@ -87,7 +87,8 @@ export default {
                     label: 'option.title'
                 })],
             // Create question list with QuestionModel instances
-            questions: this.questionlist.map(function (question, key) {
+            questions: Object.entries(this.questionlist).map(function (question, key) {
+                question = question[1];
                 return new QuestionModel({
                     id: 'first_name',
                     tagline: question.tagline,
@@ -147,13 +148,12 @@ export default {
             const data = this.getData()
             // data is an object of {questions, answers} where each is an array
             // what we want is one array of 3 objects, [{question, array}, {question, array}, {question, array}]
-            let formattedData = data.questions.map((question, index) => {
-                return {question: question, answer: data.answers[index]}
+            let formattedData = this.questionlist.map((question, index) => {
+                return {question: question.title, answer: data.answers[index], type: this.questionlist.filter((question) => question.type !== "Section Break")[index].type}
             })
             formattedData.unshift({form_id: this.form.uuid});
-            // console.log(formattedData)
-
-            this.$inertia.post('/form/submit_results', formattedData)
+            console.log(formattedData);
+            this.$inertia.post('/form/submit_results', {data: formattedData})
         },
         getData() {
             const data = {
@@ -161,14 +161,14 @@ export default {
                 answers: []
             }
             this.questions.forEach(question => {
-                if (question.title) {
+                // if (question.title) {
                     let answer = question.answer
                     if (Array.isArray(answer)) {
                         answer = answer.join(', ')
                     }
                     data.questions.push(question.title)
                     data.answers.push(answer)
-                }
+                // }
             })
             return data
         }

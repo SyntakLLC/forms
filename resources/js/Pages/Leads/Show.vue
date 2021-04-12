@@ -12,8 +12,8 @@
                 <span v-if="$page['props']['lead']['email']" class="mt-1 mr-4 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-blue-100 text-blue-800 flex-row">
                         {{ $page['props']['lead']['email'] }}
                     </span>
-                <span v-if="$page['props']['lead']['phone']" class="mt-1 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-blue-100 text-blue-800 flex-row">
-                        {{ $page['props']['lead']['phone'] }}
+                <span v-if="$page['props']['lead']['phonenum']" class="mt-1 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-blue-100 text-blue-800 flex-row">
+                        {{ $page['props']['lead']['phonenum'] }}
                     </span>
             </div>
             <div class="mt-5">

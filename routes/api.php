@@ -30,9 +30,11 @@ Route::post('update-form-question','App\Http\Controllers\QuestionController@upda
 // the Updating Title
 Route::post('update-title','App\Http\Controllers\FormController@update');
 
-// when adding a question, we have 5 different vue forms as options
-Route::post('add_text', 'App\Http\Controllers\QuestionController@addText');
-Route::post('add_email', 'App\Http\Controllers\QuestionController@addEmail');
-Route::post('add_phone', 'App\Http\Controllers\QuestionController@addPhone');
-Route::post('add_multiple_choice', 'App\Http\Controllers\QuestionController@addMultipleChoice');
-Route::post('add_section_break', 'App\Http\Controllers\QuestionController@addSectionBreak');
+// the Updating Message
+Route::post('update-message','App\Http\Controllers\Controller@updateMessage');
+
+// to delete a question delete-question
+Route::post('delete-question', 'App\Http\Controllers\QuestionController@destroy');
+
+// to move a question up
+Route::post('move-up', 'App\Http\Controllers\QuestionController@moveup');

@@ -12,6 +12,15 @@ use Inertia\Inertia;
 
 class FormController extends Controller
 {
+
+    function consoleLog($data) {
+        $output = $data;
+        if (is_array($output))
+            $output = implode(',', $output);
+
+        echo "<script>console.log('" . $output . "' );</script>";
+    }
+
     public function index(Request $request) {
         return Inertia::render('Forms/Index', [
             'forms' => $request->user()->forms,
@@ -19,11 +28,22 @@ class FormController extends Controller
     }
 
     public function show(Form $form) {
+
+//        $questions = $form->questions->toArray();
+//        usort($questions, function($a, $b) {
+//            $newA = json_decode(json_encode($a), TRUE);
+//            $newB = json_decode(json_encode($b), TRUE);
+//            return $newA['index'] < $newB['index'] ? -1 : ($newA['index'] == $newB['index'] ? 0 : 1);
+//        });
+//        $questions = collect($questions);
+        $questions = $form->questions->sortBy('index')->values();
+
+
         return Inertia::render('Forms/Show', [
             'form' => $form,
 //            'user' => Auth::user(),
-            'questionlist' => $form->questions,
-            'options' => $form->questions->each(function ($question) {
+            'questionlist' => $questions,
+            'options' => $questions->each(function ($question) {
                 return $question->options;
             }),
         ]);
@@ -58,7 +78,7 @@ class FormController extends Controller
         $questions = [
             Question::create([
                 'form_id' => $form->id,
-                'type' => 'Text',
+                'type' => 'Name',
                 'title' => 'What is your full name?',
                 'tagline' => 'Let\'s get acquainted',
                 'index' => 0,
@@ -148,7 +168,7 @@ class FormController extends Controller
         $questions = [
             Question::create([
                 'form_id' => $form->id,
-                'type' => 'Text',
+                'type' => 'Name',
                 'title' => 'What is your full name?',
                 'tagline' => 'Let\'s get acquainted',
                 'index' => 0,
@@ -476,7 +496,7 @@ class FormController extends Controller
         $questions = [
             Question::create([
                 'form_id' => $form->id,
-                'type' => 'Text',
+                'type' => 'Name',
                 'title' => 'What is your full name?',
                 'tagline' => 'Let\'s get acquainted',
                 'index' => 0,

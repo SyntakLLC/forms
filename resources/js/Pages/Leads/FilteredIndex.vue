@@ -8,7 +8,7 @@
                 <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none" tabindex="0">
                     <!-- Page title & actions (used to have border-b ) -->
                     <div
-                        class=" border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
+                        class="border-b border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
                         <div class="flex-1 min-w-0">
                             <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
                                 Responses
@@ -31,36 +31,36 @@
                         </div>
                     </div>
                     <!-- Pinned projects -->
-<!--                    <div class="px-4 mt-6 sm:px-6 lg:px-8">-->
-<!--                        <h2 class="text-gray-500 text-xs font-medium uppercase tracking-wide">Filter by Form</h2>-->
-<!--                        <ul class="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 xl:grid-cols-4 mt-3">-->
-<!--                            <li class="relative col-span-1 flex shadow-sm rounded-md"-->
-<!--                                v-for="(form, index) in $page['props']['forms']">-->
-<!--                                <inertia-link :href="route('response.filter', form)"-->
-<!--                                              class="flex w-full h-full">-->
-<!--                                    <div-->
-<!--                                        class="flex-shrink-0 flex items-center justify-center w-16 text-white text-sm font-medium rounded-l-md"-->
-<!--                                        :class="form.id_color">-->
-<!--                                        {{ form.title.toUpperCase().split(" ").map((word) => word.substring(0, 1)).join("").substring(0, 3) }}-->
-<!--                                    </div>-->
-<!--                                    <div-->
-<!--                                        class="hover:bg-gray-50 flex-1 flex items-center justify-between border-t border-r border-b border-gray-200 bg-white rounded-r-md truncate">-->
-<!--                                        <div class="flex-1 px-4 py-2 text-sm truncate">-->
-<!--                                            <a href="#" class="text-gray-900 font-medium hover:text-gray-600">-->
-<!--                                                {{ form.title }}-->
-<!--                                            </a>-->
-<!--                                            <p class="text-gray-500">-->
-<!--                                                {{-->
-<!--                                                    $page['props']['leads'].filter((lead) => lead.form_filled === form.uuid).length === 1 ? $page['props']['leads'].filter((lead) => lead.form_filled === form.uuid).length + " Response" : $page['props']['leads'].filter((lead) => lead.form_filled === form.uuid).length + " Responses"-->
-<!--                                                }}-->
-<!--                                            </p>-->
-<!--                                        </div>-->
+                    <div class="px-4 mt-6 sm:px-6 lg:px-8">
+                        <h2 class="text-gray-500 text-xs font-medium uppercase tracking-wide">Filter by Form</h2>
+                        <ul class="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 xl:grid-cols-4 mt-3">
+                            <li class="relative col-span-1 flex shadow-sm rounded-md"
+                                v-for="(form, index) in $page['props']['forms']">
+                                <inertia-link :href="route('response.filter', form)"
+                                              class="flex w-full h-full">
+                                    <div
+                                        class="flex-shrink-0 flex items-center justify-center w-16 text-white text-sm font-medium rounded-l-md"
+                                        :class="form.id_color">
+                                        {{ form.title.toUpperCase().split(" ").map((word) => word.substring(0, 1)).join("").substring(0, 3) }}
+                                    </div>
+                                    <div
+                                        class="hover:bg-gray-50 flex-1 flex items-center justify-between border-t border-r border-b border-gray-200 bg-white rounded-r-md truncate">
+                                        <div class="flex-1 px-4 py-2 text-sm truncate">
+                                            <a href="#" class="text-gray-900 font-medium hover:text-gray-600">
+                                                {{ form.title }}
+                                            </a>
+                                            <p class="text-gray-500">
+                                                {{
+                                                    $page['props']['leads'].filter((lead) => lead.form_filled === form.uuid).length === 1 ? $page['props']['leads'].filter((lead) => lead.form_filled === form.uuid).length + " Response" : $page['props']['leads'].filter((lead) => lead.form_filled === form.uuid).length + " Responses"
+                                                }}
+                                            </p>
+                                        </div>
 
-<!--                                    </div>-->
-<!--                                </inertia-link>-->
-<!--                            </li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
+                                    </div>
+                                </inertia-link>
+                            </li>
+                        </ul>
+                    </div>
 
                     <!-- Projects list (only on smallest breakpoint) -->
                     <div class="mt-10 sm:hidden">
@@ -101,7 +101,7 @@
                     </div>
 
                     <!-- Projects table (small breakpoint and up) (mt used to be 8) -->
-                    <div class="hidden mt-0 sm:block">
+                    <div class="hidden mt-8 sm:block">
                         <div class="align-middle inline-block min-w-full border-b border-gray-200">
                             <table class="min-w-full">
                                 <thead>
@@ -126,15 +126,9 @@
                                     <!--                                            <a :href="route('response.show', lead.uuid)">-->
                                     <td class="px-6 py-3 max-w-0 w-full whitespace-nowrap text-sm font-medium text-gray-900">
                                         <div class="flex items-center space-x-3 lg:pl-2">
-                                            <div v-if="$page['props']['formsFilled'].slice().reverse()[index] !== null">
-                                                <div class="flex-shrink-0 w-2.5 h-2.5 rounded-full"
-                                                     :class="$page['props']['formsFilled'].slice().reverse()[index]['id_color']"
-                                                     aria-hidden="true"></div>
-                                            </div>
-                                            <div v-else>
-                                                <div class="flex-shrink-0 w-2.5 h-2.5 rounded-full bg-gray-500"
-                                                     aria-hidden="true"></div>
-                                            </div>
+                                            <div class="flex-shrink-0 w-2.5 h-2.5 rounded-full"
+                                                 :class="$page['props']['formsFilled'].slice().reverse()[index]['id_color']"
+                                                 aria-hidden="true"></div>
                                             <inertia-link :href="route('response.show', lead.uuid)"
                                                           class="truncate hover:text-gray-600 block">
                                                             <span>
@@ -157,7 +151,7 @@
                                                           class="truncate hover:text-gray-600 block">
                                                             <span>
                                                                 {{
-                                                                    $page['props']['formsFilled'].slice().reverse()[index] == null ? "Deleted form" : $page['props']['formsFilled'].slice().reverse()[index]['title']
+                                                                    $page['props']['formsFilled'].slice().reverse()[index]['title']
                                                                 }}
                                                             </span>
                                             </inertia-link>
@@ -191,14 +185,11 @@ export default {
 
     props: ['leads', 'formsFilled', 'responses'],
 
-    name: "Index.vue",
+    name: "FilteredIndex.vue",
 
     methods: {
-        filterLeads(uuid) {
-            console.log(this.leadsFilterable)
-            this.leadsFilterable = this.leadsFilterable.filter((lead) => lead.form_filled === uuid);
-        },
         convertToCsv() {
+            console.log(this.leads)
             return this.leads.map((lead, index) => {
                 // this.responses[index].forEach((response, index) => {
                 //     return {
@@ -210,7 +201,7 @@ export default {
                     'name': lead.first,
                     'email': lead.email,
                     'phone': lead.phone,
-                    'form filled': this.formsFilled[index] == null ? "Deleted form" : this.formsFilled[index].title,
+                    'form filled': this.formsFilled[index].title,
                     // 'responses': this.responses[index].map((response, index) => {
                     //     return {
                     //         'question': response.question,

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -21,5 +22,18 @@ class Controller extends BaseController
             'forms' => $request->user()->forms,
             'user' => $request->user(),
         ]);
+    }
+
+    public function updateMessage(Request $request) {
+        $user_id = $request->user()->id;
+        echo "<script>console.log('ss');</script>";
+        $user = User::findOrFail($user_id);
+
+        $user->message = "amaan";
+
+        $user->save();
+//        $user->message = $request->get('message');
+//        $user->message = "djdd";
+//        $user->save();
     }
 }

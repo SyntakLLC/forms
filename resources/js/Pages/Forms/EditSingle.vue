@@ -1,5 +1,5 @@
 <template>
-    <edit :form="$page['props']['form']">
+    <edit :form="$page['props']['form']" :questions="$page['props']['questions']">
         <div class="bg-white rounded-md h-screen">
             <header class="vff-header rounded-t-md" :style="accentColor">
                 <div class="f-container">
@@ -28,13 +28,16 @@
                                                 <span contenteditable class="f-help" placeholder="Tagline (optional)" @input="updateTagline">{{ question.tagline }}</span>
                                             </span>
 
-                                            <span class="f-text">
-                                                <span contenteditable placeholder="Title" @input="updateTitle">
-                                                    {{ question.title }}&nbsp;
-                                                    <span aria-label="This step is required" role="note" class="f-required">
-                                                        <span aria-hidden="true">*</span>
-                                                    </span> <!---->
-                                                </span> <!---->
+<!--                                            <span class="f-text">-->
+<!--                                                <span contenteditable placeholder="Title" @input="updateTitle">-->
+<!--                                                    {{ question.title }}&nbsp;-->
+<!--                                                    <span aria-label="This step is required" role="note" class="f-required">-->
+<!--                                                        <span aria-hidden="true">*</span>-->
+<!--                                                    </span> &lt;!&ndash;&ndash;&gt;-->
+<!--                                                </span> &lt;!&ndash;&ndash;&gt;-->
+<!--                                            </span>-->
+                                            <span class="f-text"><!----> <!---->
+                                                <span contenteditable class="f-help" placeholder="Question" @input="updateTitle">{{ question.title }}</span>
                                             </span>
 
                                             <span class="f-sub"><!----> <!---->
@@ -92,8 +95,8 @@
                             </div>
                         </div>
 
-                        <!--TEXT/EMAIL/PHONE-->
-                        <div v-if="question.type === 'Text' || question.type === 'Email' || question.type === 'Phone Number'">
+                        <!--TEXT/EMAIL/PHONE/NAME-->
+                        <div v-if="question.type === 'Name' || question.type === 'Text' || question.type === 'Email' || question.type === 'Phone Number'">
                             <div class="vff-animate q-form q-is-active f-fade-in-up field-text">
                                 <div class="q-inner">
                                     <div class="">
@@ -103,13 +106,16 @@
                                                 <span contenteditable class="f-help" placeholder="Tagline (optional)" @input="updateTagline">{{ question.tagline }}</span>
                                             </span>
 
-                                            <span class="f-text">
-                                                <span contenteditable placeholder="Title" @input="updateTitle">
-                                                    {{ question.title }}
-                                                    <span aria-label="This step is required" role="note" class="f-required">
-                                                        <span aria-hidden="true">*</span>
-                                                    </span> <!---->
-                                                </span> <!---->
+<!--                                            <span class="f-text">-->
+<!--                                                <span contenteditable class="f-text" placeholder="Title" @input="updateTitle">-->
+<!--                                                    {{ question.title }}-->
+<!--&lt;!&ndash;                                                    <span aria-label="This step is required" role="note" class="f-required">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <span aria-hidden="true">*</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    </span> &lt;!&ndash;&ndash;&gt;&ndash;&gt;-->
+<!--                                                </span> &lt;!&ndash;&ndash;&gt;-->
+<!--                                            </span>-->
+                                            <span class="f-text"><!----> <!---->
+                                                <span contenteditable class="f-help" placeholder="Question" @input="updateTitle">{{ question.title }}</span>
                                             </span>
 
                                             <span class="f-sub"><!----> <!---->
@@ -118,7 +124,7 @@
 
                                             <div class="f-answer f-full-width">
                                                 <span>
-                                                    <input :type="question.type === 'Text' ? 'text' : question.type === 'Email' ? 'email' : 'text'" required="required" :placeholder="question.type === 'Text' ? 'Start typing here...' : question.type === 'Email' ? 'jane@doe.com' : '(###)-###-####'">
+                                                    <input :type="question.type === 'Text' ? 'text' : question.type === 'Email' ? 'email' : 'text'" required="required" :placeholder="question.type === 'Text' ? 'Start typing here...' : question.type === 'Email' ? 'jane@doe.com' : question.type === 'Phone' ? '(###)-###-####' : 'Start typing here...'">
                                                 </span>
                                             </div>
 
@@ -366,6 +372,7 @@ export default {
     }
 
     [contenteditable]:empty:before {
+        color: #999999;
         content: attr(placeholder);
     }
 

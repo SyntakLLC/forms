@@ -20,7 +20,7 @@ class Lead extends Model
         'first',
         'last',
         'email',
-        'phone',
+        'phonenum',
         'viewed',
         'form_filled'
     ];

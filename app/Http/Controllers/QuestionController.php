@@ -13,6 +13,18 @@ use Inertia\Inertia;
 
 class QuestionController extends Controller
 {
+    public function addName(StoreQuestionRequest $request) {
+        $question = Question::create([
+            'form_id' => $request->get('form_id'),
+            'type' => 'Name',
+            'title' => 'What is your full name?',
+            'tagline' => "Hi! Let's get acquainted",
+            'index' => $request->get('index'),
+        ]);
+
+        return Redirect::route('form.edit', $request->get('form_uuid'));
+    }
+
     public function addText(StoreQuestionRequest $request) {
         $question = Question::create([
             'form_id' => $request->get('form_id'),
@@ -20,6 +32,8 @@ class QuestionController extends Controller
             'title' => "",
             'index' => $request->get('index'),
         ]);
+
+        return Redirect::route('form.edit', $request->get('form_uuid'));
     }
 
     public function addSectionBreak(StoreQuestionRequest $request) {
@@ -95,14 +109,34 @@ class QuestionController extends Controller
 
     public function edit(Request $request, Form $form, Question $question)
     {
+
+        function cmp($a, $b) {
+            return $a->index < $b->index;
+        }
+
+        $questions = Form::findByUuid($form->uuid)->questions->toArray();
+        usort($questions, function($a, $b) {
+            $newA = json_decode(json_encode($a), TRUE);
+            $newB = json_decode(json_encode($b), TRUE);
+            return $newA['index'] < $newB['index'] ? -1 : ($newA['index'] == $newB['index'] ? 0 : 1);
+        });
+
         return Inertia::render('Forms/EditSingle', [
             'form' => $form,
             'user' => $request->user(),
-            'questions' => Form::findByUuid($form->uuid)->questions->sortBy('index'),
+            'questions' => $questions,
             'options' => $question == null ? Form::findByUuid($form->uuid)->questions->first()->options : $question->options,
             'forms' => Auth::user()->forms,
             'question' => $question == null ? Form::findByUuid($form->uuid)->questions->first() : $question,
         ]);
+    }
+
+    function consoleLog($data) {
+        $output = $data;
+        if (is_array($output))
+            $output = implode(',', $output);
+
+        echo "<script>console.log('" . $output . "' );</script>";
     }
 
 
@@ -135,5 +169,23 @@ class QuestionController extends Controller
         Question::findByUuid($request->get('deletedUUID'))->delete();
 
         return Redirect::route('form.edit', $request->get('form_uuid'));
+//        return Redirect::back()->with('message','Successfully deleted!');
+    }
+
+    public function moveup(Request $request) {
+        $this->consoleLog("here");
+
+        $form = Form::findByUuid($request->get('form_uuid'));
+        $currentQuestion = $form->questions[$request->get('currentIndex')];
+        $previousQuestion = $form->questions[$request->get('previousIndex')];
+
+        $currentQuestion->index = $request->get('previousIndex');
+        $previousQuestion->index = $request->get('currentIndex');
+
+//        $this->consoleLog($request->get('previousIndex'));
+//        $this->consoleLog($request->get('currentIndex'));
+
+        $currentQuestion->save();
+        $previousQuestion->save();
     }
 }

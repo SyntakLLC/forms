@@ -37,7 +37,7 @@
                 </div>
             </div>
 
-            <div class="h-screen flex overflow-hidden bg-white">
+            <div class="h-full flex overflow-hidden bg-white">
                 <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
                 <div class="lg:hidden">
                     <transition
@@ -298,48 +298,77 @@
                                             leave-active-class="transition ease-in duration-75"
                                             leave-class="transform opacity-100 scale-100"
                                             leave-to-class="transform opacity-0 scale-95">
-                                            <div v-if="showingQuestionTypeDropdown" class="origin-top absolute mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                            <div v-if="showingQuestionTypeDropdown" class="origin-top absolute mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                                                 <div class="py-1" role="none">
-<!--                                                    <form @submit.prevent="addText.post('/form/add_text')">-->
-                                                    <button @click="addText"
+
+                                                    <button @click="addName"
                                                             type="submit"
-                                                            class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">
+                                                            class="group flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none" role="menuitem">
+
+                                                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />
+                                                        </svg>
                                                         Name
                                                     </button>
-<!--                                                    </form>-->
-                                                    <form @submit.prevent="addText.post('/form/add_text')">
-                                                        <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">
-                                                            Text
-                                                        </button>
-                                                    </form>
-                                                    <form @submit.prevent="addText.post('/form/add_email')">
-                                                        <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">
-                                                            Email
-                                                        </button>
-                                                    </form>
-                                                    <form @submit.prevent="addText.post('/form/add_phone')">
-                                                        <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">
-                                                            Phone Number
-                                                        </button>
-                                                    </form>
-                                                    <form @submit.prevent="addText.post('/form/add_multiple_choice')">
-                                                        <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">
-                                                            Multiple Choice
-                                                        </button>
-                                                    </form>
-                                                    <form @submit.prevent="addText.post('/form/add_section_break')">
-                                                        <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">
-                                                            Section Break
-                                                        </button>
-                                                    </form>
+
+                                                    <button @click="addText"
+                                                            type="submit"
+                                                            class="group flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none" role="menuitem">
+
+                                                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                            <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+                                                        </svg>
+                                                        Text
+                                                    </button>
+
+
+                                                    <button @click="addEmail"
+                                                            type="submit"
+                                                            class="group flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none" role="menuitem">
+
+                                                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                            <path fill-rule="evenodd" d="M14.243 5.757a6 6 0 10-.986 9.284 1 1 0 111.087 1.678A8 8 0 1118 10a3 3 0 01-4.8 2.401A4 4 0 1114 10a1 1 0 102 0c0-1.537-.586-3.07-1.757-4.243zM12 10a2 2 0 10-4 0 2 2 0 004 0z" clip-rule="evenodd" />
+                                                        </svg>
+                                                        Email
+                                                    </button>
+
+
+                                                    <button @click="addPhone"
+                                                            type="submit"
+                                                            class="group flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none" role="menuitem">
+
+                                                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                                                        </svg>
+                                                        Phone Number
+                                                    </button>
+
+                                                    <button @click="addMultipleChoice"
+                                                            type="submit"
+                                                            class="group flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none" role="menuitem">
+
+                                                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                            <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                                                        </svg>
+                                                        Multiple Choice
+                                                    </button>
+
+                                                    <button @click="addSectionBreak"
+                                                            type="submit"
+                                                            class="group flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none" role="menuitem">
+
+                                                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                            <path d="M2 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1H3a1 1 0 01-1-1V4zM8 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1H9a1 1 0 01-1-1V4zM15 3a1 1 0 00-1 1v12a1 1 0 001 1h2a1 1 0 001-1V4a1 1 0 00-1-1h-2z" />
+                                                        </svg>
+                                                        Section Break
+                                                    </button>
                                                 </div>
                                             </div>
                                         </transition>
                                     </div>
 
-
                                     <!-- HOMEPAGE -->
-                                    <inertia-link v-for="(question, index) in $page['props']['questions']" :key="index" :href="route('form.question.edit', {
+                                    <inertia-link v-for="(question, index) in questionList" :key="index" :href="route('form.question.edit', {
                                             form:  $page['props']['form'],
                                             question: question
                                         })">
@@ -353,9 +382,35 @@
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="returnQuestionSvg(question.type)" />
                                                 </svg>
                                             </div>
-                                            <div class="px-6 truncate">
-                                                {{ question.title == "" && question.content == "" || question.title == "" && question.content == null ? "Default: " + question.type : question.content == null ? question.title : question.title + question.content }}
+                                            <div class="pl-6 pr-3 w-5/6 truncate">
+                                                {{ question.title == "" && question.content == "" || question.title == "" && question.content == null ? "Default: " + question.type : question.content == null ? question.index : question.index }}
                                             </div>
+
+
+                                            <!--UP ICON-->
+                                            <button @click="moveUp(question.uuid)" v-on:click.stop
+                                                    class="w-5 pr-10 text-gray-500 hover:text-gray-600 focus:outline-none">
+                                                <svg class="text-gray-500 right-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7l4-4m0 0l4 4m-4-4v18" />
+                                                </svg>
+                                            </button>
+
+                                            <!--DOWN ICON-->
+                                            <button @click="moveDown(question.uuid)" v-on:click.stop
+                                                    class="w-5 pr-10 text-gray-500 hover:text-gray-600 focus:outline-none">
+                                                <svg class="text-gray-500 right-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                                                </svg>
+                                            </button>
+
+                                            <!--DELETE ICON-->
+                                            <button @click="deleteQuestion(question.uuid)" v-on:click.stop
+                                                    class="w-5 pr-10 text-gray-500 hover:text-gray-600 focus:outline-none">
+                                                <svg class="text-gray-500 right-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                </svg>
+                                            </button>
+
                                         </a>
                                         <a v-else href="#" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center py-4 text-sm font-medium h-15 truncate">
                                             <div class="pl-3 w-5">
@@ -363,9 +418,16 @@
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="returnQuestionSvg(question.type)" />
                                                 </svg>
                                             </div>
-                                            <div class="px-6 truncate">
-                                                {{ question.title == "" && question.content == "" || question.title == "" && question.content == null ? "Default: " + question.type : question.content == null ? question.title : question.title + question.content }}
+                                            <div class="pl-6 pr-3 w-5/6 truncate">
+                                                {{ question.title == "" && question.content == "" || question.title == "" && question.content == null ? "Default: " + question.type : question.content == null ? question.index : question.index }}
                                             </div>
+
+                                            <button @click="deleteQuestion(question.uuid)" v-on:click.stop
+                                                    class="w-5 pr-10 text-gray-400 hover:text-gray-500 focus:outline-none">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                </svg>
+                                            </button>
                                         </a>
                                     </inertia-link>
 
@@ -402,25 +464,13 @@ export default {
         JetBanner
     },
 
-    props: ['form', 'questions', 'showingQuestionsDropdown'],
-
+    props: ['form', 'questions'],
 
     data() {
         return {
             showingQuestionTypeDropdown: false,
             showingQuestionsDropdown: false,
-
-            // addText: this.$inertia.form({
-            //     form: this.form,
-            //     form_id: this.form.id,
-            //     form_uuid: this.form.uuid,
-            //     questions: this.questions,
-            //     index: this.questions.length,
-            // }),
-            // deleteQuestion: this.$inertia.form({
-            //     form_uuid: this.form.uuid,
-            //     deletedUUID: this.deletedUUID,
-            // }),
+            questionList: this.questions ?? [],
         }
     },
     // data() {
@@ -454,21 +504,67 @@ export default {
 
     computed: {
         sortedQuestions() {
-            console.log(this.$props);
             return this.$props.questions.sort((a, b) => (a.index > b.index) ? 1 : -1);
         }
     },
 
     methods: {
+        async moveUp(movingUUID) {
+            let currentQuestion = this.questionList.filter((question) => {
+                return question.uuid === movingUUID;
+            })[0];
+            let currentIndex = this.questionList.indexOf(currentQuestion);
+            let previousQuestion = this.questionList[currentIndex - 1];
+            previousQuestion.index = currentIndex;
+            currentQuestion.index = currentIndex - 1;
+
+            let data = {'form_uuid': this.form.uuid, 'currentIndex': currentIndex, 'previousIndex': currentIndex - 1};
+            let response = await axios.post('/api/move-up', data)
+        },
+        async deleteQuestion(deletedUuid) {
+            let newQuestions = this.questionList.filter((question) => {
+                return question.uuid !== deletedUuid;
+            });
+            this.questionList = newQuestions;
+
+            let data = {'deletedUUID': deletedUuid, 'form_uuid': this.form.uuid}
+            let response = await axios.post('/api/delete-question', data)
+        },
         async updateTitle(e) {
-            console.log(this.form.id);
             let data = {'title': e.target.innerText, 'form_id': this.form.id}
             let response = await axios.post('/api/update-title', data)
         },
-        async addText() {
-            let data = {'index': 5, 'form_id': 100}
-            let response = await axios.post('/api/add_text', data)
+        async addName() {
+            let data = {'index': this.$page.props.questions.length, 'form_id': this.form.id, 'form_uuid': this.form.uuid}
+            this.$data.showingQuestionTypeDropdown=!this.$data.showingQuestionTypeDropdown;
+            this.$inertia.post('/form/add_name', data)
         },
+        async addText() {
+            let data = {'index': this.$page.props.questions.length, 'form_id': this.form.id, 'form_uuid': this.form.uuid}
+            this.$data.showingQuestionTypeDropdown=!this.$data.showingQuestionTypeDropdown;
+            this.$inertia.post('/form/add_text', data)
+        },
+        async addEmail() {
+            let data = {'index': this.$page.props.questions.length, 'form_id': this.form.id, 'form_uuid': this.form.uuid}
+            this.$data.showingQuestionTypeDropdown=!this.$data.showingQuestionTypeDropdown;
+            this.$inertia.post('/form/add_email', data)
+        },
+        async addPhone() {
+            let data = {'index': this.$page.props.questions.length, 'form_id': this.form.id, 'form_uuid': this.form.uuid}
+            this.$data.showingQuestionTypeDropdown=!this.$data.showingQuestionTypeDropdown;
+            this.$inertia.post('/form/add_phone', data)
+        },
+        async addMultipleChoice() {
+            let data = {'index': this.$page.props.questions.length, 'form_id': this.form.id, 'form_uuid': this.form.uuid}
+            this.$data.showingQuestionTypeDropdown=!this.$data.showingQuestionTypeDropdown;
+            this.$inertia.post('/form/add_multiple_choice', data)
+        },
+        async addSectionBreak() {
+            let data = {'index': this.$page.props.questions.length, 'form_id': this.form.id, 'form_uuid': this.form.uuid}
+            this.$data.showingQuestionTypeDropdown=!this.$data.showingQuestionTypeDropdown;
+            this.$inertia.post('/form/add_section_break', data)
+        },
+
         convertToLetter(number) {
             let alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
@@ -479,6 +575,9 @@ export default {
             }
         },
         returnQuestionSvg(questionType) {
+            if (questionType === "Name") {
+                return "M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z";
+            }
             if (questionType === "Text") {
                 return "M4 6h16M4 12h8m-8 6h16";
             }

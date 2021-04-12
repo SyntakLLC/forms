@@ -40,6 +40,10 @@ class User extends Authenticatable
         'email',
         'password',
         'accent_color',
+        'message',
+        'layout',
+        'cover_photo_url',
+        'pattern',
     ];
 
     /**
