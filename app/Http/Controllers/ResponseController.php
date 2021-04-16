@@ -91,7 +91,7 @@ class ResponseController extends Controller
         }
 
 
-//        return Redirect::route('dashboard');
+        return Redirect::route('dashboard');
     }
 
     function consoleLog($data) {

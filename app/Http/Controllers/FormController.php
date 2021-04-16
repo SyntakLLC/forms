@@ -49,11 +49,17 @@ class FormController extends Controller
         ]);
     }
 
-    public function edit(Form $form) {
+    public function edit(Form $form, Question $question = null) {
+        $ourQuestion = null;
+        if ($question == null) {
+            $ourQuestion = Form::findByUuid($form->uuid)->questions->sortBy('index')->first();
+        } else {
+            $ourQuestion = $question;
+        }
 
         return Redirect::route('form.question.edit', [
             'form' => $form->uuid,
-            'question' => Form::findByUuid($form->uuid)->questions->sortBy('index')->first()
+            'question' => $ourQuestion
         ]);
     }
 

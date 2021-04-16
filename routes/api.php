@@ -27,6 +27,9 @@ Route::get('api-example','\App\Http\Controllers\Api\ApiExampleController@get');
 // the Update form question
 Route::post('update-form-question','App\Http\Controllers\QuestionController@update');
 
+// the Update option
+Route::post('update-option','App\Http\Controllers\OptionController@update');
+
 // the Updating Title
 Route::post('update-title','App\Http\Controllers\FormController@update');
 
@@ -36,5 +39,11 @@ Route::post('update-message','App\Http\Controllers\Controller@updateMessage');
 // to delete a question delete-question
 Route::post('delete-question', 'App\Http\Controllers\QuestionController@destroy');
 
+// to delete an option
+Route::post('delete-option', 'App\Http\Controllers\OptionController@destroy');
+
 // to move a question up
-Route::post('move-up', 'App\Http\Controllers\QuestionController@moveup');
+Route::post('move-up', 'App\Http\Controllers\QuestionController@up');
+
+// to move a question down
+Route::post('move-down', 'App\Http\Controllers\QuestionController@down');

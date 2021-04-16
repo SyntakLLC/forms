@@ -301,15 +301,15 @@
                                             <div v-if="showingQuestionTypeDropdown" class="origin-top absolute mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                                                 <div class="py-1" role="none">
 
-                                                    <button @click="addName"
-                                                            type="submit"
-                                                            class="group flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none" role="menuitem">
+<!--                                                    <button @click="addName"-->
+<!--                                                            type="submit"-->
+<!--                                                            class="group flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none" role="menuitem">-->
 
-                                                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />
-                                                        </svg>
-                                                        Name
-                                                    </button>
+<!--                                                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">-->
+<!--                                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />-->
+<!--                                                        </svg>-->
+<!--                                                        Name-->
+<!--                                                    </button>-->
 
                                                     <button @click="addText"
                                                             type="submit"
@@ -383,12 +383,12 @@
                                                 </svg>
                                             </div>
                                             <div class="pl-6 pr-3 w-5/6 truncate">
-                                                {{ question.title == "" && question.content == "" || question.title == "" && question.content == null ? "Default: " + question.type : question.content == null ? question.index : question.index }}
+                                                {{ question.title == "" && question.content == "" || question.title == "" && question.content == null ? "Default: " + question.type : question.content == null ? question.title : question.title + question.content }}
                                             </div>
 
 
                                             <!--UP ICON-->
-                                            <button @click="moveUp(question.uuid)" v-on:click.stop
+                                            <button v-if="index > 0" @click="moveUp(question.uuid)" v-on:click.stop
                                                     class="w-5 pr-10 text-gray-500 hover:text-gray-600 focus:outline-none">
                                                 <svg class="text-gray-500 right-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7l4-4m0 0l4 4m-4-4v18" />
@@ -396,7 +396,7 @@
                                             </button>
 
                                             <!--DOWN ICON-->
-                                            <button @click="moveDown(question.uuid)" v-on:click.stop
+                                            <button v-if="index < questionList.length - 1" @click="moveDown(question.uuid)" v-on:click.stop
                                                     class="w-5 pr-10 text-gray-500 hover:text-gray-600 focus:outline-none">
                                                 <svg class="text-gray-500 right-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
@@ -404,7 +404,7 @@
                                             </button>
 
                                             <!--DELETE ICON-->
-                                            <button @click="deleteQuestion(question.uuid)" v-on:click.stop
+                                            <button v-if="question.type !== 'Name'" @click="deleteQuestion(question.uuid)" v-on:click.stop
                                                     class="w-5 pr-10 text-gray-500 hover:text-gray-600 focus:outline-none">
                                                 <svg class="text-gray-500 right-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -419,10 +419,10 @@
                                                 </svg>
                                             </div>
                                             <div class="pl-6 pr-3 w-5/6 truncate">
-                                                {{ question.title == "" && question.content == "" || question.title == "" && question.content == null ? "Default: " + question.type : question.content == null ? question.index : question.index }}
+                                                {{ question.title == "" && question.content == "" || question.title == "" && question.content == null ? "Default: " + question.type : question.content == null ? question.title : question.title + question.content}}
                                             </div>
 
-                                            <button @click="deleteQuestion(question.uuid)" v-on:click.stop
+                                            <button v-if="question.type !== 'Name'" @click="deleteQuestion(question.uuid)" v-on:click.stop
                                                     class="w-5 pr-10 text-gray-400 hover:text-gray-500 focus:outline-none">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -470,7 +470,9 @@ export default {
         return {
             showingQuestionTypeDropdown: false,
             showingQuestionsDropdown: false,
-            questionList: this.questions ?? [],
+            questionList: this.questions.map((question) => {
+                return question
+            }),
         }
     },
     // data() {
@@ -509,18 +511,48 @@ export default {
     },
 
     methods: {
+        // moving the questions up/down
         async moveUp(movingUUID) {
-            let currentQuestion = this.questionList.filter((question) => {
+            var newQuestions = this.questionList;
+
+            let currentQuestion = newQuestions.filter((question) => {
                 return question.uuid === movingUUID;
             })[0];
-            let currentIndex = this.questionList.indexOf(currentQuestion);
-            let previousQuestion = this.questionList[currentIndex - 1];
+            let currentIndex = newQuestions.indexOf(currentQuestion);
+            let previousQuestion = newQuestions[currentIndex - 1];
             previousQuestion.index = currentIndex;
             currentQuestion.index = currentIndex - 1;
 
+            var sortedQuestions = newQuestions.sort((a, b) => {
+                return a.index - b.index;
+            });
+            this.questionList = sortedQuestions
+
             let data = {'form_uuid': this.form.uuid, 'currentIndex': currentIndex, 'previousIndex': currentIndex - 1};
+
             let response = await axios.post('/api/move-up', data)
         },
+        async moveDown(movingUUID) {
+            var newQuestions = this.questionList;
+
+            let currentQuestion = newQuestions.filter((question) => {
+                return question.uuid === movingUUID;
+            })[0];
+            let currentIndex = newQuestions.indexOf(currentQuestion);
+            let nextQuestion = newQuestions[currentIndex + 1];
+            nextQuestion.index = currentIndex;
+            currentQuestion.index = currentIndex + 1;
+
+            var sortedQuestions = newQuestions.sort((a, b) => {
+                return a.index - b.index;
+            });
+            this.questionList = sortedQuestions
+
+            let data = {'form_uuid': this.form.uuid, 'currentIndex': currentIndex, 'nextIndex': currentIndex + 1};
+            let response = await axios.post('/api/move-down', data)
+        },
+
+        // deleting a question
         async deleteQuestion(deletedUuid) {
             let newQuestions = this.questionList.filter((question) => {
                 return question.uuid !== deletedUuid;
@@ -530,36 +562,40 @@ export default {
             let data = {'deletedUUID': deletedUuid, 'form_uuid': this.form.uuid}
             let response = await axios.post('/api/delete-question', data)
         },
+
+        // changing the title of the question
         async updateTitle(e) {
             let data = {'title': e.target.innerText, 'form_id': this.form.id}
             let response = await axios.post('/api/update-title', data)
         },
-        async addName() {
-            let data = {'index': this.$page.props.questions.length, 'form_id': this.form.id, 'form_uuid': this.form.uuid}
+
+        // adding questions
+        addName() {
+            let data = {'index': this.$page.props.questions[this.$page.props.questions.length - 1].index + 1, 'form_id': this.form.id, 'form_uuid': this.form.uuid}
             this.$data.showingQuestionTypeDropdown=!this.$data.showingQuestionTypeDropdown;
             this.$inertia.post('/form/add_name', data)
         },
-        async addText() {
-            let data = {'index': this.$page.props.questions.length, 'form_id': this.form.id, 'form_uuid': this.form.uuid}
+        addText() {
+            let data = {'index': this.$page.props.questions[this.$page.props.questions.length - 1].index + 1, 'form_id': this.form.id, 'form_uuid': this.form.uuid}
             this.$data.showingQuestionTypeDropdown=!this.$data.showingQuestionTypeDropdown;
             this.$inertia.post('/form/add_text', data)
         },
-        async addEmail() {
+        addEmail() {
             let data = {'index': this.$page.props.questions.length, 'form_id': this.form.id, 'form_uuid': this.form.uuid}
             this.$data.showingQuestionTypeDropdown=!this.$data.showingQuestionTypeDropdown;
             this.$inertia.post('/form/add_email', data)
         },
-        async addPhone() {
+        addPhone() {
             let data = {'index': this.$page.props.questions.length, 'form_id': this.form.id, 'form_uuid': this.form.uuid}
             this.$data.showingQuestionTypeDropdown=!this.$data.showingQuestionTypeDropdown;
             this.$inertia.post('/form/add_phone', data)
         },
-        async addMultipleChoice() {
+        addMultipleChoice() {
             let data = {'index': this.$page.props.questions.length, 'form_id': this.form.id, 'form_uuid': this.form.uuid}
             this.$data.showingQuestionTypeDropdown=!this.$data.showingQuestionTypeDropdown;
             this.$inertia.post('/form/add_multiple_choice', data)
         },
-        async addSectionBreak() {
+        addSectionBreak() {
             let data = {'index': this.$page.props.questions.length, 'form_id': this.form.id, 'form_uuid': this.form.uuid}
             this.$data.showingQuestionTypeDropdown=!this.$data.showingQuestionTypeDropdown;
             this.$inertia.post('/form/add_section_break', data)
@@ -574,6 +610,8 @@ export default {
                 return alphabet[number];
             }
         },
+
+        // returns the appropriate icon svg for each question
         returnQuestionSvg(questionType) {
             if (questionType === "Name") {
                 return "M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z";

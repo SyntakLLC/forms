@@ -50,11 +50,19 @@
 
                                             <div class="f-answer f-full-width">
                                                 <div class="f-radios-wrap">
-                                                    <ul v-if="question.options.length" v-for="(option, index) in question.options" role="listbox" class="f-radios">
+                                                    <ul v-if="question.options.length" v-for="(option, index) in optionsList" role="listbox" class="f-radios">
                                                         <li :aria-label="'Press ' + mcLetters[index] + ' to select'" role="option" class=""><!---->
                                                             <div class="f-label-wrap">
                                                                 <span class="f-key">{{ mcLetters[index] }}</span>
-                                                                <span class="f-label">{{ option.title }}</span>
+                                                                <span contenteditable @input="updateOption($event, option.id)" :placeholder="'Type in option ' + mcLetters[index]" class="f-label" :class="'h-full w-full'">{{ option.title }}</span>
+
+                                                                <!--DELETE OPTION-->
+<!--                                                                <button -->
+<!--                                                                        class="w-5 pr-10 text-gray-500 hover:text-gray-600 focus:outline-none">-->
+                                                                    <svg @click="deleteOption(option.uuid)" v-on:click.stop class="text-gray-500 right-3 h-5 w-5 pt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                                    </svg>
+<!--                                                                </button>-->
                                                             </div>
                                                         </li>
                                                     </ul>
@@ -62,11 +70,12 @@
                                             </div>
                                         </div> <!---->
                                     </div>
+
                                     <div class="vff-animate f-fade-in f-enter">
-                                        <button type="button" href="#" aria-label="Press to continue" class="o-btn-action">
-                                            <span>OK</span>
+                                        <button @click="addOption" type="button" href="#" aria-label="Press to continue" class="o-btn-action">
+                                            <span>Add Option</span>
                                         </button>
-                                        <a href="#" class="f-enter-desc">Press <span class="f-string-em">Enter</span></a>
+<!--                                        <a href="#" class="f-enter-desc">Press <span class="f-string-em">Enter</span></a>-->
                                     </div> <!---->
                                 </div>
                             </div>
@@ -161,6 +170,9 @@ export default {
 
     data() {
         return {
+            optionsList: this.options.map((option) => {
+                return option
+            }),
             mcLetters: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
             QuestionType: QuestionType,
             dataValue: null,
@@ -202,6 +214,32 @@ export default {
         this.$refs.qanimate.removeEventListener('animationend', this.onAnimationEnd)
     },
     methods: {
+        /**
+         * Add an Option, delete an option, updating an option
+         */
+        addOption() {
+            
+            let data = {'index': this.question.options[this.question.options.length - 1].index + 1, 'question_id': this.question.id, 'form_id': this.question.form_id}
+            // let response = await axios.post('add-option', data)
+            this.$inertia.post('/form/add_option', data)
+        },
+        async updateOption(e, optionID) {
+            let data = {'title': e.target.innerText, 'option_id': optionID, 'question_id': this.question.id, 'form_id': this.question.form_id}
+            let response = await axios.post('/api/update-option', data)
+        },
+
+        // deleting a question
+        async deleteOption(deletedUuid) {
+            let newOptions = this.optionsList.filter((option) => {
+                return option.uuid !== deletedUuid;
+            });
+            this.optionsList = newOptions;
+
+            let data = {'question_id': this.question.id, 'deletedUUID': deletedUuid, 'form_uuid': this.question.form_id}
+
+            let response = await axios.post('/api/delete-option', data)
+        },
+
         /**
          * Update fields
          */

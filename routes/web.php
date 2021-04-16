@@ -64,7 +64,10 @@ Route::post('form/submit_results', 'App\Http\Controllers\ResponseController@stor
 Route::post('form/update_tagline', 'App\Http\Controllers\QuestionController@update');
 
 // when adding an option
-Route::post('form/add_option', 'App\Http\Controllers\QuestionController@store');
+Route::post('form/add_option', 'App\Http\Controllers\QuestionController@addOption');
 
 // the route that allows us to edit a single question while seeing all of them
 Route::get('form/{form}/edit/{question}', 'App\Http\Controllers\QuestionController@edit')->name('form.question.edit');
+
+// adds an option to the multiple choice question
+//Route::post('form/add_option', 'App\Http\Controllers\QuestionController@addOption');

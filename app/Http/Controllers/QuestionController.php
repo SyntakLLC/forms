@@ -33,7 +33,14 @@ class QuestionController extends Controller
             'index' => $request->get('index'),
         ]);
 
-        return Redirect::route('form.edit', $request->get('form_uuid'));
+        $form = Form::find($request->get('form_id'));
+        $questions = $form->questions;
+        $this->consoleLog($questions);
+
+        return Redirect::route('form.edit', [
+            'form' => $request->get('form_uuid'),
+            'question' => $question->uuid
+        ]);
     }
 
     public function addSectionBreak(StoreQuestionRequest $request) {
@@ -139,7 +146,6 @@ class QuestionController extends Controller
         echo "<script>console.log('" . $output . "' );</script>";
     }
 
-
     public function update(Request $request)
     {
         $question = Question::find($request->get('question_id'));
@@ -163,29 +169,102 @@ class QuestionController extends Controller
         ]);
     }
 
+    public function addOption(Request $request) {
+        $this->consoleLog($request->get('question_id'));
+        $question = Question::find($request->question_id);
+        $form = Form::find($request->form_id);
+
+        $option = Option::create([
+            'question_id' => $request->question_id,
+            'title' => "",
+            'index' => $request->index,
+        ]);
+
+        return Redirect::route('form.question.edit', [
+            'form' => $form,
+            'question' => $question,
+        ]);
+    }
+
 
     public function destroy(Request $request)
     {
-        Question::findByUuid($request->get('deletedUUID'))->delete();
+        $form = Form::findByUuid($request->get('form_uuid'));
+        $questions = $form->questions;
+        $deletedIndex = $questions->search(function($question) use ($request) {
+            return $question->uuid === $request->get('deletedUUID');
+        });
+
+        $deletedQuestion = Question::findByUuid($request->get('deletedUUID'));
+
+        foreach($questions as $question) {
+            if ($question['index'] > $deletedQuestion['index']) {
+                $question['index'] = $question['index'] - 1;
+                $question->save();
+            }
+        }
+
+        $deletedQuestion->delete();
 
         return Redirect::route('form.edit', $request->get('form_uuid'));
 //        return Redirect::back()->with('message','Successfully deleted!');
     }
 
-    public function moveup(Request $request) {
-        $this->consoleLog("here");
+    public function up(Request $request) {
 
         $form = Form::findByUuid($request->get('form_uuid'));
-        $currentQuestion = $form->questions[$request->get('currentIndex')];
-        $previousQuestion = $form->questions[$request->get('previousIndex')];
-
-        $currentQuestion->index = $request->get('previousIndex');
+        $questions = $form->questions;
+        $toMoveUpIndex = $request->get('currentIndex');
+        $previousIndex = $request->get('previousIndex');
+//
+        $toMoveUpQuestion = null;
+        foreach($questions as $question) {
+            if ($toMoveUpIndex == $question['index']) {
+                $toMoveUpQuestion = $question;
+                break;
+            }
+        }
+        $previousQuestion = null;
+        foreach($questions as $question) {
+            if ($previousIndex == $question['index']) {
+                $previousQuestion = $question;
+                break;
+            }
+        }
+//
+        $toMoveUpQuestion->index = $request->get('previousIndex');
         $previousQuestion->index = $request->get('currentIndex');
+//
+        $toMoveUpQuestion->save();
+        $previousQuestion->save();
+    }
 
-//        $this->consoleLog($request->get('previousIndex'));
-//        $this->consoleLog($request->get('currentIndex'));
+    public function down(Request $request) {
+
+        $form = Form::findByUuid($request->get('form_uuid'));
+        $questions = $form->questions;
+        $currentIndex = $request->get('currentIndex');
+        $nextIndex = $request->get('nextIndex');
+
+        $currentQuestion = null;
+        foreach($questions as $question) {
+            if ($currentIndex == $question['index']) {
+                $currentQuestion = $question;
+                break;
+            }
+        }
+        $nextQuestion = null;
+        foreach($questions as $question) {
+            if ($nextIndex == $question['index']) {
+                $nextQuestion = $question;
+                break;
+            }
+        }
+
+        $currentQuestion->index = $request->get('nextIndex');
+        $nextQuestion->index = $request->get('currentIndex');
 
         $currentQuestion->save();
-        $previousQuestion->save();
+        $nextQuestion->save();
     }
 }
