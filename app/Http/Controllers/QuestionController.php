@@ -101,7 +101,6 @@ class QuestionController extends Controller
         return Redirect::route('form.edit', $request->get('form_uuid'));
     }
 
-
     public function store(Request $request)
     {
         Option::create([

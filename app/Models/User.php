@@ -3,7 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use BinaryCabin\LaravelUUID\Traits\HasUUID;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -19,6 +22,9 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
     use Billable;
+    use HasFactory;
+    use HasUUID;
+    use SoftDeletes;
 
     public function leads()
     {
@@ -28,6 +34,11 @@ class User extends Authenticatable
     public function forms()
     {
         return $this->hasMany(Form::class);
+    }
+
+    public function site()
+    {
+        return $this->hasOne(Site::class);
     }
 
     /**
@@ -45,6 +56,11 @@ class User extends Authenticatable
         'cover_photo_url',
         'pattern',
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
 
     /**
      * The attributes that should be hidden for arrays.

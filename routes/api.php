@@ -22,7 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  * The url will be example.com/api/api-example
  */
 
-Route::get('api-example','\App\Http\Controllers\Api\ApiExampleController@get');
+// the Updating Message
+Route::post('update-message','App\Http\Controllers\SiteController@updateMessage');
 
 // the Update form question
 Route::post('update-form-question','App\Http\Controllers\QuestionController@update');
@@ -32,9 +33,6 @@ Route::post('update-option','App\Http\Controllers\OptionController@update');
 
 // the Updating Title
 Route::post('update-title','App\Http\Controllers\FormController@update');
-
-// the Updating Message
-Route::post('update-message','App\Http\Controllers\Controller@updateMessage');
 
 // to delete a question delete-question
 Route::post('delete-question', 'App\Http\Controllers\QuestionController@destroy');

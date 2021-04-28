@@ -4,7 +4,8 @@ require('./bootstrap');
 import Vue from 'vue';
 import {App as InertiaApp, plugin as InertiaPlugin} from '@inertiajs/inertia-vue';
 import VueFilterDateFormat from '@vuejs-community/vue-filter-date-format';
-import JsonCSV from 'vue-json-csv'
+import JsonCSV from 'vue-json-csv';
+import { Photoshop } from 'vue-color'
 
 Vue.component('downloadCsv', JsonCSV)
 Vue.use(VueFilterDateFormat);

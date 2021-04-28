@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Site;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,24 +17,12 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function dashboard(Request $request) {
+    public function dashboard(Request $request, Site $site) {
 
         return Inertia::render('Dashboard', [
             'forms' => $request->user()->forms,
             'user' => $request->user(),
+            'site' => $request->user()->site,
         ]);
-    }
-
-    public function updateMessage(Request $request) {
-        $user_id = $request->user()->id;
-        echo "<script>console.log('ss');</script>";
-        $user = User::findOrFail($user_id);
-
-        $user->message = "amaan";
-
-        $user->save();
-//        $user->message = $request->get('message');
-//        $user->message = "djdd";
-//        $user->save();
     }
 }
