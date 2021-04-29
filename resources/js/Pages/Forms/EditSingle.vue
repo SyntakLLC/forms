@@ -166,7 +166,7 @@ export default {
         Edit
     },
 
-    props: ['question', 'options', 'user'],
+    props: ['question', 'options', 'user', 'site'],
 
     data() {
         return {
@@ -201,7 +201,7 @@ export default {
                 }),
             ],
             accentColor: {
-                'background-color': '#' + this.user.accent_color,
+                'background-color': '#' + this.site.accent_color,
             },
         }
     },
@@ -218,7 +218,7 @@ export default {
          * Add an Option, delete an option, updating an option
          */
         addOption() {
-            
+
             let data = {'index': this.question.options[this.question.options.length - 1].index + 1, 'question_id': this.question.id, 'form_id': this.question.form_id}
             // let response = await axios.post('add-option', data)
             this.$inertia.post('/form/add_option', data)

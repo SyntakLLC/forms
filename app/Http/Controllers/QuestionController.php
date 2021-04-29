@@ -133,6 +133,7 @@ class QuestionController extends Controller
             'questions' => $questions,
             'options' => $question == null ? Form::findByUuid($form->uuid)->questions->first()->options : $question->options,
             'forms' => Auth::user()->forms,
+            'site' => Auth::user()->site,
             'question' => $question == null ? Form::findByUuid($form->uuid)->questions->first() : $question,
         ]);
     }

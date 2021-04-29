@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Form;
 use App\Models\Option;
 use App\Models\Question;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -59,7 +60,7 @@ class FormController extends Controller
 
         return Redirect::route('form.question.edit', [
             'form' => $form->uuid,
-            'question' => $ourQuestion
+            'question' => $ourQuestion,
         ]);
     }
 
