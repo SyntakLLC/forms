@@ -30,9 +30,12 @@
                     </span>
                 </div>
 
-                <jet-secondary-button class="mt-2 mr-2" type="button" @click.prevent="selectNewPhoto">
+                <div class="mt-2 mr-2">
+                    <button class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"
+                            type="button" @click="selectNewPhoto">
                     Select A New Photo
-                </jet-secondary-button>
+                    </button>
+                </div>
 
                 <jet-secondary-button type="button" class="mt-2" @click.prevent="deletePhoto" v-if="user.profile_photo_path">
                     Remove Photo
@@ -121,12 +124,18 @@
 
             updatePhotoPreview() {
                 const reader = new FileReader();
-
+                let photo = null;
                 reader.onload = (e) => {
                     this.photoPreview = e.target.result;
+                    photo = e.target.result;
                 };
 
                 reader.readAsDataURL(this.$refs.photo.files[0]);
+
+                // let data = {
+                //     'photo': photo,
+                // }
+                // let response = await axios.post('/api/update-profile-picture', data)
             },
 
             deletePhoto() {

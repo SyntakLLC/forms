@@ -144,6 +144,16 @@
                                             Cover Photo
                                         </a>
 
+                                        <input type="file" class="hidden"
+                                               ref="photo"
+                                               @change="updatePhotoPreview">
+
+                                        <div class="mt-2 mr-2">
+                                            <button class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"
+                                                    type="button" @click="selectNewPhoto">
+                                                Select A New Photo
+                                            </button>
+                                        </div>
                                     </div>
 
                                     <div class="pt-2 pb-4 border-b border-gray-200 mx-4">
@@ -157,7 +167,7 @@
                                             </legend>
                                             <div class="relative bg-white rounded-md -space-y-px">
                                                 <!-- Checked: "bg-indigo-50 border-indigo-200 z-10", Not Checked: "border-gray-200" -->
-                                                <label class="border-gray-200 rounded-tl-md rounded-tr-md relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6 md:grid md:grid-cols-3">
+                                                <label class="border-gray-200 rounded-tl-md rounded-tr-md relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
                                                     <div class="flex w-full items-center text-sm">
                                                         <input type="radio" :checked="layout===1" @input="layout=1" name="pricing_plan" value="Startup" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">
                                                         <span v-if="layout===1" id="layout-1-label-checked" class="ml-3 font-medium text-indigo-700">Layout 1</span>
@@ -168,7 +178,7 @@
                                                 </label>
 
                                                 <!-- Checked: "bg-indigo-50 border-indigo-200 z-10", Not Checked: "border-gray-200" -->
-                                                <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6 md:grid md:grid-cols-3">
+                                                <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
                                                     <div class="flex items-center text-sm">
                                                         <input type="radio" :checked="layout===2" @input="layout=2" name="pricing_plan" value="Business" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">
                                                         <span v-if="layout===2" id="layout-2-label-checked" class="ml-3 font-medium text-indigo-700">Layout 2</span>
@@ -203,9 +213,13 @@
                                             <!--                <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">-->
                                             <!--                    <img class="h-56 w-full object-cover lg:absolute lg:h-full" src="https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80" alt="">-->
                                             <!--                </div>-->
-                                            <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-white h-28 lg:h-screen"
+                                            <div v-if="$page.props.user.cover_photo_url==null"
+                                                 class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-white h-28 lg:h-screen"
                                                  :style="this.getURL"
                                                  id="pattern">
+                                                <span v-if="this.photoPreview" class="block rounded-full w-20 h-20"
+                                                      :style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
+                                                </span>
 
                                                 <!--                    <img class="h-56 w-full object-cover lg:fixed lg:h-full" id="coverPhoto"-->
                                                 <!--                         src="https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80"-->
@@ -214,6 +228,11 @@
                                                     <img class="sm:h-60 sm:w-60 h-20 w-20 rounded-full object-cover shadow-md" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
                                                 </div>
                                             </div>
+
+                                            <div v-else class="lg:absolute flex lg:inset-y-0 lg:right-0 lg:w-full h-full justify-center items-center">
+                                                <img class="sm:h-60 sm:w-60 h-20 w-20 rounded-full object-cover shadow-md" :src="$page.props.user.cover_photo_url" />
+                                            </div>
+
                                         </div>
                                         <div class="relative py-16 px-4 sm:py-24 sm:px-6 lg:px-8 lg:max-w-7xl lg:mx-auto lg:py-32 lg:grid lg:grid-cols-2">
                                             <div class="lg:pr-8">
@@ -299,6 +318,7 @@
 
         data() {
             return {
+                photoPreview: null,
                 layout: this.site.layout,
                 showingAccentColorDropdown: false,
                 showingLayoutDropdown: false,
@@ -311,6 +331,29 @@
         },
 
         methods: {
+            /**
+             * Update Cover photo
+             */
+            selectNewPhoto() {
+                this.$refs.photo.click();
+            },
+
+            async updatePhotoPreview() {
+                const reader = new FileReader();
+                let photo = null;
+                reader.onload = (e) => {
+                    this.photoPreview = e.target.result;
+                    photo = e.target.result;
+                };
+
+                reader.readAsDataURL(this.$refs.photo.files[0]);
+                let data = {
+                    'photo': this.$refs.photo.files[0],
+                }
+                console.log(data.photo)
+                let response = await axios.post('/api/update-cover-picture', data)
+            },
+
             /**
              * Update fields
              */

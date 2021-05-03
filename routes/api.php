@@ -25,8 +25,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // the Updating Message
 Route::post('update-message','App\Http\Controllers\SiteController@updateMessage');
 
-// the Updating Message
+// the Updating Accent Color
 Route::post('update-color','App\Http\Controllers\SiteController@updateColor');
+
+// the Updating Profile Picture
+Route::post('update-cover-picture','App\Http\Controllers\Controller@updateCoverPicture');
 
 // the Update form question
 Route::post('update-form-question','App\Http\Controllers\QuestionController@update');

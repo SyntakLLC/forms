@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class Controller extends BaseController
@@ -24,5 +25,11 @@ class Controller extends BaseController
             'user' => $request->user(),
             'site' => $request->user()->site,
         ]);
+    }
+
+    public function updateCoverPicture(Request $request) {
+        $path = $request->file('photo')->store('cover-photos');
+
+        return $path;
     }
 }
