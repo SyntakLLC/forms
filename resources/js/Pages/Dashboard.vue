@@ -214,6 +214,7 @@
 
                                             <div v-if="$page.props.user.cover_photo_url==null"
                                                  class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-white h-28 lg:h-screen"
+                                                 :class="layout===1 ? 'lg:right-0' : 'lg:left-0'"
                                                  :style="this.getURL"
                                                  id="pattern">
 

@@ -38,10 +38,11 @@ class FormController extends Controller
 //        });
 //        $questions = collect($questions);
         $questions = $form->questions->sortBy('index')->values();
-
+        $user = $form->user;
 
         return Inertia::render('Forms/Show', [
             'form' => $form,
+            'site' => $user->site,
 //            'user' => Auth::user(),
             'questionlist' => $questions,
             'options' => $questions->each(function ($question) {
