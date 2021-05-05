@@ -71,3 +71,9 @@ Route::get('form/{form}/edit/{question}', 'App\Http\Controllers\QuestionControll
 
 // adds an option to the multiple choice question
 //Route::post('form/add_option', 'App\Http\Controllers\QuestionController@addOption');
+
+// add a cover photo
+Route::post('update-cover-picture','App\Http\Controllers\Controller@updateCoverPicture');
+
+// remove a cover photo
+Route::post('remove-cover-picture','App\Http\Controllers\Controller@removeCoverPicture');

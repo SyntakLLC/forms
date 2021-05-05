@@ -28,8 +28,11 @@ Route::post('update-message','App\Http\Controllers\SiteController@updateMessage'
 // the Updating Accent Color
 Route::post('update-color','App\Http\Controllers\SiteController@updateColor');
 
+// the Updating Layout
+Route::post('update-layout','App\Http\Controllers\SiteController@updateLayout');
+
 // the Updating Profile Picture
-Route::post('update-cover-picture','App\Http\Controllers\Controller@updateCoverPicture');
+//Route::post('update-cover-picture','App\Http\Controllers\Controller@updateCoverPicture');
 
 // the Update form question
 Route::post('update-form-question','App\Http\Controllers\QuestionController@update');

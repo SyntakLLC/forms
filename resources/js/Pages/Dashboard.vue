@@ -134,13 +134,6 @@
 
                                     <div class="pt-2 pb-4 border-b border-gray-200 mx-4">
                                         <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
-                                            Pattern
-                                        </a>
-
-                                    </div>
-
-                                    <div class="pt-2 pb-4 border-b border-gray-200 mx-4">
-                                        <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
                                             Cover Photo
                                         </a>
 
@@ -154,6 +147,14 @@
                                                 Select A New Photo
                                             </button>
                                         </div>
+
+                                        <div class="mt-2 mr-2">
+                                            <button v-if="$page.props.user.cover_photo_url"
+                                                    class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"
+                                                    type="button" @click="removePhoto">
+                                                Remove Photo
+                                            </button>
+                                        </div>
                                     </div>
 
                                     <div class="pt-2 pb-4 border-b border-gray-200 mx-4">
@@ -163,15 +164,15 @@
 
                                         <fieldset>
                                             <legend class="sr-only">
-                                                Pricing plans
+                                                Layouts
                                             </legend>
                                             <div class="relative bg-white rounded-md -space-y-px">
                                                 <!-- Checked: "bg-indigo-50 border-indigo-200 z-10", Not Checked: "border-gray-200" -->
                                                 <label class="border-gray-200 rounded-tl-md rounded-tr-md relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
                                                     <div class="flex w-full items-center text-sm">
-                                                        <input type="radio" :checked="layout===1" @input="layout=1" name="pricing_plan" value="Startup" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">
-                                                        <span v-if="layout===1" id="layout-1-label-checked" class="ml-3 font-medium text-indigo-700">Layout 1</span>
-                                                        <span v-else id="layout-1-label" class="ml-3 font-medium text-gray-900">Layout 1</span>
+                                                        <input type="radio" :checked="layout===1" @input="updateLayout(1)" name="pricing_plan" value="Layout1" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">
+                                                        <span v-if="layout===1" id="layout-1-label-checked" class="ml-3 font-medium text-indigo-700">Left Align</span>
+                                                        <span v-else id="layout-1-label" class="ml-3 font-medium text-gray-900">Left Align</span>
                                                     </div>
 
                                                     <!-- Checked: "text-indigo-700", Not Checked: "text-gray-500" -->
@@ -180,9 +181,9 @@
                                                 <!-- Checked: "bg-indigo-50 border-indigo-200 z-10", Not Checked: "border-gray-200" -->
                                                 <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
                                                     <div class="flex items-center text-sm">
-                                                        <input type="radio" :checked="layout===2" @input="layout=2" name="pricing_plan" value="Business" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">
-                                                        <span v-if="layout===2" id="layout-2-label-checked" class="ml-3 font-medium text-indigo-700">Layout 2</span>
-                                                        <span v-else id="layout-2-label" class="ml-3 font-medium text-gray-900">Layout 2</span>
+                                                        <input type="radio" :checked="layout===2" @input="updateLayout(2)" name="pricing_plan" value="Layout2" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">
+                                                        <span v-if="layout===2" id="layout-2-label-checked" class="ml-3 font-medium text-indigo-700">Right Align</span>
+                                                        <span v-else id="layout-2-label" class="ml-3 font-medium text-gray-900">Right Align</span>
                                                     </div>
 
                                                     <!-- Checked: "text-indigo-700", Not Checked: "text-gray-500" -->
@@ -210,33 +211,33 @@
                                 <div class="h-screen bg-white rounded-md">
                                     <div class="relative ">
                                         <div class="lg:absolute lg:inset-0">
-                                            <!--                <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">-->
-                                            <!--                    <img class="h-56 w-full object-cover lg:absolute lg:h-full" src="https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80" alt="">-->
-                                            <!--                </div>-->
+
                                             <div v-if="$page.props.user.cover_photo_url==null"
                                                  class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-white h-28 lg:h-screen"
                                                  :style="this.getURL"
                                                  id="pattern">
-                                                <span v-if="this.photoPreview" class="block rounded-full w-20 h-20"
-                                                      :style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
-                                                </span>
 
-                                                <!--                    <img class="h-56 w-full object-cover lg:fixed lg:h-full" id="coverPhoto"-->
-                                                <!--                         src="https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80"-->
-                                                <!--                         alt="">-->
                                                 <div class="lg:absolute flex lg:inset-y-0 lg:right-0 lg:w-full h-full justify-center items-center">
                                                     <img class="sm:h-60 sm:w-60 h-20 w-20 rounded-full object-cover shadow-md" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
                                                 </div>
                                             </div>
 
-                                            <div v-else class="lg:absolute flex lg:inset-y-0 lg:right-0 lg:w-full h-full justify-center items-center">
-                                                <img class="sm:h-60 sm:w-60 h-20 w-20 rounded-full object-cover shadow-md" :src="$page.props.user.cover_photo_url" />
+                                            <div v-else class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-white h-28 overflow-hidden lg:h-screen"
+                                                :class="layout===1 ? 'lg:right-0' : 'lg:left-0'">
+                                                <img class="h-56 w-full object-cover lg:absolute lg:h-full" :src="'http://localhost:9600/forms-bucket/' + $page.props.user.cover_photo_url" />
+
+                                                <div class="lg:absolute flex lg:inset-y-0 lg:right-0 lg:w-full h-full justify-center items-center lg:mt-0 -mt-56">
+                                                    <img class="sm:h-60 sm:w-60 h-20 w-20 rounded-full object-cover shadow-md" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
+                                                </div>
                                             </div>
 
                                         </div>
+
+
                                         <div class="relative py-16 px-4 sm:py-24 sm:px-6 lg:px-8 lg:max-w-7xl lg:mx-auto lg:py-32 lg:grid lg:grid-cols-2">
-                                            <div class="lg:pr-8">
-                                                <!--                    <chrome-picker v-model="colors" />-->
+                                            <div v-if="layout===2" class="lg:mx-8"/>
+                                            <div :class="layout===2 ? 'lg:pl-8 justify-self-center' : 'lg:pr-8'">
+
                                                 <div class="max-w-md mx-auto sm:max-w-lg lg:mx-0">
                                                     <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
                                                         {{$page['props']['user']['name']}}
@@ -259,7 +260,8 @@
                                                                             </div>
                                                                             <div class="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
                                                                                 <button type="button"
-                                                                                        class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">
+                                                                                        class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
+                                                                                        :style="'background: ' + colors + '; color: ' + getContrastYIQ(colors)">
                                                                                     Go
                                                                                 </button>
                                                                             </div>
@@ -322,7 +324,8 @@
                 layout: this.site.layout,
                 showingAccentColorDropdown: false,
                 showingLayoutDropdown: false,
-                colors: this.site.accent_color,
+                showingQuestionsDropdown: false,
+                colors: '#' + this.site.accent_color,
 
                 getURL: {
                     'background-image': 'url("data:image/svg+xml,%3Csvg width=\'80\' height=\'80\' viewBox=\'0 0 80 80\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23' + this.site.accent_color + '\' fill-opacity=\'1\'%3E%3Cpath d=\'M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z\' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
@@ -331,14 +334,39 @@
         },
 
         methods: {
+            // returns black or white depending on the appropriate 'logo' color
+            getContrastYIQ(hexcolor){
+                hexcolor = hexcolor.replace("#", "");
+                var r = parseInt(hexcolor.substr(0,2),16);
+                var g = parseInt(hexcolor.substr(2,2),16);
+                var b = parseInt(hexcolor.substr(4,2),16);
+                var yiq = ((r*299)+(g*587)+(b*114))/1000;
+                return (yiq >= 128) ? 'black' : 'white';
+            },
+
+            /**
+             * to update the layout
+             */
+            async updateLayout(newLayout) {
+                this.layout = newLayout;
+
+                let data = {
+                    'layout': newLayout,
+                    'site': this.site.id,
+                }
+                let response = await axios.post('/api/update-layout', data)
+            },
+
             /**
              * Update Cover photo
              */
             selectNewPhoto() {
                 this.$refs.photo.click();
             },
-
-            async updatePhotoPreview() {
+            removePhoto() {
+                this.$inertia.post('remove-cover-picture')
+            },
+            updatePhotoPreview() {
                 const reader = new FileReader();
                 let photo = null;
                 reader.onload = (e) => {
@@ -347,11 +375,9 @@
                 };
 
                 reader.readAsDataURL(this.$refs.photo.files[0]);
-                let data = {
-                    'photo': this.$refs.photo.files[0],
-                }
-                console.log(data.photo)
-                let response = await axios.post('/api/update-cover-picture', data)
+
+                // let response = await axios.post('/api/update-cover-picture', {photo: this.$refs.photo.files[0]})
+                this.$inertia.post('update-cover-picture', {photo: this.$refs.photo.files[0]})
             },
 
             /**

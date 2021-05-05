@@ -21,6 +21,13 @@ class SiteController extends Controller
         $site->accent_color = $request->get('color');
         $site->save();
     }
+
+    public function updateLayout(Request $request) {
+        $site = Site::find($request->get('site'));
+        $site->layout = $request->get('layout');
+        $site->save();
+    }
+
     function consoleLog($data) {
         $output = $data;
         if (is_array($output))

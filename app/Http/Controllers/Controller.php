@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Site;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -28,8 +29,34 @@ class Controller extends BaseController
     }
 
     public function updateCoverPicture(Request $request) {
-        $path = $request->file('photo')->store('cover-photos');
+        $photo = $request->photo;
 
-        return $path;
+        $user = $request->user();
+        $user->forceFill([
+            'cover_photo_url' => $photo->storePublicly(
+                'cover-photos', ['disk' => isset($_ENV['VAPOR_ARTIFACT_NAME']) ? 's3' : config('jetstream.profile_photo_disk', 'public')]
+            ),
+        ])->save();
+
+        $site = $user->site;
+        $site->cover_photo_url = $photo->storePublicly(
+            'cover-photos', ['disk' => isset($_ENV['VAPOR_ARTIFACT_NAME']) ? 's3' : config('jetstream.profile_photo_disk', 'public')]
+        );
+        $site->save();
+
+        return Redirect::route('dashboard');
+    }
+
+    public function removeCoverPicture(Request $request) {
+        $user = $request->user();
+        $user->forceFill([
+            'cover_photo_url' => null,
+        ])->save();
+
+        $site = $user->site;
+        $site->cover_photo_url = null;
+        $site->save();
+
+        return Redirect::route('dashboard');
     }
 }
