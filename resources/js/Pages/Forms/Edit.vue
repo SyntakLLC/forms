@@ -29,7 +29,11 @@
                 <div class="flex-1 " />
 
                 <div class="flex sm:ml-4 px-6">
-                    <inertia-link :href="route('form.show', form.uuid)" class="truncate hover:text-gray-600 block">
+                    <button type="button" class="inline-flex items-center px-4 py-2 border border-red-500 shadow-sm text-sm font-medium rounded-md text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        Delete Form
+                    </button>
+
+                    <inertia-link :href="route('form.show', form.uuid)" class="truncate hover:text-gray-600 block h-full">
                         <button type="button" class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 sm:ml-3">
                             Preview
                         </button>

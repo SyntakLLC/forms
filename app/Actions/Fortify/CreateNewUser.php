@@ -35,7 +35,7 @@ class CreateNewUser implements CreatesNewUsers
         ]);
 
         Site::create([
-            'user_id' => $user->id,
+            'user_id' => $user->uuid,
         ]);
 
         return $user;

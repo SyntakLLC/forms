@@ -77,3 +77,6 @@ Route::post('update-cover-picture','App\Http\Controllers\Controller@updateCoverP
 
 // remove a cover photo
 Route::post('remove-cover-picture','App\Http\Controllers\Controller@removeCoverPicture');
+
+// this is the final page
+Route::get('{site}', 'App\Http\Controllers\SiteController@show');

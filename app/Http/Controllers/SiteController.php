@@ -7,9 +7,20 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Inertia\Inertia;
 
 class SiteController extends Controller
 {
+    public function show(Request $request, Site $site) {
+        $user = User::findByUuid($site->user_id);
+
+        return Inertia::render('Show', [
+            'site' => $site,
+            'user' => $user,
+            'forms' => $user->forms,
+        ]);
+    }
+
     public function updateMessage(Request $request) {
         $site = Site::find($request->get('site'));
         $site->message = $request->get('message');
