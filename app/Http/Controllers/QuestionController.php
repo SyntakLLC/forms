@@ -112,7 +112,6 @@ class QuestionController extends Controller
         return Redirect::route('form.edit', $request->get('form_uuid'));
     }
 
-
     public function edit(Request $request, Form $form, Question $question)
     {
 
@@ -185,7 +184,6 @@ class QuestionController extends Controller
             'question' => $question,
         ]);
     }
-
 
     public function destroy(Request $request)
     {

@@ -7,8 +7,7 @@
 
                 <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none" tabindex="0">
                     <!-- Page title & actions (used to have border-b ) -->
-                    <div
-                        class=" border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
+                    <div class=" border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
                         <div class="flex-1 min-w-0">
                             <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
                                 Responses
@@ -30,6 +29,7 @@
                             </download-csv>
                         </div>
                     </div>
+
                     <!-- Pinned projects -->
 <!--                    <div class="px-4 mt-6 sm:px-6 lg:px-8">-->
 <!--                        <h2 class="text-gray-500 text-xs font-medium uppercase tracking-wide">Filter by Form</h2>-->

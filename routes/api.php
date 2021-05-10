@@ -43,6 +43,9 @@ Route::post('update-option','App\Http\Controllers\OptionController@update');
 // the Updating Title
 Route::post('update-title','App\Http\Controllers\FormController@update');
 
+// to delete a form
+Route::post('delete-form', 'App\Http\Controllers\FormController@destroy');
+
 // to delete a question delete-question
 Route::post('delete-question', 'App\Http\Controllers\QuestionController@destroy');
 

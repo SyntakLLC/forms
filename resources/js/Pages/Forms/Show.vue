@@ -163,7 +163,7 @@ export default {
             // what we want is one array of 3 objects, [{question, array}, {question, array}, {question, array}]
             console.log(data);
             let formattedData = this.questionlist.filter((question) => question.type !== "Section Break").map((question, index) => {
-                return {question: question.title, answer: data.answers[index], type: question.type}
+                return {question: question.title, answer: data.answers.filter((data) => data !== null)[index], type: question.type}
             })
             formattedData.unshift({form_id: this.form.uuid});
             this.$inertia.post('/form/submit_results', {data: formattedData})

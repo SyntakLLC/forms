@@ -89,11 +89,25 @@
                             <div class="vff-animate q-form q-is-active f-fade-in-up field-sectionbreak">
                                 <div class="q-inner">
                                     <div class="f-section-wrap">
-                                        <div class=""><!----> <!----> <!---->
-                                            <div class="f-answer f-full-width">
-                                                <div class="f-content">
-                                                    <span contenteditable class="f-section-text">{{ question.content == null ? "Message" : question.content }}</span>
-                                                </div>
+                                        <div class="">
+<!--                                            <span class="f-tagline" contenteditable placeholder="Tagline (optional)" @input="updateTagline">{{ question.tagline }}</span>-->
+<!--                                            <span class="fh2" contenteditable placeholder="Message" @input="updateTitle">{{ question.title }}</span>-->
+<!--                                            <span class="f-sub" contenteditable placeholder="Subtitle (optional)" @input="updateSubtitle">-->
+<!--                                                <span placeholder="Subtitle (optional)">{{ question.subtitle }}</span>-->
+<!--                                            </span>-->
+
+                                            <span class="f-sub"><!----> <!---->
+                                                <span contenteditable class="f-help" placeholder="Tagline (optional)" @input="updateTagline">{{ question.tagline }}</span>
+                                            </span>
+                                            <span class="fh2"><!----> <!---->
+                                                <span contenteditable class="f-help" placeholder="Message" @input="updateTitle">{{ question.title }}</span>
+                                            </span>
+
+                                            <span class="f-sub"><!----> <!---->
+                                                <span contenteditable class="f-help" placeholder="Subtitle (optional)" @input="updateSubtitle">{{ question.subtitle }}</span>
+                                            </span>
+
+                                            <div class="f-answer f-full-width"><!---->
                                             </div>
                                         </div> <!---->
                                     </div>
@@ -101,9 +115,7 @@
                                         <button type="button" href="#" aria-label="Press to continue" class="o-btn-action" :style="accentColor">
                                             <span>Continue</span>
                                         </button>
-                                        <a href="#" class="f-enter-desc">Press <span class="f-string-em">Enter</span></a>
-                                    </div> <!---->
-                                </div>
+                                        <a href="#" class="f-enter-desc">Press <span class="f-string-em">Enter</span></a></div> <!----></div>
                             </div>
                         </div>
 
@@ -117,15 +129,6 @@
                                             <span class="f-sub"><!----> <!---->
                                                 <span contenteditable class="f-help" placeholder="Tagline (optional)" @input="updateTagline">{{ question.tagline }}</span>
                                             </span>
-
-<!--                                            <span class="f-text">-->
-<!--                                                <span contenteditable class="f-text" placeholder="Title" @input="updateTitle">-->
-<!--                                                    {{ question.title }}-->
-<!--&lt;!&ndash;                                                    <span aria-label="This step is required" role="note" class="f-required">&ndash;&gt;-->
-<!--&lt;!&ndash;                                                        <span aria-hidden="true">*</span>&ndash;&gt;-->
-<!--&lt;!&ndash;                                                    </span> &lt;!&ndash;&ndash;&gt;&ndash;&gt;-->
-<!--                                                </span> &lt;!&ndash;&ndash;&gt;-->
-<!--                                            </span>-->
                                             <span class="f-text"><!----> <!---->
                                                 <span contenteditable class="f-help" placeholder="Question" @input="updateTitle">{{ question.title }}</span>
                                             </span>

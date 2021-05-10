@@ -77,6 +77,13 @@ class FormController extends Controller
         $form->save();
     }
 
+    public function destroy(Request $request) {
+        $form = Form::findByUuid($request->get('form_uuid'));
+        $form->delete();
+
+        return Redirect::route('dashboard');
+    }
+
     public function custom(Request $request) {
         $form = Form::create([
             'id_color' => $request->get('formColor'),
@@ -198,8 +205,8 @@ class FormController extends Controller
             Question::create([
                 'form_id' => $form->id,
                 'type' => 'Section Break',
-                'title' => '',
-                'content' => 'Thanks! Now let\'s get to know your house a little better. Hit next to start filling out the basics of your home\'s address.',
+                'title' => 'Now let\'s get to know your house a little better. Hit next to start filling out the basics of your home\'s address.',
+                'tagline' => 'Thanks!',
                 'index' => 3,
             ]),
             Question::create([
@@ -232,8 +239,8 @@ class FormController extends Controller
             Question::create([
                 'form_id' => $form->id,
                 'type' => 'Section Break',
-                'title' => '',
-                'content' => 'Alright, we\'re almost finished. Just input some basic information about your home such as your number of beds and baths and we\'ll be in touch soon!',
+                'title' => 'Alright, we\'re almost finished. ',
+                'subtitle' => 'Just input some basic information about your home such as your number of beds and baths and we\'ll be in touch soon!',
                 'index' => 8,
             ]),
             Question::create([
@@ -273,7 +280,7 @@ class FormController extends Controller
         $form = Form::create([
             'id_color' => $request->get('formColor'),
             'user_id' => $request->user()->id,
-            'title' => "Untitled Form",
+            'title' => "I'm Looking for an Apartment",
         ]);
 
         // num of beds
@@ -568,4 +575,13 @@ class FormController extends Controller
 
         return Redirect::route('form.edit', $form->uuid);
     }
+
+    public function buyHome(Request $request) {
+        $form = Form::create([
+            'id_color' => $request->get('formColor'),
+            'user_id' => $request->user()->id,
+            'title' => "I'm Thinking About Buying a Home",
+        ]);
+    }
+
 }
