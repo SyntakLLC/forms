@@ -80,3 +80,6 @@ Route::post('remove-cover-picture','App\Http\Controllers\Controller@removeCoverP
 
 // this is the final page
 Route::get('{site}', 'App\Http\Controllers\SiteController@show')->name('site.show');
+
+// submits the contact form as a new lead
+Route::post('contact', 'App\Http\Controllers\ResponseController@contact');

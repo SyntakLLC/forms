@@ -94,6 +94,26 @@ class ResponseController extends Controller
         return Redirect::route('dashboard');
     }
 
+    public function contact(Request $request) {
+        $lead = Lead::create([
+            'user_id' => Auth::user()->id,
+            'first' => $request->get('firstName')." ".$request->get('lastName'),
+            'last' => "",
+            'email' => $request->get('email'),
+            'phonenum' => $request->get('phone'),
+            'form_filled' => null,
+        ]);
+
+        Response::create([
+            'lead_id' => $lead->id,
+            'question' => "Message",
+            'response' => $request->get('message'),
+            'index' => 0,
+        ]);
+
+        return Redirect::route('site.show', $request->get('site'));
+    }
+
     function consoleLog($data) {
         $output = $data;
         if (is_array($output))

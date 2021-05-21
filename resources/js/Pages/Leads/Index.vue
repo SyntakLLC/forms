@@ -166,7 +166,7 @@
                                                               class="truncate hover:text-gray-600 block">
                                                             <span>
                                                                 {{
-                                                                    $page['props']['formsFilled'].slice().reverse()[index] == null ? "Deleted form" : $page['props']['formsFilled'].slice().reverse()[index]['title']
+                                                                    $page['props']['formsFilled'] == null ? "General Contact" : $page['props']['formsFilled'].slice().reverse()[index] == null ? "Deleted form" : $page['props']['formsFilled'].slice().reverse()[index]['title']
                                                                 }}
                                                             </span>
                                                 </inertia-link>

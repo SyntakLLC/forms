@@ -1,7 +1,7 @@
 <template>
     <app-layout>
 
-        <div class="h-screen">
+        <div class="h-full">
             <div class="flex items-center flex-shrink-0 border-b border-gray-200">
                 <!-- Search header -->
                 <div class="relative z-10 flex-shrink-0 flex h-16 bg-white lg:hidden">
@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-            <div class="h-full flex overflow-hidden bg-white">
+            <div class="min-h-full flex overflow-hidden bg-white">
                 <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
                 <div class="lg:hidden">
                     <transition
@@ -156,7 +156,7 @@
                                                 Layouts
                                             </legend>
                                             <div class="relative bg-white rounded-md -space-y-px">
-                                                <!-- Checked: "bg-indigo-50 border-indigo-200 z-10", Not Checked: "border-gray-200" -->
+
                                                 <label class="border-gray-200 rounded-tl-md rounded-tr-md relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
                                                     <div class="flex w-full items-center text-sm">
                                                         <input type="radio" :checked="layout===1" @input="updateLayout(1)" name="pricing_plan" value="Layout1" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">
@@ -164,10 +164,9 @@
                                                         <span v-else id="layout-1-label" class="ml-3 font-medium text-gray-900">Left Align</span>
                                                     </div>
 
-                                                    <!-- Checked: "text-indigo-700", Not Checked: "text-gray-500" -->
                                                 </label>
 
-                                                <!-- Checked: "bg-indigo-50 border-indigo-200 z-10", Not Checked: "border-gray-200" -->
+
                                                 <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
                                                     <div class="flex items-center text-sm">
                                                         <input type="radio" :checked="layout===2" @input="updateLayout(2)" name="pricing_plan" value="Layout2" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">
@@ -175,7 +174,16 @@
                                                         <span v-else id="layout-2-label" class="ml-3 font-medium text-gray-900">Right Align</span>
                                                     </div>
 
-                                                    <!-- Checked: "text-indigo-700", Not Checked: "text-gray-500" -->
+                                                </label>
+
+
+                                                <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
+                                                    <div class="flex items-center text-sm">
+                                                        <input type="radio" :checked="layout===3" @input="updateLayout(3)" name="pricing_plan" value="Layout3" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">
+                                                        <span v-if="layout===3" id="layout-3-label-checked" class="ml-3 font-medium text-indigo-700">Top Align</span>
+                                                        <span v-else id="layout-3-label" class="ml-3 font-medium text-gray-900">Top Align</span>
+                                                    </div>
+
                                                 </label>
                                             </div>
                                         </fieldset>
@@ -193,10 +201,10 @@
                     <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none" tabindex="0">
                         <!-- Page title & actions -->
                         <div class="p-5 bg-gray-50">
-                            <div class="shadow-md h-screen">
+                            <div class="shadow-md h-full">
 
                                 <!--Left align and right align-->
-                                <div v-if="$page.props.site.layout === 1 || $page.props.site.layout === 2" class="h-screen bg-white rounded-md">
+                                <div v-if="this.layout === 1 || this.layout === 2" class="h-screen bg-white rounded-md">
                                     <div class="relative ">
                                         <div class="lg:absolute lg:inset-0">
 
@@ -281,12 +289,12 @@
                                 </div>
 
                                 <!--Top align-->
-                                <div v-if="$page.props.site.layout === 3">
+                                <div v-if="this.layout === 3" class="bg-white">
 
+                                    <!--Cover photo-->
                                     <div>
-<!--                                        <img class="h-32 w-full object-cover lg:h-48" src="https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="">-->
                                         <div v-if="$page.props.user.cover_photo_url==null"
-                                             class="h-32 w-full object-cover lg:h-48"
+                                             class="h-64 w-full object-cover lg:h-96"
                                              :style="this.getURL"
                                              id="pattern3">
 <!--                                            <div class="lg:absolute flex lg:inset-y-0 lg:right-0 lg:w-full h-full justify-center items-center">-->
@@ -294,86 +302,169 @@
 <!--                                            </div>-->
                                         </div>
                                         <div v-else>
-                                            <img class="h-32 w-full object-cover lg:h-48" :src="'http://localhost:9600/forms-bucket/' + $page.props.user.cover_photo_url" />
-
-<!--                                            <div class="lg:absolute flex lg:inset-y-0 lg:right-0 lg:w-full h-full justify-center items-center lg:mt-0 -mt-56">-->
-<!--                                                <img class="sm:h-60 sm:w-60 h-20 w-20 rounded-full object-cover shadow-md" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />-->
-<!--                                            </div>-->
+                                            <img class="h-64 w-full object-cover lg:h-96" :src="'http://localhost:9600/forms-bucket/' + $page.props.user.cover_photo_url" />
                                         </div>
 
+                                    <!--Profile Picture-->
                                     </div>
-                                            <div class="flex">
-<!--                                                <img class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32" src="https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80" alt="">-->
-                                                <img class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
+                                        <div class="-mt-16 flex space-x-5 justify-center flex-col">
+                                            <div class="flex justify-center content-center">
+                                                <img class="justify-self-center items-center h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
                                             </div>
-                                            <div class="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
-                                                <div class="sm:hidden 2xl:block mt-6 min-w-0 flex-1">
-                                                    <h1 class="text-2xl font-bold text-gray-900 truncate">
-                                                        Ricardo Cooper
-                                                    </h1>
-                                                </div>
-                                            </div>
-                                            <div class="relative py-16 bg-white overflow-hidden">
-                                                <div class="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
-                                                    <div class="relative h-full text-lg max-w-prose mx-auto" aria-hidden="true">
-                                                        <svg class="absolute top-12 left-full transform translate-x-32" width="404" height="384" fill="none" viewBox="0 0 404 384">
-                                                            <defs>
-                                                                <pattern id="74b3fd99-0a6f-4271-bef2-e80eeafdf357" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                                                                    <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
-                                                                </pattern>
-                                                            </defs>
-                                                            <rect width="404" height="384" fill="url(#74b3fd99-0a6f-4271-bef2-e80eeafdf357)" />
-                                                        </svg>
-                                                        <svg class="absolute top-1/2 right-full transform -translate-y-1/2 -translate-x-32" width="404" height="384" fill="none" viewBox="0 0 404 384">
-                                                            <defs>
-                                                                <pattern id="f210dbf6-a58d-4871-961e-36d5016a0f49" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                                                                    <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
-                                                                </pattern>
-                                                            </defs>
-                                                            <rect width="404" height="384" fill="url(#f210dbf6-a58d-4871-961e-36d5016a0f49)" />
-                                                        </svg>
-                                                        <svg class="absolute bottom-12 left-full transform translate-x-32" width="404" height="384" fill="none" viewBox="0 0 404 384">
-                                                            <defs>
-                                                                <pattern id="d3eb07ae-5182-43e6-857d-35c643af9034" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                                                                    <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
-                                                                </pattern>
-                                                            </defs>
-                                                            <rect width="404" height="384" fill="url(#d3eb07ae-5182-43e6-857d-35c643af9034)" />
-                                                        </svg>
+                                        </div>
+
+
+                                    <!--Name-->
+                                    <div class="relative pb-1 px-4 sm:px-6 lg:px-8 lg:max-w-7xl lg:mx-auto lg:w-3/4 justify-center">
+                                        <div class="2xl:block mt-3 min-w-0 flex-1">
+                                            <h1 class="text-2xl font-bold text-gray-900 truncate text-center">
+                                                {{ $page.props.user.name }}
+                                            </h1>
+
+                                            <p contenteditable placeholder="Message (optional)" @input="updateMessage" class="font-medium mt-4 text-lg text-gray-500 sm:mt-3 text-center">
+                                                {{$page['props']['site']['message']}}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <!--Forms-->
+                                    <div class="relative pb-8 px-4 sm:pb-12 sm:px-6 lg:px-8 lg:max-w-7xl lg:mx-auto lg:pb-16 lg:w-3/4 justify-center pt-4 sm:pt-6 lg:pt-8">
+                                        <ul class="mt-2" v-if="$page['props']['forms'].length">
+                                        <li v-for="(form) in $page['props']['forms']"
+                                            class="group">
+                                            <inertia-link :href="route('form.show', form.uuid)">
+                                                <div class="mb-5 bg-white hover:bg-gray-50 sm:rounded-lg sm:mb-4 border">
+                                                    <div class="px-4 py-5 sm:p-6">
+                                                        <div class="sm:flex sm:items-start sm:justify-between">
+                                                            <div>
+                                                                <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                                                    {{ form.title }}
+                                                                </h3>
+                                                            </div>
+                                                            <div class="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
+                                                                <button type="button"
+                                                                        class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
+                                                                        :style="'background: ' + colors + '; color: ' + getContrastYIQ(colors)">
+                                                                    Go
+                                                                </button>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="relative px-4 sm:px-6 lg:px-8">
-                                                    <div class="text-lg max-w-prose mx-auto">
-                                                        <h1>
-                                                            <span class="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase">Introducing</span>
-                                                            <span class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">JavaScript for Beginners</span>
-                                                        </h1>
-                                                        <p class="mt-8 text-xl text-gray-500 leading-8">Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At arcu, sit dui mi, nibh dui, diam eget aliquam. Quisque id at vitae feugiat egestas ac. Diam nulla orci at in viverra scelerisque eget. Eleifend egestas fringilla sapien.</p>
-                                                    </div>
-                                                    <div class="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
-                                                        <p>Faucibus commodo massa rhoncus, volutpat. <strong>Dignissim</strong> sed <strong>eget risus enim</strong>. Mattis mauris semper sed amet vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque erat velit. Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. <a href="#">Mattis mauris semper</a> sed amet vitae sed turpis id.</p>
-                                                        <ul>
-                                                            <li>Quis elit egestas venenatis mattis dignissim.</li>
-                                                            <li>Cras cras lobortis vitae vivamus ultricies facilisis tempus.</li>
-                                                            <li>Orci in sit morbi dignissim metus diam arcu pretium.</li>
-                                                        </ul>
-                                                        <p>Quis semper vulputate aliquam venenatis egestas sagittis quisque orci. Donec commodo sit viverra aliquam porttitor ultrices gravida eu. Tincidunt leo, elementum mattis elementum ut nisl, justo, amet, mattis. Nunc purus, diam commodo tincidunt turpis. Amet, duis sed elit interdum dignissim.</p>
-                                                        <h2>From beginner to expert in 30 days</h2>
-                                                        <p>Id orci tellus laoreet id ac. Dolor, aenean leo, ac etiam consequat in. Convallis arcu ipsum urna nibh. Pharetra, euismod vitae interdum mauris enim, consequat vulputate nibh. Maecenas pellentesque id sed tellus mauris, ultrices mauris. Tincidunt enim cursus ridiculus mi. Pellentesque nam sed nullam sed diam turpis ipsum eu a sed convallis diam.</p>
-                                                        <blockquote>
-                                                            <p>Sagittis scelerisque nulla cursus in enim consectetur quam. Dictum urna sed consectetur neque tristique pellentesque. Blandit amet, sed aenean erat arcu morbi.</p>
-                                                        </blockquote>
-                                                        <p>Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque erat velit.</p>
-                                                        <figure>
-                                                            <img class="w-full rounded-lg" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=facearea&w=1310&h=873&q=80&facepad=3" alt="" width="1310" height="873">
-                                                            <figcaption>Sagittis scelerisque nulla cursus in enim consectetur quam.</figcaption>
-                                                        </figure>
-                                                        <h2>Everything you need to get up and running</h2>
-                                                        <p>Purus morbi dignissim senectus mattis <a href="#">adipiscing</a>. Amet, massa quam varius orci dapibus volutpat cras. In amet eu ridiculus leo sodales cursus tristique. Tincidunt sed tempus ut viverra ridiculus non molestie. Gravida quis fringilla amet eget dui tempor dignissim. Facilisis auctor venenatis varius nunc, congue erat ac. Cras fermentum convallis quam.</p>
-                                                        <p>Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque erat velit.</p>
+                                            </inertia-link>
+                                        </li>
+                                        <inertia-link :href="route('form.index')">
+                                            <div class="mb-5 bg-white hover:bg-gray-50 sm:rounded-lg sm:mb-4 border-2 border-gray-300 border-dashed">
+                                                <div class="px-4 py-5 sm:p-6">
+                                                    <div class="sm:flex sm:items-start sm:justify-between">
+                                                        <div>
+                                                            <h3 class="text-lg leading-6 font-medium text-gray-400">
+                                                                Make a New Form
+                                                            </h3>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </inertia-link>
+                                        </ul>
+                                    </div>
+
+                                    <!--Article-->
+                                    <div class="relative py-16 pt-8 bg-white overflow-hidden">
+                                        <div class="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
+                                            <div class="relative h-full text-lg max-w-prose mx-auto" aria-hidden="true">
+                                                <svg class="absolute top-1/2 right-full transform -translate-y-1/2 -translate-x-28" width="404" height="384" fill="none" viewBox="0 0 404 384">
+                                                    <defs>
+                                                        <pattern id="f210dbf6-a58d-4871-961e-36d5016a0f49" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                                            <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+                                                        </pattern>
+                                                    </defs>
+                                                    <rect width="404" height="384" fill="url(#f210dbf6-a58d-4871-961e-36d5016a0f49)" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="relative px-4 sm:px-6 lg:px-8">
+                                            <div class="text-lg max-w-prose mx-auto">
+                                                <h1>
+                                                    <span class="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase">Welcome</span>
+                                                    <span class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">{{$page.props.site.section_header}}</span>
+                                                </h1>
+                                                <p class="mt-8 text-xl text-gray-500 leading-8">I’ve been  a realtor for almost a decade now. And if I’ve learned anything in that time, it’s that I’m here to work for you, not your property. Too often, realtors will lose sight of their objective, which is to smoothly help you move. Yes, you. Moving is never easy, and the last thing you should have to worry about are the complexities of a deal. That’s why I set up this site: to talk to you. I didn’t want to create another faceless site showing off, say, the number of homes I closed this year. Instead, I want the focus to be on your situation. So, I’ve created forms to get to know more about you and your situation. Choose any one you’d like, and we can be in touch soon. See you then!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--Normal Contact Section-->
+                                    <div class="bg-white py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
+                                        <div class="relative max-w-xl mx-auto">
+                                            <svg class="absolute left-full transform translate-x-1/2" width="404" height="404" fill="none" viewBox="0 0 404 404" aria-hidden="true">
+                                                <defs>
+                                                    <pattern id="85737c0e-0916-41d7-917f-596dc7edfa27" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                                        <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+                                                    </pattern>
+                                                </defs>
+                                                <rect width="404" height="404" fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)" />
+                                            </svg>
+                                            <svg class="absolute right-full bottom-0 transform -translate-x-1/2" width="404" height="404" fill="none" viewBox="0 0 404 404" aria-hidden="true">
+                                                <defs>
+                                                    <pattern id="85737c0e-0916-41d7-917f-596dc7edfa27" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                                        <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+                                                    </pattern>
+                                                </defs>
+                                                <rect width="404" height="404" fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)" />
+                                            </svg>
+                                            <div class="text-center">
+                                                <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                                                    Contact Me
+                                                </h2>
+                                                <p class="mt-4 text-lg leading-6 text-gray-500">
+                                                    If you'd rather just open a line of communication instead of filling out forms, feel free to do so here.
+                                                </p>
+                                            </div>
+                                            <div class="mt-12">
+                                                <form @submit.prevent="submitContactForm.post('/contact')"
+                                                      class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+                                                    <div>
+                                                        <label for="first_name" class="block text-sm font-medium text-gray-700">First name</label>
+                                                        <div class="mt-1">
+                                                            <input v-model="submitContactForm.firstName" type="text" name="first_name" id="first_name" autocomplete="given-name" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <label for="last_name" class="block text-sm font-medium text-gray-700">Last name</label>
+                                                        <div class="mt-1">
+                                                            <input v-model="submitContactForm.lastName" type="text" name="last_name" id="last_name" autocomplete="family-name" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                                                        </div>
+                                                    </div>
+                                                    <div class="sm:col-span-2">
+                                                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                                        <div class="mt-1">
+                                                            <input v-model="submitContactForm.email" id="email" name="email" type="email" autocomplete="email" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                                                        </div>
+                                                    </div>
+                                                    <div class="sm:col-span-2">
+                                                        <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                                                        <div class="mt-1 relative rounded-md shadow-sm">
+                                                            <input v-model="submitContactForm.phone" type="text" name="phone_number" id="phone_number" autocomplete="tel" class="py-3 px-4 block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" placeholder="+1 (555) 987-6543">
+                                                        </div>
+                                                    </div>
+                                                    <div class="sm:col-span-2">
+                                                        <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                                                        <div class="mt-1">
+                                                            <textarea v-model="submitContactForm.message" id="message" name="message" rows="4" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"></textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="sm:col-span-2">
+                                                        <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                            Let's talk
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
 
                                 </div>
 
@@ -384,93 +475,93 @@
             </div>
         </div>
 
-        <div class="h-screen">
-            <main class="flex-auto ">
+<!--        <div class="h-screen">-->
+<!--            <main class="flex-auto ">-->
 
-                <div class="border-b border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
-                    <div class="flex-1 min-w-0">
-                        <h1 class="pt-2 text-lg font-medium leading-6 text-gray-900 sm:truncate">
-                            Choose a Page Template
-                        </h1>
+<!--                <div class="border-b border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">-->
+<!--                    <div class="flex-1 min-w-0">-->
+<!--                        <h1 class="pt-2 text-lg font-medium leading-6 text-gray-900 sm:truncate">-->
+<!--                            Choose a Page Template-->
+<!--                        </h1>-->
 
-                        <p class="text-sm text-gray-500 mt-2">Don't worry — you can always change this later.</p>
-                    </div>
-                </div>
+<!--                        <p class="text-sm text-gray-500 mt-2">Don't worry — you can always change this later.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-                <div id="components" class="px-4 sm:px-6 lg:px-8">
-                    <section id="product-marketing" class="divide-y divide-gray-200">
-                        <!-- Page title & actions -->
-                        <div id="product-marketing-sections" class="grid grid-cols-3 xl:grid-cols-4 py-8 gap-x-8 gap-y-6">
-                                <h3 class="text-gray-900 font-semibold col-span-3 xl:col-span-1">Templates</h3>
-                                <div class="col-span-3 grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-y-8 lg:gap-x-8">
-                                    <a href="/components/marketing/sections/heroes" class="group relative bg-white rounded-lg shadow-sm overflow-hidden ring-1 ring-black ring-opacity-5">
-                                        <figure>
-                                            <div class="relative bg-gray-100 pt-[50%] overflow-hidden">
-                                                <div class="absolute inset-0 w-full h-full rounded-t-lg overflow-hidden">
-<!--                                                    <img src="/img/category-thumbnails/sections/heroes.png" alt="" class="absolute inset-0 w-full h-full">-->
-                                                </div>
-                                            </div>
-                                            <figcaption class="py-3 px-4">
-                                                <p class="text-sm font-medium text-gray-900 mb-1">
-                                                    Left Align
-                                                </p>
-                                                <p class="text-xs font-medium text-gray-500">A simple layout that balances you with your forms.</p>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                    <a href="/components/marketing/sections/feature-sections" class="group relative bg-white rounded-lg shadow-sm overflow-hidden ring-1 ring-black ring-opacity-5">
-                                        <figure>
-                                            <div class="relative bg-gray-100 pt-[50%] overflow-hidden">
-                                                <div class="absolute inset-0 w-full h-full rounded-t-lg overflow-hidden">
-<!--                                                    <img src="/img/category-thumbnails/sections/feature-sections.png" alt="" class="absolute inset-0 w-full h-full">-->
-                                                </div>
-                                            </div>
-                                            <figcaption class="py-3 px-4">
-                                                <p class="text-sm font-medium text-gray-900 mb-1">
-                                                    Right Align
-                                                </p>
-                                                <p class="text-xs font-medium text-gray-500">Similar to left align, but reversed.</p>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                    <a href="/components/marketing/sections/cta-sections" class="group relative bg-white rounded-lg shadow-sm overflow-hidden ring-1 ring-black ring-opacity-5">
-                                        <figure>
-                                            <div class="relative bg-gray-100 pt-[50%] overflow-hidden">
-                                                <div class="absolute inset-0 w-full h-full rounded-t-lg overflow-hidden">
-<!--                                                    <img src="/img/category-thumbnails/sections/cta-sections.png" alt="" class="absolute inset-0 w-full h-full">-->
-                                                </div>
-                                            </div>
-                                            <figcaption class="py-3 px-4">
-                                                <p class="text-sm font-medium text-gray-900 mb-1">
-                                                    Top Align
-                                                </p>
-                                                <p class="text-xs font-medium text-gray-500">Lets the user focus on your own brand before looking at the forms.</p>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                    <a href="/components/marketing/sections/pricing" class="group relative bg-white rounded-lg shadow-sm overflow-hidden ring-1 ring-black ring-opacity-5">
-                                        <figure>
-                                            <div class="relative bg-gray-100 pt-[50%] overflow-hidden">
-                                                <div class="absolute inset-0 w-full h-full rounded-t-lg overflow-hidden">
-<!--                                                    <img src="/img/category-thumbnails/sections/pricing.png" alt="" class="absolute inset-0 w-full h-full">-->
-                                                </div>
-                                            </div>
-                                            <figcaption class="py-3 px-4">
-                                                <p class="text-sm font-medium text-gray-900 mb-1">
-                                                    Middle Align
-                                                </p>
-                                                <p class="text-xs font-medium text-gray-500">Relegates the focus to the forms, with your brand subtly in the background.</p>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                    </section>
+<!--                <div id="components" class="px-4 sm:px-6 lg:px-8">-->
+<!--                    <section id="product-marketing" class="divide-y divide-gray-200">-->
+<!--                        &lt;!&ndash; Page title & actions &ndash;&gt;-->
+<!--                        <div id="product-marketing-sections" class="grid grid-cols-3 xl:grid-cols-4 py-8 gap-x-8 gap-y-6">-->
+<!--                                <h3 class="text-gray-900 font-semibold col-span-3 xl:col-span-1">Templates</h3>-->
+<!--                                <div class="col-span-3 grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-y-8 lg:gap-x-8">-->
+<!--                                    <a href="/components/marketing/sections/heroes" class="group relative bg-white rounded-lg shadow-sm overflow-hidden ring-1 ring-black ring-opacity-5">-->
+<!--                                        <figure>-->
+<!--                                            <div class="relative bg-gray-100 pt-[50%] overflow-hidden">-->
+<!--                                                <div class="absolute inset-0 w-full h-full rounded-t-lg overflow-hidden">-->
+<!--&lt;!&ndash;                                                    <img src="/img/category-thumbnails/sections/heroes.png" alt="" class="absolute inset-0 w-full h-full">&ndash;&gt;-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <figcaption class="py-3 px-4">-->
+<!--                                                <p class="text-sm font-medium text-gray-900 mb-1">-->
+<!--                                                    Left Align-->
+<!--                                                </p>-->
+<!--                                                <p class="text-xs font-medium text-gray-500">A simple layout that balances you with your forms.</p>-->
+<!--                                            </figcaption>-->
+<!--                                        </figure>-->
+<!--                                    </a>-->
+<!--                                    <a href="/components/marketing/sections/feature-sections" class="group relative bg-white rounded-lg shadow-sm overflow-hidden ring-1 ring-black ring-opacity-5">-->
+<!--                                        <figure>-->
+<!--                                            <div class="relative bg-gray-100 pt-[50%] overflow-hidden">-->
+<!--                                                <div class="absolute inset-0 w-full h-full rounded-t-lg overflow-hidden">-->
+<!--&lt;!&ndash;                                                    <img src="/img/category-thumbnails/sections/feature-sections.png" alt="" class="absolute inset-0 w-full h-full">&ndash;&gt;-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <figcaption class="py-3 px-4">-->
+<!--                                                <p class="text-sm font-medium text-gray-900 mb-1">-->
+<!--                                                    Right Align-->
+<!--                                                </p>-->
+<!--                                                <p class="text-xs font-medium text-gray-500">Similar to left align, but reversed.</p>-->
+<!--                                            </figcaption>-->
+<!--                                        </figure>-->
+<!--                                    </a>-->
+<!--                                    <a href="/components/marketing/sections/cta-sections" class="group relative bg-white rounded-lg shadow-sm overflow-hidden ring-1 ring-black ring-opacity-5">-->
+<!--                                        <figure>-->
+<!--                                            <div class="relative bg-gray-100 pt-[50%] overflow-hidden">-->
+<!--                                                <div class="absolute inset-0 w-full h-full rounded-t-lg overflow-hidden">-->
+<!--&lt;!&ndash;                                                    <img src="/img/category-thumbnails/sections/cta-sections.png" alt="" class="absolute inset-0 w-full h-full">&ndash;&gt;-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <figcaption class="py-3 px-4">-->
+<!--                                                <p class="text-sm font-medium text-gray-900 mb-1">-->
+<!--                                                    Top Align-->
+<!--                                                </p>-->
+<!--                                                <p class="text-xs font-medium text-gray-500">Lets the user focus on your own brand before looking at the forms.</p>-->
+<!--                                            </figcaption>-->
+<!--                                        </figure>-->
+<!--                                    </a>-->
+<!--                                    <a href="/components/marketing/sections/pricing" class="group relative bg-white rounded-lg shadow-sm overflow-hidden ring-1 ring-black ring-opacity-5">-->
+<!--                                        <figure>-->
+<!--                                            <div class="relative bg-gray-100 pt-[50%] overflow-hidden">-->
+<!--                                                <div class="absolute inset-0 w-full h-full rounded-t-lg overflow-hidden">-->
+<!--&lt;!&ndash;                                                    <img src="/img/category-thumbnails/sections/pricing.png" alt="" class="absolute inset-0 w-full h-full">&ndash;&gt;-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <figcaption class="py-3 px-4">-->
+<!--                                                <p class="text-sm font-medium text-gray-900 mb-1">-->
+<!--                                                    Middle Align-->
+<!--                                                </p>-->
+<!--                                                <p class="text-xs font-medium text-gray-500">Relegates the focus to the forms, with your brand subtly in the background.</p>-->
+<!--                                            </figcaption>-->
+<!--                                        </figure>-->
+<!--                                    </a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                    </section>-->
 
-                </div>
+<!--                </div>-->
 
-            </main>
-        </div>
+<!--            </main>-->
+<!--        </div>-->
 
     </app-layout>
 </template>
@@ -502,6 +593,15 @@
                 getURL: {
                     'background-image': 'url("data:image/svg+xml,%3Csvg width=\'80\' height=\'80\' viewBox=\'0 0 80 80\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23' + this.site.accent_color + '\' fill-opacity=\'1\'%3E%3Cpath d=\'M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z\' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
                 },
+
+                submitContactForm: this.$inertia.form({
+                    firstName: '',
+                    lastName: '',
+                    email: '',
+                    phone: '',
+                    message: '',
+                    site: this.site,
+                }),
             };
         },
 
