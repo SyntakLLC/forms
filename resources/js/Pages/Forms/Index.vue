@@ -1,8 +1,6 @@
 <template>
     <app-layout :forms="$page['props']['forms']">
 
-
-
         <div class="bg-white">
             <div class="mx-auto">
                 <div class="space-y-12">
@@ -51,12 +49,7 @@
                                 <form @submit.prevent="homeWorthForm.post('/form/home_worth')">
                                     <button type="submit" class="focus:outline-none w-full h-full">
                                         <div class="space-y-4">
-                                            <div class="aspect-w-3 aspect-h-2 bg-red-500 rounded-lg">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-8 -8 40 40"
-                                                     stroke="currentColor" class="text-white">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                                                </svg>
-                                            </div>
+                                            <img class="object-cover shadow-lg rounded-lg" src="https://www.familyhandyman.com/wp-content/uploads/2021/03/yellow-house-GettyImages-AA014705.jpg?fit=696,696" alt="">
 
                                             <div class="space-y-2">
                                                 <div class="text-lg leading-6 font-medium space-y-1">
@@ -74,12 +67,7 @@
                                 <form @submit.prevent="apartmentForm.post('/form/apartment')">
                                     <button type="submit" class="focus:outline-none w-full h-full">
                                         <div class="space-y-4">
-                                            <div class="aspect-w-3 aspect-h-2 bg-blue-500 rounded-lg">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-8 -8 40 40"
-                                                     stroke="currentColor" class="text-white">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                                                </svg>
-                                            </div>
+                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.psecn.photoshelter.com/img-get/I0000rq2D.59VW3k/s/690/SU-281-2.jpg" alt="">
 
                                             <div class="space-y-2">
                                                 <div class="text-lg leading-6 font-medium space-y-1">
@@ -97,13 +85,7 @@
                                 <form @submit.prevent="buyHomeForm.post('/form/buy_home')">
                                     <button type="submit" class="focus:outline-none w-full h-full">
                                         <div class="space-y-4">
-                                            <div class="aspect-w-3 aspect-h-2 bg-green-500 rounded-lg">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-8 -8 40 40"
-                                                     stroke="currentColor" class="text-white">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                                </svg>
-                                            </div>
+                                            <img class="object-cover shadow-lg rounded-lg" src="https://www.earthquakeauthority.com/EQA2/media/Image/Prepare-Your-Home/420x410-RedHouse.jpg" alt="">
 
                                             <div class="space-y-2">
                                                 <div class="text-lg leading-6 font-medium space-y-1">

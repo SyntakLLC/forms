@@ -31,16 +31,16 @@
     --vff-progress-bar-color: var(--vff-main-text-color);
 }
 
-/*.vff,*/
-/*.vff textarea,*/
-/*.vff input,*/
-/*.vff select,*/
-/*.vff select option,*/
-/*.vff kbd,*/
-/*.vff-header,*/
-/*.vff-footer{*/
-/*    font-family: 'Poppins', sans-serif;*/
-/*}*/
+.vff,
+.vff textarea,
+.vff input,
+.vff select,
+.vff select option,
+.vff kbd,
+.vff-header,
+.vff-footer{
+    font-family: 'Segoe UI', sans-serif;
+}
 
 body {
     /*override if needed when using not-standalone option*/

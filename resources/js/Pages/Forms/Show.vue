@@ -204,7 +204,4 @@ button {
     background-color: var(--bg-accent-color) !important;
 }
 
-.f-key {
-    color: var(--bg-accent-color) !important;
-}
 </style>

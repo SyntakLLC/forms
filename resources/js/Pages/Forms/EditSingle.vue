@@ -139,7 +139,7 @@
 
                                             <div class="f-answer f-full-width">
                                                 <span>
-                                                    <input :type="question.type === 'Text' ? 'text' : question.type === 'Email' ? 'email' : 'text'" required="required" :placeholder="question.type === 'Text' ? 'Start typing here...' : question.type === 'Email' ? 'jane@doe.com' : question.type === 'Phone' ? '(###)-###-####' : 'Start typing here...'">
+                                                    <input class="focus:outline-none" :type="question.type === 'Text' ? 'text' : question.type === 'Email' ? 'email' : 'text'" required="required" :placeholder="question.type === 'Text' ? 'Start typing here...' : question.type === 'Email' ? 'jane@doe.com' : question.type === 'Phone' ? '(###)-###-####' : 'Start typing here...'">
                                                 </span>
                                             </div>
 
@@ -214,10 +214,10 @@ export default {
     mounted() {
         this.focusField()
         this.dataValue = this.question.answer
-        this.$refs.qanimate.addEventListener('animationend', this.onAnimationEnd)
+        // this.$refs.qanimate.addEventListener('animationend', this.onAnimationEnd)
     },
     beforeDestroy() {
-        this.$refs.qanimate.removeEventListener('animationend', this.onAnimationEnd)
+        // this.$refs.qanimate.removeEventListener('animationend', this.onAnimationEnd)
     },
     methods: {
         // returns black or white depending on the appropriate 'logo' color
@@ -408,6 +408,11 @@ export default {
                 return this.question.helpTextShow
             }
             return false
+        },
+        cssProps() {
+            return {
+                '--bg-accent-color': '#' + this.site.accent_color,
+            }
         }
     }
 }
@@ -417,13 +422,6 @@ export default {
     @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.css';
     @import'../../../css/flow-form-amaan.css';
 
-    .f-tagline[contenteditable="true"]:focus {
-        /*background-color: rgba(217, 245, 255,0.5);*/
-        /*margin: 2px;*/
-        /*border-width: 0px;*/
-        /*border-color: #cbd5e0;*/
-        /*border-radius: 8px;*/
-    }
     [contenteditable] {
         outline: 0px solid transparent;
     }
@@ -433,7 +431,16 @@ export default {
         content: attr(placeholder);
     }
 
-    input {
-        outline: 0px solid transparent;
+    textarea:focus, input:focus{
+        outline: none !important;
     }
+
+    .vff input[type=date]:focus, .vff input[type=email]:focus, .vff input[type=number]:focus, .vff input[type=password]:focus, .vff input[type=tel]:focus, .vff input[type=text]:focus, .vff input[type=url]:focus, .vff textarea:focus {
+        border: 0;
+        border-bottom: 1px solid;
+        border-bottom-color: var(--bg-accent-color) !important;
+        border-radius: 0;
+        outline: none !important;
+    }
+
 </style>
