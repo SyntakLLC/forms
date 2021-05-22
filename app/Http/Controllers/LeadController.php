@@ -17,7 +17,11 @@ class LeadController extends Controller
         return Inertia::render('Leads/Index', [
             'leads' => $request->user()->leads,
             'formsFilled' => $request->user()->leads->map(function ($lead) {
-                return Form::findByUuid($lead->form_filled);
+                if ($lead->form_filled == 0) {
+                    return 0;
+                } else {
+                    return Form::findByUuid($lead->form_filled);
+                }
             }),
             'responses' => $request->user()->leads->map(function ($lead) {
                 return $lead->responses;

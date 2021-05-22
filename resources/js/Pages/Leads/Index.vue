@@ -133,7 +133,7 @@
                                                       class="hover:text-gray-600">
                                             <div class="flex items-center space-x-3 lg:pl-2">
                                                 <div
-                                                    v-if="$page['props']['formsFilled'].slice().reverse()[index] !== null">
+                                                    v-if="$page['props']['formsFilled'].slice().reverse()[index] !== null && $page['props']['formsFilled'].slice().reverse()[index] !== 0">
                                                     <div class="flex-shrink-0 w-2.5 h-2.5 rounded-full"
                                                          :class="$page['props']['formsFilled'].slice().reverse()[index]['id_color']"
                                                          aria-hidden="true"></div>
@@ -166,7 +166,7 @@
                                                               class="truncate hover:text-gray-600 block">
                                                             <span>
                                                                 {{
-                                                                    $page['props']['formsFilled'] == null ? "General Contact" : $page['props']['formsFilled'].slice().reverse()[index] == null ? "Deleted form" : $page['props']['formsFilled'].slice().reverse()[index]['title']
+                                                                    $page['props']['formsFilled'].slice().reverse()[index] === 0 ? "General Contact" : $page['props']['formsFilled'].slice().reverse()[index] == null ? "Deleted form" : $page['props']['formsFilled'].slice().reverse()[index]['title']
                                                                 }}
                                                             </span>
                                                 </inertia-link>

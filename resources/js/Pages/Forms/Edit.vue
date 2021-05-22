@@ -19,11 +19,11 @@
 
                 <div class="relative min-w-0 px-6">
                     <h1 contenteditable @input="updateTitle" placeholder="Untitled Form"
-                        class="pt-4 text-lg font-medium leading-6 text-gray-900 truncate pb-4">
+                        class="pt-4 text-lg font-medium leading-6 text-gray-900 truncate pb-4 pr-10">
                         {{ $page['props']['form']['title'] }}
 
-                        <span
-                            class="absolute inset-y-0 right-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                        <!--Edit pen icon-->
+                        <span class="absolute inset-y-0 right-10 pl-3 flex items-center pointer-events-none text-gray-400">
                             <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                  fill="currentColor" aria-hidden="true">
                                 <path
@@ -264,13 +264,6 @@
                                                     class="inline-flex justify-center w-full border-b border-gray-300 shadow-sm px-4 py-4 bg-white text-sm font-medium text-purple-500 hover:bg-gray-50 focus:outline-none"
                                                     id="options-menu" aria-expanded="true" aria-haspopup="true">
                                                 <h3>Add Question</h3>
-                                                <!-- Heroicon name: solid/chevron-down -->
-                                                <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
-                                                     viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                    <path fill-rule="evenodd"
-                                                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                          clip-rule="evenodd"/>
-                                                </svg>
                                             </button>
                                         </div>
 

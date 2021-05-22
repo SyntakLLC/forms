@@ -27,6 +27,18 @@ class SiteController extends Controller
         $site->save();
     }
 
+    public function updateContent(Request $request) {
+        $site = Site::find($request->get('site'));
+        $site->section_content = $request->get('content');
+        $site->save();
+    }
+
+    public function updateTitle(Request $request) {
+        $site = Site::find($request->get('site'));
+        $site->section_header = $request->get('title');
+        $site->save();
+    }
+
     public function updateColor(Request $request) {
         $site = Site::find($request->get('site'));
         $site->accent_color = $request->get('color');

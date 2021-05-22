@@ -19,7 +19,12 @@ class Site extends Model
         'cover_photo_url',
         'pattern',
         'user_id',
-        'accent_color'
+        'accent_color',
+        'section_content',
+        'section_header',
+        'initialized',
+        'useProfilePhoto',
+        'useOurContactUs'
     ];
 
     public function getRouteKeyName()

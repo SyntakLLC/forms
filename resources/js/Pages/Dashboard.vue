@@ -305,25 +305,36 @@
                                             <img class="h-64 w-full object-cover lg:h-96" :src="'http://localhost:9600/forms-bucket/' + $page.props.user.cover_photo_url" />
                                         </div>
 
-                                    <!--Profile Picture-->
                                     </div>
-                                        <div class="-mt-16 flex space-x-5 justify-center flex-col">
-                                            <div class="flex justify-center content-center">
-                                                <img class="justify-self-center items-center h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
-                                            </div>
+
+
+                                    <!--Profile Picture-->
+                                    <div class="-mt-16 flex space-x-5 justify-center flex-col">
+                                        <div class="flex justify-center content-center">
+                                            <img class="justify-self-center items-center h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
                                         </div>
+                                    </div>
 
-
-                                    <!--Name-->
+                                    <!--Name and message-->
                                     <div class="relative pb-1 px-4 sm:px-6 lg:px-8 lg:max-w-7xl lg:mx-auto lg:w-3/4 justify-center">
                                         <div class="2xl:block mt-3 min-w-0 flex-1">
                                             <h1 class="text-2xl font-bold text-gray-900 truncate text-center">
                                                 {{ $page.props.user.name }}
                                             </h1>
 
-                                            <p contenteditable placeholder="Message (optional)" @input="updateMessage" class="font-medium mt-4 text-lg text-gray-500 sm:mt-3 text-center">
-                                                {{$page['props']['site']['message']}}
-                                            </p>
+                                            <div class="items-end">
+                                                <p contenteditable placeholder="Message (optional)" @input="updateMessage" class="font-medium mt-4 text-lg text-gray-500 sm:mt-3 text-center pl-10">
+                                                    {{$page['props']['site']['message']}}
+                                                </p>
+
+                                                <!--Edit pen icon-->
+                                                <span class="absolute inset-y-0 right-10 pl-3 flex items-end pointer-events-none text-gray-400 pb-2.5">
+                                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                         fill="currentColor" aria-hidden="true">
+                                                        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
+                                                    </svg>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -386,10 +397,10 @@
                                         <div class="relative px-4 sm:px-6 lg:px-8">
                                             <div class="text-lg max-w-prose mx-auto">
                                                 <h1>
-                                                    <span class="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase">Welcome</span>
-                                                    <span class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">{{$page.props.site.section_header}}</span>
+                                                    <span class="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase" :style="'color: ' + colors">Welcome</span>
+                                                    <span contenteditable placeholder="Title" @input="updateTitle" class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">{{$page.props.site.section_header}}</span>
                                                 </h1>
-                                                <p class="mt-8 text-xl text-gray-500 leading-8">I’ve been  a realtor for almost a decade now. And if I’ve learned anything in that time, it’s that I’m here to work for you, not your property. Too often, realtors will lose sight of their objective, which is to smoothly help you move. Yes, you. Moving is never easy, and the last thing you should have to worry about are the complexities of a deal. That’s why I set up this site: to talk to you. I didn’t want to create another faceless site showing off, say, the number of homes I closed this year. Instead, I want the focus to be on your situation. So, I’ve created forms to get to know more about you and your situation. Choose any one you’d like, and we can be in touch soon. See you then!</p>
+                                                <p contenteditable placeholder="Describe a little about yourself and your goals here." @input="updateContent" class="mt-8 text-xl text-gray-500 leading-8">{{$page.props.site.section_content}}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -456,7 +467,8 @@
                                                     </div>
 
                                                     <div class="sm:col-span-2">
-                                                        <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                        <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                                                :style="'background: ' + colors">
                                                             Let's talk
                                                         </button>
                                                     </div>
@@ -600,7 +612,7 @@
                     email: '',
                     phone: '',
                     message: '',
-                    site: this.site,
+                    site: this.site.uuid,
                 }),
             };
         },
@@ -674,6 +686,22 @@
                     'site': this.site.id,
                 }
                 let response = await axios.post('/api/update-message', data)
+            },
+
+            async updateContent(e) {
+                let data = {
+                    'content': e.target.innerText,
+                    'site': this.site.id,
+                }
+                let response = await axios.post('/api/update-content', data)
+            },
+
+            async updateTitle(e) {
+                let data = {
+                    'title': e.target.innerText,
+                    'site': this.site.id,
+                }
+                let response = await axios.post('/api/update-section-header', data)
             },
         }
     }

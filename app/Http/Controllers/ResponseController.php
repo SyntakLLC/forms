@@ -101,7 +101,7 @@ class ResponseController extends Controller
             'last' => "",
             'email' => $request->get('email'),
             'phonenum' => $request->get('phone'),
-            'form_filled' => null,
+            'form_filled' => 000000000,
         ]);
 
         Response::create([
@@ -111,7 +111,7 @@ class ResponseController extends Controller
             'index' => 0,
         ]);
 
-        return Redirect::route('site.show', $request->get('site'));
+        return Redirect::route('site.show', ['site' => $request->get('site')]);
     }
 
     function consoleLog($data) {
