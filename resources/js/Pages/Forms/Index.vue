@@ -1,7 +1,7 @@
 <template>
     <app-layout :forms="$page['props']['forms']">
 
-        <div class="bg-white">
+        <div>
             <div class="mx-auto">
                 <div class="space-y-12">
 

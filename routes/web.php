@@ -83,3 +83,6 @@ Route::get('{site}', 'App\Http\Controllers\SiteController@show')->name('site.sho
 
 // submits the contact form as a new lead
 Route::post('contact', 'App\Http\Controllers\ResponseController@contact');
+
+// to delete a form
+Route::post('delete-form', 'App\Http\Controllers\FormController@destroy');

@@ -7,7 +7,7 @@
                 <div class="relative z-0 flex-shrink-0 flex h-16 bg-white lg:hidden">
                     <!-- Sidebar toggle, controls the 'sidebarOpen' sidebar state. -->
                     <button @click="showingQuestionsDropdown=!showingQuestionsDropdown"
-                            class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 lg:hidden">
+                            class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 lg:hidden">
                         <!-- Heroicon name: outline/menu-alt-1 -->
                         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                              stroke="currentColor" aria-hidden="true">
@@ -17,7 +17,7 @@
                     </button>
                 </div>
 
-                <div class="relative min-w-0 px-6">
+                <div class="relative min-w-0 py-2 px-6">
                     <h1 contenteditable @input="updateTitle" placeholder="Untitled Form"
                         class="pt-4 text-lg font-medium leading-6 text-gray-900 truncate pb-4 pr-10">
                         {{ $page['props']['form']['title'] }}
@@ -46,7 +46,7 @@
                     <inertia-link :href="route('form.show', form.uuid)"
                                   class="truncate hover:text-gray-600 block h-full">
                         <button type="button"
-                                class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 ml-3">
+                                class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:order-1 ml-3">
                             Preview
                         </button>
                     </inertia-link>
@@ -193,7 +193,7 @@
 
                                                     <button @click="showingQuestionTypeDropdown=!showingQuestionTypeDropdown; showingQuestionsDropdown=!showingQuestionsDropdown"
                                                             type="button"
-                                                            class="px-2 sm:ml-0 my-4 left-1/2 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 ">
+                                                            class="px-2 sm:ml-0 my-4 left-1/2 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ">
                                                         + Add Question
                                                     </button>
 
@@ -261,7 +261,7 @@
                                         <div>
                                             <button @click="showingQuestionTypeDropdown=!showingQuestionTypeDropdown"
                                                     type="button"
-                                                    class="inline-flex justify-center w-full border-b border-gray-300 shadow-sm px-4 py-4 bg-white text-sm font-medium text-purple-500 hover:bg-gray-50 focus:outline-none"
+                                                    class="inline-flex justify-center w-full border-b border-gray-300 shadow-sm px-4 py-4 bg-white text-sm font-medium text-indigo-500 hover:bg-gray-50 focus:outline-none"
                                                     id="options-menu" aria-expanded="true" aria-haspopup="true">
                                                 <h3>Add Question</h3>
                                             </button>
@@ -823,7 +823,8 @@ export default {
         // deleting the entire form
         async deleteForm() {
             let data = {'form_uuid': this.form.uuid}
-            let response = await axios.post('/api/delete-form', data)
+            this.$inertia.post('/delete-form', data)
+            // let response = await axios.post('/api/delete-form', data)
         },
 
         // moving the questions up/down

@@ -10,71 +10,56 @@
                         <!--Left align and right align-->
                         <div v-if="this.layout === 1 || this.layout === 2" class="h-screen bg-white rounded-md">
                             <div class="relative ">
-                                <div class="lg:absolute lg:inset-0">
+                                <div class="lg:absolute lg:inset-0 lg:fixed">
 
-                                    <!-- Pattern background -->
                                     <div v-if="$page.props.user.cover_photo_url==null"
-                                         class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-white h-28 lg:h-screen"
-                                         :class="layout===1 ? 'lg:right-0 lg:fixed' : 'lg:left-0 lg:fixed'"
+                                         class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-white h-28 lg:h-screen lg:bg-fixed lg:fixed"
+                                         :class="layout===1 ? 'lg:right-0' : 'lg:left-0'"
                                          :style="this.getURL"
                                          id="pattern">
 
-                                        <div
-                                            class="lg:absolute flex lg:inset-y-0 lg:right-0 lg:w-full h-full justify-center items-center lg:fixed">
-                                            <img
-                                                class="sm:h-60 sm:w-60 h-20 w-20 rounded-full object-cover shadow-md lg:fixed"
-                                                :src="$page.props.user.profile_photo_url"
-                                                :alt="$page.props.user.name"/>
+                                        <div class="lg:absolute flex lg:inset-y-0 lg:right-0 lg:w-full h-full justify-center items-center lg:fixed">
+                                            <img class="sm:h-40 sm:w-40 h-20 w-20 rounded-full object-cover shadow-md lg:fixed" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
                                         </div>
                                     </div>
-                                    <!-- Cover photo -->
-                                    <div v-else
-                                         class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-white h-28 overflow-hidden lg:h-screen"
-                                         :class="layout===1 ? 'lg:right-0 lg:fixed' : 'lg:left-0 lg:fixed'">
-                                        <img class="h-56 w-full object-cover lg:h-full lg:fixed"
-                                             :src="'http://localhost:9600/forms-bucket/' + $page.props.user.cover_photo_url"/>
 
-                                        <div
-                                            class="lg:absolute flex lg:inset-y-0 lg:right-0 lg:w-full h-full justify-center items-center lg:mt-0 -mt-56 lg:fixed">
-                                            <img
-                                                class="sm:h-60 sm:w-60 h-20 w-20 rounded-full object-cover shadow-md lg:fixed"
-                                                :src="$page.props.user.profile_photo_url"
-                                                :alt="$page.props.user.name"/>
+                                    <div v-else class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-white h-28 overflow-hidden lg:h-screen"
+                                         :class="layout===1 ? 'lg:right-0' : 'lg:left-0 lg:w-1/2 overflow-hidden'">
+                                        <img class="h-56 w-full object-cover lg:h-full lg:fixed" :class="layout===2 ? 'lg:w-1/2' : 'w-full'" :src="'http://localhost:9600/forms-bucket/' + $page.props.user.cover_photo_url" />
+
+                                        <div class="lg:absolute flex lg:inset-y-0 lg:right-0 lg:w-full h-full justify-center items-center lg:mt-0 -mt-56">
+                                            <img class="sm:h-40 sm:w-40 h-20 w-20 rounded-full object-cover shadow-md lg:fixed" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
                                         </div>
                                     </div>
 
                                 </div>
 
-                                <!-- Main info -->
+
                                 <div class="relative py-16 px-4 sm:py-24 sm:px-6 lg:px-8 lg:max-w-7xl lg:mx-auto lg:py-32 lg:grid lg:grid-cols-2">
                                     <div v-if="layout===2" class="lg:mx-8"/>
                                     <div :class="layout===2 ? 'lg:pl-8 justify-self-center' : 'lg:pr-8'">
 
                                         <div class="max-w-md mx-auto sm:max-w-lg lg:mx-0">
-                                            <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
-                                                {{ $page['props']['user']['name'] }}
+                                            <h2 class="text-center text-3xl font-extrabold tracking-tight sm:text-4xl">
+                                                {{$page['props']['user']['name']}}
                                             </h2>
-                                            <p class="font-medium mt-4 text-lg text-gray-500 sm:mt-3">
-                                                {{ $page['props']['site']['message'] }}
+                                            <p class="text-center font-medium mt-4 text-lg text-gray-500 sm:mt-3">
+                                                {{$page['props']['site']['message']}}
                                             </p>
 
-                                            <!-- The list of forms -->
                                             <ul class="mt-2" v-if="$page['props']['forms'].length">
                                                 <li v-for="(form) in $page['props']['forms']"
                                                     class="group">
                                                     <inertia-link :href="route('form.show', form.uuid)">
-                                                        <div
-                                                            class="mb-5 bg-white hover:bg-gray-50 sm:rounded-lg sm:mb-4 border">
+                                                        <div class="mb-5 bg-white hover:bg-gray-50 sm:rounded-lg sm:mb-4 border">
                                                             <div class="px-4 py-5 sm:p-6">
-                                                                <div
-                                                                    class="sm:flex sm:items-start sm:justify-between">
+                                                                <div class="sm:flex sm:items-start sm:justify-between">
                                                                     <div>
                                                                         <h3 class="text-lg leading-6 font-medium text-gray-900">
                                                                             {{ form.title }}
                                                                         </h3>
                                                                     </div>
-                                                                    <div
-                                                                        class="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
+                                                                    <div class="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
                                                                         <button type="button"
                                                                                 class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
                                                                                 :style="'background: ' + colors + '; color: ' + getContrastYIQ(colors)">
@@ -194,7 +179,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -207,7 +191,7 @@
                             <!--Cover photo-->
                             <div class="fixed z-0 pointer-events-none top-0">
                                 <div v-if="$page.props.user.cover_photo_url==null"
-                                     class="h-64 w-full object-cover lg:h-96"
+                                     class="h-64 w-screen object-cover lg:h-96"
                                      :style="this.getURL"
                                      id="pattern3">
                                     <!--                                            <div class="lg:absolute flex lg:inset-y-0 lg:right-0 lg:w-full h-full justify-center items-center">-->
@@ -215,7 +199,7 @@
                                     <!--                                            </div>-->
                                 </div>
                                 <div v-else>
-                                    <img class="h-64 w-full object-cover lg:h-96" :src="'http://localhost:9600/forms-bucket/' + $page.props.user.cover_photo_url" />
+                                    <img class="h-64 w-screen object-cover lg:h-96" :src="'http://localhost:9600/forms-bucket/' + $page.props.user.cover_photo_url" />
                                 </div>
 
                             </div>

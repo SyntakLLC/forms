@@ -1,37 +1,39 @@
 <template>
     <app-layout>
 
-        <div class="h-full">
+        <!-- Initialized -->
+        <div v-if="$page.props.site.initialized" class="h-full">
             <div class="flex items-center flex-shrink-0 border-b border-gray-200">
                 <!-- Search header -->
                 <div class="relative z-10 flex-shrink-0 flex h-16 bg-white lg:hidden">
                     <!-- Sidebar toggle, controls the 'sidebarOpen' sidebar state. -->
-
-
-<!--                    @click="showingQuestionsDropdown=!showingQuestionsDropdown"-->
-                    <button class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 lg:hidden">
+                    <button @click="showingQuestionsDropdown=!showingQuestionsDropdown"
+                            class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 lg:hidden">
+                        <span class="sr-only">Open sidebar</span>
                         <!-- Heroicon name: outline/menu-alt-1 -->
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M4 6h16M4 12h8m-8 6h16"/>
                         </svg>
                     </button>
                 </div>
 
-                <div class="relative min-w-0 px-6">
-                    <h1 class="pt-4 text-lg font-medium leading-6 text-gray-900 sm:truncate pb-4">
-                        Edit My Site
-                    </h1>
-                </div>
+                <div class="w-full border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
+                    <div class="flex-1 min-w-0">
+                        <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
+                            Edit Site
+                        </h1>
+                    </div>
 
-                <div class="flex-1 " />
-
-                <div class="flex sm:ml-4 px-6">
-                    <inertia-link :href="route('site.show', $page.props.site.uuid)"
-                                  class="truncate hover:text-gray-600 block">
-                        <button type="button" class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 sm:ml-3">
-                            Preview
-                        </button>
-                    </inertia-link>
+                    <div class="mt-4 flex sm:mt-0 sm:ml-4">
+                        <inertia-link :href="route('site.show', $page.props.site.uuid)"
+                                      class="truncate hover:text-gray-600 block">
+                            <button type="button" class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:order-1 sm:ml-3">
+                                Preview
+                            </button>
+                        </inertia-link>
+                    </div>
                 </div>
             </div>
 
@@ -79,7 +81,7 @@
                                     </div>
                                     <div class="flex-shrink-0 flex items-center px-4">
                                         <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
-                                            Edit My Site
+                                            Edit Site
                                         </h1>
                                     </div>
                                     <div class="mt-5 flex-1 h-0 overflow-y-auto">
@@ -87,6 +89,84 @@
                                             <div class="space-y-1">
 
                                                 <!--HOME-->
+
+                                                <div class="pt-2 pb-4 border-b border-gray-200 mx-4">
+                                                    <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                                                        Accent Color
+                                                    </a>
+
+                                                    <chrome-picker :value="colors" @input="updateColor" />
+                                                </div>
+
+                                                <div class="pt-2 pb-4 border-b border-gray-200 mx-4">
+                                                    <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                                                        Cover Photo
+                                                    </a>
+
+                                                    <input type="file" class="hidden"
+                                                           ref="photo"
+                                                           @change="updatePhotoPreview">
+
+                                                    <div class="mt-2 mr-2">
+                                                        <button class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"
+                                                                type="button" @click="selectNewPhoto">
+                                                            Select A New Photo
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="mt-2 mr-2">
+                                                        <button v-if="$page.props.user.cover_photo_url"
+                                                                class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"
+                                                                type="button" @click="removePhoto">
+                                                            Remove Photo
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="pt-2 pb-4 border-b border-gray-200 mx-4">
+                                                    <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                                                        Layout
+                                                    </a>
+
+                                                    <fieldset>
+                                                        <legend class="sr-only">
+                                                            Layouts
+                                                        </legend>
+                                                        <div class="relative bg-white rounded-md -space-y-px">
+
+                                                            <label class="border-gray-200 rounded-tl-md rounded-tr-md relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
+                                                                <div class="flex w-full items-center text-sm">
+                                                                    <input type="radio" :checked="layout===1" @input="updateLayout(1)" name="pricing_plan" value="Layout1" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">
+                                                                    <span v-if="layout===1" id="layout-1-label-checked" class="ml-3 font-medium text-indigo-700">Left Align</span>
+                                                                    <span v-else id="layout-1-label" class="ml-3 font-medium text-gray-900">Left Align</span>
+                                                                </div>
+
+                                                            </label>
+
+
+                                                            <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
+                                                                <div class="flex items-center text-sm">
+                                                                    <input type="radio" :checked="layout===2" @input="updateLayout(2)" name="pricing_plan" value="Layout2" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">
+                                                                    <span v-if="layout===2" id="layout-2-label-checked" class="ml-3 font-medium text-indigo-700">Right Align</span>
+                                                                    <span v-else id="layout-2-label" class="ml-3 font-medium text-gray-900">Right Align</span>
+                                                                </div>
+
+                                                            </label>
+
+
+                                                            <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
+                                                                <div class="flex items-center text-sm">
+                                                                    <input type="radio" :checked="layout===3" @input="updateLayout(3)" name="pricing_plan" value="Layout3" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">
+                                                                    <span v-if="layout===3" id="layout-3-label-checked" class="ml-3 font-medium text-indigo-700">Top Align</span>
+                                                                    <span v-else id="layout-3-label" class="ml-3 font-medium text-gray-900">Top Align</span>
+                                                                </div>
+
+                                                            </label>
+                                                        </div>
+                                                    </fieldset>
+
+                                                </div>
+
 
                                             </div>
                                         </nav>
@@ -208,6 +288,7 @@
                                     <div class="relative ">
                                         <div class="lg:absolute lg:inset-0">
 
+                                            <!--Pattern background-->
                                             <div v-if="$page.props.user.cover_photo_url==null"
                                                  class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-white h-28 lg:h-screen"
                                                  :class="layout===1 ? 'lg:right-0' : 'lg:left-0'"
@@ -215,16 +296,17 @@
                                                  id="pattern">
 
                                                 <div class="lg:absolute flex lg:inset-y-0 lg:right-0 lg:w-full h-full justify-center items-center">
-                                                    <img class="sm:h-60 sm:w-60 h-20 w-20 rounded-full object-cover shadow-md" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
+                                                    <img class="sm:h-40 sm:w-40 h-20 w-20 rounded-full object-cover shadow-md" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
                                                 </div>
                                             </div>
 
+                                            <!--Cover photo-->
                                             <div v-else class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-white h-28 overflow-hidden lg:h-screen"
                                                 :class="layout===1 ? 'lg:right-0' : 'lg:left-0'">
                                                 <img class="h-56 w-full object-cover lg:absolute lg:h-full" :src="'http://localhost:9600/forms-bucket/' + $page.props.user.cover_photo_url" />
 
                                                 <div class="lg:absolute flex lg:inset-y-0 lg:right-0 lg:w-full h-full justify-center items-center lg:mt-0 -mt-56">
-                                                    <img class="sm:h-60 sm:w-60 h-20 w-20 rounded-full object-cover shadow-md" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
+                                                    <img class="sm:h-40 sm:w-40 h-20 w-20 rounded-full object-cover shadow-md" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
                                                 </div>
                                             </div>
 
@@ -236,17 +318,18 @@
                                             <div :class="layout===2 ? 'lg:pl-8 justify-self-center' : 'lg:pr-8'">
 
                                                 <div class="max-w-md mx-auto sm:max-w-lg lg:mx-0">
-                                                    <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+                                                    <h2 class="text-center text-3xl font-extrabold tracking-tight sm:text-4xl">
                                                         {{$page['props']['user']['name']}}
                                                     </h2>
-                                                    <p contenteditable placeholder="Message (optional)" @input="updateMessage" class="font-medium mt-4 text-lg text-gray-500 sm:mt-3">
+                                                    <p contenteditable placeholder="Message (optional)" @input="updateMessage" class="text-center font-medium mt-4 text-lg text-gray-500 sm:mt-3">
                                                         {{$page['props']['site']['message']}}
                                                     </p>
 
+                                                    <!--Forms-->
                                                     <ul class="mt-2" v-if="$page['props']['forms'].length">
                                                         <li v-for="(form) in $page['props']['forms']"
                                                             class="group">
-                                                            <inertia-link :href="route('form.show', form.uuid)">
+                                                            <inertia-link :href="route('form.edit', form.uuid)">
                                                                 <div class="mb-5 bg-white hover:bg-gray-50 sm:rounded-lg sm:mb-4 border">
                                                                     <div class="px-4 py-5 sm:p-6">
                                                                         <div class="sm:flex sm:items-start sm:justify-between">
@@ -259,7 +342,7 @@
                                                                                 <button type="button"
                                                                                         class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
                                                                                         :style="'background: ' + colors + '; color: ' + getContrastYIQ(colors)">
-                                                                                    Go
+                                                                                    Edit Form
                                                                                 </button>
                                                                             </div>
                                                                         </div>
@@ -268,7 +351,6 @@
                                                             </inertia-link>
                                                         </li>
                                                     </ul>
-
                                                     <inertia-link :href="route('form.index')">
                                                         <div class="mb-5 bg-white hover:bg-gray-50 sm:rounded-lg sm:mb-4 border-2 border-gray-300 border-dashed">
                                                             <div class="px-4 py-5 sm:p-6">
@@ -282,6 +364,104 @@
                                                             </div>
                                                         </div>
                                                     </inertia-link>
+
+                                                    <!--Article-->
+                                                    <div class="relative py-16 pt-8 bg-white overflow-hidden">
+                                                        <div class="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
+                                                            <div class="relative h-full text-lg max-w-prose mx-auto" aria-hidden="true">
+                                                                <svg class="absolute top-1/2 right-full transform -translate-y-1/2 -translate-x-28" width="404" height="384" fill="none" viewBox="0 0 404 384">
+                                                                    <defs>
+                                                                        <pattern id="f210dbf6-a58d-4871-961e-36d5016a0f49" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                                                            <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+                                                                        </pattern>
+                                                                    </defs>
+                                                                    <rect width="404" height="384" fill="url(#f210dbf6-a58d-4871-961e-36d5016a0f49)" />
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                        <div class="relative px-4 sm:px-6 lg:px-8">
+                                                            <div class="text-lg max-w-prose mx-auto">
+                                                                <h1>
+                                                                    <span class="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase" :style="'color: ' + colors">Welcome</span>
+                                                                    <span contenteditable placeholder="Title" @input="updateTitle" class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">{{$page.props.site.section_header}}</span>
+                                                                </h1>
+                                                                <p contenteditable placeholder="Describe a little about yourself and your goals here." @input="updateContent" class="mt-8 text-xl text-gray-500 leading-8">{{$page.props.site.section_content}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--Normal Contact Section-->
+                                                    <div class="bg-white py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
+                                                        <div class="relative max-w-xl mx-auto">
+                                                            <svg class="absolute left-full transform translate-x-1/2" width="404" height="404" fill="none" viewBox="0 0 404 404" aria-hidden="true">
+                                                                <defs>
+                                                                    <pattern id="85737c0e-0916-41d7-917f-596dc7edfa27" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                                                        <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+                                                                    </pattern>
+                                                                </defs>
+                                                                <rect width="404" height="404" fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)" />
+                                                            </svg>
+                                                            <svg class="absolute right-full bottom-0 transform -translate-x-1/2" width="404" height="404" fill="none" viewBox="0 0 404 404" aria-hidden="true">
+                                                                <defs>
+                                                                    <pattern id="85737c0e-0916-41d7-917f-596dc7edfa27" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                                                        <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+                                                                    </pattern>
+                                                                </defs>
+                                                                <rect width="404" height="404" fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)" />
+                                                            </svg>
+                                                            <div class="text-center">
+                                                                <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                                                                    Contact Me
+                                                                </h2>
+                                                                <p class="mt-4 text-lg leading-6 text-gray-500">
+                                                                    If you'd rather just open a line of communication instead of filling out forms, feel free to do so here.
+                                                                </p>
+                                                            </div>
+                                                            <div class="mt-12">
+<!--                                                                <form @submit.prevent="submitContactForm.post('/contact')"-->
+                                                                      <div class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+                                                                    <div>
+                                                                        <label for="first_name" class="block text-sm font-medium text-gray-700">First name</label>
+                                                                        <div class="mt-1">
+                                                                            <input v-model="submitContactForm.firstName" type="text" name="first_name" id="first_name" autocomplete="given-name" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div>
+                                                                        <label for="last_name" class="block text-sm font-medium text-gray-700">Last name</label>
+                                                                        <div class="mt-1">
+                                                                            <input v-model="submitContactForm.lastName" type="text" name="last_name" id="last_name" autocomplete="family-name" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="sm:col-span-2">
+                                                                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                                                        <div class="mt-1">
+                                                                            <input v-model="submitContactForm.email" id="email" name="email" type="email" autocomplete="email" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="sm:col-span-2">
+                                                                        <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                                                                        <div class="mt-1 relative rounded-md shadow-sm">
+                                                                            <input v-model="submitContactForm.phone" type="text" name="phone_number" id="phone_number" autocomplete="tel" class="py-3 px-4 block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" placeholder="+1 (555) 987-6543">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="sm:col-span-2">
+                                                                        <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                                                                        <div class="mt-1">
+                                                                            <textarea v-model="submitContactForm.message" id="message" name="message" rows="4" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"></textarea>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="sm:col-span-2">
+                                                                        <button class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                                                                :style="'background: ' + colors">
+                                                                            Let's talk
+                                                                        </button>
+                                                                    </div>
+                                                                      </div>
+<!--                                                                </form>-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -343,7 +523,7 @@
                                         <ul class="mt-2" v-if="$page['props']['forms'].length">
                                         <li v-for="(form) in $page['props']['forms']"
                                             class="group">
-                                            <inertia-link :href="route('form.show', form.uuid)">
+                                            <inertia-link :href="route('form.edit', form.uuid)">
                                                 <div class="mb-5 bg-white hover:bg-gray-50 sm:rounded-lg sm:mb-4 border">
                                                     <div class="px-4 py-5 sm:p-6">
                                                         <div class="sm:flex sm:items-start sm:justify-between">
@@ -356,7 +536,7 @@
                                                                 <button type="button"
                                                                         class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
                                                                         :style="'background: ' + colors + '; color: ' + getContrastYIQ(colors)">
-                                                                    Go
+                                                                    Edit Form
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -433,8 +613,8 @@
                                                 </p>
                                             </div>
                                             <div class="mt-12">
-                                                <form @submit.prevent="submitContactForm.post('/contact')"
-                                                      class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+<!--                                                <form @submit.prevent="submitContactForm.post('/contact')"-->
+                                                      <div class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                                                     <div>
                                                         <label for="first_name" class="block text-sm font-medium text-gray-700">First name</label>
                                                         <div class="mt-1">
@@ -467,12 +647,13 @@
                                                     </div>
 
                                                     <div class="sm:col-span-2">
-                                                        <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                                        <button class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                                                 :style="'background: ' + colors">
                                                             Let's talk
                                                         </button>
                                                     </div>
-                                                </form>
+                                                      </div>
+<!--                                                </form>-->
                                             </div>
                                         </div>
                                     </div>
@@ -484,6 +665,73 @@
                         </div>
                     </main>
                 </div>
+            </div>
+        </div>
+
+        <!-- Not initialized -->
+        <div v-else class="h-full">
+            <div class="flex items-center flex-shrink-0 border-b border-gray-200">
+                <!-- Search header -->
+                <div class="relative z-10 flex-shrink-0 flex h-16 bg-white lg:hidden">
+                    <!-- Sidebar toggle, controls the 'sidebarOpen' sidebar state. -->
+                    <button @click="showingQuestionsDropdown=!showingQuestionsDropdown"
+                            class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 lg:hidden">
+                        <span class="sr-only">Open sidebar</span>
+                        <!-- Heroicon name: outline/menu-alt-1 -->
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M4 6h16M4 12h8m-8 6h16"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="w-full border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
+                    <div class="flex-1 min-w-0">
+                        <h1 class="py-2 text-lg font-medium leading-6 text-gray-900 sm:truncate">
+                            Choose a Layout
+                        </h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="min-h-full flex overflow-hidden bg-white">
+                <ul role="list" class="mt-4 ml-4 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+
+                    <!-- Top align -->
+                    <li class="relative">
+                        <div class="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80" alt="" class="object-cover pointer-events-none group-hover:opacity-75">
+                            <button type="button" class="absolute inset-0 focus:outline-none">
+                                <span class="sr-only">View details for IMG_4985.HEIC</span>
+                            </button>
+                        </div>
+                        <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">Top Align</p>
+                    </li>
+
+                    <!-- Left align -->
+                    <li class="relative">
+                        <div class="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80" alt="" class="object-cover pointer-events-none group-hover:opacity-75">
+                            <button type="button" class="absolute inset-0 focus:outline-none">
+                                <span class="sr-only">View details for IMG_4985.HEIC</span>
+                            </button>
+                        </div>
+                        <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">Left Align</p>
+                    </li>
+
+                    <!-- Right align -->
+                    <li class="relative">
+                        <div class="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80" alt="" class="object-cover pointer-events-none group-hover:opacity-75">
+                            <button type="button" class="absolute inset-0 focus:outline-none">
+                                <span class="sr-only">View details for IMG_4985.HEIC</span>
+                            </button>
+                        </div>
+                        <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">Right Align</p>
+                    </li>
+
+                </ul>
             </div>
         </div>
 
