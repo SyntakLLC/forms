@@ -6,11 +6,21 @@ use App\Models\Site;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class SiteController extends Controller
 {
+    public function create(Request $request) {
+        $site = Site::findByUuid($request->get('site'));
+        $site->layout = $request->get('layout');
+        $site->initialized = true;
+        $site->save();
+
+        return Redirect::route('dashboard');
+    }
+
     public function show(Request $request, Site $site) {
         $user = User::findByUuid($site->user_id);
 

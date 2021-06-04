@@ -5,27 +5,161 @@
         <div v-if="$page.props.site.initialized" class="h-full">
             <div class="flex items-center flex-shrink-0 border-b border-gray-200">
                 <!-- Search header -->
-                <div class="relative z-10 flex-shrink-0 flex h-16 bg-white lg:hidden">
-                    <!-- Sidebar toggle, controls the 'sidebarOpen' sidebar state. -->
-                    <button @click="showingQuestionsDropdown=!showingQuestionsDropdown"
-                            class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 lg:hidden">
-                        <span class="sr-only">Open sidebar</span>
-                        <!-- Heroicon name: outline/menu-alt-1 -->
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                             stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M4 6h16M4 12h8m-8 6h16"/>
-                        </svg>
-                    </button>
-                </div>
+<!--                <div class="relative z-10 flex-shrink-0 flex h-16 bg-white lg:hidden">-->
+<!--                    &lt;!&ndash; Sidebar toggle, controls the 'sidebarOpen' sidebar state. &ndash;&gt;-->
+<!--                    <button @click="showingQuestionsDropdown=!showingQuestionsDropdown"-->
+<!--                            class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 lg:hidden">-->
+<!--                        <span class="sr-only">Open sidebar</span>-->
+<!--                        &lt;!&ndash; Heroicon name: outline/menu-alt-1 &ndash;&gt;-->
+<!--                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"-->
+<!--                             stroke="currentColor" aria-hidden="true">-->
+<!--                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
+<!--                                  d="M4 6h16M4 12h8m-8 6h16"/>-->
+<!--                        </svg>-->
+<!--                    </button>-->
+<!--                </div>-->
 
                 <div class="w-full border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
+                    <!-- Edit Site title -->
                     <div class="flex-1 min-w-0">
                         <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
                             Edit Site
                         </h1>
                     </div>
 
+                    <!-- Accent Color dropdown -->
+                    <div class="relative mt-2 sm:mt-0 sm:ml-3">
+                        <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
+                        <button @click="showingAccentColorDropdown=!showingAccentColorDropdown; showingLayoutDropdown=false; showingCoverPhotoDropdown=false;"
+                                :class="showingAccentColorDropdown ? 'text-gray-900' : 'text-gray-500'" type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-expanded="false">
+                            <span>Change Accent Color</span>
+
+                            <svg class="text-gray-400 ml-2 h-5 w-5 group-hover:text-gray-500"
+                                 :class="showingAccentColorDropdown ? 'text-gray-600' : 'text-gray-400'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+
+                        <transition
+                            enter-active-class="transition ease-out duration-200"
+                            enter-class="opacity-0 translate-y-1"
+                            enter-to-class="opacity-100 translate-y-0"
+                            leave-active-class="transition ease-in duration-150"
+                            leave-class="opacity-100 translate-y-0"
+                            leave-to-class="opacity-0 translate-y-1">
+                            <div v-show="showingAccentColorDropdown" class="absolute z-10 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-xs sm:px-0">
+                                <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden bg-white">
+<!--                                    <div class="relative grid gap-6 bg-white px-1 py-1 sm:gap-8 sm:p-8">-->
+                                        <chrome-picker :value="colors" @input="updateColor" />
+<!--                                    </div>-->
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+
+                    <!-- Cover photo dropdown -->
+                    <div class="relative mt-2 sm:mt-0 sm:ml-3">
+                        <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
+                        <button @click="showingCoverPhotoDropdown=!showingCoverPhotoDropdown; showingLayoutDropdown=false; showingAccentColorDropdown=false;"
+                                :class="showingCoverPhotoDropdown ? 'text-gray-900' : 'text-gray-500'" type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-expanded="false">
+                            <span>Select Background Photo</span>
+
+                            <svg class="text-gray-400 ml-2 h-5 w-5 group-hover:text-gray-500"
+                                 :class="showingCoverPhotoDropdown ? 'text-gray-600' : 'text-gray-400'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+
+                        <transition
+                            enter-active-class="transition ease-out duration-200"
+                            enter-class="opacity-0 translate-y-1"
+                            enter-to-class="opacity-100 translate-y-0"
+                            leave-active-class="transition ease-in duration-150"
+                            leave-class="opacity-100 translate-y-0"
+                            leave-to-class="opacity-0 translate-y-1">
+                            <div v-show="showingCoverPhotoDropdown" class="absolute z-10 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-xs sm:px-0">
+                                <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
+                                    <div class="relative grid bg-white py-1 items-center">
+                                        <input type="file" class="hidden"
+                                               ref="photo"
+                                               @change="updatePhotoPreview">
+
+                                        <a @click="selectNewPhoto" href="#" class="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 font-medium text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Select A New Photo</a>
+
+                                        <a @click="removePhoto" v-if="$page.props.user.cover_photo_url" href="#" class="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 font-medium text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Remove Photo</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+
+                    <!-- Layout dropdown -->
+                    <div class="relative mt-2 sm:mt-0 sm:ml-3">
+                        <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
+                        <button @click="showingLayoutDropdown=!showingLayoutDropdown; showingCoverPhotoDropdown=false; showingAccentColorDropdown=false;"
+                                :class="showingLayoutDropdown ? 'text-gray-900' : 'text-gray-500'" type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-expanded="false">
+                            <span>Change Layout</span>
+
+                            <svg class="text-gray-400 ml-2 h-5 w-5 group-hover:text-gray-500"
+                                 :class="showingLayoutDropdown ? 'text-gray-600' : 'text-gray-400'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+
+                        <transition
+                            enter-active-class="transition ease-out duration-200"
+                            enter-class="opacity-0 translate-y-1"
+                            enter-to-class="opacity-100 translate-y-0"
+                            leave-active-class="transition ease-in duration-150"
+                            leave-class="opacity-100 translate-y-0"
+                            leave-to-class="opacity-0 translate-y-1">
+                            <div v-show="showingLayoutDropdown" class="absolute z-10 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-xs sm:px-0">
+                                <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
+                                    <!--                                    <div class="relative grid gap-6 bg-white px-1 py-1 sm:gap-8 sm:p-8">-->
+                                    <fieldset>
+                                        <legend class="sr-only">
+                                            Layouts
+                                        </legend>
+                                        <div class="relative bg-white rounded-md -space-y-px">
+
+                                            <label class="border-gray-200 rounded-tl-md rounded-tr-md relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
+                                                <div class="flex w-full items-center text-sm">
+                                                    <input type="radio" :checked="layout===1" @input="updateLayout(1)" name="pricing_plan" value="Layout1" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">
+                                                    <span v-if="layout===1" id="layout-1-label-checked" class="ml-3 font-medium text-indigo-700">Left Align</span>
+                                                    <span v-else id="layout-1-label" class="ml-3 font-medium text-gray-900">Left Align</span>
+                                                </div>
+
+                                            </label>
+
+
+                                            <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
+                                                <div class="flex items-center text-sm">
+                                                    <input type="radio" :checked="layout===2" @input="updateLayout(2)" name="pricing_plan" value="Layout2" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">
+                                                    <span v-if="layout===2" id="layout-2-label-checked" class="ml-3 font-medium text-indigo-700">Right Align</span>
+                                                    <span v-else id="layout-2-label" class="ml-3 font-medium text-gray-900">Right Align</span>
+                                                </div>
+
+                                            </label>
+
+
+                                            <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
+                                                <div class="flex items-center text-sm">
+                                                    <input type="radio" :checked="layout===3" @input="updateLayout(3)" name="pricing_plan" value="Layout3" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">
+                                                    <span v-if="layout===3" id="layout-3-label-checked" class="ml-3 font-medium text-indigo-700">Top Align</span>
+                                                    <span v-else id="layout-3-label" class="ml-3 font-medium text-gray-900">Top Align</span>
+                                                </div>
+
+                                            </label>
+                                        </div>
+                                    </fieldset>
+                                    <!--                                    </div>-->
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+
+                    <!-- Preview -->
                     <div class="mt-4 flex sm:mt-0 sm:ml-4">
                         <inertia-link :href="route('site.show', $page.props.site.uuid)"
                                       class="truncate hover:text-gray-600 block">
@@ -37,254 +171,254 @@
                 </div>
             </div>
 
-            <div class="min-h-full flex overflow-hidden bg-white">
+            <div class="flex overflow-hidden bg-white">
                 <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
-                <div class="lg:hidden">
-                    <transition
-                        enter-active-class="transition-opacity ease-linear duration-300"
-                        enter-class="opacity-0"
-                        enter-to-class="opacity-100"
-                        leave-active-class="transition-opacity ease-linear duration-300"
-                        leave-class="opacity-100"
-                        leave-to-class="opacity-0">
-                        <div v-show="showingQuestionsDropdown" class="fixed inset-0 flex z-40">
+<!--                <div class="lg:hidden">-->
+<!--                    <transition-->
+<!--                        enter-active-class="transition-opacity ease-linear duration-300"-->
+<!--                        enter-class="opacity-0"-->
+<!--                        enter-to-class="opacity-100"-->
+<!--                        leave-active-class="transition-opacity ease-linear duration-300"-->
+<!--                        leave-class="opacity-100"-->
+<!--                        leave-to-class="opacity-0">-->
+<!--                        <div v-show="showingQuestionsDropdown" class="fixed inset-0 flex z-40">-->
 
-                            <transition
-                                enter-active-class="transition-opacity ease-linear duration-300"
-                                enter-class="opacity-0"
-                                enter-to-class="opacity-100"
-                                leave-active-class="transition-opacity ease-linear duration-300"
-                                leave-class="opacity-100"
-                                leave-to-class="opacity-0">
-                                <div v-show="showingQuestionsDropdown" class="fixed inset-0" aria-hidden="true">
-                                    <div class="absolute inset-0 bg-gray-600 opacity-75"></div>
-                                </div>
-                            </transition>
+<!--                            <transition-->
+<!--                                enter-active-class="transition-opacity ease-linear duration-300"-->
+<!--                                enter-class="opacity-0"-->
+<!--                                enter-to-class="opacity-100"-->
+<!--                                leave-active-class="transition-opacity ease-linear duration-300"-->
+<!--                                leave-class="opacity-100"-->
+<!--                                leave-to-class="opacity-0">-->
+<!--                                <div v-show="showingQuestionsDropdown" class="fixed inset-0" aria-hidden="true">-->
+<!--                                    <div class="absolute inset-0 bg-gray-600 opacity-75"></div>-->
+<!--                                </div>-->
+<!--                            </transition>-->
 
-                            <transition
-                                enter-active-class="transition ease-in-out duration-300 transform"
-                                enter-class="-translate-x-full"
-                                enter-to-class="translate-x-0"
-                                leave-active-class="transition ease-in-out duration-300 transform"
-                                leave-class="translate-x-0"
-                                leave-to-class="-translate-x-full">
-                                <div v-show="showingQuestionsDropdown" class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-white">
-                                    <div class="absolute top-0 right-0 -mr-12 pt-20">
-                                        <button @click="showingQuestionsDropdown=!showingQuestionsDropdown"
-                                                class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                                            <span class="sr-only">Close sidebar</span>
-                                            <!-- Heroicon name: outline/x -->
-                                            <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                    <div class="flex-shrink-0 flex items-center px-4">
-                                        <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
-                                            Edit Site
-                                        </h1>
-                                    </div>
-                                    <div class="mt-5 flex-1 h-0 overflow-y-auto">
-                                        <nav class="px-2">
-                                            <div class="space-y-1">
+<!--                            <transition-->
+<!--                                enter-active-class="transition ease-in-out duration-300 transform"-->
+<!--                                enter-class="-translate-x-full"-->
+<!--                                enter-to-class="translate-x-0"-->
+<!--                                leave-active-class="transition ease-in-out duration-300 transform"-->
+<!--                                leave-class="translate-x-0"-->
+<!--                                leave-to-class="-translate-x-full">-->
+<!--                                <div v-show="showingQuestionsDropdown" class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-white">-->
+<!--                                    <div class="absolute top-0 right-0 -mr-12 pt-20">-->
+<!--                                        <button @click="showingQuestionsDropdown=!showingQuestionsDropdown"-->
+<!--                                                class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">-->
+<!--                                            <span class="sr-only">Close sidebar</span>-->
+<!--                                            &lt;!&ndash; Heroicon name: outline/x &ndash;&gt;-->
+<!--                                            <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
+<!--                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />-->
+<!--                                            </svg>-->
+<!--                                        </button>-->
+<!--                                    </div>-->
+<!--                                    <div class="flex-shrink-0 flex items-center px-4">-->
+<!--                                        <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">-->
+<!--                                            Edit Site-->
+<!--                                        </h1>-->
+<!--                                    </div>-->
+<!--                                    <div class="mt-5 flex-1 h-0 overflow-y-auto">-->
+<!--                                        <nav class="px-2">-->
+<!--                                            <div class="space-y-1">-->
 
-                                                <!--HOME-->
+<!--                                                &lt;!&ndash;HOME&ndash;&gt;-->
 
-                                                <div class="pt-2 pb-4 border-b border-gray-200 mx-4">
-                                                    <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
-                                                        Accent Color
-                                                    </a>
+<!--                                                <div class="pt-2 pb-4 border-b border-gray-200 mx-4">-->
+<!--                                                    <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">-->
+<!--                                                        Accent Color-->
+<!--                                                    </a>-->
 
-                                                    <chrome-picker :value="colors" @input="updateColor" />
-                                                </div>
+<!--                                                    <chrome-picker :value="colors" @input="updateColor" />-->
+<!--                                                </div>-->
 
-                                                <div class="pt-2 pb-4 border-b border-gray-200 mx-4">
-                                                    <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
-                                                        Cover Photo
-                                                    </a>
+<!--                                                <div class="pt-2 pb-4 border-b border-gray-200 mx-4">-->
+<!--                                                    <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">-->
+<!--                                                        Cover Photo-->
+<!--                                                    </a>-->
 
-                                                    <input type="file" class="hidden"
-                                                           ref="photo"
-                                                           @change="updatePhotoPreview">
+<!--                                                    <input type="file" class="hidden"-->
+<!--                                                           ref="photo"-->
+<!--                                                           @change="updatePhotoPreview">-->
 
-                                                    <div class="mt-2 mr-2">
-                                                        <button class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"
-                                                                type="button" @click="selectNewPhoto">
-                                                            Select A New Photo
-                                                        </button>
-                                                    </div>
+<!--                                                    <div class="mt-2 mr-2">-->
+<!--                                                        <button class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"-->
+<!--                                                                type="button" @click="selectNewPhoto">-->
+<!--                                                            Select A New Photo-->
+<!--                                                        </button>-->
+<!--                                                    </div>-->
 
-                                                    <div class="mt-2 mr-2">
-                                                        <button v-if="$page.props.user.cover_photo_url"
-                                                                class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"
-                                                                type="button" @click="removePhoto">
-                                                            Remove Photo
-                                                        </button>
-                                                    </div>
-                                                </div>
+<!--                                                    <div class="mt-2 mr-2">-->
+<!--                                                        <button v-if="$page.props.user.cover_photo_url"-->
+<!--                                                                class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"-->
+<!--                                                                type="button" @click="removePhoto">-->
+<!--                                                            Remove Photo-->
+<!--                                                        </button>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
 
-                                                <div class="pt-2 pb-4 border-b border-gray-200 mx-4">
-                                                    <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
-                                                        Layout
-                                                    </a>
+<!--                                                <div class="pt-2 pb-4 border-b border-gray-200 mx-4">-->
+<!--                                                    <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">-->
+<!--                                                        Layout-->
+<!--                                                    </a>-->
 
-                                                    <fieldset>
-                                                        <legend class="sr-only">
-                                                            Layouts
-                                                        </legend>
-                                                        <div class="relative bg-white rounded-md -space-y-px">
+<!--                                                    <fieldset>-->
+<!--                                                        <legend class="sr-only">-->
+<!--                                                            Layouts-->
+<!--                                                        </legend>-->
+<!--                                                        <div class="relative bg-white rounded-md -space-y-px">-->
 
-                                                            <label class="border-gray-200 rounded-tl-md rounded-tr-md relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
-                                                                <div class="flex w-full items-center text-sm">
-                                                                    <input type="radio" :checked="layout===1" @input="updateLayout(1)" name="pricing_plan" value="Layout1" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">
-                                                                    <span v-if="layout===1" id="layout-1-label-checked" class="ml-3 font-medium text-indigo-700">Left Align</span>
-                                                                    <span v-else id="layout-1-label" class="ml-3 font-medium text-gray-900">Left Align</span>
-                                                                </div>
+<!--                                                            <label class="border-gray-200 rounded-tl-md rounded-tr-md relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">-->
+<!--                                                                <div class="flex w-full items-center text-sm">-->
+<!--                                                                    <input type="radio" :checked="layout===1" @input="updateLayout(1)" name="pricing_plan" value="Layout1" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">-->
+<!--                                                                    <span v-if="layout===1" id="layout-1-label-checked" class="ml-3 font-medium text-indigo-700">Left Align</span>-->
+<!--                                                                    <span v-else id="layout-1-label" class="ml-3 font-medium text-gray-900">Left Align</span>-->
+<!--                                                                </div>-->
 
-                                                            </label>
-
-
-                                                            <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
-                                                                <div class="flex items-center text-sm">
-                                                                    <input type="radio" :checked="layout===2" @input="updateLayout(2)" name="pricing_plan" value="Layout2" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">
-                                                                    <span v-if="layout===2" id="layout-2-label-checked" class="ml-3 font-medium text-indigo-700">Right Align</span>
-                                                                    <span v-else id="layout-2-label" class="ml-3 font-medium text-gray-900">Right Align</span>
-                                                                </div>
-
-                                                            </label>
+<!--                                                            </label>-->
 
 
-                                                            <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
-                                                                <div class="flex items-center text-sm">
-                                                                    <input type="radio" :checked="layout===3" @input="updateLayout(3)" name="pricing_plan" value="Layout3" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">
-                                                                    <span v-if="layout===3" id="layout-3-label-checked" class="ml-3 font-medium text-indigo-700">Top Align</span>
-                                                                    <span v-else id="layout-3-label" class="ml-3 font-medium text-gray-900">Top Align</span>
-                                                                </div>
+<!--                                                            <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">-->
+<!--                                                                <div class="flex items-center text-sm">-->
+<!--                                                                    <input type="radio" :checked="layout===2" @input="updateLayout(2)" name="pricing_plan" value="Layout2" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">-->
+<!--                                                                    <span v-if="layout===2" id="layout-2-label-checked" class="ml-3 font-medium text-indigo-700">Right Align</span>-->
+<!--                                                                    <span v-else id="layout-2-label" class="ml-3 font-medium text-gray-900">Right Align</span>-->
+<!--                                                                </div>-->
 
-                                                            </label>
-                                                        </div>
-                                                    </fieldset>
-
-                                                </div>
+<!--                                                            </label>-->
 
 
-                                            </div>
-                                        </nav>
-                                    </div>
-                                </div>
-                            </transition>
-                            <div class="flex-shrink-0 w-14" aria-hidden="true">
-                                <!-- Dummy element to force sidebar to shrink to fit close icon -->
-                            </div>
-                        </div>
-                    </transition>
-                </div>
+<!--                                                            <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">-->
+<!--                                                                <div class="flex items-center text-sm">-->
+<!--                                                                    <input type="radio" :checked="layout===3" @input="updateLayout(3)" name="pricing_plan" value="Layout3" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">-->
+<!--                                                                    <span v-if="layout===3" id="layout-3-label-checked" class="ml-3 font-medium text-indigo-700">Top Align</span>-->
+<!--                                                                    <span v-else id="layout-3-label" class="ml-3 font-medium text-gray-900">Top Align</span>-->
+<!--                                                                </div>-->
+
+<!--                                                            </label>-->
+<!--                                                        </div>-->
+<!--                                                    </fieldset>-->
+
+<!--                                                </div>-->
+
+
+<!--                                            </div>-->
+<!--                                        </nav>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </transition>-->
+<!--                            <div class="flex-shrink-0 w-14" aria-hidden="true">-->
+<!--                                &lt;!&ndash; Dummy element to force sidebar to shrink to fit close icon &ndash;&gt;-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </transition>-->
+<!--                </div>-->
 
                 <!-- Static sidebar for desktop -->
-                <div class="hidden lg:flex lg:flex-shrink-0">
-                    <!--below thing used to be pt-5 and pb-4-->
-                    <div class="flex flex-col w-64 border-r border-gray-200 pt-0 pb-0 bg-white">
+<!--                <div class="hidden lg:flex lg:flex-shrink-0">-->
+<!--                    &lt;!&ndash;below thing used to be pt-5 and pb-4&ndash;&gt;-->
+<!--                    <div class="flex flex-col w-64 border-r border-gray-200 pt-0 pb-0 bg-white">-->
 
-                        <!-- Sidebar component, swap this element with another sidebar if you like -->
-                        <div class="h-0 flex-1 flex flex-col overflow-y-auto">
+<!--                        &lt;!&ndash; Sidebar component, swap this element with another sidebar if you like &ndash;&gt;-->
+<!--                        <div class="h-0 flex-1 flex flex-col overflow-y-auto">-->
 
-                            <!-- Navigation, below nav before was mt-6 -->
-                            <nav class="mt-0">
-                                <div class="space-y-1">
+<!--                            &lt;!&ndash; Navigation, below nav before was mt-6 &ndash;&gt;-->
+<!--                            <nav class="mt-0">-->
+<!--                                <div class="space-y-1">-->
 
-                                    <!-- HOMEPAGE -->
+<!--                                    &lt;!&ndash; HOMEPAGE &ndash;&gt;-->
 
-                                    <div class="pt-2 pb-4 border-b border-gray-200 mx-4">
-                                        <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
-                                            Accent Color
-                                        </a>
-                                        <chrome-picker :value="colors" @input="updateColor" />
-                                    </div>
+<!--                                    <div class="pt-2 pb-4 border-b border-gray-200 mx-4">-->
+<!--                                        <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">-->
+<!--                                            Accent Color-->
+<!--                                        </a>-->
+<!--                                        <chrome-picker :value="colors" @input="updateColor" />-->
+<!--                                    </div>-->
 
-                                    <div class="pt-2 pb-4 border-b border-gray-200 mx-4">
-                                        <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
-                                            Cover Photo
-                                        </a>
+<!--                                    <div class="pt-2 pb-4 border-b border-gray-200 mx-4">-->
+<!--                                        <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">-->
+<!--                                            Cover Photo-->
+<!--                                        </a>-->
 
-                                        <input type="file" class="hidden"
-                                               ref="photo"
-                                               @change="updatePhotoPreview">
+<!--                                        <input type="file" class="hidden"-->
+<!--                                               ref="photo"-->
+<!--                                               @change="updatePhotoPreview">-->
 
-                                        <div class="mt-2 mr-2">
-                                            <button class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"
-                                                    type="button" @click="selectNewPhoto">
-                                                Select A New Photo
-                                            </button>
-                                        </div>
+<!--                                        <div class="mt-2 mr-2">-->
+<!--                                            <button class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"-->
+<!--                                                    type="button" @click="selectNewPhoto">-->
+<!--                                                Select A New Photo-->
+<!--                                            </button>-->
+<!--                                        </div>-->
 
-                                        <div class="mt-2 mr-2">
-                                            <button v-if="$page.props.user.cover_photo_url"
-                                                    class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"
-                                                    type="button" @click="removePhoto">
-                                                Remove Photo
-                                            </button>
-                                        </div>
-                                    </div>
+<!--                                        <div class="mt-2 mr-2">-->
+<!--                                            <button v-if="$page.props.user.cover_photo_url"-->
+<!--                                                    class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"-->
+<!--                                                    type="button" @click="removePhoto">-->
+<!--                                                Remove Photo-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
 
-                                    <div class="pt-2 pb-4 border-b border-gray-200 mx-4">
-                                        <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
-                                            Layout
-                                        </a>
+<!--                                    <div class="pt-2 pb-4 border-b border-gray-200 mx-4">-->
+<!--                                        <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">-->
+<!--                                            Layout-->
+<!--                                        </a>-->
 
-                                        <fieldset>
-                                            <legend class="sr-only">
-                                                Layouts
-                                            </legend>
-                                            <div class="relative bg-white rounded-md -space-y-px">
+<!--                                        <fieldset>-->
+<!--                                            <legend class="sr-only">-->
+<!--                                                Layouts-->
+<!--                                            </legend>-->
+<!--                                            <div class="relative bg-white rounded-md -space-y-px">-->
 
-                                                <label class="border-gray-200 rounded-tl-md rounded-tr-md relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
-                                                    <div class="flex w-full items-center text-sm">
-                                                        <input type="radio" :checked="layout===1" @input="updateLayout(1)" name="pricing_plan" value="Layout1" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">
-                                                        <span v-if="layout===1" id="layout-1-label-checked" class="ml-3 font-medium text-indigo-700">Left Align</span>
-                                                        <span v-else id="layout-1-label" class="ml-3 font-medium text-gray-900">Left Align</span>
-                                                    </div>
+<!--                                                <label class="border-gray-200 rounded-tl-md rounded-tr-md relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">-->
+<!--                                                    <div class="flex w-full items-center text-sm">-->
+<!--                                                        <input type="radio" :checked="layout===1" @input="updateLayout(1)" name="pricing_plan" value="Layout1" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">-->
+<!--                                                        <span v-if="layout===1" id="layout-1-label-checked" class="ml-3 font-medium text-indigo-700">Left Align</span>-->
+<!--                                                        <span v-else id="layout-1-label" class="ml-3 font-medium text-gray-900">Left Align</span>-->
+<!--                                                    </div>-->
 
-                                                </label>
-
-
-                                                <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
-                                                    <div class="flex items-center text-sm">
-                                                        <input type="radio" :checked="layout===2" @input="updateLayout(2)" name="pricing_plan" value="Layout2" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">
-                                                        <span v-if="layout===2" id="layout-2-label-checked" class="ml-3 font-medium text-indigo-700">Right Align</span>
-                                                        <span v-else id="layout-2-label" class="ml-3 font-medium text-gray-900">Right Align</span>
-                                                    </div>
-
-                                                </label>
+<!--                                                </label>-->
 
 
-                                                <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
-                                                    <div class="flex items-center text-sm">
-                                                        <input type="radio" :checked="layout===3" @input="updateLayout(3)" name="pricing_plan" value="Layout3" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">
-                                                        <span v-if="layout===3" id="layout-3-label-checked" class="ml-3 font-medium text-indigo-700">Top Align</span>
-                                                        <span v-else id="layout-3-label" class="ml-3 font-medium text-gray-900">Top Align</span>
-                                                    </div>
+<!--                                                <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">-->
+<!--                                                    <div class="flex items-center text-sm">-->
+<!--                                                        <input type="radio" :checked="layout===2" @input="updateLayout(2)" name="pricing_plan" value="Layout2" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">-->
+<!--                                                        <span v-if="layout===2" id="layout-2-label-checked" class="ml-3 font-medium text-indigo-700">Right Align</span>-->
+<!--                                                        <span v-else id="layout-2-label" class="ml-3 font-medium text-gray-900">Right Align</span>-->
+<!--                                                    </div>-->
 
-                                                </label>
-                                            </div>
-                                        </fieldset>
+<!--                                                </label>-->
 
-                                    </div>
 
-                                </div>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
+<!--                                                <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">-->
+<!--                                                    <div class="flex items-center text-sm">-->
+<!--                                                        <input type="radio" :checked="layout===3" @input="updateLayout(3)" name="pricing_plan" value="Layout3" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">-->
+<!--                                                        <span v-if="layout===3" id="layout-3-label-checked" class="ml-3 font-medium text-indigo-700">Top Align</span>-->
+<!--                                                        <span v-else id="layout-3-label" class="ml-3 font-medium text-gray-900">Top Align</span>-->
+<!--                                                    </div>-->
+
+<!--                                                </label>-->
+<!--                                            </div>-->
+<!--                                        </fieldset>-->
+
+<!--                                    </div>-->
+
+<!--                                </div>-->
+<!--                            </nav>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
                 <!-- Main column -->
                 <div class="flex flex-col w-0 flex-1 overflow-hidden">
                     <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none" tabindex="0">
                         <!-- Page title & actions -->
-                        <div class="p-5 bg-gray-50">
-                            <div class="shadow-md h-full">
+<!--                        <div class="p-5 bg-gray-50">-->
+<!--                            <div class="shadow-md h-full">-->
 
                                 <!--Left align and right align-->
-                                <div v-if="this.layout === 1 || this.layout === 2" class="h-screen bg-white rounded-md">
+                                <div v-if="this.layout === 1 || this.layout === 2" class="bg-white">
                                     <div class="relative ">
                                         <div class="lg:absolute lg:inset-0">
 
@@ -618,31 +752,31 @@
                                                     <div>
                                                         <label for="first_name" class="block text-sm font-medium text-gray-700">First name</label>
                                                         <div class="mt-1">
-                                                            <input v-model="submitContactForm.firstName" type="text" name="first_name" id="first_name" autocomplete="given-name" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                                                            <input v-model="submitContactForm.firstName" type="text" name="first_name" id="first_name2" autocomplete="given-name" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
                                                         </div>
                                                     </div>
                                                     <div>
                                                         <label for="last_name" class="block text-sm font-medium text-gray-700">Last name</label>
                                                         <div class="mt-1">
-                                                            <input v-model="submitContactForm.lastName" type="text" name="last_name" id="last_name" autocomplete="family-name" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                                                            <input v-model="submitContactForm.lastName" type="text" name="last_name" id="last_name2" autocomplete="family-name" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
                                                         </div>
                                                     </div>
                                                     <div class="sm:col-span-2">
                                                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                                                         <div class="mt-1">
-                                                            <input v-model="submitContactForm.email" id="email" name="email" type="email" autocomplete="email" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                                                            <input v-model="submitContactForm.email" id="email2" name="email" type="email" autocomplete="email" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
                                                         </div>
                                                     </div>
                                                     <div class="sm:col-span-2">
                                                         <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
                                                         <div class="mt-1 relative rounded-md shadow-sm">
-                                                            <input v-model="submitContactForm.phone" type="text" name="phone_number" id="phone_number" autocomplete="tel" class="py-3 px-4 block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" placeholder="+1 (555) 987-6543">
+                                                            <input v-model="submitContactForm.phone" type="text" name="phone_number" id="phone_number2" autocomplete="tel" class="py-3 px-4 block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" placeholder="+1 (555) 987-6543">
                                                         </div>
                                                     </div>
                                                     <div class="sm:col-span-2">
                                                         <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
                                                         <div class="mt-1">
-                                                            <textarea v-model="submitContactForm.message" id="message" name="message" rows="4" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"></textarea>
+                                                            <textarea v-model="submitContactForm.message" id="message2" name="message" rows="4" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"></textarea>
                                                         </div>
                                                     </div>
 
@@ -661,8 +795,8 @@
 
                                 </div>
 
-                            </div>
-                        </div>
+<!--                            </div>-->
+<!--                        </div>-->
                     </main>
                 </div>
             </div>
@@ -671,157 +805,86 @@
         <!-- Not initialized -->
         <div v-else class="h-full">
             <div class="flex items-center flex-shrink-0 border-b border-gray-200">
-                <!-- Search header -->
-                <div class="relative z-10 flex-shrink-0 flex h-16 bg-white lg:hidden">
-                    <!-- Sidebar toggle, controls the 'sidebarOpen' sidebar state. -->
-                    <button @click="showingQuestionsDropdown=!showingQuestionsDropdown"
-                            class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 lg:hidden">
-                        <span class="sr-only">Open sidebar</span>
-                        <!-- Heroicon name: outline/menu-alt-1 -->
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                             stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M4 6h16M4 12h8m-8 6h16"/>
-                        </svg>
-                    </button>
-                </div>
 
                 <div class="w-full border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
                     <div class="flex-1 min-w-0">
-                        <h1 class="py-2 text-lg font-medium leading-6 text-gray-900 sm:truncate">
+                        <h1 class="pt-2 pb-1 text-lg font-medium leading-6 text-gray-900 sm:truncate">
                             Choose a Layout
                         </h1>
+
+                        <p class="text-sm text-gray-500">Don't worry, you can always change this later.</p>
                     </div>
                 </div>
             </div>
 
             <div class="min-h-full flex overflow-hidden bg-white">
-                <ul role="list" class="mt-4 ml-4 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+                <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
 
-                    <!-- Top align -->
-                    <li class="relative">
-                        <div class="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80" alt="" class="object-cover pointer-events-none group-hover:opacity-75">
-                            <button type="button" class="absolute inset-0 focus:outline-none">
-                                <span class="sr-only">View details for IMG_4985.HEIC</span>
-                            </button>
+                    <div class="bg-white">
+                        <div class="mx-auto">
+                            <div class="space-y-12">
+
+                                <ul class="grid grid-cols-2 gap-x-6 gap-y-12 space-y-0 sm:grid sm:grid-cols-3 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:grid-cols-3 lg:gap-x-8">
+
+                                    <!-- Top align -->
+                                    <li @click="createSite(1)" class="hover:opacity-90">
+                                        <div class="space-y-4">
+                                            <div class="aspect-w-3 aspect-h-2">
+                                                <img class="object-cover shadow-sm rounded-lg" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80" alt="">
+                                            </div>
+
+                                            <div class="space-y-2">
+                                                <div class="text-lg leading-6 font-medium space-y-1 text-center">
+                                                    <h3>Top Align</h3>
+                                                    <p class="text-indigo-600">A standard site layout</p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <!-- Left align -->
+                                    <li @click="createSite(2)" class="hover:opacity-90">
+                                        <div class="space-y-4">
+                                            <div class="aspect-w-3 aspect-h-2">
+                                                <img class="object-cover shadow-sm rounded-lg" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80" alt="">
+                                            </div>
+
+                                            <div class="space-y-2">
+                                                <div class="text-lg leading-6 font-medium space-y-1 text-center">
+                                                    <h3>Left Align</h3>
+                                                    <p class="text-indigo-600">Let your brand stand out</p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <!-- Right align -->
+                                    <li @click="createSite(3)" class="hover:opacity-90">
+                                        <div class="space-y-4">
+                                            <div class="aspect-w-3 aspect-h-2">
+                                                <img class="object-cover shadow-sm rounded-lg" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80" alt="">
+                                            </div>
+
+                                            <div class="space-y-2">
+                                                <div class="text-lg leading-6 font-medium space-y-1 text-center">
+                                                    <h3>Right Align</h3>
+                                                    <p class="text-indigo-600">An alternative to left-align</p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
                         </div>
-                        <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">Top Align</p>
-                    </li>
+                    </div>
 
-                    <!-- Left align -->
-                    <li class="relative">
-                        <div class="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80" alt="" class="object-cover pointer-events-none group-hover:opacity-75">
-                            <button type="button" class="absolute inset-0 focus:outline-none">
-                                <span class="sr-only">View details for IMG_4985.HEIC</span>
-                            </button>
-                        </div>
-                        <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">Left Align</p>
-                    </li>
-
-                    <!-- Right align -->
-                    <li class="relative">
-                        <div class="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80" alt="" class="object-cover pointer-events-none group-hover:opacity-75">
-                            <button type="button" class="absolute inset-0 focus:outline-none">
-                                <span class="sr-only">View details for IMG_4985.HEIC</span>
-                            </button>
-                        </div>
-                        <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">Right Align</p>
-                    </li>
-
-                </ul>
+                </div>
             </div>
         </div>
-
-<!--        <div class="h-screen">-->
-<!--            <main class="flex-auto ">-->
-
-<!--                <div class="border-b border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">-->
-<!--                    <div class="flex-1 min-w-0">-->
-<!--                        <h1 class="pt-2 text-lg font-medium leading-6 text-gray-900 sm:truncate">-->
-<!--                            Choose a Page Template-->
-<!--                        </h1>-->
-
-<!--                        <p class="text-sm text-gray-500 mt-2">Don't worry — you can always change this later.</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-<!--                <div id="components" class="px-4 sm:px-6 lg:px-8">-->
-<!--                    <section id="product-marketing" class="divide-y divide-gray-200">-->
-<!--                        &lt;!&ndash; Page title & actions &ndash;&gt;-->
-<!--                        <div id="product-marketing-sections" class="grid grid-cols-3 xl:grid-cols-4 py-8 gap-x-8 gap-y-6">-->
-<!--                                <h3 class="text-gray-900 font-semibold col-span-3 xl:col-span-1">Templates</h3>-->
-<!--                                <div class="col-span-3 grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-y-8 lg:gap-x-8">-->
-<!--                                    <a href="/components/marketing/sections/heroes" class="group relative bg-white rounded-lg shadow-sm overflow-hidden ring-1 ring-black ring-opacity-5">-->
-<!--                                        <figure>-->
-<!--                                            <div class="relative bg-gray-100 pt-[50%] overflow-hidden">-->
-<!--                                                <div class="absolute inset-0 w-full h-full rounded-t-lg overflow-hidden">-->
-<!--&lt;!&ndash;                                                    <img src="/img/category-thumbnails/sections/heroes.png" alt="" class="absolute inset-0 w-full h-full">&ndash;&gt;-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <figcaption class="py-3 px-4">-->
-<!--                                                <p class="text-sm font-medium text-gray-900 mb-1">-->
-<!--                                                    Left Align-->
-<!--                                                </p>-->
-<!--                                                <p class="text-xs font-medium text-gray-500">A simple layout that balances you with your forms.</p>-->
-<!--                                            </figcaption>-->
-<!--                                        </figure>-->
-<!--                                    </a>-->
-<!--                                    <a href="/components/marketing/sections/feature-sections" class="group relative bg-white rounded-lg shadow-sm overflow-hidden ring-1 ring-black ring-opacity-5">-->
-<!--                                        <figure>-->
-<!--                                            <div class="relative bg-gray-100 pt-[50%] overflow-hidden">-->
-<!--                                                <div class="absolute inset-0 w-full h-full rounded-t-lg overflow-hidden">-->
-<!--&lt;!&ndash;                                                    <img src="/img/category-thumbnails/sections/feature-sections.png" alt="" class="absolute inset-0 w-full h-full">&ndash;&gt;-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <figcaption class="py-3 px-4">-->
-<!--                                                <p class="text-sm font-medium text-gray-900 mb-1">-->
-<!--                                                    Right Align-->
-<!--                                                </p>-->
-<!--                                                <p class="text-xs font-medium text-gray-500">Similar to left align, but reversed.</p>-->
-<!--                                            </figcaption>-->
-<!--                                        </figure>-->
-<!--                                    </a>-->
-<!--                                    <a href="/components/marketing/sections/cta-sections" class="group relative bg-white rounded-lg shadow-sm overflow-hidden ring-1 ring-black ring-opacity-5">-->
-<!--                                        <figure>-->
-<!--                                            <div class="relative bg-gray-100 pt-[50%] overflow-hidden">-->
-<!--                                                <div class="absolute inset-0 w-full h-full rounded-t-lg overflow-hidden">-->
-<!--&lt;!&ndash;                                                    <img src="/img/category-thumbnails/sections/cta-sections.png" alt="" class="absolute inset-0 w-full h-full">&ndash;&gt;-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <figcaption class="py-3 px-4">-->
-<!--                                                <p class="text-sm font-medium text-gray-900 mb-1">-->
-<!--                                                    Top Align-->
-<!--                                                </p>-->
-<!--                                                <p class="text-xs font-medium text-gray-500">Lets the user focus on your own brand before looking at the forms.</p>-->
-<!--                                            </figcaption>-->
-<!--                                        </figure>-->
-<!--                                    </a>-->
-<!--                                    <a href="/components/marketing/sections/pricing" class="group relative bg-white rounded-lg shadow-sm overflow-hidden ring-1 ring-black ring-opacity-5">-->
-<!--                                        <figure>-->
-<!--                                            <div class="relative bg-gray-100 pt-[50%] overflow-hidden">-->
-<!--                                                <div class="absolute inset-0 w-full h-full rounded-t-lg overflow-hidden">-->
-<!--&lt;!&ndash;                                                    <img src="/img/category-thumbnails/sections/pricing.png" alt="" class="absolute inset-0 w-full h-full">&ndash;&gt;-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <figcaption class="py-3 px-4">-->
-<!--                                                <p class="text-sm font-medium text-gray-900 mb-1">-->
-<!--                                                    Middle Align-->
-<!--                                                </p>-->
-<!--                                                <p class="text-xs font-medium text-gray-500">Relegates the focus to the forms, with your brand subtly in the background.</p>-->
-<!--                                            </figcaption>-->
-<!--                                        </figure>-->
-<!--                                    </a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                    </section>-->
-
-<!--                </div>-->
-
-<!--            </main>-->
-<!--        </div>-->
 
     </app-layout>
 </template>
@@ -846,6 +909,7 @@
                 photoPreview: null,
                 layout: this.site.layout,
                 showingAccentColorDropdown: false,
+                showingCoverPhotoDropdown: false,
                 showingLayoutDropdown: false,
                 showingQuestionsDropdown: false,
                 colors: '#' + this.site.accent_color,
@@ -866,6 +930,16 @@
         },
 
         methods: {
+            // initialize the site
+            createSite(layout) {
+                let data = {
+                    'layout': layout,
+                    'site': this.site.uuid,
+                }
+                this.$inertia.post('/create-site', data)
+                // let response = await axios.post('/api/create-site', data)
+            },
+
             // returns black or white depending on the appropriate 'logo' color
             getContrastYIQ(hexcolor){
                 hexcolor = hexcolor.replace("#", "");
@@ -980,5 +1054,9 @@ img {
 [contenteditable]:empty:before {
     color: #999999;
     content: attr(placeholder);
+}
+
+li {
+    cursor: pointer;
 }
 </style>

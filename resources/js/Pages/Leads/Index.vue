@@ -14,17 +14,13 @@
                             </h1>
                         </div>
                         <div class="mt-4 flex sm:mt-0 sm:ml-4">
-                            <!--                            <button type="button" class="order-1 ml-3 inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:order-0 sm:ml-0">-->
-                            <!--                                Share-->
-                            <!--                            </button>-->
 
-                            <!--                                :data = "$page['props']['leads']"-->
                             <download-csv
                                 :data="this.convertToCsv()"
                                 name="leads.csv">
                                 <button type="button"
                                         class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:order-1 sm:ml-3">
-                                    Export as CSV
+                                    Download
                                 </button>
                             </download-csv>
                         </div>
@@ -63,7 +59,7 @@
                     <!--                    </div>-->
 
                     <!-- Projects list (only on smallest breakpoint) -->
-                    <div class="mt-10 sm:hidden">
+                    <div class="mt-2 sm:hidden">
                         <div class="px-4 sm:px-6">
                             <h2 class="text-gray-500 text-xs font-medium uppercase tracking-wide">Leads</h2>
                         </div>

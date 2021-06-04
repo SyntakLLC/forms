@@ -86,3 +86,6 @@ Route::post('contact', 'App\Http\Controllers\ResponseController@contact');
 
 // to delete a form
 Route::post('delete-form', 'App\Http\Controllers\FormController@destroy');
+
+// initialize a site
+Route::post('create-site', 'App\Http\Controllers\SiteController@create');
