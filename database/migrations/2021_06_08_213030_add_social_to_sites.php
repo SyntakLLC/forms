@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDontShowAutosaveAgainToSites extends Migration
+class AddSocialToSites extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,11 @@ class AddDontShowAutosaveAgainToSites extends Migration
     public function up()
     {
         Schema::table('sites', function (Blueprint $table) {
-            $table->boolean('show_autosave')->default(false);
+            $table->text('facebook')->nullable();
+            $table->text('instagram')->nullable();
+            $table->text('twitter')->nullable();
+            $table->boolean('saw_autosave_message_on_site')->default(false);
+            $table->boolean('saw_autosave_message_on_form')->default(false);
         });
     }
 

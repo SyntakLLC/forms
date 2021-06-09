@@ -30,7 +30,7 @@
                     <!-- Accent Color dropdown -->
                     <div class="relative mt-2 sm:mt-0 sm:ml-3">
                         <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
-                        <button @click="showingAccentColorDropdown=!showingAccentColorDropdown; showingLayoutDropdown=false; showingCoverPhotoDropdown=false;"
+                        <button @click="showingAccentColorDropdown=!showingAccentColorDropdown; showingLayoutDropdown=false; showingCoverPhotoDropdown=false; showingSocialDropdown=false"
                                 :class="showingAccentColorDropdown ? 'text-gray-900' : 'text-gray-500'" type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-expanded="false">
                             <span>Change Accent Color</span>
 
@@ -60,7 +60,7 @@
                     <!-- Cover photo dropdown -->
                     <div class="relative mt-2 sm:mt-0 sm:ml-3">
                         <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
-                        <button @click="showingCoverPhotoDropdown=!showingCoverPhotoDropdown; showingLayoutDropdown=false; showingAccentColorDropdown=false;"
+                        <button @click="showingCoverPhotoDropdown=!showingCoverPhotoDropdown; showingLayoutDropdown=false; showingAccentColorDropdown=false; showingSocialDropdown=false"
                                 :class="showingCoverPhotoDropdown ? 'text-gray-900' : 'text-gray-500'" type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-expanded="false">
                             <span>Select Background Photo</span>
 
@@ -97,7 +97,7 @@
                     <!-- Layout dropdown -->
                     <div class="relative mt-2 sm:mt-0 sm:ml-3">
                         <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
-                        <button @click="showingLayoutDropdown=!showingLayoutDropdown; showingCoverPhotoDropdown=false; showingAccentColorDropdown=false;"
+                        <button @click="showingLayoutDropdown=!showingLayoutDropdown; showingCoverPhotoDropdown=false; showingAccentColorDropdown=false; showingSocialDropdown=false"
                                 :class="showingLayoutDropdown ? 'text-gray-900' : 'text-gray-500'" type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-expanded="false">
                             <span>Change Layout</span>
 
@@ -159,6 +159,65 @@
                         </transition>
                     </div>
 
+                    <!-- Social media dropdown -->
+                    <div class="relative mt-2 sm:mt-0 sm:ml-3">
+                        <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
+                        <button @click="showingSocialDropdown=!showingSocialDropdown; showingLayoutDropdown=false; showingAccentColorDropdown=false; showingCoverPhotoDropdown=false"
+                                :class="showingSocialDropdown ? 'text-gray-900' : 'text-gray-500'" type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-expanded="false">
+                            <span>Add Social Links</span>
+
+                            <svg class="text-gray-400 ml-2 h-5 w-5 group-hover:text-gray-500"
+                                 :class="showingSocialDropdown ? 'text-gray-600' : 'text-gray-400'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+
+                        <transition
+                            enter-active-class="transition ease-out duration-200"
+                            enter-class="opacity-0 translate-y-1"
+                            enter-to-class="opacity-100 translate-y-0"
+                            leave-active-class="transition ease-in duration-150"
+                            leave-class="opacity-100 translate-y-0"
+                            leave-to-class="opacity-0 translate-y-1">
+                            <div v-show="showingSocialDropdown" class="absolute z-10 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-xs sm:px-0">
+                                <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden bg-white p-5">
+                                    <form @submit.prevent="updateSocialForm.post('/update-social')">
+
+                                    <!-- Facebook -->
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Facebook</label>
+                                        <div class="mt-1">
+                                            <input v-model="updateSocialForm.facebook" type="text" name="url" id="url1" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="www.facebook.com/yourpage">
+                                        </div>
+                                    </div>
+
+                                    <!-- Instagram -->
+                                    <div class="mt-3">
+                                        <label class="block text-sm font-medium text-gray-700">Instagram</label>
+                                        <div class="mt-1">
+                                            <input v-model="updateSocialForm.instagram" type="text" name="url" id="url2" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="www.instagram.com/yourpage">
+                                        </div>
+                                    </div>
+
+                                    <!-- Twitter -->
+                                    <div class="mt-3">
+                                        <label class="block text-sm font-medium text-gray-700">Twitter</label>
+                                        <div class="mt-1">
+                                            <input v-model="updateSocialForm.twitter" type="text" name="url" id="url3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="www.twitter.com/yourpage">
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="mt-3 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        {{ updateSocialForm.recentlySuccessful ? "Saved" : updateSocialForm.processing ? "Saving..." : "Save" }}
+                                    </button>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+
                     <!-- Preview -->
                     <div class="mt-4 flex sm:mt-0 sm:ml-4">
                         <inertia-link :href="route('site.show', $page.props.site.uuid)"
@@ -172,252 +231,51 @@
             </div>
 
             <div class="flex overflow-hidden bg-white">
-                <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
-<!--                <div class="lg:hidden">-->
-<!--                    <transition-->
-<!--                        enter-active-class="transition-opacity ease-linear duration-300"-->
-<!--                        enter-class="opacity-0"-->
-<!--                        enter-to-class="opacity-100"-->
-<!--                        leave-active-class="transition-opacity ease-linear duration-300"-->
-<!--                        leave-class="opacity-100"-->
-<!--                        leave-to-class="opacity-0">-->
-<!--                        <div v-show="showingQuestionsDropdown" class="fixed inset-0 flex z-40">-->
-
-<!--                            <transition-->
-<!--                                enter-active-class="transition-opacity ease-linear duration-300"-->
-<!--                                enter-class="opacity-0"-->
-<!--                                enter-to-class="opacity-100"-->
-<!--                                leave-active-class="transition-opacity ease-linear duration-300"-->
-<!--                                leave-class="opacity-100"-->
-<!--                                leave-to-class="opacity-0">-->
-<!--                                <div v-show="showingQuestionsDropdown" class="fixed inset-0" aria-hidden="true">-->
-<!--                                    <div class="absolute inset-0 bg-gray-600 opacity-75"></div>-->
-<!--                                </div>-->
-<!--                            </transition>-->
-
-<!--                            <transition-->
-<!--                                enter-active-class="transition ease-in-out duration-300 transform"-->
-<!--                                enter-class="-translate-x-full"-->
-<!--                                enter-to-class="translate-x-0"-->
-<!--                                leave-active-class="transition ease-in-out duration-300 transform"-->
-<!--                                leave-class="translate-x-0"-->
-<!--                                leave-to-class="-translate-x-full">-->
-<!--                                <div v-show="showingQuestionsDropdown" class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-white">-->
-<!--                                    <div class="absolute top-0 right-0 -mr-12 pt-20">-->
-<!--                                        <button @click="showingQuestionsDropdown=!showingQuestionsDropdown"-->
-<!--                                                class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">-->
-<!--                                            <span class="sr-only">Close sidebar</span>-->
-<!--                                            &lt;!&ndash; Heroicon name: outline/x &ndash;&gt;-->
-<!--                                            <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
-<!--                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />-->
-<!--                                            </svg>-->
-<!--                                        </button>-->
-<!--                                    </div>-->
-<!--                                    <div class="flex-shrink-0 flex items-center px-4">-->
-<!--                                        <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">-->
-<!--                                            Edit Site-->
-<!--                                        </h1>-->
-<!--                                    </div>-->
-<!--                                    <div class="mt-5 flex-1 h-0 overflow-y-auto">-->
-<!--                                        <nav class="px-2">-->
-<!--                                            <div class="space-y-1">-->
-
-<!--                                                &lt;!&ndash;HOME&ndash;&gt;-->
-
-<!--                                                <div class="pt-2 pb-4 border-b border-gray-200 mx-4">-->
-<!--                                                    <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">-->
-<!--                                                        Accent Color-->
-<!--                                                    </a>-->
-
-<!--                                                    <chrome-picker :value="colors" @input="updateColor" />-->
-<!--                                                </div>-->
-
-<!--                                                <div class="pt-2 pb-4 border-b border-gray-200 mx-4">-->
-<!--                                                    <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">-->
-<!--                                                        Cover Photo-->
-<!--                                                    </a>-->
-
-<!--                                                    <input type="file" class="hidden"-->
-<!--                                                           ref="photo"-->
-<!--                                                           @change="updatePhotoPreview">-->
-
-<!--                                                    <div class="mt-2 mr-2">-->
-<!--                                                        <button class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"-->
-<!--                                                                type="button" @click="selectNewPhoto">-->
-<!--                                                            Select A New Photo-->
-<!--                                                        </button>-->
-<!--                                                    </div>-->
-
-<!--                                                    <div class="mt-2 mr-2">-->
-<!--                                                        <button v-if="$page.props.user.cover_photo_url"-->
-<!--                                                                class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"-->
-<!--                                                                type="button" @click="removePhoto">-->
-<!--                                                            Remove Photo-->
-<!--                                                        </button>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-
-<!--                                                <div class="pt-2 pb-4 border-b border-gray-200 mx-4">-->
-<!--                                                    <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">-->
-<!--                                                        Layout-->
-<!--                                                    </a>-->
-
-<!--                                                    <fieldset>-->
-<!--                                                        <legend class="sr-only">-->
-<!--                                                            Layouts-->
-<!--                                                        </legend>-->
-<!--                                                        <div class="relative bg-white rounded-md -space-y-px">-->
-
-<!--                                                            <label class="border-gray-200 rounded-tl-md rounded-tr-md relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">-->
-<!--                                                                <div class="flex w-full items-center text-sm">-->
-<!--                                                                    <input type="radio" :checked="layout===1" @input="updateLayout(1)" name="pricing_plan" value="Layout1" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">-->
-<!--                                                                    <span v-if="layout===1" id="layout-1-label-checked" class="ml-3 font-medium text-indigo-700">Left Align</span>-->
-<!--                                                                    <span v-else id="layout-1-label" class="ml-3 font-medium text-gray-900">Left Align</span>-->
-<!--                                                                </div>-->
-
-<!--                                                            </label>-->
-
-
-<!--                                                            <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">-->
-<!--                                                                <div class="flex items-center text-sm">-->
-<!--                                                                    <input type="radio" :checked="layout===2" @input="updateLayout(2)" name="pricing_plan" value="Layout2" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">-->
-<!--                                                                    <span v-if="layout===2" id="layout-2-label-checked" class="ml-3 font-medium text-indigo-700">Right Align</span>-->
-<!--                                                                    <span v-else id="layout-2-label" class="ml-3 font-medium text-gray-900">Right Align</span>-->
-<!--                                                                </div>-->
-
-<!--                                                            </label>-->
-
-
-<!--                                                            <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">-->
-<!--                                                                <div class="flex items-center text-sm">-->
-<!--                                                                    <input type="radio" :checked="layout===3" @input="updateLayout(3)" name="pricing_plan" value="Layout3" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">-->
-<!--                                                                    <span v-if="layout===3" id="layout-3-label-checked" class="ml-3 font-medium text-indigo-700">Top Align</span>-->
-<!--                                                                    <span v-else id="layout-3-label" class="ml-3 font-medium text-gray-900">Top Align</span>-->
-<!--                                                                </div>-->
-
-<!--                                                            </label>-->
-<!--                                                        </div>-->
-<!--                                                    </fieldset>-->
-
-<!--                                                </div>-->
-
-
-<!--                                            </div>-->
-<!--                                        </nav>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </transition>-->
-<!--                            <div class="flex-shrink-0 w-14" aria-hidden="true">-->
-<!--                                &lt;!&ndash; Dummy element to force sidebar to shrink to fit close icon &ndash;&gt;-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </transition>-->
-<!--                </div>-->
-
-                <!-- Static sidebar for desktop -->
-<!--                <div class="hidden lg:flex lg:flex-shrink-0">-->
-<!--                    &lt;!&ndash;below thing used to be pt-5 and pb-4&ndash;&gt;-->
-<!--                    <div class="flex flex-col w-64 border-r border-gray-200 pt-0 pb-0 bg-white">-->
-
-<!--                        &lt;!&ndash; Sidebar component, swap this element with another sidebar if you like &ndash;&gt;-->
-<!--                        <div class="h-0 flex-1 flex flex-col overflow-y-auto">-->
-
-<!--                            &lt;!&ndash; Navigation, below nav before was mt-6 &ndash;&gt;-->
-<!--                            <nav class="mt-0">-->
-<!--                                <div class="space-y-1">-->
-
-<!--                                    &lt;!&ndash; HOMEPAGE &ndash;&gt;-->
-
-<!--                                    <div class="pt-2 pb-4 border-b border-gray-200 mx-4">-->
-<!--                                        <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">-->
-<!--                                            Accent Color-->
-<!--                                        </a>-->
-<!--                                        <chrome-picker :value="colors" @input="updateColor" />-->
-<!--                                    </div>-->
-
-<!--                                    <div class="pt-2 pb-4 border-b border-gray-200 mx-4">-->
-<!--                                        <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">-->
-<!--                                            Cover Photo-->
-<!--                                        </a>-->
-
-<!--                                        <input type="file" class="hidden"-->
-<!--                                               ref="photo"-->
-<!--                                               @change="updatePhotoPreview">-->
-
-<!--                                        <div class="mt-2 mr-2">-->
-<!--                                            <button class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"-->
-<!--                                                    type="button" @click="selectNewPhoto">-->
-<!--                                                Select A New Photo-->
-<!--                                            </button>-->
-<!--                                        </div>-->
-
-<!--                                        <div class="mt-2 mr-2">-->
-<!--                                            <button v-if="$page.props.user.cover_photo_url"-->
-<!--                                                    class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"-->
-<!--                                                    type="button" @click="removePhoto">-->
-<!--                                                Remove Photo-->
-<!--                                            </button>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-
-<!--                                    <div class="pt-2 pb-4 border-b border-gray-200 mx-4">-->
-<!--                                        <a href="#" class="text-gray-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">-->
-<!--                                            Layout-->
-<!--                                        </a>-->
-
-<!--                                        <fieldset>-->
-<!--                                            <legend class="sr-only">-->
-<!--                                                Layouts-->
-<!--                                            </legend>-->
-<!--                                            <div class="relative bg-white rounded-md -space-y-px">-->
-
-<!--                                                <label class="border-gray-200 rounded-tl-md rounded-tr-md relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">-->
-<!--                                                    <div class="flex w-full items-center text-sm">-->
-<!--                                                        <input type="radio" :checked="layout===1" @input="updateLayout(1)" name="pricing_plan" value="Layout1" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">-->
-<!--                                                        <span v-if="layout===1" id="layout-1-label-checked" class="ml-3 font-medium text-indigo-700">Left Align</span>-->
-<!--                                                        <span v-else id="layout-1-label" class="ml-3 font-medium text-gray-900">Left Align</span>-->
-<!--                                                    </div>-->
-
-<!--                                                </label>-->
-
-
-<!--                                                <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">-->
-<!--                                                    <div class="flex items-center text-sm">-->
-<!--                                                        <input type="radio" :checked="layout===2" @input="updateLayout(2)" name="pricing_plan" value="Layout2" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">-->
-<!--                                                        <span v-if="layout===2" id="layout-2-label-checked" class="ml-3 font-medium text-indigo-700">Right Align</span>-->
-<!--                                                        <span v-else id="layout-2-label" class="ml-3 font-medium text-gray-900">Right Align</span>-->
-<!--                                                    </div>-->
-
-<!--                                                </label>-->
-
-
-<!--                                                <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">-->
-<!--                                                    <div class="flex items-center text-sm">-->
-<!--                                                        <input type="radio" :checked="layout===3" @input="updateLayout(3)" name="pricing_plan" value="Layout3" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">-->
-<!--                                                        <span v-if="layout===3" id="layout-3-label-checked" class="ml-3 font-medium text-indigo-700">Top Align</span>-->
-<!--                                                        <span v-else id="layout-3-label" class="ml-3 font-medium text-gray-900">Top Align</span>-->
-<!--                                                    </div>-->
-
-<!--                                                </label>-->
-<!--                                            </div>-->
-<!--                                        </fieldset>-->
-
-<!--                                    </div>-->
-
-<!--                                </div>-->
-<!--                            </nav>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
 
                 <!-- Main column -->
                 <div class="flex flex-col w-0 flex-1 overflow-hidden">
                     <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none" tabindex="0">
-                        <!-- Page title & actions -->
-<!--                        <div class="p-5 bg-gray-50">-->
-<!--                            <div class="shadow-md h-full">-->
 
-                                <!--Left align and right align-->
+                        <!-- Global notification live region, render this permanently at the end of the document -->
+                        <div aria-live="assertive" class="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start z-30">
+                            <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
+
+                                <transition
+                                    enter-active-class="transform ease-out duration-300 transition"
+                                    enter-class="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
+                                    enter-to-class="translate-y-0 opacity-100 sm:translate-x-0"
+                                    leave-active-class="transition ease-in duration-100"
+                                    leave-class="opacity-100"
+                                    leave-to-class="opacity-0">
+                                    <div v-show="showingAutosaveNotification" class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+                                        <div class="p-4">
+                                            <div class="flex items-center">
+                                                <div class="w-0 flex-1 flex justify-between">
+                                                    <p class="w-0 flex-1 text-sm font-medium text-gray-900">
+                                                        Any changes you make will automatically be saved.
+                                                    </p>
+                                                    <button @click="dontShowNotifAgain" class="ml-3 flex-shrink-0 bg-white rounded-md text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                        Don't Show Again
+                                                    </button>
+                                                </div>
+                                                <div class="ml-4 flex-shrink-0 flex">
+                                                    <button @click="showingAutosaveNotification=!showingAutosaveNotification" class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                        <span class="sr-only">Close</span>
+                                                        <!-- Heroicon name: solid/x -->
+                                                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </transition>
+                            </div>
+                        </div>
+
+
+                        <!--Left align and right align-->
                                 <div v-if="this.layout === 1 || this.layout === 2" class="bg-white">
                                     <div class="relative ">
                                         <div class="lg:absolute lg:inset-0">
@@ -522,6 +380,32 @@
                                                                 <p contenteditable placeholder="Describe a little about yourself and your goals here." @input="updateContent" class="mt-8 text-xl text-gray-500 leading-8">{{$page.props.site.section_content}}</p>
                                                             </div>
                                                         </div>
+                                                    </div>
+
+
+                                                    <!-- Social Media -->
+                                                    <div v-show="$page.props.site.facebook !== null || $page.props.site.instagram !== null || $page.props.site.twitter !== null"
+                                                         class="flex justify-center space-x-6">
+                                                        <a v-show="$page.props.site.facebook !== null" target="_blank" :href="facebookHttps === 'https://' ? $page.props.site.facebook : facebookHttp === 'http://' ? $page.props.site.facebook : '//' + $page.props.site.facebook" class="text-gray-300" :style="'color: ' + colors">
+                                                            <span class="sr-only">Facebook</span>
+                                                            <svg class="h-10 w-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                                <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" />
+                                                            </svg>
+                                                        </a>
+
+                                                        <a v-show="$page.props.site.instagram !== null" target="_blank" :href="instagramHttps === 'https://' ? $page.props.site.instagram : instagramHttp === 'http://' ? $page.props.site.instagram : '//' + $page.props.site.instagram" class="text-gray-300" :style="'color: ' + colors">
+                                                            <span class="sr-only">Instagram</span>
+                                                            <svg class="h-10 w-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                                <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
+                                                            </svg>
+                                                        </a>
+
+                                                        <a v-show="$page.props.site.twitter !== null" target="_blank" :href="twitterHttps === 'https://' ? $page.props.site.twitter : twitterHttp === 'http://' ? $page.props.site.twitter : '//' + $page.props.site.twitter" class="text-gray-300" :style="'color: ' + colors">
+                                                            <span class="sr-only">Twitter</span>
+                                                            <svg class="h-10 w-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                                                            </svg>
+                                                        </a>
                                                     </div>
 
                                                     <!--Normal Contact Section-->
@@ -719,6 +603,31 @@
                                         </div>
                                     </div>
 
+                                    <!-- Social Media -->
+                                    <div v-show="$page.props.site.facebook !== null || $page.props.site.instagram !== null || $page.props.site.twitter !== null"
+                                         class="flex justify-center space-x-6">
+                                        <a v-show="$page.props.site.facebook !== null" target="_blank" :href="facebookHttps === 'https://' ? $page.props.site.facebook : facebookHttp === 'http://' ? $page.props.site.facebook : '//' + $page.props.site.facebook" class="text-gray-300" :style="'color: ' + colors">
+                                            <span class="sr-only">Facebook</span>
+                                            <svg class="h-10 w-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" />
+                                            </svg>
+                                        </a>
+
+                                        <a v-show="$page.props.site.instagram !== null" target="_blank" :href="instagramHttps === 'https://' ? $page.props.site.instagram : instagramHttp === 'http://' ? $page.props.site.instagram : '//' + $page.props.site.instagram" class="text-gray-300" :style="'color: ' + colors">
+                                            <span class="sr-only">Instagram</span>
+                                            <svg class="h-10 w-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
+                                            </svg>
+                                        </a>
+
+                                        <a v-show="$page.props.site.twitter !== null" target="_blank" :href="twitterHttps === 'https://' ? $page.props.site.twitter : twitterHttp === 'http://' ? $page.props.site.twitter : '//' + $page.props.site.twitter" class="text-gray-300" :style="'color: ' + colors">
+                                            <span class="sr-only">Twitter</span>
+                                            <svg class="h-10 w-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                                            </svg>
+                                        </a>
+                                    </div>
+
                                     <!--Normal Contact Section-->
                                     <div class="bg-white py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
                                         <div class="relative max-w-xl mx-auto">
@@ -906,11 +815,19 @@
 
         data() {
             return {
+                showingAutosaveNotification: !this.site.saw_autosave_message_on_site,
+                facebookHttps: this.site.facebook == null ? "" : this.site.facebook.length > 7 ? this.site.facebook.substring(0, 8) : this.site.facebook,
+                instagramHttps: this.site.instagram == null ? "" : this.site.instagram.length > 7 ? this.site.instagram.substring(0, 8) : this.site.instagram,
+                twitterHttps: this.site.twitter == null ? "" : this.site.twitter.length > 7 ? this.site.twitter.substring(0, 8) : this.site.twitter,
+                facebookHttp: this.site.facebook == null ? "" : this.site.facebook.length > 6 ? this.site.facebook.substring(0, 7) : this.site.facebook,
+                instagramHttp: this.site.instagram == null ? "" : this.site.instagram.length > 6 ? this.site.instagram.substring(0, 7) : this.site.instagram,
+                twitterHttp: this.site.twitter == null ? "" : this.site.twitter.length > 6 ? this.site.twitter.substring(0, 7) : this.site.twitter,
                 photoPreview: null,
                 layout: this.site.layout,
                 showingAccentColorDropdown: false,
                 showingCoverPhotoDropdown: false,
                 showingLayoutDropdown: false,
+                showingSocialDropdown: false,
                 showingQuestionsDropdown: false,
                 colors: '#' + this.site.accent_color,
 
@@ -926,10 +843,27 @@
                     message: '',
                     site: this.site.uuid,
                 }),
+
+                updateSocialForm: this.$inertia.form({
+                    facebook: this.site.facebook,
+                    instagram: this.site.instagram,
+                    twitter: this.site.twitter,
+                    site: this.site.uuid,
+                }),
             };
         },
 
         methods: {
+            // don't show the notif again
+            async dontShowNotifAgain() {
+                this.showingAutosaveNotification=!this.showingAutosaveNotification;
+
+                let data = {
+                    'site': this.site.uuid,
+                }
+                let response = await axios.post('/api/dontshowsitenotif', data)
+            },
+
             // initialize the site
             createSite(layout) {
                 let data = {

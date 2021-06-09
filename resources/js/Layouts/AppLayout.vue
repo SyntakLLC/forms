@@ -81,6 +81,8 @@
                                     <!-- Active: "bg-gray-100", Not Active: "" -->
                                     <a @click="$inertia.get(route('profile.show'))" href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" :class="route().current('profile.show') ? 'bg-gray-100' : 'bg-white'" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
 
+                                    <a @click="$inertia.get(route('spark.portal'))" href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" :class="route().current('profile.show') ? 'bg-gray-100' : 'bg-white'" role="menuitem" tabindex="-1" id="user-menu-item-1">Billing</a>
+
                                     <a @click="$inertia.post(route('logout'))" href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
                                 </div>
                             </transition>
@@ -101,7 +103,7 @@
             </div>
         </nav>
 
-        <main class="max-w-7xl mx-auto">
+        <main class="mx-auto">
             <slot/>
         </main>
 

@@ -66,6 +66,9 @@ Route::post('form/update_tagline', 'App\Http\Controllers\QuestionController@upda
 // when adding an option
 Route::post('form/add_option', 'App\Http\Controllers\QuestionController@addOption');
 
+// when deleting a question, it's a web route so we can redirect to the prior question
+Route::post('form/delete-question', 'App\Http\Controllers\QuestionController@destroy');
+
 // the route that allows us to edit a single question while seeing all of them
 Route::get('form/{form}/edit/{question}', 'App\Http\Controllers\QuestionController@edit')->name('form.question.edit');
 
@@ -83,6 +86,9 @@ Route::get('{site}', 'App\Http\Controllers\SiteController@show')->name('site.sho
 
 // submits the contact form as a new lead
 Route::post('contact', 'App\Http\Controllers\ResponseController@contact');
+
+// updates the three social media links
+Route::post('update-social', 'App\Http\Controllers\SiteController@updateSocial');
 
 // to delete a form
 Route::post('delete-form', 'App\Http\Controllers\FormController@destroy');

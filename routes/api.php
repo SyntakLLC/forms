@@ -63,3 +63,6 @@ Route::post('move-up', 'App\Http\Controllers\QuestionController@up');
 
 // to move a question down
 Route::post('move-down', 'App\Http\Controllers\QuestionController@down');
+
+// stops showing the site notification
+Route::post('dontshowsitenotif', 'App\Http\Controllers\SiteController@dontshowsitenotif');

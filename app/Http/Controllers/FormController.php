@@ -269,7 +269,7 @@ class FormController extends Controller
                 'type' => 'Text',
                 'title' => 'Do you have any comments, questions, or concerns?',
                 'tagline' => 'You made it!',
-                'index' => 3,
+                'index' => 14,
             ]),
         ];
 

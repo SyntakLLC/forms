@@ -334,7 +334,7 @@
                                         <!--                                        </transition>-->
                                     </div>
 
-                                    <!-- HOMEPAGE -->
+                                    <!-- Questions -->
                                     <inertia-link v-for="(question, index) in questionList" :key="index" :href="route('form.question.edit', {
                                             form:  $page['props']['form'],
                                             question: question
@@ -423,6 +423,22 @@
                                             </button>
                                         </a>
                                     </inertia-link>
+
+                                    <!-- Decoy -->
+<!--                                    <a v-if="showingDecoyQuestion" href="#" class="bg-gray-200 text-gray-900 group flex items-center py-4 text-sm font-medium h-15 truncate">-->
+<!--                                        &lt;!&ndash;both used to be px-3&ndash;&gt;-->
+<!--                                        <div class="pl-3 w-5">-->
+<!--                                            <svg class="text-gray-500 mr-3 h-6 w-6"-->
+<!--                                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"-->
+<!--                                                 stroke="currentColor" aria-hidden="true">-->
+<!--                                                <path stroke-linecap="round" stroke-linejoin="round"-->
+<!--                                                      stroke-width="2" :d="returnQuestionSvg(decoyType)"/>-->
+<!--                                            </svg>-->
+<!--                                        </div>-->
+<!--                                        <div class="pl-6 pr-3 w-5/6 truncate">-->
+<!--                                            New Question-->
+<!--                                        </div>-->
+<!--                                    </a>-->
 
                                 </div>
                             </nav>
@@ -810,6 +826,14 @@ export default {
             questionList: this.questions.map((question) => {
                 return question
             }),
+            // showingDecoyQuestion: false,
+            // decoyType: "",
+        }
+    },
+
+    watch: {
+        questions: function(newVal, oldVal) { // watch it
+            this.questionList = this.questions;
         }
     },
 
@@ -869,14 +893,15 @@ export default {
         },
 
         // deleting a question
-        async deleteQuestion(deletedUuid) {
+        deleteQuestion(deletedUuid) {
             let newQuestions = this.questionList.filter((question) => {
                 return question.uuid !== deletedUuid;
             });
             this.questionList = newQuestions;
 
             let data = {'deletedUUID': deletedUuid, 'form_uuid': this.form.uuid}
-            let response = await axios.post('/api/delete-question', data)
+            // let response = await axios.post('/api/delete-question', data)
+            this.$inertia.post('/form/delete-question', data)
         },
 
         // changing the title of the question

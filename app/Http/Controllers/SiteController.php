@@ -21,6 +21,22 @@ class SiteController extends Controller
         return Redirect::route('dashboard');
     }
 
+    public function updateSocial(Request $request) {
+        $site = Site::findByUuid($request->site);
+        $site->facebook = $request->facebook;
+        $site->instagram = $request->instagram;
+        $site->twitter = $request->twitter;
+        $site->save();
+
+        return Redirect::route('dashboard');
+    }
+
+    public function dontshowsitenotif(Request $request) {
+        $site = Site::findByUuid($request->site);
+        $site->saw_autosave_message_on_site = true;
+        $site->save();
+    }
+
     public function show(Request $request, Site $site) {
         $user = User::findByUuid($site->user_id);
 

@@ -51,7 +51,10 @@ class QuestionController extends Controller
             'index' => $request->get('index'),
         ]);
 
-        return Redirect::route('form.edit', $request->get('form_uuid'));
+        return Redirect::route('form.question.edit', [
+            'form' => $request->get('form_uuid'),
+            'question' => $question->uuid,
+        ]);
     }
 
     public function addMultipleChoice(StoreQuestionRequest $request) {
@@ -74,7 +77,10 @@ class QuestionController extends Controller
             'index' => 1,
         ]);
 
-        return Redirect::route('form.edit', $request->get('form_uuid'));
+        return Redirect::route('form.question.edit', [
+            'form' => $request->get('form_uuid'),
+            'question' => $question->uuid,
+        ]);
     }
 
     public function addEmail(StoreQuestionRequest $request) {
@@ -86,7 +92,10 @@ class QuestionController extends Controller
             'index' => $request->get('index'),
         ]);
 
-        return Redirect::route('form.edit', $request->get('form_uuid'));
+        return Redirect::route('form.question.edit', [
+            'form' => $request->get('form_uuid'),
+            'question' => $question->uuid,
+        ]);
     }
 
     public function addPhone(StoreQuestionRequest $request) {
@@ -98,7 +107,10 @@ class QuestionController extends Controller
             'index' => $request->get('index'),
         ]);
 
-        return Redirect::route('form.edit', $request->get('form_uuid'));
+        return Redirect::route('form.question.edit', [
+            'form' => $request->get('form_uuid'),
+            'question' => $question->uuid,
+        ]);
     }
 
     public function store(Request $request)
@@ -125,6 +137,10 @@ class QuestionController extends Controller
             $newB = json_decode(json_encode($b), TRUE);
             return $newA['index'] < $newB['index'] ? -1 : ($newA['index'] == $newB['index'] ? 0 : 1);
         });
+
+        if (!in_array(Question::findByUuid($question), $questions)) {
+//            $questions = array_push($questions, Question::findByUuid($question));
+        }
 
         return Inertia::render('Forms/EditSingle', [
             'form' => $form,
@@ -195,16 +211,35 @@ class QuestionController extends Controller
 
         $deletedQuestion = Question::findByUuid($request->get('deletedUUID'));
 
+        $redirectToQuestion = $questions->first();
+        $zeroQuestion = $questions->first();
+
         foreach($questions as $question) {
+            if ($question['index'] == 0) {
+                $zeroQuestion = $question;
+            }
+
+            if ($question['index'] == ($deletedQuestion['index'] - 1)) {
+                $redirectToQuestion = $question;
+            }
+
             if ($question['index'] > $deletedQuestion['index']) {
                 $question['index'] = $question['index'] - 1;
                 $question->save();
             }
         }
 
+        if ($redirectToQuestion == null) {
+            $redirectToQuestion = $zeroQuestion;
+        }
+
         $deletedQuestion->delete();
 
-        return Redirect::route('form.edit', $request->get('form_uuid'));
+        return Redirect::route('form.question.edit', [
+            'form' => $request->get('form_uuid'),
+            'question' => $redirectToQuestion->uuid,
+        ]);
+//        return Redirect::route('form.edit', $request->get('form_uuid'));
 //        return Redirect::back()->with('message','Successfully deleted!');
     }
 
