@@ -25,6 +25,7 @@
         "vue-loader": "^15.9.6"
     },
     "dependencies": {
+        "@codinglabs/laravel-asset": "^1.0.1",
         "@ditdot-dev/vue-flow-form": "^1.1.7",
         "@inertiajs/inertia-vue": "^0.5.4",
         "@tailwindcss/aspect-ratio": "^0.2.1",

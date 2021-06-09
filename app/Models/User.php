@@ -38,7 +38,7 @@ class User extends Authenticatable
 
     public function site()
     {
-        return $this->hasOne(Site::class);
+        return $this->hasOne(Site::class, 'user_id', 'uuid');
     }
 
     /**

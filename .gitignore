@@ -22,3 +22,6 @@ DS_STORE
 auth.json
 .editorconfig
 .styleci.yml
+.vapor/
+.env.production
+.env.staging

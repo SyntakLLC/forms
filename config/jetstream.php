@@ -60,6 +60,6 @@ return [
     |
     */
 
-    'profile_photo_disk' => 'minio',
+    'profile_photo_disk' => 's3',
 
 ];

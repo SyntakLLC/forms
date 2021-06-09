@@ -6,12 +6,13 @@ import {App as InertiaApp, plugin as InertiaPlugin} from '@inertiajs/inertia-vue
 import VueFilterDateFormat from '@vuejs-community/vue-filter-date-format';
 import JsonCSV from 'vue-json-csv';
 import { Photoshop } from 'vue-color'
+import {asset} from '@codinglabs/laravel-asset'
 
 Vue.component('downloadCsv', JsonCSV)
 Vue.use(VueFilterDateFormat);
 // import PortalVue from 'portal-vue';
 
-Vue.mixin({methods: {route}});
+Vue.mixin({methods: {route, asset}});
 Vue.use(InertiaPlugin);
 // Vue.use(PortalVue);
 

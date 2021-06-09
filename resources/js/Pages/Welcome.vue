@@ -51,7 +51,7 @@
                                 <a :href="route('login')" class="text-base font-medium text-white hover:text-gray-300">
                                     Log in
                                 </a>
-                                <a v-if="canRegister" :href="route('register')" class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700">
+                                <a :href="route('register')" class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700">
                                     Register
                                 </a>
                             </div>
@@ -768,12 +768,7 @@
 
 <script>
     export default {
-        props: {
-            canLogin: Boolean,
-            canRegister: Boolean,
-            laravelVersion: String,
-            phpVersion: String,
-        },
+        props: [],
 
         data() {
             return {

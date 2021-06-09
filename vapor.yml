@@ -1,0 +1,67 @@
+id: 21630
+name: platform
+environments:
+    production:
+        memory: 1024
+        cli-memory: 512
+        concurrency: 50
+        scheduler: false
+        capacity: 2
+        queues: false
+        database: 'platform-production'
+        storage: 'syntak-form-platform-production'
+        separate-vendor: true
+        firewall:
+          rate-limit: 1000
+          bot-control:
+            - SignalNonBrowserUserAgent
+            - SignalKnownBotDataCenter
+            - SignalAutomatedBrowser
+            - CategorySearchEngine
+            - CategorySocialMedia
+            - CategorySecurity
+            - CategoryScrapingFramework
+            - CategoryLinkChecker
+            - CategoryHttpLibrary
+            - CategoryContentFetcher
+            - CategoryArchiver
+        runtime: 'php-8.0:al2'
+        domain: syntak.co
+        build:
+            - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
+            - 'php artisan event:cache'
+            - 'yarn install && yarn run production && rm -rf node_modules'
+        deploy:
+            - 'php artisan migrate --force'
+    staging:
+        memory: 1024
+        cli-memory: 512
+        concurrency: 50
+        scheduler: false
+        runtime: 'php-8.0:al2'
+        database: 'platform-staging'
+        storage: 'syntak-form-platform-staging'
+        separate-vendor: true
+        domain: staging.syntak.co
+        capacity: 2
+        queues: false
+        firewall:
+          rate-limit: 1000
+          bot-control:
+            - SignalNonBrowserUserAgent
+            - SignalKnownBotDataCenter
+            - SignalAutomatedBrowser
+            - CategorySearchEngine
+            - CategorySocialMedia
+            - CategorySecurity
+            - CategoryScrapingFramework
+            - CategoryLinkChecker
+            - CategoryHttpLibrary
+            - CategoryContentFetcher
+            - CategoryArchiver
+        build:
+          - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
+          - 'php artisan event:cache'
+          - 'yarn install && yarn run production && rm -rf node_modules'
+        deploy:
+          - 'php artisan migrate --force'

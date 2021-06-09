@@ -26,6 +26,7 @@ class CreateQuestionsTable extends Migration
             $table->boolean('multiple')->nullable();
             $table->integer('index');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -836,6 +836,11 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
+"@codinglabs/laravel-asset@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@codinglabs/laravel-asset/-/laravel-asset-1.0.1.tgz#0cb9c091cc9f5cf27153c9493897ff99ab39e1c8"
+  integrity sha512-8PjVUA6HkkYWD68RXxEc36DTs/zStBmivWX15mv8P9v9EZ4XDwP1+5miKYx7PwjxFIXrhKONJyO/CZR5kGbtag==
+
 "@discoveryjs/json-ext@^0.5.0":
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.2.tgz#8f03a22a04de437254e8ce8cc84ba39689288752"

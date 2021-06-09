@@ -20,7 +20,6 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function dashboard(Request $request, Site $site) {
-
         return Inertia::render('Dashboard', [
             'forms' => $request->user()->forms,
             'user' => $request->user(),

@@ -13,8 +13,8 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Segoe UI', ...defaultTheme.fontFamily.sans],
-                // Nunito was the old font
+                sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+                fraunces: ['Fraunces'],
             },
             colors: {
                 teal: colors.teal,
