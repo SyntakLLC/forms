@@ -12,7 +12,7 @@
                             <div class="relative ">
                                 <div class="lg:absolute lg:inset-0 lg:fixed">
 
-                                    <div v-if="$page.props.user.cover_photo_url==null"
+                                    <div v-if="$page.props.site.cover_photo==null"
                                          class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-white h-28 lg:h-screen lg:bg-fixed lg:fixed"
                                          :class="layout===1 ? 'lg:right-0' : 'lg:left-0'"
                                          :style="this.getURL"
@@ -25,7 +25,7 @@
 
                                     <div v-else class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-white h-28 overflow-hidden lg:h-screen"
                                          :class="layout===1 ? 'lg:right-0' : 'lg:left-0 lg:w-1/2 overflow-hidden'">
-                                        <img class="h-56 w-full object-cover lg:h-full lg:fixed" :class="layout===2 ? 'lg:w-1/2' : 'w-full'" :src="'http://localhost:9600/forms-bucket/' + $page.props.user.cover_photo_url" />
+                                        <img class="h-56 w-full object-cover lg:h-full lg:fixed" :class="layout===2 ? 'lg:w-1/2' : 'lg:w-1/2'" :src="$page.props.site.cover_photo" />
 
                                         <div class="lg:absolute flex lg:inset-y-0 lg:right-0 lg:w-full h-full justify-center items-center lg:mt-0 -mt-56">
                                             <img class="sm:h-40 sm:w-40 h-20 w-20 rounded-full object-cover shadow-md lg:fixed" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
@@ -34,7 +34,7 @@
 
                                 </div>
 
-
+                                <!-- Content -->
                                 <div class="relative py-16 px-4 sm:py-24 sm:px-6 lg:px-8 lg:max-w-7xl lg:mx-auto lg:py-32 lg:grid lg:grid-cols-2">
                                     <div v-if="layout===2" class="lg:mx-8"/>
                                     <div :class="layout===2 ? 'lg:pl-8 justify-self-center' : 'lg:pr-8'">
@@ -47,6 +47,7 @@
                                                 {{$page['props']['site']['message']}}
                                             </p>
 
+                                            <!-- Forms -->
                                             <ul class="mt-2" v-if="$page['props']['forms'].length">
                                                 <li v-for="(form) in $page['props']['forms']"
                                                     class="group">
@@ -215,7 +216,7 @@
 
                             <!--Cover photo-->
                             <div class="fixed z-0 pointer-events-none top-0">
-                                <div v-if="$page.props.user.cover_photo_url==null"
+                                <div v-if="$page.props.site.cover_photo==null"
                                      class="h-64 w-screen object-cover lg:h-96"
                                      :style="this.getURL"
                                      id="pattern3">
@@ -224,7 +225,7 @@
                                     <!--                                            </div>-->
                                 </div>
                                 <div v-else>
-                                    <img class="h-64 w-screen object-cover lg:h-96" :src="'http://localhost:9600/forms-bucket/' + $page.props.user.cover_photo_url" />
+                                    <img class="h-64 w-screen object-cover lg:h-96" :src="$page.props.site.cover_photo" />
                                 </div>
 
                             </div>

@@ -4198,6 +4198,13 @@ laravel-mix@^6.0.6:
     webpackbar "^5.0.0-3"
     yargs "^16.1.0"
 
+laravel-vapor@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/laravel-vapor/-/laravel-vapor-0.4.2.tgz#78bf3512d624f32a4a96efc14adf5331e2e9dd53"
+  integrity sha512-dKw0orOm8ueufrqe5tWLDOoIMHpVDf+wxMqR/G6gU41bsmVF/mifvcRCqBHtPPBCljGtCF6aeoUT21cGByTSkw==
+  dependencies:
+    axios "^0.21.1"
+
 lines-and-columns@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"

@@ -204,4 +204,12 @@ button {
     background-color: var(--bg-accent-color) !important;
 }
 
+* {
+    font-family: "Inter var";
+}
+
+.f-key {
+    color: var(--bg-accent-color) !important;
+}
+
 </style>

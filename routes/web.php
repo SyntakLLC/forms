@@ -73,6 +73,9 @@ Route::get('form/{form}/edit/{question}', 'App\Http\Controllers\QuestionControll
 // add a cover photo
 Route::post('update-cover-picture','App\Http\Controllers\Controller@updateCoverPicture');
 
+// update the profile photo
+Route::post('update-profile-picture','App\Http\Controllers\Controller@updateProfilePicture');
+
 // remove a cover photo
 Route::post('remove-cover-picture','App\Http\Controllers\Controller@removeCoverPicture');
 

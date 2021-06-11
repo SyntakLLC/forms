@@ -28,29 +28,30 @@ class Controller extends BaseController
     }
 
     public function updateCoverPicture(Request $request) {
-        $photo = $request->photo;
+        $filepath = 'cover-photos/' . $request->uuid . '.' . $request->extension;
+        Storage::move($request->key, $filepath);
 
-        $user = $request->user();
-        $user->forceFill([
-            'cover_photo_url' => $photo->storePublicly(
-                'cover-photos', ['disk' => isset($_ENV['VAPOR_ARTIFACT_NAME']) ? 's3' : config('jetstream.profile_photo_disk', 'public')]
-            ),
-        ])->save();
-
-        $site = $user->site;
-        $site->cover_photo_url = $photo->storePublicly(
-            'cover-photos', ['disk' => isset($_ENV['VAPOR_ARTIFACT_NAME']) ? 's3' : config('jetstream.profile_photo_disk', 'public')]
-        );
+        $site = auth()->user()->site;
+        $site->cover_photo_url = $filepath;
         $site->save();
+
+        return Redirect::route('dashboard');
+    }
+
+    public function updateProfilePicture(Request $request) {
+        $filepath = 'profile-photos/' . $request->uuid . '.' . $request->extension;
+        Storage::move($request->key, $filepath);
+
+        $user = auth()->user();
+        $user->forceFill([
+            'profile_photo_path' => $filepath
+        ])->save();
 
         return Redirect::route('dashboard');
     }
 
     public function removeCoverPicture(Request $request) {
         $user = $request->user();
-        $user->forceFill([
-            'cover_photo_url' => null,
-        ])->save();
 
         $site = $user->site;
         $site->cover_photo_url = null;

@@ -43,4 +43,28 @@ class VaporUiServiceProvider extends ServiceProvider
     {
         //
     }
+
+    /**
+     * Ensure that Vapor's internal routes are defined.
+     *
+     * @return void
+     */
+    public function ensureRoutesAreDefined()
+    {
+        if ($this->app->routesAreCached()) {
+            return;
+        }
+
+        Route::post(
+            '/vapor/signed-storage-url',
+            SignedStorageUrlController::class . '@store'
+        )->middleware([
+            'web',
+            Authenticate::class,
+            DispatchServingNovaEvent::class,
+            BootTools::class,
+            Authorize::class,
+            Authorize::class,
+        ]);
+    }
 }

@@ -132,6 +132,14 @@
 
                 reader.readAsDataURL(this.$refs.photo.files[0]);
 
+                Vapor.store(this.$refs.photo.files[0], {}).then(response => {
+                    this.$inertia.post('/update-profile-picture', {
+                        uuid: response.uuid,
+                        key: response.key,
+                        extension: response.extension
+                    })
+                });
+
                 // let data = {
                 //     'photo': photo,
                 // }

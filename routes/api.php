@@ -38,7 +38,7 @@ Route::post('update-color','App\Http\Controllers\SiteController@updateColor');
 Route::post('update-layout','App\Http\Controllers\SiteController@updateLayout');
 
 // the Updating Profile Picture
-//Route::post('update-cover-picture','App\Http\Controllers\Controller@updateCoverPicture');
+Route::post('update-cover-picture','App\Http\Controllers\Controller@updateCoverPicture');
 
 // the Update form question
 Route::post('update-form-question','App\Http\Controllers\QuestionController@update');
@@ -66,3 +66,6 @@ Route::post('move-down', 'App\Http\Controllers\QuestionController@down');
 
 // stops showing the site notification
 Route::post('dontshowsitenotif', 'App\Http\Controllers\SiteController@dontshowsitenotif');
+
+// stops showing the form notification
+Route::post('dontshowformnotif', 'App\Http\Controllers\SiteController@dontshowformnotif');

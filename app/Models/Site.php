@@ -6,6 +6,7 @@ use BinaryCabin\LaravelUUID\Traits\HasUUID;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Site extends Model
 {
@@ -27,6 +28,15 @@ class Site extends Model
         'useOurContactUs'
     ];
 
+    public function getCoverPhotoAttribute()
+    {
+        if ($this->cover_photo_url==null) {
+            return null;
+        } else {
+            return Storage::url($this->cover_photo_url);
+        }
+    }
+
     public function getRouteKeyName()
     {
         return 'uuid';
@@ -36,4 +46,8 @@ class Site extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'uuid');
     }
+
+    protected $appends = [
+        'cover_photo',
+    ];
 }

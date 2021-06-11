@@ -833,7 +833,9 @@ export default {
 
     watch: {
         questions: function(newVal, oldVal) { // watch it
-            this.questionList = this.questions;
+            this.questionList = this.questions.map((question) => {
+                return question
+            });
         }
     },
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Form;
 use App\Models\Option;
 use App\Models\Question;
+use App\Models\Site;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -51,7 +52,7 @@ class FormController extends Controller
         ]);
     }
 
-    public function edit(Form $form, Question $question = null) {
+    public function edit(Request $request, Form $form, Site $site, Question $question = null) {
         $ourQuestion = null;
         if ($question == null) {
             $ourQuestion = Form::findByUuid($form->uuid)->questions->sortBy('index')->first();
@@ -62,6 +63,7 @@ class FormController extends Controller
         return Redirect::route('form.question.edit', [
             'form' => $form->uuid,
             'question' => $ourQuestion,
+            'site' => $request->user()->site,
         ]);
     }
 

@@ -15,6 +15,7 @@ Vue.use(VueFilterDateFormat);
 Vue.mixin({methods: {route, asset}});
 Vue.use(InertiaPlugin);
 // Vue.use(PortalVue);
+window.Vapor = require('laravel-vapor');
 
 const app = document.getElementById('app');
 

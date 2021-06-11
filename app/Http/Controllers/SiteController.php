@@ -37,6 +37,12 @@ class SiteController extends Controller
         $site->save();
     }
 
+    public function dontshowformnotif(Request $request) {
+        $site = Site::findByUuid($request->site);
+        $site->saw_autosave_message_on_form = true;
+        $site->save();
+    }
+
     public function show(Request $request, Site $site) {
         $user = User::findByUuid($site->user_id);
 

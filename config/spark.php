@@ -123,14 +123,14 @@ return [
             'plans' => [
                 [
                     'name' => 'Standard',
-                    'short_description' => 'Upon subscribing, you\'ll immediately get access to your own page hosted by us. From there, you can add
-                    as many forms as you like, as well as view analytics on responses.',
+                    'short_description' => 'Upon subscribing, you\'ll immediately get access to a variety of professionally designed website
+                    templates. From there, you can create conversational forms or use our prebuilt forms to collect leads, which we will collate for you along with their responses.',
                     'monthly_id' => 'price_1ITyCHIi2QHxCfvnqiOOGi4t',
                     'yearly_id' => 'price_1ITyCHIi2QHxCfvnskSxKDPI',
                     'features' => [
                         'Collects leads for you',
-                        'Custom domains',
-                        'Unlimited forms',
+                        'Customizable domain endings',
+                        'Conversational forms',
                     ],
                 ],
             ],

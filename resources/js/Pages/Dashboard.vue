@@ -1,23 +1,8 @@
 <template>
     <app-layout>
-
         <!-- Initialized -->
         <div v-if="$page.props.site.initialized" class="h-full">
             <div class="flex items-center flex-shrink-0 border-b border-gray-200">
-                <!-- Search header -->
-<!--                <div class="relative z-10 flex-shrink-0 flex h-16 bg-white lg:hidden">-->
-<!--                    &lt;!&ndash; Sidebar toggle, controls the 'sidebarOpen' sidebar state. &ndash;&gt;-->
-<!--                    <button @click="showingQuestionsDropdown=!showingQuestionsDropdown"-->
-<!--                            class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 lg:hidden">-->
-<!--                        <span class="sr-only">Open sidebar</span>-->
-<!--                        &lt;!&ndash; Heroicon name: outline/menu-alt-1 &ndash;&gt;-->
-<!--                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"-->
-<!--                             stroke="currentColor" aria-hidden="true">-->
-<!--                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
-<!--                                  d="M4 6h16M4 12h8m-8 6h16"/>-->
-<!--                        </svg>-->
-<!--                    </button>-->
-<!--                </div>-->
 
                 <div class="w-full border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
                     <!-- Edit Site title -->
@@ -47,8 +32,8 @@
                             leave-active-class="transition ease-in duration-150"
                             leave-class="opacity-100 translate-y-0"
                             leave-to-class="opacity-0 translate-y-1">
-                            <div v-show="showingAccentColorDropdown" class="absolute z-10 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-xs sm:px-0">
-                                <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden bg-white">
+                            <div v-show="showingAccentColorDropdown" class="absolute z-10 left-3/4 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-xs sm:px-0">
+                                <div class="w-1/2 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white">
 <!--                                    <div class="relative grid gap-6 bg-white px-1 py-1 sm:gap-8 sm:p-8">-->
                                         <chrome-picker :value="colors" @input="updateColor" />
 <!--                                    </div>-->
@@ -276,12 +261,12 @@
 
 
                         <!--Left align and right align-->
-                                <div v-if="this.layout === 1 || this.layout === 2" class="bg-white">
+                        <div v-if="this.layout === 1 || this.layout === 2" class="bg-white">
                                     <div class="relative ">
                                         <div class="lg:absolute lg:inset-0">
 
                                             <!--Pattern background-->
-                                            <div v-if="$page.props.user.cover_photo_url==null"
+                                            <div v-if="site.cover_photo == null"
                                                  class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-white h-28 lg:h-screen"
                                                  :class="layout===1 ? 'lg:right-0' : 'lg:left-0'"
                                                  :style="this.getURL"
@@ -295,7 +280,7 @@
                                             <!--Cover photo-->
                                             <div v-else class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-white h-28 overflow-hidden lg:h-screen"
                                                 :class="layout===1 ? 'lg:right-0' : 'lg:left-0'">
-                                                <img class="h-56 w-full object-cover lg:absolute lg:h-full" :src="'http://localhost:9600/forms-bucket/' + $page.props.user.cover_photo_url" />
+                                                <img class="h-56 w-full object-cover lg:absolute lg:h-full" :src="site.cover_photo" />
 
                                                 <div class="lg:absolute flex lg:inset-y-0 lg:right-0 lg:w-full h-full justify-center items-center lg:mt-0 -mt-56">
                                                     <img class="sm:h-40 sm:w-40 h-20 w-20 rounded-full object-cover shadow-md" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
@@ -486,12 +471,12 @@
                                     </div>
                                 </div>
 
-                                <!--Top align-->
-                                <div v-if="this.layout === 3" class="bg-white">
+                        <!--Top align-->
+                        <div v-if="this.layout === 3" class="bg-white">
 
                                     <!--Cover photo-->
                                     <div>
-                                        <div v-if="$page.props.user.cover_photo_url==null"
+                                        <div v-if="site.cover_photo == null"
                                              class="h-64 w-full object-cover lg:h-96"
                                              :style="this.getURL"
                                              id="pattern3">
@@ -500,7 +485,7 @@
 <!--                                            </div>-->
                                         </div>
                                         <div v-else>
-                                            <img class="h-64 w-full object-cover lg:h-96" :src="'http://localhost:9600/forms-bucket/' + $page.props.user.cover_photo_url" />
+                                            <img class="h-64 w-full object-cover lg:h-96" :src="site.cover_photo" />
                                         </div>
 
                                     </div>
@@ -524,44 +509,38 @@
                                                 <p contenteditable placeholder="Message (optional)" @input="updateMessage" class="font-medium mt-4 text-lg text-gray-500 sm:mt-3 text-center pl-10">
                                                     {{$page['props']['site']['message']}}
                                                 </p>
-
-                                                <!--Edit pen icon-->
-                                                <span class="absolute inset-y-0 right-10 pl-3 flex items-end pointer-events-none text-gray-400 pb-2.5">
-                                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                                         fill="currentColor" aria-hidden="true">
-                                                        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
-                                                    </svg>
-                                                </span>
                                             </div>
                                         </div>
                                     </div>
 
                                     <!--Forms-->
-                                    <div class="relative pb-8 px-4 sm:pb-12 sm:px-6 lg:px-8 lg:max-w-7xl lg:mx-auto lg:pb-16 lg:w-3/4 justify-center pt-4 sm:pt-6 lg:pt-8">
+                                    <div class="relative pb-8 px-4 sm:pb-12 sm:px-6 lg:px-8 lg:max-w-7xl lg:mx-auto lg:pb-16 lg:w-1/2 justify-center pt-4 sm:pt-6 lg:pt-8">
                                         <ul class="mt-2" v-if="$page['props']['forms'].length">
-                                        <li v-for="(form) in $page['props']['forms']"
-                                            class="group">
-                                            <inertia-link :href="route('form.edit', form.uuid)">
-                                                <div class="mb-5 bg-white hover:bg-gray-50 sm:rounded-lg sm:mb-4 border">
-                                                    <div class="px-4 py-5 sm:p-6">
-                                                        <div class="sm:flex sm:items-start sm:justify-between">
-                                                            <div>
-                                                                <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                                                    {{ form.title }}
-                                                                </h3>
-                                                            </div>
-                                                            <div class="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
-                                                                <button type="button"
-                                                                        class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
-                                                                        :style="'background: ' + colors + '; color: ' + getContrastYIQ(colors)">
-                                                                    Edit Form
-                                                                </button>
+                                            <li v-for="(form) in $page['props']['forms']"
+                                                class="group">
+                                                <inertia-link :href="route('form.edit', form.uuid)">
+                                                    <div class="mb-5 bg-white hover:bg-gray-50 sm:rounded-lg sm:mb-4 border">
+                                                        <div class="px-4 py-5 sm:p-6">
+                                                            <div class="sm:flex sm:items-start sm:justify-between">
+                                                                <div>
+                                                                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                                                        {{ form.title }}
+                                                                    </h3>
+                                                                </div>
+                                                                <div class="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
+                                                                    <button type="button"
+                                                                            class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
+                                                                            :style="'background: ' + colors + '; color: ' + getContrastYIQ(colors)">
+                                                                        Edit Form
+                                                                    </button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </inertia-link>
-                                        </li>
+                                                </inertia-link>
+                                            </li>
+                                        </ul>
+
                                         <inertia-link :href="route('form.index')">
                                             <div class="mb-5 bg-white hover:bg-gray-50 sm:rounded-lg sm:mb-4 border-2 border-gray-300 border-dashed">
                                                 <div class="px-4 py-5 sm:p-6">
@@ -575,7 +554,6 @@
                                                 </div>
                                             </div>
                                         </inertia-link>
-                                        </ul>
                                     </div>
 
                                     <!--Article-->
@@ -704,8 +682,10 @@
 
                                 </div>
 
-<!--                            </div>-->
+                        <!-- Mobile Profile -->
+<!--                        <div v-if="this.layout === 4" class="bg-white">-->
 <!--                        </div>-->
+
                     </main>
                 </div>
             </div>
@@ -727,13 +707,47 @@
             </div>
 
             <div class="min-h-full flex overflow-hidden bg-white">
-                <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6">
 
                     <div class="bg-white">
                         <div class="mx-auto">
                             <div class="space-y-12">
 
-                                <ul class="grid grid-cols-2 gap-x-6 gap-y-12 space-y-0 sm:grid sm:grid-cols-3 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:grid-cols-3 lg:gap-x-8">
+                                <ul class="grid grid-cols-2 gap-x-6 gap-y-12 space-y-0 sm:grid sm:grid-cols-3 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:grid-cols-3">
+
+                                    <!-- Mobile-first -->
+                                    <li @click="createSite(4)" class="hover:opacity-90">
+                                        <div class="space-y-4">
+                                            <div class="aspect-w-3 aspect-h-2">
+                                                <img class="object-cover shadow-sm rounded-lg" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80" alt="">
+                                            </div>
+
+                                            <div class="space-y-2">
+                                                <div class="text-lg leading-6 font-medium space-y-1 text-center">
+                                                    <h3>Mobile Profile</h3>
+                                                    <p class="text-indigo-600">A mobile-first personal page</p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <!-- Brand Homepage -->
+                                    <li @click="createSite(5)" class="hover:opacity-90">
+                                        <div class="space-y-4">
+                                            <div class="aspect-w-3 aspect-h-2">
+                                                <img class="object-cover shadow-sm rounded-lg" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80" alt="">
+                                            </div>
+
+                                            <div class="space-y-2">
+                                                <div class="text-lg leading-6 font-medium space-y-1 text-center">
+                                                    <h3>Brand Homepage</h3>
+                                                    <p class="text-indigo-600">Focuses the customer more on your brand</p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </li>
 
                                     <!-- Top align -->
                                     <li @click="createSite(1)" class="hover:opacity-90">
@@ -744,7 +758,7 @@
 
                                             <div class="space-y-2">
                                                 <div class="text-lg leading-6 font-medium space-y-1 text-center">
-                                                    <h3>Top Align</h3>
+                                                    <h3>Standard</h3>
                                                     <p class="text-indigo-600">A standard site layout</p>
                                                 </div>
 
@@ -802,9 +816,11 @@
     import AppLayout from '@/Layouts/AppLayout'
     import Welcome from '@/Jetstream/Welcome'
     import { Chrome, Swatches } from 'vue-color'
+    import Show from "@/Pages/Show";
 
     export default {
         components: {
+            Show,
             AppLayout,
             Welcome,
             'chrome-picker': Chrome,
@@ -916,8 +932,16 @@
 
                 reader.readAsDataURL(this.$refs.photo.files[0]);
 
+                Vapor.store(this.$refs.photo.files[0], {}).then(response => {
+                    this.$inertia.post('/update-cover-picture', {
+                        uuid: response.uuid,
+                        key: response.key,
+                        extension: response.extension
+                    })
+                });
+
                 // let response = await axios.post('/api/update-cover-picture', {photo: this.$refs.photo.files[0]})
-                this.$inertia.post('update-cover-picture', {photo: this.$refs.photo.files[0]})
+                // this.$inertia.post('update-cover-picture', {photo: this.$refs.photo.files[0]})
             },
 
             /**
