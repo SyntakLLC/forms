@@ -34,9 +34,11 @@ class CreateNewUser implements CreatesNewUsers
             'password' => Hash::make($input['password']),
         ]);
 
-        Site::create([
+        $site = Site::create([
             'user_id' => $user->uuid,
         ]);
+
+        $site->cover_photo_url = 'cover-photos/default_cover_photo';
 
         return $user;
     }

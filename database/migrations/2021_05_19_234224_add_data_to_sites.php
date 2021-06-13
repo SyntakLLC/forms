@@ -14,11 +14,11 @@ class AddDataToSites extends Migration
     public function up()
     {
         Schema::table('sites', function (Blueprint $table) {
-//            $table->string('section_header')->default('Who am I?');
+            $table->string('section_header')->default('Who am I?');
             $table->text('section_content')->nullable();
-//            $table->boolean('initialized')->default(false);
-//            $table->boolean('useProfilePhoto')->default(true);
-//            $table->boolean('useOurContactUs')->default(true);
+            $table->boolean('initialized')->default(false);
+            $table->boolean('useProfilePhoto')->default(true);
+            $table->boolean('useOurContactUs')->default(true);
         });
     }
 

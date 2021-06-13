@@ -3,7 +3,7 @@
         <div tabindex="0"
              @keydown.esc="showingQuestionTypeDropdown=false; showingQuestionsDropdown=false; showingDeleteModal=false">
             <div class="flex items-center flex-shrink-0 border-b border-gray-200">
-                <!-- Search header -->
+                <!-- icon -->
                 <div class="relative z-0 flex-shrink-0 flex h-16 bg-white lg:hidden">
                     <!-- Sidebar toggle, controls the 'sidebarOpen' sidebar state. -->
                     <button @click="showingQuestionsDropdown=!showingQuestionsDropdown"
@@ -16,8 +16,8 @@
                         </svg>
                     </button>
                 </div>
-
-                <div class="relative min-w-0 py-2 px-6">
+                <!-- title -->
+                <div class="relative min-w-0 py-2 px-6 hidden lg:flex">
                     <h1 contenteditable @input="updateTitle" placeholder="Untitled Form"
                         class="pt-4 text-lg font-medium leading-6 text-gray-900 truncate pb-4 pr-10">
                         {{ $page['props']['form']['title'] }}
@@ -179,8 +179,16 @@
                                         </button>
                                     </div>
                                     <div class="flex-shrink-0 flex items-center px-4">
-                                        <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
+                                        <h1 contenteditable @input="updateTitle" placeholder="Untitled Form" class="text-lg font-medium leading-6 text-gray-900 sm:truncate p-2 border border-gray-200 rounded-md">
                                             {{ $page['props']['form']['title'] }}
+
+                                            <!--Edit pen icon-->
+<!--                                            <span class="absolute inset-y-0 right-10 pl-3 flex pointer-events-none text-gray-400">-->
+<!--                                                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"-->
+<!--                                                    fill="currentColor" aria-hidden="true">-->
+<!--                                                    <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>-->
+<!--                                                </svg>-->
+<!--                                            </span>-->
                                         </h1>
                                     </div>
                                     <div class="mt-5 flex-1 h-0 overflow-y-auto">
@@ -266,72 +274,6 @@
                                                 <h3>Add Question</h3>
                                             </button>
                                         </div>
-
-
-                                        <!--                                        <transition-->
-                                        <!--                                            enter-active-class="transition ease-out duration-100"-->
-                                        <!--                                            enter-class="transform opacity-0 scale-95"-->
-                                        <!--                                            enter-to-class="transform opacity-100 scale-100"-->
-                                        <!--                                            leave-active-class="transition ease-in duration-75"-->
-                                        <!--                                            leave-class="transform opacity-100 scale-100"-->
-                                        <!--                                            leave-to-class="transform opacity-0 scale-95">-->
-                                        <!--                                            <div v-if="showingQuestionTypeDropdown" class="origin-top absolute mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">-->
-                                        <!--                                                <div class="py-1" role="none">-->
-
-                                        <!--                                                    <button @click="addText"-->
-                                        <!--                                                            type="submit"-->
-                                        <!--                                                            class="group flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none" role="menuitem">-->
-
-                                        <!--                                                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">-->
-                                        <!--                                                            <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />-->
-                                        <!--                                                        </svg>-->
-                                        <!--                                                        Text-->
-                                        <!--                                                    </button>-->
-
-
-                                        <!--                                                    <button @click="addEmail"-->
-                                        <!--                                                            type="submit"-->
-                                        <!--                                                            class="group flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none" role="menuitem">-->
-
-                                        <!--                                                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">-->
-                                        <!--                                                            <path fill-rule="evenodd" d="M14.243 5.757a6 6 0 10-.986 9.284 1 1 0 111.087 1.678A8 8 0 1118 10a3 3 0 01-4.8 2.401A4 4 0 1114 10a1 1 0 102 0c0-1.537-.586-3.07-1.757-4.243zM12 10a2 2 0 10-4 0 2 2 0 004 0z" clip-rule="evenodd" />-->
-                                        <!--                                                        </svg>-->
-                                        <!--                                                        Email-->
-                                        <!--                                                    </button>-->
-
-
-                                        <!--                                                    <button @click="addPhone"-->
-                                        <!--                                                            type="submit"-->
-                                        <!--                                                            class="group flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none" role="menuitem">-->
-
-                                        <!--                                                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">-->
-                                        <!--                                                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />-->
-                                        <!--                                                        </svg>-->
-                                        <!--                                                        Phone Number-->
-                                        <!--                                                    </button>-->
-
-                                        <!--                                                    <button @click="addMultipleChoice"-->
-                                        <!--                                                            type="submit"-->
-                                        <!--                                                            class="group flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none" role="menuitem">-->
-
-                                        <!--                                                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">-->
-                                        <!--                                                            <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />-->
-                                        <!--                                                        </svg>-->
-                                        <!--                                                        Multiple Choice-->
-                                        <!--                                                    </button>-->
-
-                                        <!--                                                    <button @click="addSectionBreak"-->
-                                        <!--                                                            type="submit"-->
-                                        <!--                                                            class="group flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none" role="menuitem">-->
-
-                                        <!--                                                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">-->
-                                        <!--                                                            <path d="M2 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1H3a1 1 0 01-1-1V4zM8 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1H9a1 1 0 01-1-1V4zM15 3a1 1 0 00-1 1v12a1 1 0 001 1h2a1 1 0 001-1V4a1 1 0 00-1-1h-2z" />-->
-                                        <!--                                                        </svg>-->
-                                        <!--                                                        Section Break-->
-                                        <!--                                                    </button>-->
-                                        <!--                                                </div>-->
-                                        <!--                                            </div>-->
-                                        <!--                                        </transition>-->
                                     </div>
 
                                     <!-- Questions -->
@@ -423,23 +365,6 @@
                                             </button>
                                         </a>
                                     </inertia-link>
-
-                                    <!-- Decoy -->
-<!--                                    <a v-if="showingDecoyQuestion" href="#" class="bg-gray-200 text-gray-900 group flex items-center py-4 text-sm font-medium h-15 truncate">-->
-<!--                                        &lt;!&ndash;both used to be px-3&ndash;&gt;-->
-<!--                                        <div class="pl-3 w-5">-->
-<!--                                            <svg class="text-gray-500 mr-3 h-6 w-6"-->
-<!--                                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"-->
-<!--                                                 stroke="currentColor" aria-hidden="true">-->
-<!--                                                <path stroke-linecap="round" stroke-linejoin="round"-->
-<!--                                                      stroke-width="2" :d="returnQuestionSvg(decoyType)"/>-->
-<!--                                            </svg>-->
-<!--                                        </div>-->
-<!--                                        <div class="pl-6 pr-3 w-5/6 truncate">-->
-<!--                                            New Question-->
-<!--                                        </div>-->
-<!--                                    </a>-->
-
                                 </div>
                             </nav>
                         </div>

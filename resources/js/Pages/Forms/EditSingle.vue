@@ -493,8 +493,8 @@ export default {
         outline: none !important;
     }
 
-    * {
-        font-family: "Inter var";
-    }
+    /** {*/
+    /*    font-family: "Inter var";*/
+    /*}*/
 
 </style>

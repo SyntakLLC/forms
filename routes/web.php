@@ -2,6 +2,7 @@
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 /*
@@ -16,7 +17,15 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome');
+    $codelessURL = Storage::url('marketing-photos/Codeless.png');
+    $beautifulForms = Storage::url('marketing-photos/Beautiful_Forms.png');
+    $leads = Storage::url('marketing-photos/Leads.png');
+
+    return Inertia::render('Welcome', [
+        'codelessURL' => $codelessURL,
+        'beautifulForms' => $beautifulForms,
+        'leads' => $leads,
+    ]);
 });
 
 Route::middleware(['auth:sanctum', 'verified', 'subscribed'])->group(function() {
@@ -93,3 +102,6 @@ Route::post('delete-form', 'App\Http\Controllers\FormController@destroy');
 
 // initialize a site
 Route::post('create-site', 'App\Http\Controllers\SiteController@create');
+
+// to change the domain name
+Route::post('tryToUpdateDomain', 'App\Http\Controllers\SiteController@tryToUpdateDomain');

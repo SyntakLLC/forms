@@ -15,7 +15,8 @@
                     </div>
 
                     <div class="px-4 sm:px-6 lg:px-8">
-                        <ul class="space-y-12 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:grid-cols-4 2xl:grid-cols-6 lg:gap-x-8">
+
+                        <ul class="space-y-12 grid grid-cols-2 gap-x-6 gap-y-12 space-y-0 md:grid-cols-3 md:gap-x-7 lg:grid-cols-4 2xl:grid-cols-6 lg:gap-x-8">
 
                             <!--CUSTOM FORM BUTTON-->
                             <li>
@@ -24,7 +25,7 @@
 <!--                                              :href="route('form.edit', $page['props']['user'])">-->
                                     <button type="submit" class="focus:outline-none w-full h-full">
                                     <div class="space-y-4">
-                                        <div class="aspect-w-3 aspect-h-2 border-2 border-gray-300 border-dashed rounded-lg">
+                                        <div class="aspect-w-10 aspect-h-10 hover:bg-gray-50 border-2 border-gray-300 border-dashed rounded-lg">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-8 -8 40 40"
                                                  stroke="currentColor" class="text-gray-300">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -47,9 +48,11 @@
                             <!--HOW MUCH IS MY HOME WORTH-->
                             <li>
                                 <form @submit.prevent="homeWorthForm.post('/form/home_worth')">
-                                    <button type="submit" class="focus:outline-none w-full h-full">
+                                    <button type="submit" class="focus:outline-none w-full h-full -mt-12">
                                         <div class="space-y-4">
-                                            <img class="object-cover shadow-lg rounded-lg" src="https://www.familyhandyman.com/wp-content/uploads/2021/03/yellow-house-GettyImages-AA014705.jpg?fit=696,696" alt="">
+                                            <div class="aspect-w-10 aspect-h-10">
+                                                <img class="object-cover shadow-lg rounded-lg hover:opacity-75" src="https://www.familyhandyman.com/wp-content/uploads/2021/03/yellow-house-GettyImages-AA014705.jpg?fit=696,696" alt="">
+                                            </div>
 
                                             <div class="space-y-2">
                                                 <div class="text-lg leading-6 font-medium space-y-1">
@@ -65,9 +68,11 @@
                             <!--I'M LOOKING FOR AN APARTMENT-->
                             <li>
                                 <form @submit.prevent="apartmentForm.post('/form/apartment')">
-                                    <button type="submit" class="focus:outline-none w-full h-full">
+                                    <button type="submit" class="focus:outline-none w-full h-full -mt-12">
                                         <div class="space-y-4">
-                                            <img class="object-cover shadow-lg rounded-lg" src="https://m.psecn.photoshelter.com/img-get/I0000rq2D.59VW3k/s/690/SU-281-2.jpg" alt="">
+                                            <div class="aspect-w-10 aspect-h-10">
+                                                <img class="object-cover shadow-lg rounded-lg hover:opacity-75" src="https://m.psecn.photoshelter.com/img-get/I0000rq2D.59VW3k/s/690/SU-281-2.jpg" alt="">
+                                            </div>
 
                                             <div class="space-y-2">
                                                 <div class="text-lg leading-6 font-medium space-y-1">
@@ -83,9 +88,11 @@
                             <!--I'M THINKING ABOUT BUYING A HOME-->
                             <li>
                                 <form @submit.prevent="buyHomeForm.post('/form/buy_home')">
-                                    <button type="submit" class="focus:outline-none w-full h-full">
+                                    <button type="submit" class="focus:outline-none w-full h-full -mt-12">
                                         <div class="space-y-4">
-                                            <img class="object-cover shadow-lg rounded-lg" src="https://www.earthquakeauthority.com/EQA2/media/Image/Prepare-Your-Home/420x410-RedHouse.jpg" alt="">
+                                            <div class="aspect-w-10 aspect-h-10">
+                                                <img class="object-cover shadow-lg rounded-lg hover:opacity-75" src="https://www.earthquakeauthority.com/EQA2/media/Image/Prepare-Your-Home/420x410-RedHouse.jpg" alt="">
+                                            </div>
 
                                             <div class="space-y-2">
                                                 <div class="text-lg leading-6 font-medium space-y-1">

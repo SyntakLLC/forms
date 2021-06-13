@@ -221,3 +221,7 @@ header.vff-header svg.f-logo{
 .vff .text-muted {
     color: var(--vff-secondary-text-color);
 }
+
+* {
+    font-family: "Inter var";
+}

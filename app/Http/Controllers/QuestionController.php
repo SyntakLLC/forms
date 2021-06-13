@@ -33,10 +33,6 @@ class QuestionController extends Controller
             'index' => $request->get('index'),
         ]);
 
-        $form = Form::find($request->get('form_id'));
-        $questions = $form->questions;
-        $this->consoleLog($questions);
-
         return Redirect::route('form.question.edit', [
             'form' => $request->get('form_uuid'),
             'question' => $question->uuid,

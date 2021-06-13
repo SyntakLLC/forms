@@ -91,11 +91,11 @@ return [
     */
 
     'receipt_data' => [
-        'vendor' => 'Your Product',
-        'product' => 'Your Product',
-        'street' => '111 Example St.',
-        'location' => 'Los Angeles, CA',
-        'phone' => '555-555-5555',
+        'vendor' => 'Aboutme',
+        'product' => 'Monthly Subscription',
+        'street' => '409 Waverly Road',
+        'location' => 'North Andover, MA',
+        'phone' => '978-387-8432',
     ],
 
     /*

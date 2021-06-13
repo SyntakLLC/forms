@@ -69,3 +69,6 @@ Route::post('dontshowsitenotif', 'App\Http\Controllers\SiteController@dontshowsi
 
 // stops showing the form notification
 Route::post('dontshowformnotif', 'App\Http\Controllers\SiteController@dontshowformnotif');
+
+// to change the domain name
+Route::post('tryToUpdateDomain', 'App\Http\Controllers\SiteController@tryToUpdateDomain');

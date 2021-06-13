@@ -43,6 +43,16 @@ class SiteController extends Controller
         $site->save();
     }
 
+    public function tryToUpdateDomain(Request $request) {
+        $site = Site::findByUuid($request->site);
+        if (!Site::where('uuid', '=', $request->newUUID)->count() > 0) {
+            $site->uuid = $request->newUUID;
+            $site->save();
+        }
+
+        return Redirect::route('dashboard');
+    }
+
     public function show(Request $request, Site $site) {
         $user = User::findByUuid($site->user_id);
 
@@ -50,6 +60,7 @@ class SiteController extends Controller
             'site' => $site,
             'user' => $user,
             'forms' => $user->forms,
+            'subscribed' => $user->subscribed(),
         ]);
     }
 

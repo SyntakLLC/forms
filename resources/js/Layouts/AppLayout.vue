@@ -2,7 +2,7 @@
     <div>
 
         <!-- Header -->
-        <nav class="bg-white shadow">
+        <nav class="bg-white shadow lg:fixed lg:top-0 lg:z-40 lg:w-full">
             <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
                 <div class="relative flex justify-between h-16">
                     <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -103,7 +103,7 @@
             </div>
         </nav>
 
-        <main class="mx-auto">
+        <main class="mx-auto lg:mt-16">
             <slot/>
         </main>
     </div>

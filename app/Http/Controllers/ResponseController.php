@@ -91,7 +91,7 @@ class ResponseController extends Controller
         }
 
 
-        return Redirect::route('dashboard');
+        return Redirect::back();
     }
 
     public function contact(Request $request) {

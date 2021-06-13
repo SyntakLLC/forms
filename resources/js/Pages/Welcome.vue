@@ -114,9 +114,10 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="mt-12 -mb-16 sm:-mb-48 lg:m-0 lg:relative">
                                     <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
-                                        <!-- Illustration taken from Lucid Illustrations: https://lucid.pixsellz.io/ -->
+<!--                                         Illustration taken from Lucid Illustrations: https://lucid.pixsellz.io/-->
                                         <img class="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none" src="https://tailwindui.com/img/component-images/cloud-illustration-indigo-400.svg" alt="">
                                     </div>
                                 </div>
@@ -137,7 +138,7 @@
                                 </p>
                             </div>
                             <div class="mt-12 -mb-10 sm:-mb-24 lg:-mb-80">
-                                <img class="rounded-lg shadow-xl ring-1 ring-black ring-opacity-5" src="../../Editor.png" alt="">
+                                <img class="rounded-lg shadow-xl ring-1 ring-black ring-opacity-5" :src="$page.props.codelessURL" alt="Site editor interface">
                             </div>
                         </div>
                     </div>
@@ -187,7 +188,7 @@
                                 </div>
                                 <div class="mt-12 sm:mt-16 lg:mt-0">
                                     <div class="pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
-                                        <img class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none" src="https://tailwindui.com/img/component-images/inbox-app-screenshot-1.jpg" alt="Inbox user interface">
+                                        <img class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none" :src="$page.props.beautifulForms" alt="Conversational Forms interface">
                                     </div>
                                 </div>
                             </div>
@@ -216,7 +217,7 @@
                                 </div>
                                 <div class="mt-12 sm:mt-16 lg:mt-0 lg:col-start-1">
                                     <div class="pr-4 -ml-48 sm:pr-6 md:-ml-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
-                                        <img class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none" src="https://tailwindui.com/img/component-images/inbox-app-screenshot-2.jpg" alt="Customer profile user interface">
+                                        <img class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none" :src="$page.props.leads" alt="List of leads interface">
                                     </div>
                                 </div>
                             </div>
