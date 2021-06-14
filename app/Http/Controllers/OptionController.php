@@ -37,8 +37,6 @@ class OptionController extends Controller
         }
 
         $deletedOption->delete();
-
-        return Redirect::route('form.edit', $request->get('form_uuid'));
     }
 
     public function update(Request $request)

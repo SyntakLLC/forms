@@ -1,4 +1,4 @@
-<template>
++<template>
     <jet-action-section>
         <template #title>
             Delete Account
@@ -14,8 +14,7 @@
             </div>
 
             <div class="mt-5">
-                <button @click="confirmUserDeletion"
-                        class="inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150">
+                <button class="inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150"@click="confirmUserDeletion">
                     Delete Account
                 </button>
             </div>
@@ -30,25 +29,23 @@
                     Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.
 
                     <div class="mt-4">
-                        <jet-input type="password" class="mt-1 block w-3/4" placeholder="Password"
-                                    ref="password"
-                                    v-model="form.password"
-                                    @keyup.enter="deleteUser" />
+                        <input type="password" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-3/4" placeholder="Password"
+                                   ref="password"
+                                   v-model="form.password"
+                                   @keyup.enter="deleteUser" />
 
                         <jet-input-error :message="form.errors.password" class="mt-2" />
                     </div>
                 </template>
 
                 <template #footer>
-                    <jet-secondary-button @click="closeModal">
+                    <button class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150" @click="closeModal">
                         Cancel
-                    </jet-secondary-button>
-
-                    <button class="ml-2 inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150"
-                            @click="deleteUser" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                        Delete Account
                     </button>
 
+                    <button class="inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150 ml-2" @click="deleteUser" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                        Delete Account
+                    </button>
                 </template>
             </jet-dialog-modal>
         </template>
@@ -56,54 +53,54 @@
 </template>
 
 <script>
-    import JetActionSection from '@/Jetstream/ActionSection'
-    import JetDialogModal from '@/Jetstream/DialogModal'
-    import JetDangerButton from '@/Jetstream/DangerButton'
-    import JetInput from '@/Jetstream/Input'
-    import JetInputError from '@/Jetstream/InputError'
-    import JetSecondaryButton from '@/Jetstream/SecondaryButton'
+import JetActionSection from '@/Jetstream/ActionSection'
+import JetDialogModal from '@/Jetstream/DialogModal'
+import JetDangerButton from '@/Jetstream/DangerButton'
+import JetInput from '@/Jetstream/Input'
+import JetInputError from '@/Jetstream/InputError'
+import JetSecondaryButton from '@/Jetstream/SecondaryButton'
 
-    export default {
-        components: {
-            JetActionSection,
-            JetDangerButton,
-            JetDialogModal,
-            JetInput,
-            JetInputError,
-            JetSecondaryButton,
+export default {
+    components: {
+        JetActionSection,
+        JetDangerButton,
+        JetDialogModal,
+        JetInput,
+        JetInputError,
+        JetSecondaryButton,
+    },
+
+    data() {
+        return {
+            confirmingUserDeletion: false,
+
+            form: this.$inertia.form({
+                password: '',
+            })
+        }
+    },
+
+    methods: {
+        confirmUserDeletion() {
+            this.confirmingUserDeletion = true;
+
+            setTimeout(() => this.$refs.password.focus(), 250)
         },
 
-        data() {
-            return {
-                confirmingUserDeletion: false,
-
-                form: this.$inertia.form({
-                    password: '',
-                })
-            }
+        deleteUser() {
+            this.form.delete(route('current-user.destroy'), {
+                preserveScroll: true,
+                onSuccess: () => this.closeModal(),
+                onError: () => this.$refs.password.focus(),
+                onFinish: () => this.form.reset(),
+            })
         },
 
-        methods: {
-            confirmUserDeletion() {
-                this.confirmingUserDeletion = true;
+        closeModal() {
+            this.confirmingUserDeletion = false
 
-                setTimeout(() => this.$refs.password.focus(), 250)
-            },
-
-            deleteUser() {
-                this.form.delete(route('current-user.destroy'), {
-                    preserveScroll: true,
-                    onSuccess: () => this.closeModal(),
-                    onError: () => this.$refs.password.focus(),
-                    onFinish: () => this.form.reset(),
-                })
-            },
-
-            closeModal() {
-                this.confirmingUserDeletion = false
-
-                this.form.reset()
-            },
+            this.form.reset()
         },
-    }
+    },
+}
 </script>

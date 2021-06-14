@@ -8,8 +8,8 @@
                             <div class="flex items-center flex-1">
                                 <div class="flex items-center justify-between w-full md:w-auto">
                                     <a href="#">
-                                        <span class="sr-only">Workflow</span>
-                                        <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="">
+                                        <span class="sr-only">AboutContact</span>
+                                        <img class="h-8 w-auto sm:h-10" :src="$page.props.logoImageURL" alt="">
                                     </a>
                                     <div class="-mr-2 flex items-center md:hidden">
                                         <button @click="showingMenu=!showingMenu" type="button" class="bg-gray-900 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white" aria-expanded="false">
@@ -98,7 +98,7 @@
                                             <span class="pb-3 block bg-clip-text text-indigo-500 sm:pb-5">in 8 minutes or less</span>
                                         </h1>
                                         <p class="text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl">
-                                            Aboutme takes the stress out of web development by providing you professionally-designed templates as a launchpad. No code required.
+                                            AboutContact takes the stress out of web development by providing you professionally-designed templates as a launchpad. No code required.
                                         </p>
                                         <div class="mt-10 sm:mt-12">
                                                 <div class="sm:flex">
@@ -110,7 +110,7 @@
                                                         <button type="submit" class="block w-full py-4 px-6 rounded-md shadow bg-indigo-500 text-white font-medium hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-400 focus:ring-offset-gray-900">Start free trial</button>
                                                     </a>
                                                 </div>
-                                                <p class="mt-3 text-sm text-gray-300 sm:mt-4">Start your free 7-day trial, no credit card necessary. By providing your email, you agree to our <a href="#" class="font-medium text-white">terms or service</a>.</p>
+                                                <p class="mt-3 text-sm text-gray-300 sm:mt-4">Start your free 7-day trial, no credit card necessary. By providing your email, you agree to our <a href="#" class="font-medium text-white">terms of service</a>.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -243,7 +243,7 @@
                                                 <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                                             </svg>
                                             <p class="mt-6 text-2xl font-medium text-white">
-                                                Aboutme's value came in saving me countless hours from developing a homepage or managing my leads, which is crucial in these early stages when I don't have the history as a realtor to afford taking time off.
+                                                AboutContact's value came in saving me countless hours from developing a homepage or managing my leads, which is crucial in these early stages when I don't have the history as a realtor to afford taking time off.
                                             </p>
                                         </div>
                                         <footer class="mt-6">
@@ -452,7 +452,7 @@
                     <div class="max-w-md mx-auto px-4 sm:max-w-7xl sm:px-6 lg:px-8">
                         <div class="xl:grid xl:grid-cols-3 xl:gap-8">
 <!--                            <div class="space-y-8 xl:col-span-1">-->
-<!--                                <img class="h-10" src="https://tailwindui.com/img/logos/workflow-mark-gray-300.svg" alt="Aboutme">-->
+<!--                                <img class="h-10" src="https://tailwindui.com/img/logos/workflow-mark-gray-300.svg" alt="AboutContact">-->
 <!--                                <p class="text-gray-500 text-base">-->
 <!--                                    Offering time-saving marketing steps to help realtors get known.-->
 <!--                                </p>-->
@@ -622,7 +622,10 @@
                         </div>
                         <div class="mt-12 border-t border-gray-200 py-8">
                             <p class="text-base text-gray-400 xl:text-center">
-                                &copy; 2021 Aboutme. All rights reserved.
+                                &copy; 2021 AboutContact. All rights reserved.
+                            </p>
+                            <p class="text-base text-gray-400 xl:text-center">
+                                amaan@syntak.co
                             </p>
                         </div>
                     </div>

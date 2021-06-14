@@ -200,7 +200,7 @@ export default {
 @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.css';
 @import'../../../css/flow-form-amaan.css';
 
-button {
+button.o-btn-action {
     background-color: var(--bg-accent-color) !important;
 }
 

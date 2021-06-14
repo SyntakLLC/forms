@@ -20,10 +20,15 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function dashboard(Request $request, Site $site) {
+        $logoImageURL = Storage::url('marketing-photos/Aboutcontact Logo Image.png');
+        $logoTextURL = Storage::url('marketing-photos/Aboutcontact Logo Text.png');
+
         return Inertia::render('Dashboard', [
             'forms' => $request->user()->forms,
             'user' => $request->user(),
             'site' => $request->user()->site,
+            'logoImageURL' => $logoImageURL,
+            'logoTextURL' => $logoTextURL,
         ]);
     }
 
@@ -47,7 +52,7 @@ class Controller extends BaseController
             'profile_photo_path' => $filepath
         ])->save();
 
-        return Redirect::route('dashboard');
+        return Redirect::route('profile.show');
     }
 
     public function removeCoverPicture(Request $request) {

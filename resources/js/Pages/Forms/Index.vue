@@ -51,7 +51,7 @@
                                     <button type="submit" class="focus:outline-none w-full h-full -mt-12">
                                         <div class="space-y-4">
                                             <div class="aspect-w-10 aspect-h-10">
-                                                <img class="object-cover shadow-lg rounded-lg hover:opacity-75" src="https://www.familyhandyman.com/wp-content/uploads/2021/03/yellow-house-GettyImages-AA014705.jpg?fit=696,696" alt="">
+                                                <img class="object-cover shadow-lg rounded-lg hover:opacity-75" :src="$page.props.homeWorthIcon" style="object-position: -10px 0;" alt="Form Icon">
                                             </div>
 
                                             <div class="space-y-2">
@@ -71,7 +71,7 @@
                                     <button type="submit" class="focus:outline-none w-full h-full -mt-12">
                                         <div class="space-y-4">
                                             <div class="aspect-w-10 aspect-h-10">
-                                                <img class="object-cover shadow-lg rounded-lg hover:opacity-75" src="https://m.psecn.photoshelter.com/img-get/I0000rq2D.59VW3k/s/690/SU-281-2.jpg" alt="">
+                                                <img class="object-cover shadow-lg rounded-lg hover:opacity-75" :src="$page.props.apartmentIcon" style="object-position: -10px 0;" alt="Form Icon">
                                             </div>
 
                                             <div class="space-y-2">
@@ -85,27 +85,6 @@
                                     </button>
                                 </form>
                             </li>
-                            <!--I'M THINKING ABOUT BUYING A HOME-->
-                            <li>
-                                <form @submit.prevent="buyHomeForm.post('/form/buy_home')">
-                                    <button type="submit" class="focus:outline-none w-full h-full -mt-12">
-                                        <div class="space-y-4">
-                                            <div class="aspect-w-10 aspect-h-10">
-                                                <img class="object-cover shadow-lg rounded-lg hover:opacity-75" src="https://www.earthquakeauthority.com/EQA2/media/Image/Prepare-Your-Home/420x410-RedHouse.jpg" alt="">
-                                            </div>
-
-                                            <div class="space-y-2">
-                                                <div class="text-lg leading-6 font-medium space-y-1">
-                                                    <h3>I'm Thinking About Buying a Home</h3>
-                                                    <p class="text-indigo-600">Premade Form</p>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </button>
-                                </form>
-                            </li>
-
 
                         </ul>
                     </div>

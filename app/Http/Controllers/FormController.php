@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class FormController extends Controller
@@ -24,8 +25,13 @@ class FormController extends Controller
     }
 
     public function index(Request $request) {
+        $homeWorthIcon = Storage::url('marketing-photos/Home_Worth_Form_Icon.png');
+        $apartmentIcon = Storage::url('marketing-photos/Apartment_Form_Icon.png');
+
         return Inertia::render('Forms/Index', [
             'forms' => $request->user()->forms,
+            'homeWorthIcon' => $homeWorthIcon,
+            'apartmentIcon' => $apartmentIcon,
         ]);
     }
 

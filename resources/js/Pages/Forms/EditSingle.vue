@@ -114,7 +114,7 @@
                                     </div>
 
                                     <div class="vff-animate f-fade-in f-enter">
-                                        <button @click="addOption" type="button" href="#" aria-label="Press to continue" class="o-btn-action" :style="accentColor">
+                                        <button @click="addOption" type="button" href="#" aria-label="Press to continue" class="o-btn-action-custom" :class="'text-white'" :style="accentColor">
                                             <span>Add Option</span>
                                         </button>
 <!--                                        <a href="#" class="f-enter-desc">Press <span class="f-string-em">Enter</span></a>-->
@@ -151,7 +151,7 @@
                                         </div> <!---->
                                     </div>
                                     <div class="vff-animate f-fade-in f-enter">
-                                        <button type="button" href="#" aria-label="Press to continue" class="o-btn-action" :style="accentColor">
+                                        <button type="button" href="#" aria-label="Press to continue" class="o-btn-action-custom" :class="'text-white'" :style="accentColor">
                                             <span>Continue</span>
                                         </button>
                                         <a href="#" class="f-enter-desc">Press <span class="f-string-em">Enter</span></a></div> <!----></div>
@@ -251,6 +251,15 @@ export default {
             },
         }
     },
+
+    watch: {
+        options: function(newVal, oldVal) { // watch it
+            this.optionsList = this.options.map((option) => {
+                return option
+            });
+        }
+    },
+
     mounted() {
         this.focusField()
         this.dataValue = this.question.answer
@@ -301,7 +310,7 @@ export default {
             });
             this.optionsList = newOptions;
 
-            let data = {'question_id': this.question.id, 'deletedUUID': deletedUuid, 'form_uuid': this.question.form_id}
+            let data = {'question_id': this.question.id, 'deletedUUID': deletedUuid, 'form_id': this.question.form_id}
 
             let response = await axios.post('/api/delete-option', data)
         },
@@ -493,8 +502,32 @@ export default {
         outline: none !important;
     }
 
-    /** {*/
-    /*    font-family: "Inter var";*/
-    /*}*/
+    .vff .o-btn-action-custom {
+        z-index: 1;
+        line-height: 1.2;
+        font-weight: 900;
+        text-transform: lowercase
+    }
+
+    .vff .o-btn-action-custom span {
+        font-size: 1em;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        text-decoration: none;
+        -webkit-transition: all .4s ease 0s;
+        transition: all .4s ease 0s
+    }
+    .vff .o-btn-action-custom {
+        color: var(--vff-button-text-color);
+        background-color: var(--vff-button-color);
+    }
+
+    .vff .o-btn-action-custom:hover,
+    .vff .o-btn-action-custom:focus {
+        background-color: var(--vff-button-hover-color);
+        opacity: .9;
+    }
 
 </style>

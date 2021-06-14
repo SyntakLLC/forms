@@ -58,8 +58,10 @@ class SiteController extends Controller
 
         return Inertia::render('Show', [
             'site' => $site,
-            'user' => $user,
+            'profile_photo_url' => $user->profile_photo_url,
+            'name' => $user->name,
             'forms' => $user->forms,
+            'onTrial' => $user->onTrial(),
             'subscribed' => $user->subscribed(),
         ]);
     }

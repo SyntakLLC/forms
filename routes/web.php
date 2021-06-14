@@ -28,6 +28,10 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/help', function () {
+    return Inertia::render('Help');
+})->name('help');
+
 Route::middleware(['auth:sanctum', 'verified', 'subscribed'])->group(function() {
 
 //    Route::get('/dashboard', function () {

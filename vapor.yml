@@ -1,5 +1,16 @@
 id: 21630
 name: platform
+ignore:
+  - 'public/js'
+  - 'node_modules'
+  - '.vagrant'
+  - '.vapor'
+  - 'vendor'
+  - '.editorconfig'
+  - 'Homestead.yaml'
+  - 'Vagrantfile'
+  - 'aliases'
+  - 'after.sh'
 environments:
     production:
         memory: 1024

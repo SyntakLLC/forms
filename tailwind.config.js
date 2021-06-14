@@ -15,6 +15,7 @@ module.exports = {
             fontFamily: {
                 sans: ['Inter var', ...defaultTheme.fontFamily.sans],
                 fraunces: ['Fraunces'],
+                nunito: ['Nunito', ...defaultTheme.fontFamily.sans]
             },
             colors: {
                 teal: colors.teal,

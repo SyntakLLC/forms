@@ -39,6 +39,7 @@ class CreateNewUser implements CreatesNewUsers
         ]);
 
         $site->cover_photo_url = 'cover-photos/default_cover_photo';
+        $site->save();
 
         return $user;
     }

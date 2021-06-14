@@ -1,8 +1,8 @@
 <template>
     <div class="h-screen">
         <div class="h-full flex overflow-hidden bg-white">
-            <!-- Main column -->
-            <div class="flex flex-col w-0 flex-1 overflow-hidden">
+            <!-- Show if subscribed -->
+            <div v-if="this.onTrial || this.subscribed" class="flex flex-col w-0 flex-1 overflow-hidden">
                 <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none" tabindex="0">
                     <!-- Page title & actions -->
                     <div class="h-screen bg-white rounded-md">
@@ -17,7 +17,7 @@
                                         <img class="h-56 w-full object-cover lg:h-full lg:fixed" :class="layout===2 ? 'lg:w-1/2' : 'lg:w-1/2'" :src="$page.props.site.cover_photo" />
 
                                         <div class="lg:absolute flex lg:inset-y-0 lg:right-0 lg:w-full h-full justify-center items-center lg:mt-0 -mt-56">
-                                            <img class="h-40 w-40 rounded-full object-cover shadow-md lg:fixed" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
+                                            <img class="h-40 w-40 rounded-full object-cover shadow-md lg:fixed" :src="$page.props.profile_photo_url" :alt="$page.props.name" />
                                         </div>
                                     </div>
 
@@ -216,7 +216,7 @@
                                 <!--Profile Picture-->
                                 <div class="-mt-16 flex space-x-5 justify-center flex-col">
                                     <div class="flex justify-center content-center">
-                                        <img class="z-10 -mt-16 justify-self-center items-center h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
+                                        <img class="z-10 -mt-16 justify-self-center items-center h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32" :src="$page.props.profile_photo_url" :alt="$page.props.name" />
                                     </div>
                                 </div>
 
@@ -224,7 +224,7 @@
                                 <div class="relative pb-1 px-4 sm:px-6 lg:px-8 lg:max-w-7xl lg:mx-auto lg:w-1/2 justify-center">
                                     <div class="2xl:block mt-3 min-w-0 flex-1">
                                         <h1 class="text-2xl font-bold text-gray-900 truncate text-center">
-                                            {{ $page.props.user.name }}
+                                            {{ $page.props.name }}
                                         </h1>
 
                                         <div class="items-end">
@@ -402,6 +402,16 @@
                     </div>
                 </main>
             </div>
+
+            <!-- Else show alert -->
+            <div v-else class="relative flex items-top justify-center min-h-screen w-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
+                <div class="max-w-xl mx-auto sm:px-6 lg:px-8">
+                    <div class="flex items-center pt-8 sm:justify-start sm:pt-0">
+                        <div class="font-nunito px-4 text-lg text-gray-500 tracking-wider">
+                            This user has removed their page.                    </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -419,7 +429,7 @@ export default {
         'swatches-picker': Swatches,
     },
 
-    props: ['user', 'site'],
+    props: ['profile_photo_url', 'name', 'onTrial', 'subscribed', 'site'],
 
     data() {
         return {

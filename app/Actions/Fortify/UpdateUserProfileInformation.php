@@ -21,12 +21,11 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'photo' => ['nullable', 'mimes:jpg,jpeg,png'],
-//            ^ above used to have: , 'max:1024' ||||||as another condition
+            'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
-//            $user->updateProfilePhoto($input['photo']);
+            $user->updateProfilePhoto($input['photo']);
         }
 
         if ($input['email'] !== $user->email &&

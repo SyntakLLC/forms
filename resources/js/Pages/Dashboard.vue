@@ -209,12 +209,12 @@
                             Customize Domain
                         </button>
 
-                        <inertia-link :href="route('site.show', $page.props.site.uuid)"
-                                      class="truncate hover:text-gray-600 block">
-                            <button type="button" class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:order-1 ml-3">
+<!--                        <inertia-link :href="route('site.show', $page.props.site.uuid)"-->
+<!--                                      class="truncate hover:text-gray-600 block">-->
+                            <button @click="$inertia.get(route('site.show', $page.props.site.uuid))" type="button" class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:order-1 ml-3">
                                 Preview
                             </button>
-                        </inertia-link>
+<!--                        </inertia-link>-->
                     </div>
 
                     <!--the change domain modal-->
@@ -350,7 +350,7 @@
                             <div class="relative ">
 
                                 <!-- Background Image -->
-                                <div class="lg:absolute lg:inset-0 z-50">
+                                <div class="lg:absolute bg-white lg:inset-0 z-0">
                                     <!--Cover photo-->
                                     <div class="lg:fixed lg:inset-y-0 lg:right-0 lg:w-1/2 bg-white h-56 overflow-hidden lg:h-screen"
                                          :class="layout===1 ? 'lg:right-0' : 'lg:left-0'">
@@ -890,7 +890,7 @@
             'swatches-picker': Swatches,
         },
 
-        props: ['user', 'site'],
+        props: ['user', 'site', 'logoImageURL', 'logoTextURL'],
 
         data() {
             return {
@@ -1033,7 +1033,9 @@
 
                 reader.readAsDataURL(this.$refs.photo.files[0]);
 
-                Vapor.store(this.$refs.photo.files[0], {}).then(response => {
+                Vapor.store(this.$refs.photo.files[0], {
+                    visibility: 'public-read'
+                }).then(response => {
                     this.$inertia.post('/update-cover-picture', {
                         uuid: response.uuid,
                         key: response.key,

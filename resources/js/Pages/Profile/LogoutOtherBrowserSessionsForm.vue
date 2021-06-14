@@ -44,7 +44,7 @@
             </div>
 
             <div class="flex items-center mt-5">
-                <button @click="confirmLogout" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150">
+                <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150" @click="confirmLogout">
                     Log Out Other Browser Sessions
                 </button>
 
@@ -54,138 +54,91 @@
             </div>
 
             <!-- Log Out Other Devices Confirmation Modal -->
-            <modal :show="confirmingLogout" @close="closeModal">
-                <div class="px-6 py-4">
-                    <div class="text-lg">
-                        Log Out Other Browser Sessions
-                    </div>
+            <jet-dialog-modal :show="confirmingLogout" @close="closeModal">
+                <template #title>
+                    Log Out Other Browser Sessions
+                </template>
+
+                <template #content>
+                    Please enter your password to confirm you would like to log out of your other browser sessions across all of your devices.
 
                     <div class="mt-4">
-                        Please enter your password to confirm you would like to log out of your other browser sessions across all of your devices.
-
-                        <div class="mt-4">
-<!--                            <jet-input type="password" class="mt-1 block w-3/4" placeholder="Password"-->
-<!--                                       ref="password"-->
-<!--                                       v-model="form.password"-->
-<!--                                       @keyup.enter="logoutOtherBrowserSessions" />-->
-
-                            <input class="border-gray-300 focus:border-indigo-300 focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                                   :class="'mt-1 block w-3/4'" placeholder="Password"
+                        <input type="password" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-3/4" placeholder="Password"
+                                   ref="password"
                                    v-model="form.password"
-                                   type="password"
-                                   @keyup.enter="logoutOtherBrowserSessions"
-                                   ref="password">
+                                   @keyup.enter="logoutOtherBrowserSessions" />
 
-                            <jet-input-error :message="form.errors.password" class="mt-2" />
-                        </div>
+                        <jet-input-error :message="form.errors.password" class="mt-2" />
                     </div>
-                </div>
+                </template>
 
-                <div class="px-6 py-4 bg-gray-100 text-right">
-                    <button class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"
-                            @click="closeModal">
+                <template #footer>
+                    <button class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150" @click="closeModal">
                         Cancel
                     </button>
 
-<!--                    <jet-button class="ml-2" @click="logoutOtherBrowserSessions" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">-->
-<!--                        Log Out Other Browser Sessions-->
-<!--                    </jet-button>-->
-
-                    <button @click="logoutOtherBrowserSessions"
-                            class="ml-2 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150"
-                            :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                    <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150 ml-2" @click="logoutOtherBrowserSessions" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                         Log Out Other Browser Sessions
                     </button>
-                </div>
-            </modal>
-
-<!--            <jet-dialog-modal :show="confirmingLogout" @close="closeModal">-->
-<!--                <template #title>-->
-<!--                    Log Out Other Browser Sessions-->
-<!--                </template>-->
-
-<!--                <template #content>-->
-<!--                    Please enter your password to confirm you would like to log out of your other browser sessions across all of your devices.-->
-
-<!--                    <div class="mt-4">-->
-<!--                        <jet-input type="password" class="mt-1 block w-3/4" placeholder="Password"-->
-<!--                                    ref="password"-->
-<!--                                    v-model="form.password"-->
-<!--                                    @keyup.enter="logoutOtherBrowserSessions" />-->
-
-<!--                        <jet-input-error :message="form.errors.password" class="mt-2" />-->
-<!--                    </div>-->
-<!--                </template>-->
-
-<!--                <template #footer>-->
-<!--                    <jet-secondary-button @click="closeModal">-->
-<!--                        Cancel-->
-<!--                    </jet-secondary-button>-->
-
-<!--                    <jet-button class="ml-2" @click="logoutOtherBrowserSessions" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">-->
-<!--                        Log Out Other Browser Sessions-->
-<!--                    </jet-button>-->
-<!--                </template>-->
-<!--            </jet-dialog-modal>-->
+                </template>
+            </jet-dialog-modal>
         </template>
     </jet-action-section>
 </template>
 
 <script>
-    import JetActionMessage from '@/Jetstream/ActionMessage'
-    import JetActionSection from '@/Jetstream/ActionSection'
-    import JetButton from '@/Jetstream/Button'
-    import JetDialogModal from '@/Jetstream/DialogModal'
-    import JetInput from '@/Jetstream/Input'
-    import JetInputError from '@/Jetstream/InputError'
-    import JetSecondaryButton from '@/Jetstream/SecondaryButton'
-    import Modal from '../../Jetstream/Modal'
+import JetActionMessage from '@/Jetstream/ActionMessage'
+import JetActionSection from '@/Jetstream/ActionSection'
+import JetButton from '@/Jetstream/Button'
+import JetDialogModal from '@/Jetstream/DialogModal'
+import JetInput from '@/Jetstream/Input'
+import JetInputError from '@/Jetstream/InputError'
+import JetSecondaryButton from '@/Jetstream/SecondaryButton'
 
-    export default {
-        props: ['sessions'],
+export default {
+    props: ['sessions'],
 
-        components: {
-            JetActionMessage,
-            JetActionSection,
-            JetButton,
-            JetDialogModal,
-            JetInput,
-            JetInputError,
-            JetSecondaryButton,
-            Modal
+    components: {
+        JetActionMessage,
+        JetActionSection,
+        JetButton,
+        JetDialogModal,
+        JetInput,
+        JetInputError,
+        JetSecondaryButton,
+    },
+
+    data() {
+        return {
+            confirmingLogout: false,
+
+            form: this.$inertia.form({
+                password: '',
+            })
+        }
+    },
+
+    methods: {
+        confirmLogout() {
+            this.confirmingLogout = true
+
+            setTimeout(() => this.$refs.password.focus(), 250)
         },
 
-        data() {
-            return {
-                confirmingLogout: false,
-
-                form: this.$inertia.form({
-                    password: '',
-                })
-            }
+        logoutOtherBrowserSessions() {
+            this.form.delete(route('other-browser-sessions.destroy'), {
+                preserveScroll: true,
+                onSuccess: () => this.closeModal(),
+                onError: () => this.$refs.password.focus(),
+                onFinish: () => this.form.reset(),
+            })
         },
 
-        methods: {
-            confirmLogout() {
-                this.confirmingLogout = true
+        closeModal() {
+            this.confirmingLogout = false
 
-                setTimeout(() => this.$refs.password.focus(), 250)
-            },
-
-            logoutOtherBrowserSessions() {
-                this.form.delete(route('other-browser-sessions.destroy'), {
-                    preserveScroll: true,
-                    onSuccess: () => this.closeModal(),
-                    onError: () => this.$refs.password.focus(),
-                    onFinish: () => this.form.reset(),
-                })
-            },
-
-            closeModal() {
-                this.confirmingLogout = false
-
-                this.form.reset()
-            },
+            this.form.reset()
         },
-    }
+    },
+}
 </script>
