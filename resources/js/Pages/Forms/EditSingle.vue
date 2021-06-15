@@ -18,8 +18,8 @@
 
 
             <!-- Global notification live region, render this permanently at the end of the document -->
-            <div aria-live="assertive" class="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start z-30">
-                <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
+            <div aria-live="assertive" class="fixed sm:relative inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start">
+                <div class="w-full flex flex-col items-center space-y-4 sm:items-end relative">
 
                     <transition
                         enter-active-class="transform ease-out duration-300 transition"
@@ -28,20 +28,20 @@
                         leave-active-class="transition ease-in duration-100"
                         leave-class="opacity-100"
                         leave-to-class="opacity-0">
-                        <div v-show="showingAutosaveNotification" class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
-                            <div class="p-4">
-                                <div class="flex items-center">
-                                    <div class="w-0 flex-1 flex justify-between">
-                                        <p class="w-0 flex-1 text-sm font-medium text-gray-900">
+                        <div v-show="showingAutosaveNotification" class="max-w-sm z-50 sm:absolute w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+                            <div class="p-4 z-50">
+                                <div class="flex items-center z-50">
+                                    <div class="w-0 z-50 flex-1 flex justify-between">
+                                        <p class="w-0 z-50 flex-1 text-sm font-medium text-gray-900">
                                             Any changes you make will automatically be saved.
                                         </p>
-                                        <button @click="dontShowNotifAgain" class="ml-3 flex-shrink-0 bg-white rounded-md text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        <button @click="dontShowNotifAgain" class="ml-3 z-50 flex-shrink-0 bg-white rounded-md text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                             Don't Show Again
                                         </button>
                                     </div>
-                                    <div class="ml-4 flex-shrink-0 flex">
-                                        <button @click="showingAutosaveNotification=!showingAutosaveNotification" class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                            <span class="sr-only">Close</span>
+                                    <div class="ml-4 z-50 flex-shrink-0 flex">
+                                        <button @click="showingAutosaveNotification=!showingAutosaveNotification" class="bg-white z-50 rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            <span class="sr-only z-50">Close</span>
                                             <!-- Heroicon name: solid/x -->
                                             <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                 <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -78,9 +78,14 @@
 <!--                                                    </span> &lt;!&ndash;&ndash;&gt;-->
 <!--                                                </span> &lt;!&ndash;&ndash;&gt;-->
 <!--                                            </span>-->
-                                            <span class="f-text"><!----> <!---->
-                                                <span contenteditable class="f-help" placeholder="Question" @input="updateTitle">{{ question.title }}</span>
-                                            </span>
+                                            <span
+                                                class="f-sub"
+                                                contenteditable="true"
+                                                placeholder="Question"
+                                                @input="updateTitle"
+                                                :class="'text-left text-gray-900 border-0 border-gray-300 border-solid'"
+                                                style='color: #000000; font-family: "Inter var"; font-size: 2.25rem; line-height: 2.5rem; font-weight: 900; outline: transparent solid 0px; line-height: 51.456px; overflow-wrap: break-word;'
+                                            >{{ question.title }}</span>
 
                                             <span class="f-sub"><!----> <!---->
                                                 <span contenteditable class="f-help" placeholder="Subtitle (optional)" @input="updateSubtitle">{{ question.subtitle }}</span>
@@ -168,9 +173,18 @@
                                             <span class="f-sub"><!----> <!---->
                                                 <span contenteditable class="f-help" placeholder="Tagline (optional)" @input="updateTagline">{{ question.tagline }}</span>
                                             </span>
-                                            <span class="f-text"><!----> <!---->
-                                                <span contenteditable class="f-help" placeholder="Question" @input="updateTitle">{{ question.title }}</span>
-                                            </span>
+<!--                                            <span class="f-text">&lt;!&ndash;&ndash;&gt; &lt;!&ndash;&ndash;&gt;-->
+<!--                                                <span contenteditable class="f-help" placeholder="Question" @input="updateTitle">{{ question.title }}</span>-->
+<!--                                            </span>-->
+                                            <span
+                                                class="f-sub"
+                                                contenteditable="true"
+                                                placeholder="Question"
+                                                @input="updateTitle"
+                                                :class="'text-left text-gray-900 border-0 border-gray-300 border-solid'"
+                                                style='color: #000000; font-family: "Inter var"; font-size: 2.25rem; line-height: 2.5rem; font-weight: 900; outline: transparent solid 0px; line-height: 51.456px; overflow-wrap: break-word;'
+                                            >{{ question.title }}</span>
+
 
                                             <span class="f-sub"><!----> <!---->
                                                 <span contenteditable class="f-help" placeholder="Subtitle (optional)" @input="updateSubtitle">{{ question.subtitle }}</span>
@@ -215,6 +229,7 @@ export default {
 
     data() {
         return {
+            timeoutId: 0,
             showingAutosaveNotification: !this.site.saw_autosave_message_on_form,
             optionsList: this.options.map((option) => {
                 return option
@@ -299,8 +314,11 @@ export default {
             this.$inertia.post('/form/add_option', data)
         },
         async updateOption(e, optionID) {
+            clearTimeout(this.timeoutId)
             let data = {'title': e.target.innerText, 'option_id': optionID, 'question_id': this.question.id, 'form_id': this.question.form_id}
-            let response = await axios.post('/api/update-option', data)
+            this.timeoutId = setTimeout(async function() {
+                let response = await axios.post('/api/update-option', data)
+            })
         },
 
         // deleting a question
@@ -319,19 +337,25 @@ export default {
          * Update fields
          */
         async updateTagline(e) {
+            clearTimeout(this.timeoutId)
             let data = {'type': 'tagline', 'tagline': e.target.innerText, 'question_id': this.question.id, 'form_id': this.question.form_id}
-            // this.$inertia.post('/form/update_tagline', data)
-            let response = await axios.post('/api/update-form-question', data)
+            this.timeoutId = setTimeout(async function() {
+                let response = await axios.post('/api/update-form-question', data)
+            })
         },
         async updateTitle(e) {
+            clearTimeout(this.timeoutId)
             let data = {'type': 'title', 'title': e.target.innerText, 'question_id': this.question.id, 'form_id': this.question.form_id}
-            // this.$inertia.post('/form/update_tagline', data)
-            let response = await axios.post('/api/update-form-question', data)
+            this.timeoutId = setTimeout(async function() {
+                let response = await axios.post('/api/update-form-question', data)
+            })
         },
         async updateSubtitle(e) {
+            clearTimeout(this.timeoutId)
             let data = {'type': 'subtitle', 'subtitle': e.target.innerText, 'question_id': this.question.id, 'form_id': this.question.form_id}
-            // this.$inertia.post('/form/update_tagline', data)
-            let response = await axios.post('/api/update-form-question', data)
+            this.timeoutId = setTimeout(async function() {
+                let response = await axios.post('/api/update-form-question', data)
+            })
         },
 
         /**
@@ -485,6 +509,10 @@ export default {
         outline: 0px solid transparent;
     }
 
+    [contenteditable]:hover {
+        cursor: text;
+    }
+
     [contenteditable]:empty:before {
         color: #999999;
         content: attr(placeholder);
@@ -528,6 +556,16 @@ export default {
     .vff .o-btn-action-custom:focus {
         background-color: var(--vff-button-hover-color);
         opacity: .9;
+    }
+
+    .vff span.f-text-2 {
+        color: black;
+        text-align: left;
+        /*text-4xl;*/
+        font-family: "Inter var";
+        outline: transparent solid 0px;
+        line-height: 51.456px;
+        overflow-wrap: break-word;
     }
 
 </style>

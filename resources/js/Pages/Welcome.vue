@@ -110,7 +110,7 @@
                                                         <button type="submit" class="block w-full py-4 px-6 rounded-md shadow bg-indigo-500 text-white font-medium hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-400 focus:ring-offset-gray-900">Start free trial</button>
                                                     </a>
                                                 </div>
-                                                <p class="mt-3 text-sm text-gray-300 sm:mt-4">Start your free 7-day trial, no credit card necessary. By providing your email, you agree to our <a href="#" class="font-medium text-white">terms of service</a>.</p>
+                                                <p class="mt-3 text-sm text-gray-300 sm:mt-4">Start your free 7-day trial, no credit card necessary. By providing your email, you agree to our <a :href="route('terms.show')" class="font-medium text-white">terms of service</a>.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -131,10 +131,10 @@
                             <div>
                                 <h2 class="text-base font-semibold tracking-wider text-indigo-500 uppercase">Codeless</h2>
                                 <p class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
-                                    No code? No problem.
+                                    8 Minutes? Really?
                                 </p>
                                 <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-                                    Let's face it. Most of us don't know how to code websites, and the cost of hiring a programmer can be daunting. We've taken care of that problem by prebuilding a series of sites that you can just pick and choose from.
+                                    Yep! We've actually timed it––our platform allows anyone to build a beautiful, professionally designed site in a matter of minutes. We've stripped away many of the unnecessary customizations that we found in other website builders and instead focused on bringing you incredible templates from which to fill in.
                                 </p>
                             </div>
                             <div class="mt-12 -mb-10 sm:-mb-24 lg:-mb-80">
@@ -231,7 +231,7 @@
                                 <div aria-hidden="true" class="absolute inset-x-0 top-0 h-1/2 bg-white lg:hidden"></div>
                                 <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:p-0 lg:h-full">
                                     <div class="aspect-w-10 aspect-h-6 rounded-xl shadow-xl overflow-hidden sm:aspect-w-16 sm:aspect-h-7 lg:aspect-none lg:h-full">
-                                        <img class="object-cover lg:h-full lg:w-full" src="https://images.unsplash.com/photo-1520333789090-1afc82db536a?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80" alt="">
+                                        <img class="object-cover lg:h-full lg:w-full" :src="$page.props.davidTran" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -243,11 +243,11 @@
                                                 <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                                             </svg>
                                             <p class="mt-6 text-2xl font-medium text-white">
-                                                AboutContact's value came in saving me countless hours from developing a homepage or managing my leads, which is crucial in these early stages when I don't have the history as a realtor to afford taking time off.
+                                                AboutContact's value came in saving me countless hours from developing a homepage or gathering my leads, which really helped me spend the time needed to cultivate relationships with potential homebuyers.
                                             </p>
                                         </div>
                                         <footer class="mt-6">
-                                            <p class="text-base font-medium text-white">Tyler Scaglione</p>
+                                            <p class="text-base font-medium text-white">David Tran</p>
                                             <p class="text-base font-medium text-indigo-100">Realtor in Boston</p>
                                         </footer>
                                     </blockquote>
@@ -269,149 +269,58 @@
                                 </p>
                             </div>
                             <div class="mt-12 mx-auto max-w-md px-4 grid gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-3 lg:max-w-7xl">
-                                <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80" alt="">
-                                    </div>
-                                    <div class="flex-1 bg-white p-6 flex flex-col justify-between">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-500">
-                                                <a href="#" class="hover:underline">
-                                                    Article
-                                                </a>
-                                            </p>
-                                            <a href="#" class="block mt-2">
-                                                <p class="text-xl font-semibold text-gray-900">
-                                                    Boost your conversion rate
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto accusantium praesentium eius, ut atque fuga culpa, similique sequi cum eos quis dolorum.
-                                                </p>
-                                            </a>
-                                        </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="#">
-                                                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Roel Aufderehar">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                    <a href="#" class="hover:underline">
-                                                        Roel Aufderehar
-                                                    </a>
-                                                </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2020-03-16">
-                                                        Mar 16, 2020
-                                                    </time>
-                                                    <span aria-hidden="true">
-                        &middot;
-                      </span>
-                                                    <span>
-                        6 min read
-                      </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1547586696-ea22b4d4235d?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80" alt="">
-                                    </div>
-                                    <div class="flex-1 bg-white p-6 flex flex-col justify-between">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-500">
-                                                <a href="#" class="hover:underline">
-                                                    Video
-                                                </a>
-                                            </p>
-                                            <a href="#" class="block mt-2">
-                                                <p class="text-xl font-semibold text-gray-900">
-                                                    How to use search engine optimization to drive sales
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit facilis asperiores porro quaerat doloribus, eveniet dolore. Adipisci tempora aut inventore optio animi., tempore temporibus quo laudantium.
-                                                </p>
-                                            </a>
+                                <a href="http://about.contact/ExampleOne" class="hover:opacity-75">
+                                    <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
+                                        <div class="flex-shrink-0">
+                                            <img class="h-48 w-full object-cover" :src="$page.props.standard" alt="">
                                         </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="#">
-                                                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Brenna Goyette">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                    <a href="#" class="hover:underline">
-                                                        Brenna Goyette
+                                        <div class="flex-1 bg-white p-6 flex flex-col justify-between bg-gray-100">
+                                            <div class="flex-1">
+                                                <p class="text-xl font-semibold text-gray-900">
+                                                    <a href="http://about.contact/ExampleOne" class="hover:underline">
+                                                        Uses the Standard Layout
                                                     </a>
                                                 </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2020-03-10">
-                                                        Mar 10, 2020
-                                                    </time>
-                                                    <span aria-hidden="true">
-                        &middot;
-                      </span>
-                                                    <span>
-                        4 min read
-                      </span>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
 
-                                <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
-                                    <div class="flex-shrink-0">
-                                        <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80" alt="">
-                                    </div>
-                                    <div class="flex-1 bg-white p-6 flex flex-col justify-between">
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium text-indigo-500">
-                                                <a href="#" class="hover:underline">
-                                                    Case Study
-                                                </a>
-                                            </p>
-                                            <a href="#" class="block mt-2">
-                                                <p class="text-xl font-semibold text-gray-900">
-                                                    Improve your customer experience
-                                                </p>
-                                                <p class="mt-3 text-base text-gray-500">
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint harum rerum voluptatem quo recusandae magni placeat saepe molestiae, sed excepturi cumque corporis perferendis hic.
-                                                </p>
-                                            </a>
+                                <a href="http://about.contact/ExampleTwo" class="hover:opacity-75">
+                                    <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
+                                        <div class="flex-shrink-0">
+                                            <img class="h-48 w-full object-cover" :src="$page.props.loganMiller" alt="">
                                         </div>
-                                        <div class="mt-6 flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <a href="#">
-                                                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Daniela Metz">
-                                                </a>
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
-                                                    <a href="#" class="hover:underline">
-                                                        Daniela Metz
+                                        <div class="flex-1 bg-white p-6 flex flex-col justify-between bg-gray-100">
+                                            <div class="flex-1">
+                                                <p class="text-xl font-semibold text-gray-900">
+                                                    <a href="http://about.contact/ExampleTwo" class="hover:underline">
+                                                        Uses the Mobile Profile Layout
                                                     </a>
                                                 </p>
-                                                <div class="flex space-x-1 text-sm text-gray-500">
-                                                    <time datetime="2020-02-12">
-                                                        Feb 12, 2020
-                                                    </time>
-                                                    <span aria-hidden="true">
-                        &middot;
-                      </span>
-                                                    <span>
-                        11 min read
-                      </span>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
+
+                                <a href="http://about.contact/ExampleThree" class="hover:opacity-75">
+                                    <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
+                                        <div class="flex-shrink-0">
+                                            <img class="h-48 w-full object-cover" :src="$page.props.ricardoCooper" alt="">
+                                        </div>
+                                        <div class="flex-1 bg-white p-6 flex flex-col justify-between bg-gray-100">
+                                            <div class="flex-1">
+                                                <p class="text-xl font-semibold text-gray-900">
+                                                    <a href="http://about.contact/ExampleThree" class="hover:underline">
+                                                        Uses the Branded Left Layout
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
                             </div>
                         </div>
                     </div>
@@ -419,7 +328,7 @@
                     <!-- CTA Section -->
                     <div class="relative bg-gray-900">
                         <div class="relative h-56 bg-indigo-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
-                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=60&sat=-100" alt="">
+                            <img class="w-full h-full object-cover" :src="$page.props.twoPeopleAroundLaptop" alt="">
                             <div aria-hidden="true" class="absolute inset-0 bg-indigo-500 opacity-50 mix-blend-multiply"></div>
                         </div>
                         <div class="relative mx-auto max-w-md px-4 py-12 sm:max-w-7xl sm:px-6 sm:py-20 md:py-28 lg:px-8 lg:py-32">
@@ -625,7 +534,7 @@
                                 &copy; 2021 AboutContact. All rights reserved.
                             </p>
                             <p class="text-base text-gray-400 xl:text-center">
-                                amaan@syntak.co
+                                amaan@macdronemedia.com
                             </p>
                         </div>
                     </div>

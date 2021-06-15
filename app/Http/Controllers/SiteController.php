@@ -15,6 +15,9 @@ class SiteController extends Controller
     public function create(Request $request) {
         $site = Site::findByUuid($request->get('site'));
         $site->layout = $request->get('layout');
+        if ($request->get('layout') === 4) {
+            $site->accent_color = 'F1E7DF';
+        }
         $site->initialized = true;
         $site->save();
 

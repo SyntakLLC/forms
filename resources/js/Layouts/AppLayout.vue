@@ -71,7 +71,7 @@
                             <div>
                                 <button @click="showingProfileMenu=!showingProfileMenu" type="button" class="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                     <span class="sr-only">Open user menu</span>
-                                    <img class="h-8 w-8 rounded-full"
+                                    <img class="h-8 w-8 rounded-full object-cover"
                                          :src="$page.props.user.profile_photo_url"
                                          :alt="$page.props.user.name"/>
                                 </button>

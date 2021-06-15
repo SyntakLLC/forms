@@ -216,7 +216,7 @@
                                 <!--Profile Picture-->
                                 <div class="-mt-16 flex space-x-5 justify-center flex-col">
                                     <div class="flex justify-center content-center">
-                                        <img class="z-10 -mt-16 justify-self-center items-center h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32" :src="$page.props.profile_photo_url" :alt="$page.props.name" />
+                                        <img class="z-10 -mt-16 justify-self-center items-center h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32 object-cover" :src="$page.props.profile_photo_url" :alt="$page.props.name" />
                                     </div>
                                 </div>
 
@@ -506,39 +506,6 @@
                                     </div>
                                     <div class="overflow-hidden relative w-full text-gray-700 box-border">
                                         <div class="flex overflow-scroll items-start py-px px-12">
-                                            <!-- Make a new form -->
-                                            <div class="flex flex-col flex-none self-stretch pr-6 w-11/12">
-                                                <a
-                                                    :href="route('form.index')"
-                                                    class="inline-block overflow-hidden w-full max-w-full text-sm text-black no-underline  cursor-pointer box-border hover:text-black hover:no-underline border-dashed border-2 rounded-md hover:bg-gray-100"
-                                                    style="border-radius: 14px; transition: transform 150ms ease-in-out 0s, -webkit-transform 150ms ease-in-out 0s;"
-                                                >
-                                                    <div class="flex-1 p-6">
-                                                        <div class="mb-4 box-border">
-                                                            <h2
-                                                                class="mt-0 mb-1 font-sans text-2xl font-normal tracking-tight leading-tight"
-                                                            >
-                                                                Make a New Form
-                                                            </h2>
-                                                            <!--                                                            <div class="leading-5 box-border">-->
-                                                            <!--                                                                Display your physical products through this beautiful template-->
-                                                            <!--                                                                made for Photoshop, Sketch &amp; Figma.-->
-                                                            <!--                                                            </div>-->
-                                                        </div>
-                                                        <div class="flex items-center w-full box-border">
-                                                            <div
-                                                                class="inline-block py-1 px-4 mr-5 font-semibold leading-5 text-center text-white bg-black border-2 border-black border-solid hover:shadow-xs hover:text-white"
-                                                                style="border-radius: 40px; transition: box-shadow 200ms ease-in-out 0s;"
-                                                            >
-                                                                Go
-                                                            </div>
-                                                            <!--                                                            <div class="leading-5 box-border">$22</div>-->
-                                                        </div>
-                                                    </div>
-                                                </a
-                                                >
-                                            </div>
-
                                             <!-- List of forms -->
                                             <div v-for="(form) in $page['props']['forms']"
                                                  @click="$inertia.get(route('form.edit', form.uuid))"
@@ -599,7 +566,7 @@
                                                         style="line-height: 1.2; list-style: outside none none;"
                                                     >
                                                             <span
-                                                                class="tracking-tighter leading-7 no-underline bg-transparent border-b-2 border-transparent border-solid cursor-pointer box-border hover:border-gray-400 hover:text-black"
+                                                                class="tracking-tighter leading-7 no-underline bg-transparent hover:text-black"
                                                                 style="transition: border-color 200ms ease-in-out 0s, color 200ms ease-in-out 0s; list-style: outside none none;"
                                                             >{{ $page.props.site.section_header }}</span
                                                             >

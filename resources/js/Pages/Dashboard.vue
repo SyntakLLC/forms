@@ -136,6 +136,15 @@
                                                 </div>
 
                                             </label>
+
+                                            <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
+                                                <div class="flex items-center text-sm">
+                                                    <input type="radio" :checked="layout===4" @input="updateLayout(4)" name="pricing_plan" value="Layout4" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">
+                                                    <span v-if="layout===4" id="layout-4-label-checked" class="ml-3 font-medium text-indigo-700">Mobile Profile</span>
+                                                    <span v-else id="layout-4-label" class="ml-3 font-medium text-gray-900">Mobile Profile</span>
+                                                </div>
+
+                                            </label>
                                         </div>
                                     </fieldset>
                                     <!--                                    </div>-->
@@ -308,7 +317,7 @@
                     <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none" tabindex="0">
 
                         <!-- Global notification live region, render this permanently at the end of the document -->
-                        <div aria-live="assertive" class="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start z-30">
+                        <div aria-live="assertive" class="fixed sm:relative sm:mt-12 inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start z-30">
                             <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
 
                                 <transition
@@ -318,12 +327,12 @@
                                     leave-active-class="transition ease-in duration-100"
                                     leave-class="opacity-100"
                                     leave-to-class="opacity-0">
-                                    <div v-show="showingAutosaveNotification" class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+                                    <div v-show="showingAutosaveNotification" class="max-w-sm sm:absolute w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
                                         <div class="p-4">
                                             <div class="flex items-center">
                                                 <div class="w-0 flex-1 flex justify-between">
                                                     <p class="w-0 flex-1 text-sm font-medium text-gray-900">
-                                                        Any changes you make will automatically be saved.
+                                                        Any changes you make will automatically be saved, besides editing social links.
                                                     </p>
                                                     <button @click="dontShowNotifAgain" class="ml-3 flex-shrink-0 bg-white rounded-md text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                                         Don't Show Again
@@ -559,7 +568,7 @@
                             <!--Profile Picture-->
                             <div class="-mt-16 lg:-mt-32 flex space-x-5 justify-center flex-col">
                                 <div class="flex justify-center content-center">
-                                    <img class="z-30 justify-self-center items-center h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
+                                    <img class="z-30 justify-self-center items-center h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32 object-cover" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
                                 </div>
                             </div>
 
@@ -946,7 +955,7 @@
                                                     >
                                                             <span
                                                                 contenteditable placeholder="Title" @input="updateTitle"
-                                                                class="tracking-tighter leading-7 no-underline bg-transparent border-b-2 border-transparent border-solid cursor-pointer box-border hover:border-gray-400 hover:text-black"
+                                                                class="tracking-tighter leading-7 no-underline bg-transparent border-b-2 border-transparent border-solid box-border"
                                                                 style="transition: border-color 200ms ease-in-out 0s, color 200ms ease-in-out 0s; list-style: outside none none;"
                                                             >{{ $page.props.site.section_header }}</span
                                                             >
@@ -1144,53 +1153,19 @@
             </div>
 
             <div class="min-h-full flex overflow-hidden bg-white">
-                <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6">
+                <div class="max-w-7xl py-8 px-4 sm:px-6">
 
                     <div class="bg-white">
-                        <div class="mx-auto">
+                        <div class="">
                             <div class="space-y-12">
 
-                                <ul class="grid grid-cols-2 gap-x-6 gap-y-12 space-y-0 sm:grid sm:grid-cols-3 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:grid-cols-3">
-
-                                    <!-- Mobile-first -->
-                                    <li @click="createSite(4)" class="hover:opacity-90">
-                                        <div class="space-y-4">
-                                            <div class="aspect-w-3 aspect-h-2">
-                                                <img class="object-cover shadow-sm rounded-lg" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80" alt="">
-                                            </div>
-
-                                            <div class="space-y-2">
-                                                <div class="text-lg leading-6 font-medium space-y-1 text-center">
-                                                    <h3>Mobile Profile</h3>
-                                                    <p class="text-indigo-600">A mobile-first personal page</p>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                    <!-- Brand Homepage -->
-                                    <li @click="createSite(5)" class="hover:opacity-90">
-                                        <div class="space-y-4">
-                                            <div class="aspect-w-3 aspect-h-2">
-                                                <img class="object-cover shadow-sm rounded-lg" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80" alt="">
-                                            </div>
-
-                                            <div class="space-y-2">
-                                                <div class="text-lg leading-6 font-medium space-y-1 text-center">
-                                                    <h3>Brand Homepage</h3>
-                                                    <p class="text-indigo-600">Focuses the customer more on your brand</p>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </li>
+                                <ul class="grid grid-cols-2 gap-x-6 gap-y-12 space-y-0 sm:grid sm:grid-cols-3 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:grid-cols-4">
 
                                     <!-- Top align -->
                                     <li @click="createSite(1)" class="hover:opacity-90">
                                         <div class="space-y-4">
                                             <div class="aspect-w-3 aspect-h-2">
-                                                <img class="object-cover shadow-sm rounded-lg" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80" alt="">
+                                                <img class="object-cover shadow-sm rounded-lg" :src="$page.props.standard" alt="">
                                             </div>
 
                                             <div class="space-y-2">
@@ -1203,16 +1178,33 @@
                                         </div>
                                     </li>
 
-                                    <!-- Left align -->
-                                    <li @click="createSite(2)" class="hover:opacity-90">
+                                    <!-- Mobile-first -->
+                                    <li @click="createSite(4)" class="hover:opacity-90">
                                         <div class="space-y-4">
                                             <div class="aspect-w-3 aspect-h-2">
-                                                <img class="object-cover shadow-sm rounded-lg" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80" alt="">
+                                                <img class="object-cover shadow-sm rounded-lg" :src="$page.props.mobileProfile" alt="">
                                             </div>
 
                                             <div class="space-y-2">
                                                 <div class="text-lg leading-6 font-medium space-y-1 text-center">
-                                                    <h3>Left Align</h3>
+                                                    <h3>Mobile Profile</h3>
+                                                    <p class="text-indigo-600">A mobile-first personal page</p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <!-- Left align -->
+                                    <li @click="createSite(2)" class="hover:opacity-90">
+                                        <div class="space-y-4">
+                                            <div class="aspect-w-3 aspect-h-2">
+                                                <img class="object-cover shadow-sm rounded-lg" :src="$page.props.brandedLeft" alt="">
+                                            </div>
+
+                                            <div class="space-y-2">
+                                                <div class="text-lg leading-6 font-medium space-y-1 text-center">
+                                                    <h3>Branded Left</h3>
                                                     <p class="text-indigo-600">Let your brand stand out</p>
                                                 </div>
 
@@ -1224,13 +1216,13 @@
                                     <li @click="createSite(3)" class="hover:opacity-90">
                                         <div class="space-y-4">
                                             <div class="aspect-w-3 aspect-h-2">
-                                                <img class="object-cover shadow-sm rounded-lg" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixqx=5XGNHivJgT&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80" alt="">
+                                                <img class="object-cover shadow-sm rounded-lg" :src="$page.props.brandedRight" alt="">
                                             </div>
 
                                             <div class="space-y-2">
                                                 <div class="text-lg leading-6 font-medium space-y-1 text-center">
-                                                    <h3>Right Align</h3>
-                                                    <p class="text-indigo-600">An alternative to left-align</p>
+                                                    <h3>Branded Right</h3>
+                                                    <p class="text-indigo-600">An alternative to branded-left</p>
                                                 </div>
 
                                             </div>
@@ -1268,6 +1260,7 @@
 
         data() {
             return {
+                timeoutId: 0,
                 domainSavingText: "Save",
                 wantsThisNewDomain: "",
                 showingChangeDomainModal: false,
@@ -1438,27 +1431,36 @@
             },
 
             async updateMessage(e) {
+                clearTimeout(this.timeoutId)
                 let data = {
                     'message': e.target.innerText,
                     'site': this.site.id,
                 }
-                let response = await axios.post('/api/update-message', data)
+                this.timeoutId = setTimeout(async function() {
+                    let response = await axios.post('/api/update-message', data)
+                })
             },
 
             async updateContent(e) {
+                clearTimeout(this.timeoutId)
                 let data = {
                     'content': e.target.innerText,
                     'site': this.site.id,
                 }
-                let response = await axios.post('/api/update-content', data)
+                this.timeoutId = setTimeout(async function() {
+                    let response = await axios.post('/api/update-content', data)
+                })
             },
 
             async updateTitle(e) {
+                clearTimeout(this.timeoutId)
                 let data = {
                     'title': e.target.innerText,
                     'site': this.site.id,
                 }
-                let response = await axios.post('/api/update-section-header', data)
+                this.timeoutId = setTimeout(async function() {
+                    let response = await axios.post('/api/update-section-header', data)
+                })
             },
         }
     }

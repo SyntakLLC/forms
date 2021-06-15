@@ -23,12 +23,21 @@ class Controller extends BaseController
         $logoImageURL = Storage::url('marketing-photos/Aboutcontact Logo Image.png');
         $logoTextURL = Storage::url('marketing-photos/Aboutcontact Logo Text.png');
 
+        $standard = Storage::url('marketing-photos/Standard.png');
+        $mobileProfile = Storage::url('marketing-photos/Mobile_Profile.png');
+        $brandedLeft = Storage::url('marketing-photos/Brand_Left.png');
+        $brandedRight = Storage::url('marketing-photos/Brand_Right.png');
+
         return Inertia::render('Dashboard', [
             'forms' => $request->user()->forms,
             'user' => $request->user(),
             'site' => $request->user()->site,
             'logoImageURL' => $logoImageURL,
             'logoTextURL' => $logoTextURL,
+            'standard' => $standard,
+            'mobileProfile' => $mobileProfile,
+            'brandedLeft' => $brandedLeft,
+            'brandedRight' => $brandedRight,
         ]);
     }
 
