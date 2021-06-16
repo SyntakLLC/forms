@@ -27,6 +27,7 @@ class Controller extends BaseController
         $mobileProfile = Storage::url('marketing-photos/Mobile_Profile.png');
         $brandedLeft = Storage::url('marketing-photos/Brand_Left.png');
         $brandedRight = Storage::url('marketing-photos/Brand_Right.png');
+        $minimalist = Storage::url('marketing-photos/Minimalist.png');
 
         return Inertia::render('Dashboard', [
             'forms' => $request->user()->forms,
@@ -38,6 +39,7 @@ class Controller extends BaseController
             'mobileProfile' => $mobileProfile,
             'brandedLeft' => $brandedLeft,
             'brandedRight' => $brandedRight,
+            'minimalist' => $minimalist,
         ]);
     }
 

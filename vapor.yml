@@ -20,7 +20,7 @@ environments:
         capacity: 2
         queues: false
         database: 'platform-production'
-        storage: 'syntak-form-platform-production'
+        storage: 'about-contact-platform-production'
         separate-vendor: true
         firewall:
           rate-limit: 1000
@@ -37,7 +37,7 @@ environments:
             - CategoryContentFetcher
             - CategoryArchiver
         runtime: 'php-8.0:al2'
-        domain: syntak.co
+        domain: about.contact
         build:
             - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
             - 'php artisan event:cache'
@@ -51,9 +51,9 @@ environments:
         scheduler: false
         runtime: 'php-8.0:al2'
         database: 'platform-staging'
-        storage: 'syntak-form-platform-staging'
+        storage: 'about-contact-platform-staging'
         separate-vendor: true
-        domain: staging.syntak.co
+        domain: staging.about.contact
         capacity: 2
         queues: false
         firewall:

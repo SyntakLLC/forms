@@ -43,7 +43,7 @@
                     </div>
 
                     <!-- Cover photo dropdown -->
-                    <div class="relative mt-2 sm:mt-0 sm:ml-3">
+                    <div v-show="this.layout !== 5" class="relative mt-2 sm:mt-0 sm:ml-3">
                         <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
                         <button @click="showingCoverPhotoDropdown=!showingCoverPhotoDropdown; showingLayoutDropdown=false; showingAccentColorDropdown=false; showingSocialDropdown=false"
                                 :class="showingCoverPhotoDropdown ? 'text-gray-900' : 'text-gray-500'" type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-expanded="false">
@@ -92,62 +92,166 @@
                             </svg>
                         </button>
 
+
+                        <!--New Question dropdown-->
                         <transition
-                            enter-active-class="transition ease-out duration-200"
-                            enter-class="opacity-0 translate-y-1"
-                            enter-to-class="opacity-100 translate-y-0"
-                            leave-active-class="transition ease-in duration-150"
-                            leave-class="opacity-100 translate-y-0"
-                            leave-to-class="opacity-0 translate-y-1">
-                            <div v-show="showingLayoutDropdown" class="absolute z-10 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-xs sm:px-0">
-                                <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                                    <!--                                    <div class="relative grid gap-6 bg-white px-1 py-1 sm:gap-8 sm:p-8">-->
-                                    <fieldset>
-                                        <legend class="sr-only">
-                                            Layouts
-                                        </legend>
-                                        <div class="relative bg-white rounded-md -space-y-px">
+                            enter-active-class="transition ease-out duration-300"
+                            enter-class="opacity-0"
+                            enter-to-class="opacity-100"
+                            leave-active-class="transition ease-in duration-200"
+                            leave-class="opacity-100"
+                            leave-to-class="opacity-0">
+                            <div class="fixed z-10 inset-0 overflow-y-auto " v-show="showingLayoutDropdown">
+                                <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
 
-                                            <label class="border-gray-200 rounded-tl-md rounded-tr-md relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
-                                                <div class="flex w-full items-center text-sm">
-                                                    <input type="radio" :checked="layout===1" @input="updateLayout(1)" name="pricing_plan" value="Layout1" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">
-                                                    <span v-if="layout===1" id="layout-1-label-checked" class="ml-3 font-medium text-indigo-700">Left Align</span>
-                                                    <span v-else id="layout-1-label" class="ml-3 font-medium text-gray-900">Left Align</span>
+                                    <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                                        <div @click="showingLayoutDropdown=!showingLayoutDropdown" class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                                    </div>
+
+                                    <!-- This element is to trick the browser into centering the modal contents. -->
+                                    <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
+                                          aria-hidden="true">&#8203;</span>
+
+                                    <transition
+                                        enter-active-class="transition ease-out duration-300"
+                                        enter-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                        enter-to-class="opacity-100 translate-y-0 sm:scale-100"
+                                        leave-active-class="transition ease-in duration-200"
+                                        leave-class="opacity-100 translate-y-0 sm:scale-100"
+                                        leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+
+                                        <div v-show="showingLayoutDropdown"
+                                             class="z-20 inline-block align-bottom rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 left-1/2 transform mt-3 mx-2 max-w-md sm:px-0 lg:max-w-3xl">
+
+                                            <div class="hidden sm:block absolute top-0 right-0 pt-10 pr-4">
+                                                <button @click="showingLayoutDropdown=!showingLayoutDropdown"
+                                                        type="button" class="rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                    <span class="sr-only">Close</span>
+                                                    <!-- Heroicon name: outline/x -->
+                                                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+
+                                            <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
+
+                                                <div class="p-5 bg-gray-50 sm:p-8">
+                                                            <span class="flex items-center">
+                                                                <span class="text-base font-medium text-gray-900">
+                                                                    Change Layout
+                                                                </span>
+                                                            </span>
+                                                    <span class="mt-1 block text-sm text-gray-500">
+                                                                More layouts will be coming soon!
+                                                            </span>
                                                 </div>
+                                                <div class="relative bg-white">
+                                                    <div class="min-h-full flex overflow-hidden bg-white">
+                                                        <div class="max-w-7xl py-8 px-4 sm:px-6">
 
-                                            </label>
+                                                            <div class="bg-white">
+                                                                <div class="">
+                                                                    <div class="space-y-12">
 
+                                                                        <ul class="grid grid-cols-2 gap-x-6 gap-y-12 space-y-0 sm:grid sm:grid-cols-3 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:grid-cols-4">
 
-                                            <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
-                                                <div class="flex items-center text-sm">
-                                                    <input type="radio" :checked="layout===2" @input="updateLayout(2)" name="pricing_plan" value="Layout2" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">
-                                                    <span v-if="layout===2" id="layout-2-label-checked" class="ml-3 font-medium text-indigo-700">Right Align</span>
-                                                    <span v-else id="layout-2-label" class="ml-3 font-medium text-gray-900">Right Align</span>
+                                                                            <!-- Top align -->
+                                                                            <li @click="updateLayout(3)" class="hover:opacity-90">
+                                                                                <div class="space-y-4">
+                                                                                    <div class="aspect-w-3 aspect-h-2">
+                                                                                        <img class="object-cover shadow-sm rounded-lg border-gray-100 border" :src="$page.props.standard" alt="">
+                                                                                    </div>
+
+                                                                                    <div class="space-y-2">
+                                                                                        <div class="text-lg leading-6 font-medium space-y-1 text-center">
+                                                                                            <h3>Standard</h3>
+                                                                                            <p class="text-indigo-600">A standard site layout</p>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+
+                                                                            <!-- Mobile-first -->
+                                                                            <li @click="updateLayout(4)" class="hover:opacity-90">
+                                                                                <div class="space-y-4">
+                                                                                    <div class="aspect-w-3 aspect-h-2">
+                                                                                        <img class="object-cover shadow-sm rounded-lg border-gray-100 border" :src="$page.props.mobileProfile" alt="">
+                                                                                    </div>
+
+                                                                                    <div class="space-y-2">
+                                                                                        <div class="text-lg leading-6 font-medium space-y-1 text-center">
+                                                                                            <h3>Mobile Profile</h3>
+                                                                                            <p class="text-indigo-600">A mobile-first personal page</p>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+
+                                                                            <!-- Minimalist -->
+                                                                            <li @click="updateLayout(5)" class="hover:opacity-90">
+                                                                                <div class="space-y-4">
+                                                                                    <div class="aspect-w-3 aspect-h-2">
+                                                                                        <img class="object-cover shadow-sm rounded-lg border-gray-100 border" :src="$page.props.minimalist" alt="">
+                                                                                    </div>
+
+                                                                                    <div class="space-y-2">
+                                                                                        <div class="text-lg leading-6 font-medium space-y-1 text-center">
+                                                                                            <h3>Minimalist</h3>
+                                                                                            <p class="text-indigo-600">For a sleek, modern look</p>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+
+                                                                            <!-- Left align -->
+                                                                            <li @click="updateLayout(2)" class="hover:opacity-90">
+                                                                                <div class="space-y-4">
+                                                                                    <div class="aspect-w-3 aspect-h-2">
+                                                                                        <img class="object-cover shadow-sm rounded-lg border-gray-100 border" :src="$page.props.brandedLeft" alt="">
+                                                                                    </div>
+
+                                                                                    <div class="space-y-2">
+                                                                                        <div class="text-lg leading-6 font-medium space-y-1 text-center">
+                                                                                            <h3>Branded Left</h3>
+                                                                                            <p class="text-indigo-600">Let your brand stand out</p>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+
+                                                                            <!-- Right align -->
+                                                                            <li @click="updateLayout(1)" class="hover:opacity-90">
+                                                                                <div class="space-y-4">
+                                                                                    <div class="aspect-w-3 aspect-h-2">
+                                                                                        <img class="object-cover shadow-sm rounded-lg border-gray-100 border" :src="$page.props.brandedRight" alt="">
+                                                                                    </div>
+
+                                                                                    <div class="space-y-2">
+                                                                                        <div class="text-lg leading-6 font-medium space-y-1 text-center">
+                                                                                            <h3>Branded Right</h3>
+                                                                                            <p class="text-indigo-600">An alternative to branded-left</p>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
                                                 </div>
-
-                                            </label>
-
-
-                                            <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
-                                                <div class="flex items-center text-sm">
-                                                    <input type="radio" :checked="layout===3" @input="updateLayout(3)" name="pricing_plan" value="Layout3" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">
-                                                    <span v-if="layout===3" id="layout-3-label-checked" class="ml-3 font-medium text-indigo-700">Top Align</span>
-                                                    <span v-else id="layout-3-label" class="ml-3 font-medium text-gray-900">Top Align</span>
-                                                </div>
-
-                                            </label>
-
-                                            <label class="border-gray-200 relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6">
-                                                <div class="flex items-center text-sm">
-                                                    <input type="radio" :checked="layout===4" @input="updateLayout(4)" name="pricing_plan" value="Layout4" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="pricing-plans-1-label" aria-describedby="pricing-plans-1-description-0 pricing-plans-1-description-1">
-                                                    <span v-if="layout===4" id="layout-4-label-checked" class="ml-3 font-medium text-indigo-700">Mobile Profile</span>
-                                                    <span v-else id="layout-4-label" class="ml-3 font-medium text-gray-900">Mobile Profile</span>
-                                                </div>
-
-                                            </label>
+                                            </div>
                                         </div>
-                                    </fieldset>
-                                    <!--                                    </div>-->
+                                    </transition>
                                 </div>
                             </div>
                         </transition>
@@ -317,7 +421,7 @@
                     <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none" tabindex="0">
 
                         <!-- Global notification live region, render this permanently at the end of the document -->
-                        <div aria-live="assertive" class="fixed sm:relative sm:mt-12 inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start z-30">
+                        <div aria-live="assertive" class="fixed sm:relative inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start z-30">
                             <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
 
                                 <transition
@@ -327,7 +431,7 @@
                                     leave-active-class="transition ease-in duration-100"
                                     leave-class="opacity-100"
                                     leave-to-class="opacity-0">
-                                    <div v-show="showingAutosaveNotification" class="max-w-sm sm:absolute w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+                                    <div v-show="showingAutosaveNotification" class="sm:mt-12 max-w-sm sm:absolute w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
                                         <div class="p-4">
                                             <div class="flex items-center">
                                                 <div class="w-0 flex-1 flex justify-between">
@@ -1132,6 +1236,189 @@
                             </div>
                         </div>
 
+                        <!-- Minimalist -->
+                        <div v-if="this.layout === 5" class="bg-gray-50" :style="cssProps">
+                            <div
+                                style="grid-auto-rows: 1fr; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 5vh 4vw; padding-top: 0vh; padding-bottom: 5vh; grid-auto-columns: 1fr;"
+                                class=" sm:grid sm:grid-flow-col sm:h-auto sm:min-h-screen sm:leading-6 text-gray-800 items-center justify-center"
+                            >
+
+                                <!-- Profile Photo Mobile -->
+                                <div class="sm:hidden pb-4 lg:absolute lg:inset-0 z-0">
+                                    <!--Cover photo-->
+                                    <div class="lg:fixed lg:inset-y-0 lg:right-0 lg:w-1/2 bg-white h-56 overflow-hidden lg:h-screen"
+                                         :class="layout===1 ? 'lg:right-0' : 'lg:left-0'">
+                                        <img class="h-56 w-full object-cover lg:absolute lg:h-full" :src="$page.props.user.profile_photo_url" alt="Profile Photo" />
+                                    </div>
+                                </div>
+
+                                <!-- Profile Photo Desktop -->
+                                <div
+                                    id="w-node-e780bffd-1b1e-cec8-6962-aa84e68fe8a1-e83ee4b6"
+                                    class="hidden sm:block flex relative flex-col row-span-1 justify-center"
+                                    style="grid-area: span 2 / span 1 / span 2 / span 1;"
+                                >
+                                    <div class="relative box-border">
+                                        <div
+                                            data-w-id="961a2f2d-fa59-7add-ca52-35b650a7274e"
+                                            style="width: 100%; height: 5px; background-color: rgba(0, 0, 0, 0); top: 48%;"
+                                            class="absolute w-full h-1 bg-white box-border"
+                                        ></div>
+                                        <img
+                                            :src="$page.props.user.profile_photo_url"
+                                            loading="Loading..."
+                                            width="320"
+                                            style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; z-index: 1;"
+                                            data-w-id="feab8d6b-cfb1-ded5-4a2a-9b18c078d245"
+                                            alt="Profile Photo"
+                                            class="inline-block max-w-full align-middle border-0 opacity-100"
+                                        />
+                                    </div>
+                                </div>
+
+                                <!-- Name -->
+                                <div
+                                    id="w-node-_8b30c3db-b8b0-e584-26e9-b3f745ae2b61-e83ee4b6"
+                                    class="px-9 sm:px-0 flex relative flex-col row-span-1 justify-center items-start"
+                                    style="place-self: end start;"
+                                >
+                                    <div
+                                        data-w-id="ac85ee92-2652-8b4f-ebd3-7848d8555e94"
+                                        style="width: 100%; height: 5px; background-color: rgba(0, 0, 0, 0);"
+                                        class="w-full h-1 bg-white box-border"
+                                    ></div>
+                                    <div
+                                        data-w-id="12e3718c-bed6-7828-7d45-4289f2524471"
+                                        style="opacity: 1;"
+                                        class="opacity-100 box-border"
+                                    >
+                                        <h1
+                                            data-w-id="51fe3e59-5c71-b028-8a26-5448d27eaf8e"
+                                            class="mx-0 mt-0 mb-2 text-5xl font-bold tracking-tight text-left"
+                                            style="line-height: 100%;"
+                                        >
+                                            {{ user.name.split(" ")[0] }}
+                                            <strong
+                                                class="px-1 text-5xl font-extrabold tracking-tighter text-gray-100 bg-gray-900 rounded-sm box-border"
+                                                :style="'line-height: 51.2px; background-color:' + this.colors"
+                                            >{{ user.name.split(" ")[1] }}</strong
+                                            >
+                                        </h1>
+                                        <div class="flex items-center box-border">
+                                            <div
+                                                v-show="$page.props.site.facebook !== null || $page.props.site.instagram !== null || $page.props.site.twitter !== null"
+                                                class="flex justify-center space-x-3">
+                                                <a v-show="$page.props.site.facebook !== null" target="_blank"
+                                                   :href="facebookHttps === 'https://' ? $page.props.site.facebook : facebookHttp === 'http://' ? $page.props.site.facebook : '//' + $page.props.site.facebook"
+                                                   class="text-gray-700">
+                                                    <span class="sr-only">Facebook</span>
+                                                    <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"
+                                                         aria-hidden="true">
+                                                        <path fill-rule="evenodd"
+                                                              d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                                                              clip-rule="evenodd"/>
+                                                    </svg>
+                                                </a>
+
+                                                <a v-show="$page.props.site.instagram !== null" target="_blank"
+                                                   :href="instagramHttps === 'https://' ? $page.props.site.instagram : instagramHttp === 'http://' ? $page.props.site.instagram : '//' + $page.props.site.instagram"
+                                                   class="text-gray-700">
+                                                    <span class="sr-only">Instagram</span>
+                                                    <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"
+                                                         aria-hidden="true">
+                                                        <path fill-rule="evenodd"
+                                                              d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                                                              clip-rule="evenodd"/>
+                                                    </svg>
+                                                </a>
+
+                                                <a v-show="$page.props.site.twitter !== null" target="_blank"
+                                                   :href="twitterHttps === 'https://' ? $page.props.site.twitter : twitterHttp === 'http://' ? $page.props.site.twitter : '//' + $page.props.site.twitter"
+                                                   class="text-gray-700">
+                                                    <span class="sr-only">Twitter</span>
+                                                    <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"
+                                                         aria-hidden="true">
+                                                        <path
+                                                            d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Message -->
+                                <div
+                                    id="w-node-_02336c61-71c8-dcdc-e77c-0342814f8ff1-e83ee4b6"
+                                    class="px-9 sm:px-0 flex flex-col justify-center items-start max-h-screen"
+                                    style="place-self: start;"
+                                >
+                                    <p
+                                        contenteditable
+                                        placeholder="Message"
+                                        @input="updateMessage"
+                                        data-w-id="252e3c3d-faf3-f1f0-14c2-47b370a669d2"
+                                        style="opacity: 1; line-height: 150%;"
+                                        class="mt-0 mb-5 text-lg opacity-100"
+                                    >
+                                        {{
+                                            $page.props.site.message
+                                        }}
+                                    </p>
+                                    <div
+                                        data-w-id="b9bcebd4-1f2f-6829-6474-4dba689c215e"
+                                        style="width: 160%; height: 5px; background-color: rgba(0, 0, 0, 0);"
+                                        class="relative h-1 bg-white box-border"
+                                    ></div>
+                                </div>
+
+                                <!-- Forms -->
+                                <div
+                                    class="px-9 sm:px-0 flex relative flex-col row-span-1 justify-center"
+                                    style="grid-area: span 2 / span 1 / span 2 / span 1;"
+                                >
+                                    <div class="relative box-border">
+                                        <div
+                                            data-w-id="961a2f2d-fa59-7add-ca52-35b650a7274e"
+                                            style="width: 100%; height: 5px; background-color: rgba(0, 0, 0, 0); top: 48%;"
+                                            class="absolute w-full h-1 bg-white box-border"
+                                        ></div>
+
+                                            <!-- Make a New Form -->
+                                            <div class="flex mb-4 items-baseline box-border">
+                                                <div class="text-sm" style="min-width: 40px;">→</div>
+                                                <a :href="route('form.index')" class="minimalistFormItem" :class="'flex items-center py-1 px-2 -ml-3 max-w-full text-lg font-medium tracking-tight no-underline bg-transparent rounded-sm cursor-pointer hover:text-gray-100'"
+                                                      style="grid-auto-columns: 1fr; grid-template-columns: auto 1fr; grid-template-rows: auto; transition: background-color 400ms ease 0s, color 100ms ease 0s; line-height: 100%;">
+                                                        <div class="leading-4 box-border">Make a New Form</div>
+                                                    </a>
+                                            </div>
+
+                                            <!-- Forms -->
+                                            <div v-for="(form, index) in $page.props.forms" class="flex mb-4 items-baseline box-border">
+                                                <div class="text-sm" style="min-width: 40px;">{{index + 1 + '.'}}</div>
+                                                <a
+                                                    class="minimalistFormItem"
+                                                    :href="route('form.edit', form.uuid)"
+                                                    :class="'flex items-center py-1 px-2 -ml-3 max-w-full text-lg font-medium tracking-tight no-underline bg-transparent rounded-sm cursor-pointer hover:bg-gray-900 hover:text-gray-100'"
+                                                    style="grid-auto-columns: 1fr; grid-template-columns: auto 1fr; grid-template-rows: auto; transition: background-color 400ms ease 0s, color 100ms ease 0s; line-height: 100%;"
+                                                >
+                                                    <div class="leading-4 box-border">{{ form.title }}</div>
+                                                </a
+                                                >
+                                            </div>
+
+                                            <!-- Email -->
+                                            <div class="flex mb-4 items-baseline box-border">
+                                                <div class="text-sm" style="min-width: 40px;">→</div>
+                                                <span class="minimalistFormItem" :class="'flex items-center py-1 px-2 -ml-3 max-w-full text-lg font-medium tracking-tight no-underline bg-transparent rounded-sm cursor-pointer hover:text-gray-100'"
+                                                      style="grid-auto-columns: 1fr; grid-template-columns: auto 1fr; grid-template-rows: auto; transition: background-color 400ms ease 0s, color 100ms ease 0s; line-height: 100%;">
+                                                    <div class="leading-4 box-border">{{ $page.props.user.email }}</div>
+                                                </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </main>
                 </div>
             </div>
@@ -1162,10 +1449,10 @@
                                 <ul class="grid grid-cols-2 gap-x-6 gap-y-12 space-y-0 sm:grid sm:grid-cols-3 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:grid-cols-4">
 
                                     <!-- Top align -->
-                                    <li @click="createSite(1)" class="hover:opacity-90">
+                                    <li @click="createSite(3)" class="hover:opacity-90">
                                         <div class="space-y-4">
                                             <div class="aspect-w-3 aspect-h-2">
-                                                <img class="object-cover shadow-sm rounded-lg" :src="$page.props.standard" alt="">
+                                                <img class="object-cover shadow-sm rounded-lg border-gray-100 border" :src="$page.props.standard" alt="">
                                             </div>
 
                                             <div class="space-y-2">
@@ -1182,7 +1469,7 @@
                                     <li @click="createSite(4)" class="hover:opacity-90">
                                         <div class="space-y-4">
                                             <div class="aspect-w-3 aspect-h-2">
-                                                <img class="object-cover shadow-sm rounded-lg" :src="$page.props.mobileProfile" alt="">
+                                                <img class="object-cover shadow-sm rounded-lg border-gray-100 border" :src="$page.props.mobileProfile" alt="">
                                             </div>
 
                                             <div class="space-y-2">
@@ -1195,11 +1482,28 @@
                                         </div>
                                     </li>
 
+                                    <!-- Minimalist -->
+                                    <li @click="createSite(5)" class="hover:opacity-90">
+                                        <div class="space-y-4">
+                                            <div class="aspect-w-3 aspect-h-2">
+                                                <img class="object-cover shadow-sm rounded-lg border-gray-100 border" :src="$page.props.minimalist" alt="">
+                                            </div>
+
+                                            <div class="space-y-2">
+                                                <div class="text-lg leading-6 font-medium space-y-1 text-center">
+                                                    <h3>Minimalist</h3>
+                                                    <p class="text-indigo-600">For a sleek, modern look</p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </li>
+
                                     <!-- Left align -->
                                     <li @click="createSite(2)" class="hover:opacity-90">
                                         <div class="space-y-4">
                                             <div class="aspect-w-3 aspect-h-2">
-                                                <img class="object-cover shadow-sm rounded-lg" :src="$page.props.brandedLeft" alt="">
+                                                <img class="object-cover shadow-sm rounded-lg border-gray-100 border" :src="$page.props.brandedLeft" alt="">
                                             </div>
 
                                             <div class="space-y-2">
@@ -1213,10 +1517,10 @@
                                     </li>
 
                                     <!-- Right align -->
-                                    <li @click="createSite(3)" class="hover:opacity-90">
+                                    <li @click="createSite(1)" class="hover:opacity-90">
                                         <div class="space-y-4">
                                             <div class="aspect-w-3 aspect-h-2">
-                                                <img class="object-cover shadow-sm rounded-lg" :src="$page.props.brandedRight" alt="">
+                                                <img class="object-cover shadow-sm rounded-lg border-gray-100 border" :src="$page.props.brandedRight" alt="">
                                             </div>
 
                                             <div class="space-y-2">
@@ -1225,6 +1529,17 @@
                                                     <p class="text-indigo-600">An alternative to branded-left</p>
                                                 </div>
 
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <!-- And More Soon -->
+                                    <li class="hover:opacity-90">
+                                        <div class="space-y-4">
+                                            <div class="aspect-w-3 aspect-h-2 items-center rounded-lg cursor-default">
+                                                <div class="text-lg leading-6 font-medium text-center items-end justify-end">
+                                                    <h3 class="mt-20">More Templates Coming Soon!</h3>
+                                                </div>
                                             </div>
                                         </div>
                                     </li>
@@ -1308,7 +1623,7 @@
             site: {
                 deep: true,
                 handler: function(newVal, oldVal){
-                    // this.showingChangeDomainModal = (newVal === oldVal);
+                    this.layout = newVal.layout
                     this.possiblyChangedSiteUUID = newVal.uuid;
                 }
             }
@@ -1373,6 +1688,7 @@
              */
             async updateLayout(newLayout) {
                 this.layout = newLayout;
+                this.showingLayoutDropdown = false;
 
                 let data = {
                     'layout': newLayout,
@@ -1462,6 +1778,14 @@
                     let response = await axios.post('/api/update-section-header', data)
                 })
             },
+        },
+
+        computed: {
+            cssProps() {
+                return {
+                    '--bg-accent-color': this.colors,
+                }
+            }
         }
     }
 </script>
@@ -1495,5 +1819,9 @@ img {
 
 li {
     cursor: pointer;
+}
+
+.minimalistFormItem:hover {
+    background-color: var(--bg-accent-color) !important;
 }
 </style>

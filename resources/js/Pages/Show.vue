@@ -419,7 +419,7 @@
                                             <div class="flex justify-between items-end mb-6 -mt-12 box-border">
                                                 <div class="box-border">
                                                     <img
-                                                        :src="$page.props.user.profile_photo_url"
+                                                        :src="$page.props.profile_photo_url"
                                                         loading="Loading..."
                                                         alt="Profile Photo"
                                                         class="inline-block object-cover mr-3 -ml-px w-24 max-w-full h-24 align-middle border-2 border-white border-solid"
@@ -480,10 +480,10 @@
                                                     class="mx-0 mt-0 mb-2 font-sans text-5xl font-normal tracking-tighter text-black box-border"
                                                     style="line-height: 1.1;"
                                                 >
-                                                    {{ $page.props.user.name }}
+                                                    {{ $page.props.name }}
                                                 </h1>
                                                 <div class="box-border">
-                                                    {{ $page.props.site.message }}
+                                                    {{ $page.props.message }}
                                                 </div>
                                             </div>
                                         </div>
@@ -741,6 +741,139 @@
 
                             </div>
                         </div>
+
+                        <!-- Minimalist -->
+                        <div v-if="this.layout === 5" class="bg-gray-50 min-h-screen" :style="cssProps">
+                            <div
+                                style="grid-auto-rows: 1fr; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 5vh 4vw; padding-top: 0vh; padding-bottom: 5vh; grid-auto-columns: 1fr;"
+                                class=" sm:grid sm:grid-flow-col sm:h-auto sm:min-h-screen sm:leading-6 text-gray-800 items-center justify-center"
+                            >
+
+                                <!-- Profile Photo Mobile -->
+                                <div class="sm:hidden pb-4 lg:absolute lg:inset-0 z-0">
+                                    <!--Cover photo-->
+                                    <div class="lg:fixed lg:inset-y-0 lg:right-0 lg:w-1/2 bg-white h-56 overflow-hidden lg:h-screen"
+                                         :class="layout===1 ? 'lg:right-0' : 'lg:left-0'">
+                                        <img class="h-56 w-full object-cover lg:absolute lg:h-full" :src="$page.props.profile_photo_url" alt="Profile Photo" />
+                                    </div>
+                                </div>
+
+                                <!-- Profile Photo Desktop -->
+                                <div
+                                    id="w-node-e780bffd-1b1e-cec8-6962-aa84e68fe8a1-e83ee4b6"
+                                    class="hidden sm:block flex relative flex-col row-span-1 justify-center"
+                                    style="grid-area: span 2 / span 1 / span 2 / span 1;"
+                                >
+                                    <div class="relative box-border">
+                                        <div
+                                            data-w-id="961a2f2d-fa59-7add-ca52-35b650a7274e"
+                                            style="width: 100%; height: 5px; background-color: rgba(0, 0, 0, 0); top: 48%;"
+                                            class="absolute w-full h-1 bg-white box-border"
+                                        ></div>
+                                        <img
+                                            :src="$page.props.profile_photo_url"
+                                            loading="Loading..."
+                                            width="320"
+                                            style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; z-index: 1;"
+                                            data-w-id="feab8d6b-cfb1-ded5-4a2a-9b18c078d245"
+                                            alt="Profile Photo"
+                                            class="inline-block max-w-full align-middle border-0 opacity-100"
+                                        />
+                                    </div>
+                                </div>
+
+                                <!-- Name -->
+                                <div
+                                    id="w-node-_8b30c3db-b8b0-e584-26e9-b3f745ae2b61-e83ee4b6"
+                                    class="px-9 sm:px-0 flex relative flex-col row-span-1 justify-center items-start"
+                                    style="place-self: end start;"
+                                >
+                                    <div
+                                        data-w-id="ac85ee92-2652-8b4f-ebd3-7848d8555e94"
+                                        style="width: 100%; height: 5px; background-color: rgba(0, 0, 0, 0);"
+                                        class="w-full h-1 bg-white box-border"
+                                    ></div>
+                                    <div
+                                        data-w-id="12e3718c-bed6-7828-7d45-4289f2524471"
+                                        style="opacity: 1;"
+                                        class="opacity-100 box-border"
+                                    >
+                                        <h1
+                                            data-w-id="51fe3e59-5c71-b028-8a26-5448d27eaf8e"
+                                            class="mx-0 mt-0 mb-2 text-5xl font-bold tracking-tight text-left"
+                                            style="line-height: 100%;"
+                                        >
+                                            {{ name.split(" ")[0] }}
+                                            <strong
+                                                class="px-1 text-5xl font-extrabold tracking-tighter text-gray-100 bg-gray-900 rounded-sm box-border"
+                                                :style="'line-height: 51.2px; background-color:' + this.colors"
+                                            >{{ name.split(" ")[1] }}</strong
+                                            >
+                                        </h1>
+                                    </div>
+                                </div>
+
+                                <!-- Message -->
+                                <div
+                                    id="w-node-_02336c61-71c8-dcdc-e77c-0342814f8ff1-e83ee4b6"
+                                    class="px-9 sm:px-0 flex flex-col justify-center items-start max-h-screen"
+                                    style="place-self: start;"
+                                >
+                                    <p
+                                        data-w-id="252e3c3d-faf3-f1f0-14c2-47b370a669d2"
+                                        style="opacity: 1; line-height: 150%;"
+                                        class="mt-0 mb-5 text-lg opacity-100"
+                                    >
+                                        {{
+                                            $page.props.site.message
+                                        }}
+                                    </p>
+                                    <div
+                                        data-w-id="b9bcebd4-1f2f-6829-6474-4dba689c215e"
+                                        style="width: 160%; height: 5px; background-color: rgba(0, 0, 0, 0);"
+                                        class="relative h-1 bg-white box-border"
+                                    ></div>
+                                </div>
+
+                                <!-- Forms -->
+                                <div
+                                    class="px-9 sm:px-0 flex relative flex-col row-span-1 justify-center"
+                                    style="grid-area: span 2 / span 1 / span 2 / span 1;"
+                                >
+                                    <div class="relative box-border">
+                                        <div
+                                            data-w-id="961a2f2d-fa59-7add-ca52-35b650a7274e"
+                                            style="width: 100%; height: 5px; background-color: rgba(0, 0, 0, 0); top: 48%;"
+                                            class="absolute w-full h-1 bg-white box-border"
+                                        ></div>
+
+                                        <!-- Forms -->
+                                        <div v-for="(form, index) in $page.props.forms" class="flex mb-4 items-baseline box-border">
+                                            <div class="text-sm" style="min-width: 40px;">{{index + 1 + '.'}}</div>
+                                            <a
+                                                class="minimalistFormItem"
+                                                :href="route('form.edit', form.uuid)"
+                                                :class="'flex items-center py-1 px-2 -ml-3 max-w-full text-lg font-medium tracking-tight no-underline bg-transparent rounded-sm cursor-pointer hover:bg-gray-900 hover:text-gray-100'"
+                                                style="grid-auto-columns: 1fr; grid-template-columns: auto 1fr; grid-template-rows: auto; transition: background-color 400ms ease 0s, color 100ms ease 0s; line-height: 100%;"
+                                            >
+                                                <div class="leading-4 box-border">{{ form.title }}</div>
+                                            </a
+                                            >
+                                        </div>
+
+                                        <!-- Email -->
+                                        <div class="flex mb-4 items-baseline box-border">
+                                            <div class="text-sm" style="min-width: 40px;">→</div>
+                                            <span class="minimalistFormItem" :class="'flex items-center py-1 px-2 -ml-3 max-w-full text-lg font-medium tracking-tight no-underline bg-transparent rounded-sm cursor-pointer hover:text-gray-100'"
+                                                  style="grid-auto-columns: 1fr; grid-template-columns: auto 1fr; grid-template-rows: auto; transition: background-color 400ms ease 0s, color 100ms ease 0s; line-height: 100%;">
+                                                    <div class="leading-4 box-border">{{ $page.props.email }}</div>
+                                                </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </main>
             </div>
@@ -813,6 +946,14 @@ export default {
             var yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
             return (yiq >= 128) ? 'black' : 'white';
         },
+    },
+
+    computed: {
+        cssProps() {
+            return {
+                '--bg-accent-color': this.colors,
+            }
+        }
     }
 }
 </script>
@@ -842,5 +983,9 @@ img {
 [contenteditable]:empty:before {
     color: #999999;
     content: attr(placeholder);
+}
+
+.minimalistFormItem:hover {
+    background-color: var(--bg-accent-color) !important;
 }
 </style>
