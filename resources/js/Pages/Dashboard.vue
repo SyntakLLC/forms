@@ -147,14 +147,14 @@
                                                             </span>
                                                 </div>
                                                 <div class="relative bg-white">
-                                                    <div class="min-h-full flex overflow-hidden bg-white">
-                                                        <div class="max-w-7xl py-8 px-4 sm:px-6">
+                                                    <div class="min-h-full flex overflow-hidden w-full">
+                                                        <div class="max-w-7xl py-8 px-4 sm:px-6 bg-white w-full">
 
-                                                            <div class="bg-white">
+                                                            <div class="">
                                                                 <div class="">
                                                                     <div class="space-y-12">
 
-                                                                        <ul class="grid grid-cols-2 gap-x-6 gap-y-12 space-y-0 sm:grid sm:grid-cols-3 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:grid-cols-4">
+                                                                        <ul class="gap-x-6 gap-y-12 space-y-0 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:grid-cols-3">
 
                                                                             <!-- Top align -->
                                                                             <li @click="updateLayout(3)" class="hover:opacity-90">
@@ -166,7 +166,6 @@
                                                                                     <div class="space-y-2">
                                                                                         <div class="text-lg leading-6 font-medium space-y-1 text-center">
                                                                                             <h3>Standard</h3>
-                                                                                            <p class="text-indigo-600">A standard site layout</p>
                                                                                         </div>
 
                                                                                     </div>
@@ -183,7 +182,6 @@
                                                                                     <div class="space-y-2">
                                                                                         <div class="text-lg leading-6 font-medium space-y-1 text-center">
                                                                                             <h3>Mobile Profile</h3>
-                                                                                            <p class="text-indigo-600">A mobile-first personal page</p>
                                                                                         </div>
 
                                                                                     </div>
@@ -200,7 +198,6 @@
                                                                                     <div class="space-y-2">
                                                                                         <div class="text-lg leading-6 font-medium space-y-1 text-center">
                                                                                             <h3>Minimalist</h3>
-                                                                                            <p class="text-indigo-600">For a sleek, modern look</p>
                                                                                         </div>
 
                                                                                     </div>
@@ -217,7 +214,6 @@
                                                                                     <div class="space-y-2">
                                                                                         <div class="text-lg leading-6 font-medium space-y-1 text-center">
                                                                                             <h3>Branded Left</h3>
-                                                                                            <p class="text-indigo-600">Let your brand stand out</p>
                                                                                         </div>
 
                                                                                     </div>
@@ -234,7 +230,6 @@
                                                                                     <div class="space-y-2">
                                                                                         <div class="text-lg leading-6 font-medium space-y-1 text-center">
                                                                                             <h3>Branded Right</h3>
-                                                                                            <p class="text-indigo-600">An alternative to branded-left</p>
                                                                                         </div>
 
                                                                                     </div>
