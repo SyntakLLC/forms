@@ -19,7 +19,7 @@
                                 :data="this.convertToCsv()"
                                 name="leads.csv">
                                 <button type="button"
-                                        class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:order-1 sm:ml-3">
+                                        class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:order-1 sm:ml-3">
                                     Download
                                 </button>
                             </download-csv>
@@ -64,7 +64,7 @@
                             <h2 class="text-gray-500 text-xs font-medium uppercase tracking-wide">Leads</h2>
                         </div>
                         <ul class="mt-3 border-t border-gray-200 divide-y divide-gray-100">
-                            <li v-for="lead in listOfLeads.reverse()">
+                            <li v-for="lead in listOfLeads">
                                 <a href="#"
                                    class="group flex items-center justify-between px-4 py-4 hover:bg-gray-50 sm:px-6">
                                     <inertia-link :href="route('response.show', lead.uuid)"
@@ -129,9 +129,9 @@
                                                       class="hover:text-gray-600">
                                             <div class="flex items-center space-x-3 lg:pl-2">
                                                 <div
-                                                    v-if="$page['props']['formsFilled'].slice().reverse()[index] !== null && $page['props']['formsFilled'].slice().reverse()[index] !== 0">
+                                                    v-if="$page['props']['formsFilled'].slice()[index] !== null && $page['props']['formsFilled'].slice()[index] !== 0">
                                                     <div class="flex-shrink-0 w-2.5 h-2.5 rounded-full"
-                                                         :class="$page['props']['formsFilled'].slice().reverse()[index]['id_color']"
+                                                         :class="$page['props']['formsFilled'].slice()[index]['id_color']"
                                                          aria-hidden="true"></div>
                                                 </div>
                                                 <div v-else>
@@ -162,7 +162,7 @@
                                                               class="truncate hover:text-gray-600 block">
                                                             <span>
                                                                 {{
-                                                                    $page['props']['formsFilled'].slice().reverse()[index] === 0 ? "General Contact" : $page['props']['formsFilled'].slice().reverse()[index] == null ? "Deleted form" : $page['props']['formsFilled'].slice().reverse()[index]['title']
+                                                                    listOfFormsFilled.slice()[index] === 0 ? "General Contact" : listOfFormsFilled.slice()[index] == null ? "Deleted form" : listOfFormsFilled.slice()[index]['title']
                                                                 }}
                                                             </span>
                                                 </inertia-link>
@@ -207,15 +207,18 @@ export default {
         return {
             listOfLeads: this.leads.map((lead) => {
                 return lead
-            })
+            }).reverse(),
+            listOfFormsFilled: this.formsFilled.map((formFilled) => {
+                return formFilled
+            }).reverse()
         }
     },
 
     methods: {
-        filterLeads(uuid) {
-            console.log(this.leadsFilterable)
-            this.leadsFilterable = this.leadsFilterable.filter((lead) => lead.form_filled === uuid);
-        },
+        // filterLeads(uuid) {
+        //     console.log(this.leadsFilterable)
+        //     this.leadsFilterable = this.leadsFilterable.filter((lead) => lead.form_filled === uuid);
+        // },
         convertToCsv() {
             return this.listOfLeads.map((lead, index) => {
                 // this.responses[index].forEach((response, index) => {

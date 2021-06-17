@@ -13,20 +13,20 @@
         <form @submit.prevent="submit">
             <div>
                 <jet-label for="email" value="Email" />
-                <input type="email" id="email" class="mt-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                <input type="email" id="email" class="mt-2 shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
                        v-model="form.email" required />
             </div>
 
             <div class="mt-4">
                 <jet-label for="password" value="Password" />
-                <input type="password" id="password" class="mt-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                <input type="password" id="password" class="mt-2 shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
                        v-model="form.password" required autocomplete="current-password" />
             </div>
 
             <div class="block mt-4">
                 <label class="flex items-center">
                     <input name="remember" type="checkbox"
-                           class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" v-model:checked="form.remember">
+                           class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" v-model:checked="form.remember">
 
                     <span class="ml-2 text-sm text-gray-600">Remember me</span>
                 </label>

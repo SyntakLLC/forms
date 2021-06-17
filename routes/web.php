@@ -16,41 +16,11 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    $codelessURL = Storage::url('marketing-photos/Codeless.png');
-    $beautifulForms = Storage::url('marketing-photos/Beautiful_Forms.png');
-    $leads = Storage::url('marketing-photos/Leads.png');
-    $twoPeopleAroundLaptop = Storage::url('marketing-photos/people_working_on_laptop.jpg');
-    $davidTran = Storage::url('marketing-photos/david_tran.jpg');
+Route::get('/', 'App\Http\Controllers\Controller@welcome')->name('welcome');
 
-    $standard = Storage::url('marketing-photos/Standard.png');
-    $mobileProfile = Storage::url('marketing-photos/Mobile_Profile.png');
-    $brandedLeft = Storage::url('marketing-photos/Brand_Left.png');
-    $brandedRight = Storage::url('marketing-photos/Brand_Right.png');
+Route::get('/help', 'App\Http\Controllers\Controller@help')->name('help');
 
-    $loganMiller = Storage::url('marketing-photos/LoganMiller.png');
-    $ricardoCooper = Storage::url('marketing-photos/RicardoCooper.png');
-
-    return Inertia::render('Welcome', [
-        'codelessURL' => $codelessURL,
-        'beautifulForms' => $beautifulForms,
-        'leads' => $leads,
-        'twoPeopleAroundLaptop' => $twoPeopleAroundLaptop,
-        'davidTran' => $davidTran,
-        'standard' => $standard,
-        'mobileProfile' => $mobileProfile,
-        'brandedLeft' => $brandedLeft,
-        'brandedRight' => $brandedRight,
-        'loganMiller' => $loganMiller,
-        'ricardoCooper' => $ricardoCooper,
-    ]);
-});
-
-Route::get('/help', function () {
-    return Inertia::render('Help');
-})->name('help');
-
-Route::middleware(['auth:sanctum', 'verified', 'subscribed'])->group(function() {
+Route::middleware(['auth:sanctum', 'verified'])->group(function() {
 
 //    Route::get('/dashboard', function () {
 //        return Inertia::render('Dashboard');
@@ -126,4 +96,4 @@ Route::post('delete-form', 'App\Http\Controllers\FormController@destroy');
 Route::post('create-site', 'App\Http\Controllers\SiteController@create');
 
 // to change the domain name
-Route::post('tryToUpdateDomain', 'App\Http\Controllers\SiteController@tryToUpdateDomain');
+Route::post('tryToUpdateDomain/{site}', 'App\Http\Controllers\SiteController@tryToUpdateDomain')->name('site.slug.update');

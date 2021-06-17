@@ -36,7 +36,7 @@
                                         <div class="space-y-2">
                                             <div class="text-lg leading-6 font-medium space-y-1">
                                                 <h3>Blank Form</h3>
-                                                <!--                                            <p class="text-indigo-600">Preset Form</p>-->
+                                                <!--                                            <p class="text-blue-600">Preset Form</p>-->
                                             </div>
 
                                         </div>
@@ -57,7 +57,7 @@
                                             <div class="space-y-2">
                                                 <div class="text-lg leading-6 font-medium space-y-1">
                                                     <h3>How Much is my Home Worth?</h3>
-                                                    <p class="text-indigo-600">Premade Form</p>
+                                                    <p class="text-blue-600">Premade Form</p>
                                                 </div>
 
                                             </div>
@@ -77,13 +77,24 @@
                                             <div class="space-y-2">
                                                 <div class="text-lg leading-6 font-medium space-y-1">
                                                     <h3>I'm Looking for an Apartment</h3>
-                                                    <p class="text-indigo-600">Premade Form</p>
+                                                    <p class="text-blue-600">Premade Form</p>
                                                 </div>
 
                                             </div>
                                         </div>
                                     </button>
                                 </form>
+                            </li>
+
+                            <!-- And More Soon -->
+                            <li class="hover:opacity-90">
+                                <div class="space-y-4">
+                                    <div class="aspect-w-10 aspect-h-10 items-center rounded-lg cursor-default">
+                                        <div class="text-lg leading-6 font-medium text-center items-end justify-end">
+                                            <h3 class="mt-20">More Templates Coming Soon!</h3>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
 
                         </ul>
@@ -132,7 +143,7 @@ export default {
     methods: {
         getNewIdColor() {
             let shades = [50, 100, 200, 300, 400, 500, 600, 700, 800];
-            let colors = ['gray', 'red', 'indigo', 'purple', 'green', 'yellow', 'blue', 'pink'];
+            let colors = ['gray', 'red', 'blue', 'purple', 'green', 'yellow', 'blue', 'pink'];
 
             return 'bg-' + colors[this.randomIntFromInterval(0, 7)] + '-500'
         },

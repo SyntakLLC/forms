@@ -16,7 +16,7 @@
                     <div class="relative mt-2 sm:mt-0 sm:ml-3">
                         <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
                         <button @click="showingAccentColorDropdown=!showingAccentColorDropdown; showingLayoutDropdown=false; showingCoverPhotoDropdown=false; showingSocialDropdown=false"
-                                :class="showingAccentColorDropdown ? 'text-gray-900' : 'text-gray-500'" type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-expanded="false">
+                                :class="showingAccentColorDropdown ? 'text-gray-900' : 'text-gray-500'" type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-expanded="false">
                             <span>Change Accent Color</span>
 
                             <svg class="text-gray-400 ml-2 h-5 w-5 group-hover:text-gray-500"
@@ -46,7 +46,7 @@
                     <div v-show="this.layout !== 5" class="relative mt-2 sm:mt-0 sm:ml-3">
                         <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
                         <button @click="showingCoverPhotoDropdown=!showingCoverPhotoDropdown; showingLayoutDropdown=false; showingAccentColorDropdown=false; showingSocialDropdown=false"
-                                :class="showingCoverPhotoDropdown ? 'text-gray-900' : 'text-gray-500'" type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-expanded="false">
+                                :class="showingCoverPhotoDropdown ? 'text-gray-900' : 'text-gray-500'" type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-expanded="false">
                             <span>Select Background Photo</span>
 
                             <svg class="text-gray-400 ml-2 h-5 w-5 group-hover:text-gray-500"
@@ -83,7 +83,7 @@
                     <div class="relative mt-2 sm:mt-0 sm:ml-3">
                         <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
                         <button @click="showingLayoutDropdown=!showingLayoutDropdown; showingCoverPhotoDropdown=false; showingAccentColorDropdown=false; showingSocialDropdown=false"
-                                :class="showingLayoutDropdown ? 'text-gray-900' : 'text-gray-500'" type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-expanded="false">
+                                :class="showingLayoutDropdown ? 'text-gray-900' : 'text-gray-500'" type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-expanded="false">
                             <span>Change Layout</span>
 
                             <svg class="text-gray-400 ml-2 h-5 w-5 group-hover:text-gray-500"
@@ -125,7 +125,7 @@
 
                                             <div class="hidden sm:block absolute top-0 right-0 pt-10 pr-4">
                                                 <button @click="showingLayoutDropdown=!showingLayoutDropdown"
-                                                        type="button" class="rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                        type="button" class="rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                                     <span class="sr-only">Close</span>
                                                     <!-- Heroicon name: outline/x -->
                                                     <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -256,7 +256,7 @@
                     <div class="relative mt-2 sm:mt-0 sm:ml-3">
                         <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
                         <button @click="showingSocialDropdown=!showingSocialDropdown; showingLayoutDropdown=false; showingAccentColorDropdown=false; showingCoverPhotoDropdown=false"
-                                :class="showingSocialDropdown ? 'text-gray-900' : 'text-gray-500'" type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-expanded="false">
+                                :class="showingSocialDropdown ? 'text-gray-900' : 'text-gray-500'" type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-expanded="false">
                             <span>Add Social Links</span>
 
                             <svg class="text-gray-400 ml-2 h-5 w-5 group-hover:text-gray-500"
@@ -280,7 +280,7 @@
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Facebook</label>
                                         <div class="mt-1">
-                                            <input v-model="updateSocialForm.facebook" type="text" name="url" id="url1" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="www.facebook.com/yourpage">
+                                            <input v-model="updateSocialForm.facebook" type="text" name="url" id="url1" class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="www.facebook.com/yourpage">
                                         </div>
                                     </div>
 
@@ -288,7 +288,7 @@
                                     <div class="mt-3">
                                         <label class="block text-sm font-medium text-gray-700">Instagram</label>
                                         <div class="mt-1">
-                                            <input v-model="updateSocialForm.instagram" type="text" name="url" id="url2" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="www.instagram.com/yourpage">
+                                            <input v-model="updateSocialForm.instagram" type="text" name="url" id="url2" class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="www.instagram.com/yourpage">
                                         </div>
                                     </div>
 
@@ -296,11 +296,11 @@
                                     <div class="mt-3">
                                         <label class="block text-sm font-medium text-gray-700">Twitter</label>
                                         <div class="mt-1">
-                                            <input v-model="updateSocialForm.twitter" type="text" name="url" id="url3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="www.twitter.com/yourpage">
+                                            <input v-model="updateSocialForm.twitter" type="text" name="url" id="url3" class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="www.twitter.com/yourpage">
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="mt-3 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <button type="submit" class="mt-3 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                         {{ updateSocialForm.recentlySuccessful ? "Saved" : updateSocialForm.processing ? "Saving..." : "Save" }}
                                     </button>
 
@@ -313,15 +313,15 @@
 
                     <!-- Change domain & Preview -->
                     <div class="mt-4 flex sm:mt-0 sm:ml-4">
-                        <button @click="showingChangeDomainModal=!showingChangeDomainModal" type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <button @click="showingChangeDomainModal=!showingChangeDomainModal" type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                             Customize Domain
                         </button>
 
 <!--                        <inertia-link :href="route('site.show', $page.props.site.uuid)"-->
 <!--                                      class="truncate hover:text-gray-600 block">-->
-                            <button @click="$inertia.get(route('site.show', $page.props.site.uuid))" type="button" class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:order-1 ml-3">
+                            <inertia-link :href="route('site.show', $page.props.site.slug)" type="button" class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:order-1 ml-3">
                                 Preview
-                            </button>
+                            </inertia-link>
 <!--                        </inertia-link>-->
                     </div>
 
@@ -354,54 +354,55 @@
                                     leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
                                     <div v-if="showingChangeDomainModal"
                                          class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
-                                        <div class="sm:flex sm:items-start">
-                                            <div
-                                                class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 text-blue-600 :mx-0 sm:h-10 sm:w-10">
-                                                <!-- Heroicon name: outline/exclamation -->
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                                                </svg>
-                                            </div>
-                                            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full flex-col">
-                                                <h3 class="text-lg leading-6 font-medium text-gray-900 block" id="modal-title">
-                                                    Change Domain
-                                                </h3>
-                                                <div class="mt-2 block">
+                                        <form @submit.prevent="tryToUpdateDomain">
+                                            <div class="sm:flex sm:items-start">
+                                                <div
+                                                    class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 text-blue-600 :mx-0 sm:h-10 sm:w-10">
+                                                    <!-- Heroicon name: outline/exclamation -->
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                                                    </svg>
+                                                </div>
+                                                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full flex-col">
+                                                    <h3 class="text-lg leading-6 font-medium text-gray-900 block" id="modal-title">
+                                                        Change Domain
+                                                    </h3>
+                                                    <div class="mt-2 block">
 
-                                                    <div>
-<!--                                                        <label for="company_website" class="block text-sm font-medium text-gray-700">-->
-<!--                                                            Company Website-->
-<!--                                                        </label>-->
-                                                        <div class="mt-1 flex rounded-md shadow-sm">
+                                                        <div>
+                                                            <!--                                                        <label for="company_website" class="block text-sm font-medium text-gray-700">-->
+                                                            <!--                                                            Company Website-->
+                                                            <!--                                                        </label>-->
+                                                            <div class="mt-1 flex rounded-md shadow-sm">
                                                             <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
                                                               about.contact/
                                                             </span>
-                                                            <input v-model="wantsThisNewDomain" type="text" name="company_website" id="company_website" class="flex-1 min-w-0 block w-full px-3 py-2 pr-10 rounded-none rounded-r-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300" :class="this.initialSiteUUID === this.possiblyChangedSiteUUID ? 'border-red-300' : 'border-gray-300'" :placeholder="site.uuid">
+                                                                <input v-model="wantsThisNewDomain" type="text" name="company_website" id="company_website" class="flex-1 min-w-0 block w-full px-3 py-2 pr-10 rounded-none rounded-r-md focus:ring-blue-500 focus:border-blue-500 sm:text-sm border-gray-300" :class="this.initialSiteUUID === this.possiblyChangedSiteUUID ? 'border-red-300' : 'border-gray-300'" :placeholder="site.uuid">
+                                                            </div>
+                                                            <p v-show="errors.slug" class="mt-2 text-sm text-red-600" id="email-error">This domain ending has already been taken.</p>
                                                         </div>
-                                                        <p v-show="this.initialSiteUUID === this.possiblyChangedSiteUUID" class="mt-2 text-sm text-red-600" id="email-error">This domain ending has already been taken.</p>
+
+
+
+                                                        <!--                                                    <p class="text-sm text-gray-500">-->
+                                                        <!--                                                        Are you sure you want to delete this form? Any leads generated from-->
+                                                        <!--                                                        this form will not be deleted. This action cannot be undone.-->
+                                                        <!--                                                    </p>-->
                                                     </div>
-
-
-
-                                                    <!--                                                    <p class="text-sm text-gray-500">-->
-<!--                                                        Are you sure you want to delete this form? Any leads generated from-->
-<!--                                                        this form will not be deleted. This action cannot be undone.-->
-<!--                                                    </p>-->
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-                                            <button @click="this.tryToUpdateDomain"
-                                                    type="button"
-                                                    class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
-                                                {{ domainSavingText }}
-                                            </button>
-                                            <button @click="showingChangeDomainModal=!showingChangeDomainModal"
-                                                    type="button"
-                                                    class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm">
-                                                Cancel
-                                            </button>
-                                        </div>
+                                            <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+                                                <button type="submit"
+                                                        class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
+                                                    {{ domainSavingText }}
+                                                </button>
+                                                <button @click="showingChangeDomainModal=!showingChangeDomainModal"
+                                                        type="button"
+                                                        class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:w-auto sm:text-sm">
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </transition>
                             </div>
@@ -415,10 +416,11 @@
                 <div class="flex flex-col w-0 flex-1 overflow-hidden">
                     <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none" tabindex="0">
 
-                        <!-- Global notification live region, render this permanently at the end of the document -->
+                        <!-- Notifications -->
                         <div aria-live="assertive" class="fixed sm:relative inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start z-30">
                             <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
 
+                                <!-- Billing notif -->
                                 <transition
                                     enter-active-class="transform ease-out duration-300 transition"
                                     enter-class="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
@@ -426,19 +428,19 @@
                                     leave-active-class="transition ease-in duration-100"
                                     leave-class="opacity-100"
                                     leave-to-class="opacity-0">
-                                    <div v-show="showingAutosaveNotification" class="sm:mt-12 max-w-sm sm:absolute w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+                                    <div v-show="showingBillingNotification" class="sm:mt-12 max-w-sm sm:absolute w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
                                         <div class="p-4">
                                             <div class="flex items-center">
                                                 <div class="w-0 flex-1 flex justify-between">
                                                     <p class="w-0 flex-1 text-sm font-medium text-gray-900">
-                                                        Any changes you make will automatically be saved, besides editing social links.
+                                                        Your billing plan is inactive. Your site will remain offline until you resubscribe.
                                                     </p>
-                                                    <button @click="dontShowNotifAgain" class="ml-3 flex-shrink-0 bg-white rounded-md text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                        Don't Show Again
-                                                    </button>
+                                                    <!--                                                    <button @click="dontShowNotifAgain" class="ml-3 flex-shrink-0 bg-white rounded-md text-sm font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">-->
+                                                    <!--                                                        Don't Show Again-->
+                                                    <!--                                                    </button>-->
                                                 </div>
                                                 <div class="ml-4 flex-shrink-0 flex">
-                                                    <button @click="showingAutosaveNotification=!showingAutosaveNotification" class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                    <button @click="showingBillingNotification=!showingBillingNotification" class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                                         <span class="sr-only">Close</span>
                                                         <!-- Heroicon name: solid/x -->
                                                         <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -450,6 +452,42 @@
                                         </div>
                                     </div>
                                 </transition>
+                            </div>
+                        </div>
+                        <div aria-live="assertive" class="fixed sm:relative inset-0 flex items-end px-4 py-6 pointer-events-none sm:px-6 sm:py-0 sm:items-start z-30">
+                            <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
+                            <!-- Autosave notif -->
+                            <transition
+                                enter-active-class="transform ease-out duration-300 transition"
+                                enter-class="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
+                                enter-to-class="translate-y-0 opacity-100 sm:translate-x-0"
+                                leave-active-class="transition ease-in duration-100"
+                                leave-class="opacity-100"
+                                leave-to-class="opacity-0">
+                                <div v-show="showingAutosaveNotification && !showingBillingNotification" class="sm:mt-6 max-w-sm sm:absolute w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+                                    <div class="p-4">
+                                        <div class="flex items-center">
+                                            <div class="w-0 flex-1 flex justify-between">
+                                                <p class="w-0 flex-1 text-sm font-medium text-gray-900">
+                                                    Any changes you make will automatically be saved.
+                                                </p>
+                                                <button @click="dontShowNotifAgain" class="ml-3 flex-shrink-0 bg-white rounded-md text-sm font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                                    Don't Show Again
+                                                </button>
+                                            </div>
+                                            <div class="ml-4 flex-shrink-0 flex">
+                                                <button @click="showingAutosaveNotification=!showingAutosaveNotification" class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                                    <span class="sr-only">Close</span>
+                                                    <!-- Heroicon name: solid/x -->
+                                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </transition>
                             </div>
                         </div>
 
@@ -498,7 +536,7 @@
                                                                             </div>
                                                                             <div class="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
                                                                                 <button type="button"
-                                                                                        class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
+                                                                                        class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"
                                                                                         :style="'background: ' + colors + '; color: ' + getContrastYIQ(colors)">
                                                                                     Edit Form
                                                                                 </button>
@@ -542,7 +580,7 @@
                                                 <div class="relative px-4 sm:px-6 lg:px-8">
                                                     <div class="text-lg max-w-prose mx-auto">
                                                         <h1>
-                                                            <span class="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase" :style="'color: ' + colors">Welcome</span>
+                                                            <span class="block text-base text-center text-blue-600 font-semibold tracking-wide uppercase" :style="'color: ' + colors">Welcome</span>
                                                             <span contenteditable placeholder="Title" @input="updateTitle" class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">{{$page.props.site.section_header}}</span>
                                                         </h1>
                                                         <p contenteditable placeholder="Describe a little about yourself and your goals here." @input="updateContent" class="mt-8 text-xl text-gray-500 leading-8">{{$page.props.site.section_content}}</p>
@@ -607,36 +645,36 @@
                                                             <div>
                                                                 <label for="first_name" class="block text-sm font-medium text-gray-700">First name</label>
                                                                 <div class="mt-1">
-                                                                    <input v-model="submitContactForm.firstName" type="text" name="first_name" id="first_name" autocomplete="given-name" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                                                                    <input v-model="submitContactForm.firstName" type="text" name="first_name" id="first_name" autocomplete="given-name" class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md">
                                                                 </div>
                                                             </div>
                                                             <div>
                                                                 <label for="last_name" class="block text-sm font-medium text-gray-700">Last name</label>
                                                                 <div class="mt-1">
-                                                                    <input v-model="submitContactForm.lastName" type="text" name="last_name" id="last_name" autocomplete="family-name" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                                                                    <input v-model="submitContactForm.lastName" type="text" name="last_name" id="last_name" autocomplete="family-name" class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md">
                                                                 </div>
                                                             </div>
                                                             <div class="sm:col-span-2">
                                                                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                                                                 <div class="mt-1">
-                                                                    <input v-model="submitContactForm.email" id="email" name="email" type="email" autocomplete="email" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                                                                    <input v-model="submitContactForm.email" id="email" name="email" type="email" autocomplete="email" class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md">
                                                                 </div>
                                                             </div>
                                                             <div class="sm:col-span-2">
                                                                 <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
                                                                 <div class="mt-1 relative rounded-md shadow-sm">
-                                                                    <input v-model="submitContactForm.phone" type="text" name="phone_number" id="phone_number" autocomplete="tel" class="py-3 px-4 block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" placeholder="+1 (555) 987-6543">
+                                                                    <input v-model="submitContactForm.phone" type="text" name="phone_number" id="phone_number" autocomplete="tel" class="py-3 px-4 block w-full focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md" placeholder="+1 (555) 987-6543">
                                                                 </div>
                                                             </div>
                                                             <div class="sm:col-span-2">
                                                                 <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
                                                                 <div class="mt-1">
-                                                                    <textarea v-model="submitContactForm.message" id="message" name="message" rows="4" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"></textarea>
+                                                                    <textarea v-model="submitContactForm.message" id="message" name="message" rows="4" class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md"></textarea>
                                                                 </div>
                                                             </div>
 
                                                             <div class="sm:col-span-2">
-                                                                <button class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                                                <button class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                                                         :style="'background: ' + colors">
                                                                     Let's talk
                                                                 </button>
@@ -702,7 +740,7 @@
                                                                 </div>
                                                                 <div class="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
                                                                     <button type="button"
-                                                                            class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
+                                                                            class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"
                                                                             :style="'background: ' + colors + '; color: ' + getContrastYIQ(colors)">
                                                                         Edit Form
                                                                     </button>
@@ -746,7 +784,7 @@
                                 <div class="relative px-4 sm:px-6 lg:px-8">
                                     <div class="text-lg max-w-prose mx-auto">
                                         <h1>
-                                            <span class="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase" :style="'color: ' + colors">Welcome</span>
+                                            <span class="block text-base text-center text-blue-600 font-semibold tracking-wide uppercase" :style="'color: ' + colors">Welcome</span>
                                             <span contenteditable placeholder="Title" @input="updateTitle" class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">{{$page.props.site.section_header}}</span>
                                         </h1>
                                         <p contenteditable placeholder="Describe a little about yourself and your goals here." @input="updateContent" class="mt-8 text-xl text-gray-500 leading-8">{{$page.props.site.section_content}}</p>
@@ -811,36 +849,36 @@
                                             <div>
                                                 <label for="first_name" class="block text-sm font-medium text-gray-700">First name</label>
                                                 <div class="mt-1">
-                                                    <input v-model="submitContactForm.firstName" type="text" name="first_name" id="first_name2" autocomplete="given-name" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                                                    <input v-model="submitContactForm.firstName" type="text" name="first_name" id="first_name2" autocomplete="given-name" class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md">
                                                 </div>
                                             </div>
                                             <div>
                                                 <label for="last_name" class="block text-sm font-medium text-gray-700">Last name</label>
                                                 <div class="mt-1">
-                                                    <input v-model="submitContactForm.lastName" type="text" name="last_name" id="last_name2" autocomplete="family-name" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                                                    <input v-model="submitContactForm.lastName" type="text" name="last_name" id="last_name2" autocomplete="family-name" class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md">
                                                 </div>
                                             </div>
                                             <div class="sm:col-span-2">
                                                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                                                 <div class="mt-1">
-                                                    <input v-model="submitContactForm.email" id="email2" name="email" type="email" autocomplete="email" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                                                    <input v-model="submitContactForm.email" id="email2" name="email" type="email" autocomplete="email" class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md">
                                                 </div>
                                             </div>
                                             <div class="sm:col-span-2">
                                                 <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
                                                 <div class="mt-1 relative rounded-md shadow-sm">
-                                                    <input v-model="submitContactForm.phone" type="text" name="phone_number" id="phone_number2" autocomplete="tel" class="py-3 px-4 block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" placeholder="+1 (555) 987-6543">
+                                                    <input v-model="submitContactForm.phone" type="text" name="phone_number" id="phone_number2" autocomplete="tel" class="py-3 px-4 block w-full focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md" placeholder="+1 (555) 987-6543">
                                                 </div>
                                             </div>
                                             <div class="sm:col-span-2">
                                                 <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
                                                 <div class="mt-1">
-                                                    <textarea v-model="submitContactForm.message" id="message2" name="message" rows="4" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"></textarea>
+                                                    <textarea v-model="submitContactForm.message" id="message2" name="message" rows="4" class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md"></textarea>
                                                 </div>
                                             </div>
 
                                             <div class="sm:col-span-2">
-                                                <button class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                                <button class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                                         :style="'background: ' + colors">
                                                     Let's talk
                                                 </button>
@@ -1453,7 +1491,7 @@
                                             <div class="space-y-2">
                                                 <div class="text-lg leading-6 font-medium space-y-1 text-center">
                                                     <h3>Standard</h3>
-                                                    <p class="text-indigo-600">A standard site layout</p>
+                                                    <p class="text-blue-600">A standard site layout</p>
                                                 </div>
 
                                             </div>
@@ -1470,7 +1508,7 @@
                                             <div class="space-y-2">
                                                 <div class="text-lg leading-6 font-medium space-y-1 text-center">
                                                     <h3>Mobile Profile</h3>
-                                                    <p class="text-indigo-600">A mobile-first personal page</p>
+                                                    <p class="text-blue-600">A mobile-first personal page</p>
                                                 </div>
 
                                             </div>
@@ -1487,7 +1525,7 @@
                                             <div class="space-y-2">
                                                 <div class="text-lg leading-6 font-medium space-y-1 text-center">
                                                     <h3>Minimalist</h3>
-                                                    <p class="text-indigo-600">For a sleek, modern look</p>
+                                                    <p class="text-blue-600">For a sleek, modern look</p>
                                                 </div>
 
                                             </div>
@@ -1504,7 +1542,7 @@
                                             <div class="space-y-2">
                                                 <div class="text-lg leading-6 font-medium space-y-1 text-center">
                                                     <h3>Branded Left</h3>
-                                                    <p class="text-indigo-600">Let your brand stand out</p>
+                                                    <p class="text-blue-600">Let your brand stand out</p>
                                                 </div>
 
                                             </div>
@@ -1521,7 +1559,7 @@
                                             <div class="space-y-2">
                                                 <div class="text-lg leading-6 font-medium space-y-1 text-center">
                                                     <h3>Branded Right</h3>
-                                                    <p class="text-indigo-600">An alternative to branded-left</p>
+                                                    <p class="text-blue-600">An alternative to branded-left</p>
                                                 </div>
 
                                             </div>
@@ -1566,10 +1604,11 @@
             'swatches-picker': Swatches,
         },
 
-        props: ['user', 'site', 'logoImageURL', 'logoTextURL'],
+        props: ['user', 'site', 'logoImageURL', 'logoTextURL', 'errors', 'onTrial', 'subscribed'],
 
         data() {
             return {
+                showingBillingNotification: this.onTrial===false && this.subscribed===false,
                 timeoutId: 0,
                 domainSavingText: "Save",
                 wantsThisNewDomain: "",
@@ -1618,8 +1657,9 @@
             site: {
                 deep: true,
                 handler: function(newVal, oldVal){
-                    this.layout = newVal.layout
-                    this.possiblyChangedSiteUUID = newVal.uuid;
+                    this.layout = newVal.layout;
+                    this.colors = '#' + newVal.accent_color;
+                    this.possiblyChangedSiteUUID = newVal.slug;
                 }
             }
         },
@@ -1634,16 +1674,16 @@
                     this.domainSavingText = "Saving..."
 
                     let data = {
-                        'site': this.site.uuid,
-                        'newUUID': this.wantsThisNewDomain,
+                        'slug': this.wantsThisNewDomain,
                     }
                     // let response = await axios.post('/api/tryToUpdateDomain', data)
-                    await this.$inertia.post('/tryToUpdateDomain', data)
-                    this.wantsThisNewDomain = "";
+                    await this.$inertia.post('/tryToUpdateDomain/' + this.$page.props.site.slug, data)
 
-                    if (this.initialSiteUUID !== this.possiblyChangedSiteUUID) {
+                    if(!this.errors.slug) {
                         this.showingChangeDomainModal = false;
                     }
+
+                    this.wantsThisNewDomain = "";
                     this.domainSavingText = "Save";
                 }
             },

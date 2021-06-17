@@ -1,16 +1,18 @@
 id: 21630
 name: platform
 ignore:
-  - 'public/js'
   - 'node_modules'
   - '.vagrant'
   - '.vapor'
-  - 'vendor'
   - '.editorconfig'
   - 'Homestead.yaml'
   - 'Vagrantfile'
   - 'aliases'
   - 'after.sh'
+  - 'tests'
+  - 'storage/logs'
+  - 'composer.lock'
+  - 'yarn.lock'
 environments:
     production:
         memory: 1024
@@ -40,6 +42,9 @@ environments:
         domain: about.contact
         build:
             - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
+            - 'php artisan config:cache'
+            - 'php artisan route:cache'
+            - 'php artisan view:cache'
             - 'php artisan event:cache'
             - 'yarn install && yarn run production && rm -rf node_modules'
         deploy:
@@ -72,6 +77,9 @@ environments:
             - CategoryArchiver
         build:
           - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
+          - 'php artisan config:cache'
+          - 'php artisan route:cache'
+          - 'php artisan view:cache'
           - 'php artisan event:cache'
           - 'yarn install && yarn run production && rm -rf node_modules'
         deploy:

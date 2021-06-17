@@ -7,7 +7,7 @@
                 <div class="relative z-0 flex-shrink-0 flex h-16 bg-white lg:hidden">
                     <!-- Sidebar toggle, controls the 'sidebarOpen' sidebar state. -->
                     <button @click="showingQuestionsDropdown=!showingQuestionsDropdown"
-                            class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 lg:hidden">
+                            class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 lg:hidden">
                         <!-- Heroicon name: outline/menu-alt-1 -->
                         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                              stroke="currentColor" aria-hidden="true">
@@ -46,7 +46,7 @@
                     <inertia-link :href="route('form.show', form.uuid)"
                                   class="truncate hover:text-gray-600 block h-full">
                         <button type="button"
-                                class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:order-1 ml-3">
+                                class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:order-1 ml-3">
                             Preview
                         </button>
                     </inertia-link>
@@ -121,7 +121,7 @@
                                         </button>
                                         <button @click="showingDeleteModal=!showingDeleteModal"
                                                 type="button"
-                                                class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm">
+                                                class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:w-auto sm:text-sm">
                                             Cancel
                                         </button>
                                     </div>
@@ -201,7 +201,7 @@
 
                                                     <button @click="showingQuestionTypeDropdown=!showingQuestionTypeDropdown; showingQuestionsDropdown=!showingQuestionsDropdown"
                                                             type="button"
-                                                            class="px-2 sm:ml-0 my-4 left-1/2 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ">
+                                                            class="px-2 sm:ml-0 my-4 left-1/2 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ">
                                                         + Add Question
                                                     </button>
 
@@ -269,7 +269,7 @@
                                         <div>
                                             <button @click="showingQuestionTypeDropdown=!showingQuestionTypeDropdown"
                                                     type="button"
-                                                    class="inline-flex justify-center w-full border-b border-gray-300 shadow-sm px-4 py-4 bg-white text-sm font-medium text-indigo-500 hover:bg-gray-50 focus:outline-none"
+                                                    class="inline-flex justify-center w-full border-b border-gray-300 shadow-sm px-4 py-4 bg-white text-sm font-medium text-blue-500 hover:bg-gray-50 focus:outline-none"
                                                     id="options-menu" aria-expanded="true" aria-haspopup="true">
                                                 <h3>Add Question</h3>
                                             </button>
@@ -417,7 +417,7 @@
 
                                                 <div class="hidden sm:block absolute top-0 right-0 pt-10 pr-4">
                                                     <button @click="showingQuestionTypeDropdown=!showingQuestionTypeDropdown"
-                                                            type="button" class="rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                            type="button" class="rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                                         <span class="sr-only">Close</span>
                                                         <!-- Heroicon name: outline/x -->
                                                         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -444,7 +444,7 @@
                                                                 class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">
                                                             <!--                                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">-->
                                                             <div
-                                                                class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white sm:h-12 sm:w-12">
+                                                                class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">
                                                                 <!-- TEXT ICON -->
                                                                 <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                      viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -469,7 +469,7 @@
                                                                 type="submit"
                                                                 class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">
                                                             <div
-                                                                class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white sm:h-12 sm:w-12">
+                                                                class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">
                                                                 <!-- EMAIL ICON -->
                                                                 <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                      viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -493,7 +493,7 @@
                                                                 type="submit"
                                                                 class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">
                                                             <div
-                                                                class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white sm:h-12 sm:w-12">
+                                                                class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">
                                                                 <!-- PHONE ICON -->
                                                                 <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                      viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -517,7 +517,7 @@
                                                                 type="submit"
                                                                 class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">
                                                             <div
-                                                                class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white sm:h-12 sm:w-12">
+                                                                class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">
                                                                 <!-- MC ICON -->
                                                                 <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                      viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -541,7 +541,7 @@
                                                                 type="submit"
                                                                 class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">
                                                             <div
-                                                                class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white sm:h-12 sm:w-12">
+                                                                class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">
                                                                 <!-- BREAK ICON -->
                                                                 <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                      viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -594,7 +594,7 @@
 <!--                                                                    class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">-->
 <!--                                                                &lt;!&ndash;                                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">&ndash;&gt;-->
 <!--                                                                <div-->
-<!--                                                                    class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white sm:h-12 sm:w-12">-->
+<!--                                                                    class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">-->
 <!--                                                                    &lt;!&ndash; TEXT ICON &ndash;&gt;-->
 <!--                                                                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"-->
 <!--                                                                         viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
@@ -619,7 +619,7 @@
 <!--                                                                    type="submit"-->
 <!--                                                                    class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">-->
 <!--                                                                <div-->
-<!--                                                                    class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white sm:h-12 sm:w-12">-->
+<!--                                                                    class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">-->
 <!--                                                                    &lt;!&ndash; EMAIL ICON &ndash;&gt;-->
 <!--                                                                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"-->
 <!--                                                                         viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
@@ -643,7 +643,7 @@
 <!--                                                                    type="submit"-->
 <!--                                                                    class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">-->
 <!--                                                                <div-->
-<!--                                                                    class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white sm:h-12 sm:w-12">-->
+<!--                                                                    class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">-->
 <!--                                                                    &lt;!&ndash; PHONE ICON &ndash;&gt;-->
 <!--                                                                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"-->
 <!--                                                                         viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
@@ -667,7 +667,7 @@
 <!--                                                                    type="submit"-->
 <!--                                                                    class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">-->
 <!--                                                                <div-->
-<!--                                                                    class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white sm:h-12 sm:w-12">-->
+<!--                                                                    class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">-->
 <!--                                                                    &lt;!&ndash; MC ICON &ndash;&gt;-->
 <!--                                                                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"-->
 <!--                                                                         viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
@@ -691,7 +691,7 @@
 <!--                                                                    type="submit"-->
 <!--                                                                    class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">-->
 <!--                                                                <div-->
-<!--                                                                    class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white sm:h-12 sm:w-12">-->
+<!--                                                                    class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">-->
 <!--                                                                    &lt;!&ndash; BREAK ICON &ndash;&gt;-->
 <!--                                                                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"-->
 <!--                                                                         viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->

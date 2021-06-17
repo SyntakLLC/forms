@@ -13,7 +13,7 @@
                 {{ content }}
 
                 <div class="mt-4">
-                    <input type="password" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-3/4" placeholder="Password"
+                    <input type="password" class="border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-3/4" placeholder="Password"
                                 ref="password"
                                 v-model="form.password"
                                 @keyup.enter="confirmPassword" />

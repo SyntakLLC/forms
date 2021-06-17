@@ -19,6 +19,7 @@ class CreateSitesTable extends Migration
             $table->string('message')->default('I’d love to hear from you! Send me a message using these forms, or email me.');
             $table->integer('layout')->default(1);
             $table->string('cover_photo_url')->nullable();
+            $table->string('slug')->nullable();
             $table->integer('pattern')->default(1);
             $table->timestamps();
         });

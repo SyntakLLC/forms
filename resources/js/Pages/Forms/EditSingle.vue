@@ -35,12 +35,12 @@
                                         <p class="w-0 z-50 flex-1 text-sm font-medium text-gray-900">
                                             Any changes you make will automatically be saved.
                                         </p>
-                                        <button @click="dontShowNotifAgain" class="ml-3 z-50 flex-shrink-0 bg-white rounded-md text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        <button @click="dontShowNotifAgain" class="ml-3 z-50 flex-shrink-0 bg-white rounded-md text-sm font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                             Don't Show Again
                                         </button>
                                     </div>
                                     <div class="ml-4 z-50 flex-shrink-0 flex">
-                                        <button @click="showingAutosaveNotification=!showingAutosaveNotification" class="bg-white z-50 rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        <button @click="showingAutosaveNotification=!showingAutosaveNotification" class="bg-white z-50 rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                             <span class="sr-only z-50">Close</span>
                                             <!-- Heroicon name: solid/x -->
                                             <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

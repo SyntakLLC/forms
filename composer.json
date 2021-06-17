@@ -10,6 +10,8 @@
     "require": {
         "php": "^7.3|^8.0",
         "binarycabin/laravel-uuid": "^1.0",
+        "enlightn/enlightn": "^1.22",
+        "enlightn/enlightnpro": "^1.16",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -69,12 +71,18 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "post-update-cmd": [
         ]
     },
     "repositories": [
         {
             "type": "composer",
             "url": "https://spark.laravel.com"
+        },
+        {
+            "type": "composer",
+            "url": "https://satis.laravel-enlightn.com"
         }
     ]
 }

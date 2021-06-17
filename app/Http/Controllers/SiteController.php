@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Site\UpdateSiteSlugRequest;
 use App\Models\Site;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -46,12 +47,9 @@ class SiteController extends Controller
         $site->save();
     }
 
-    public function tryToUpdateDomain(Request $request) {
-        $site = Site::findByUuid($request->site);
-        if (!Site::where('uuid', '=', $request->newUUID)->count() > 0) {
-            $site->uuid = $request->newUUID;
-            $site->save();
-        }
+    public function tryToUpdateDomain(UpdateSiteSlugRequest $request, Site $site) {
+        $site->slug = $request->input('slug');
+        $site->save();
 
         return Redirect::route('dashboard');
     }

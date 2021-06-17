@@ -51,7 +51,7 @@
                                                                     </div>
                                                                     <div class="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
                                                                         <button type="button"
-                                                                                class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
+                                                                                class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"
                                                                                 :style="'background: ' + colors + '; color: ' + getContrastYIQ(colors)">
                                                                             Go
                                                                         </button>
@@ -80,7 +80,7 @@
                                                 <div class="relative px-4 sm:px-6 lg:px-8">
                                                     <div class="text-lg max-w-prose mx-auto">
                                                         <h1>
-                                                            <span class="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase" :style="'color: ' + colors">Welcome</span>
+                                                            <span class="block text-base text-center text-blue-600 font-semibold tracking-wide uppercase" :style="'color: ' + colors">Welcome</span>
                                                             <span class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">{{$page.props.site.section_header}}</span>
                                                         </h1>
                                                         <p class="mt-8 text-xl text-gray-500 leading-8">{{$page.props.site.section_content}}</p>
@@ -146,46 +146,46 @@
                                                             <div>
                                                                 <label for="first_name" class="block text-sm font-medium text-gray-700">First name</label>
                                                                 <div class="mt-1">
-                                                                    <input v-model="submitContactForm.firstName" type="text" name="first_name" id="first_name" autocomplete="given-name" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                                                                    <input v-model="submitContactForm.firstName" type="text" name="first_name" id="first_name" autocomplete="given-name" class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md">
                                                                 </div>
                                                             </div>
                                                             <div>
                                                                 <label for="last_name" class="block text-sm font-medium text-gray-700">Last name</label>
                                                                 <div class="mt-1">
-                                                                    <input v-model="submitContactForm.lastName" type="text" name="last_name" id="last_name" autocomplete="family-name" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                                                                    <input v-model="submitContactForm.lastName" type="text" name="last_name" id="last_name" autocomplete="family-name" class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md">
                                                                 </div>
                                                             </div>
                                                             <div class="sm:col-span-2">
                                                                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                                                                 <div class="mt-1">
-                                                                    <input v-model="submitContactForm.email" id="email" name="email" type="email" autocomplete="email" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                                                                    <input v-model="submitContactForm.email" id="email" name="email" type="email" autocomplete="email" class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md">
                                                                 </div>
                                                             </div>
                                                             <div class="sm:col-span-2">
                                                                 <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
                                                                 <div class="mt-1 relative rounded-md shadow-sm">
-                                                                    <input v-model="submitContactForm.phone" type="text" name="phone_number" id="phone_number" autocomplete="tel" class="py-3 px-4 block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" placeholder="+1 (555) 987-6543">
+                                                                    <input v-model="submitContactForm.phone" type="text" name="phone_number" id="phone_number" autocomplete="tel" class="py-3 px-4 block w-full focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md" placeholder="+1 (555) 987-6543">
                                                                 </div>
                                                             </div>
                                                             <div class="sm:col-span-2">
                                                                 <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
                                                                 <div class="mt-1">
-                                                                    <textarea v-model="submitContactForm.message" id="message" name="message" rows="4" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"></textarea>
+                                                                    <textarea v-model="submitContactForm.message" id="message" name="message" rows="4" class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md"></textarea>
                                                                 </div>
                                                             </div>
 
                                                             <div class="sm:col-span-2">
-                                                                <button v-if="submitContactForm.processing"  class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                                                <button v-if="submitContactForm.processing"  class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                                                         :style="'background: ' + colors">
                                                                     Submitting...
                                                                 </button>
 
-                                                                <button v-else-if="submitContactForm.recentlySuccessful"  class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                                                <button v-else-if="submitContactForm.recentlySuccessful"  class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                                                         :style="'background: ' + colors">
                                                                     Done!
                                                                 </button>
 
-                                                                <button v-else type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                                                <button v-else type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                                                         :style="'background: ' + colors">
                                                                     Let's talk
                                                                 </button>
@@ -251,7 +251,7 @@
                                                             </div>
                                                             <div class="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
                                                                 <button type="button"
-                                                                        class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
+                                                                        class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"
                                                                         :style="'background: ' + colors + '; color: ' + getContrastYIQ(colors)">
                                                                     Go
                                                                 </button>
@@ -281,7 +281,7 @@
                                     <div class="relative px-4 sm:px-6 lg:px-8">
                                         <div class="text-lg max-w-prose mx-auto">
                                             <h1>
-                                                <span class="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase" :style="'color: ' + colors">Welcome</span>
+                                                <span class="block text-base text-center text-blue-600 font-semibold tracking-wide uppercase" :style="'color: ' + colors">Welcome</span>
                                                 <span class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">{{$page.props.site.section_header}}</span>
                                             </h1>
                                             <p class="mt-8 text-xl text-gray-500 leading-8">{{$page.props.site.section_content}}</p>
@@ -347,46 +347,46 @@
                                                 <div>
                                                     <label for="first_name" class="block text-sm font-medium text-gray-700">First name</label>
                                                     <div class="mt-1">
-                                                        <input v-model="submitContactForm.firstName" type="text" name="first_name" id="first_name" autocomplete="given-name" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                                                        <input v-model="submitContactForm.firstName" type="text" name="first_name" id="first_name" autocomplete="given-name" class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md">
                                                     </div>
                                                 </div>
                                                 <div>
                                                     <label for="last_name" class="block text-sm font-medium text-gray-700">Last name</label>
                                                     <div class="mt-1">
-                                                        <input v-model="submitContactForm.lastName" type="text" name="last_name" id="last_name" autocomplete="family-name" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                                                        <input v-model="submitContactForm.lastName" type="text" name="last_name" id="last_name" autocomplete="family-name" class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md">
                                                     </div>
                                                 </div>
                                                 <div class="sm:col-span-2">
                                                     <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                                                     <div class="mt-1">
-                                                        <input v-model="submitContactForm.email" id="email" name="email" type="email" autocomplete="email" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                                                        <input v-model="submitContactForm.email" id="email" name="email" type="email" autocomplete="email" class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md">
                                                     </div>
                                                 </div>
                                                 <div class="sm:col-span-2">
                                                     <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
                                                     <div class="mt-1 relative rounded-md shadow-sm">
-                                                        <input v-model="submitContactForm.phone" type="text" name="phone_number" id="phone_number" autocomplete="tel" class="py-3 px-4 block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" placeholder="+1 (555) 987-6543">
+                                                        <input v-model="submitContactForm.phone" type="text" name="phone_number" id="phone_number" autocomplete="tel" class="py-3 px-4 block w-full focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md" placeholder="+1 (555) 987-6543">
                                                     </div>
                                                 </div>
                                                 <div class="sm:col-span-2">
                                                     <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
                                                     <div class="mt-1">
-                                                        <textarea v-model="submitContactForm.message" id="message" name="message" rows="4" class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"></textarea>
+                                                        <textarea v-model="submitContactForm.message" id="message" name="message" rows="4" class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md"></textarea>
                                                     </div>
                                                 </div>
 
                                                 <div class="sm:col-span-2">
-                                                    <button v-if="submitContactForm.processing"  class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                                    <button v-if="submitContactForm.processing"  class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                                             :style="'background: ' + colors">
                                                         Submitting...
                                                     </button>
 
-                                                    <button v-else-if="submitContactForm.recentlySuccessful"  class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                                    <button v-else-if="submitContactForm.recentlySuccessful"  class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                                             :style="'background: ' + colors">
                                                         Done!
                                                     </button>
 
-                                                    <button v-else type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                                    <button v-else type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                                             :style="'background: ' + colors">
                                                         Let's talk
                                                     </button>

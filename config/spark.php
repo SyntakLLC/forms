@@ -125,7 +125,7 @@ return [
                     'name' => 'Standard',
                     'short_description' => 'Upon subscribing, you\'ll immediately get access to a variety of professionally designed website
                     templates. From there, you can create conversational forms or use our prebuilt forms to collect leads, which we will collate for you along with their responses.',
-                    'monthly_id' => 'price_1ITyCHIi2QHxCfvnqiOOGi4t',
+                    'monthly_id' => 'price_1J3AvsIi2QHxCfvnIiTCIO9P',
                     'yearly_id' => 'price_1ITyCHIi2QHxCfvnskSxKDPI',
                     'features' => [
                         'Collects leads for you',
