@@ -17,7 +17,7 @@ mix.js('resources/js/app.js', 'public/js').vue()
         require('tailwindcss'),
         require('autoprefixer'),
     ])
-    .webpackConfig(require('./webpack.config'));
+    .webpackConfig(require('./webpack.config')).version();
 
 if (process.env.APP_ENV === "production" || process.env.APP_ENV === "staging") {
 
