@@ -45,7 +45,7 @@
                                     </button>
                                 </form>
                             </li>
-                            <!--HOW MUCH IS MY HOME WORTH-->
+                            <!--How Much is Your Home Worth-->
                             <li>
                                 <form @submit.prevent="homeWorthForm.post('/form/home_worth')">
                                     <button type="submit" class="focus:outline-none w-full h-full -mt-12">
@@ -56,7 +56,7 @@
 
                                             <div class="space-y-2">
                                                 <div class="text-lg leading-6 font-medium space-y-1">
-                                                    <h3>How Much is my Home Worth?</h3>
+                                                    <h3>How Much is Your Home Worth?</h3>
                                                     <p class="text-blue-600">Premade Form</p>
                                                 </div>
 
@@ -65,7 +65,7 @@
                                     </button>
                                 </form>
                             </li>
-                            <!--I'M LOOKING FOR AN APARTMENT-->
+                            <!--Are You Looking for an Apartment-->
                             <li>
                                 <form @submit.prevent="apartmentForm.post('/form/apartment')">
                                     <button type="submit" class="focus:outline-none w-full h-full -mt-12">
@@ -76,7 +76,67 @@
 
                                             <div class="space-y-2">
                                                 <div class="text-lg leading-6 font-medium space-y-1">
-                                                    <h3>I'm Looking for an Apartment</h3>
+                                                    <h3>Are You Looking for an Apartment?</h3>
+                                                    <p class="text-blue-600">Premade Form</p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </button>
+                                </form>
+                            </li>
+                            <!--Do You Need a New Agent-->
+<!--                            <li>-->
+<!--                                <form @submit.prevent="newAgentForm.post('/form/new-agent')">-->
+<!--                                    <button type="submit" class="focus:outline-none w-full h-full -mt-12">-->
+<!--                                        <div class="space-y-4">-->
+<!--                                            <div class="aspect-w-10 aspect-h-10">-->
+<!--                                                <img class="object-cover shadow-lg rounded-lg hover:opacity-75" :src="$page.props.apartmentIcon" style="object-position: -10px 0;" alt="Form Icon">-->
+<!--                                            </div>-->
+
+<!--                                            <div class="space-y-2">-->
+<!--                                                <div class="text-lg leading-6 font-medium space-y-1">-->
+<!--                                                    <h3>Do You Need a New Agent?</h3>-->
+<!--                                                    <p class="text-blue-600">Premade Form</p>-->
+<!--                                                </div>-->
+
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </button>-->
+<!--                                </form>-->
+<!--                            </li>-->
+                            <!--Are You Planning on Buying a Home?-->
+<!--                            <li>-->
+<!--                                <form @submit.prevent="buyingHomeForm.post('/form/selling-home')">-->
+<!--                                    <button type="submit" class="focus:outline-none w-full h-full -mt-12">-->
+<!--                                        <div class="space-y-4">-->
+<!--                                            <div class="aspect-w-10 aspect-h-10">-->
+<!--                                                <img class="object-cover shadow-lg rounded-lg hover:opacity-75" :src="$page.props.apartmentIcon" style="object-position: -10px 0;" alt="Form Icon">-->
+<!--                                            </div>-->
+
+<!--                                            <div class="space-y-2">-->
+<!--                                                <div class="text-lg leading-6 font-medium space-y-1">-->
+<!--                                                    <h3>Are You Planning On Buying a Home?</h3>-->
+<!--                                                    <p class="text-blue-600">Premade Form</p>-->
+<!--                                                </div>-->
+
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </button>-->
+<!--                                </form>-->
+<!--                            </li>-->
+                            <!--Contact Me-->
+                            <li>
+                                <form @submit.prevent="contactForm.post('/form/contact-me')">
+                                    <button type="submit" class="focus:outline-none w-full h-full -mt-12">
+                                        <div class="space-y-4">
+                                            <div class="aspect-w-10 aspect-h-10">
+                                                <img class="object-cover shadow-lg rounded-lg hover:opacity-75" :src="$page.props.apartmentIcon" style="object-position: -10px 0;" alt="Form Icon">
+                                            </div>
+
+                                            <div class="space-y-2">
+                                                <div class="text-lg leading-6 font-medium space-y-1">
+                                                    <h3>Contact Me!</h3>
                                                     <p class="text-blue-600">Premade Form</p>
                                                 </div>
 
@@ -109,10 +169,11 @@
 <script>
 import AppLayout from "@/Layouts/AppLayout";
 import Button from "@/Jetstream/Button";
+import Input from "@/Jetstream/Input";
 
 export default {
     name: "Index.vue",
-    components: {Button, AppLayout},
+    components: {Input, Button, AppLayout},
 
     props: ['user'],
 
@@ -122,19 +183,21 @@ export default {
             formColor: Math.floor(Math.random()*16777215).toString(16),
 
             customForm: this.$inertia.form({
-                // user_id: this.user.id,
                 formColor: this.getNewIdColor(),
             }),
             homeWorthForm: this.$inertia.form({
-                // user_id: this.user.id,
                 formColor: this.getNewIdColor(),
             }),
             apartmentForm: this.$inertia.form({
-                // user_id: this.user.id,
                 formColor: this.getNewIdColor(),
             }),
-            buyHomeForm: this.$inertia.form({
-                // user_id: this.user.id,
+            newAgentForm: this.$inertia.form({
+                formColor: this.getNewIdColor(),
+            }),
+            buyingHomeForm: this.$inertia.form({
+                formColor: this.getNewIdColor(),
+            }),
+            contactForm: this.$inertia.form({
                 formColor: this.getNewIdColor(),
             }),
         };

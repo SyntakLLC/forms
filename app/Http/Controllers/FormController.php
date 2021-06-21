@@ -129,7 +129,7 @@ class FormController extends Controller
         $form = Form::create([
             'id_color' => $request->get('formColor'),
             'user_id' => $request->user()->id,
-            'title' => "How Much is my Home Worth?",
+            'title' => "How Much is Your Home Worth?",
         ]);
         $propertyMC = Question::create([
             'form_id' => $form->id,
@@ -288,7 +288,7 @@ class FormController extends Controller
         $form = Form::create([
             'id_color' => $request->get('formColor'),
             'user_id' => $request->user()->id,
-            'title' => "I'm Looking for an Apartment",
+            'title' => "Are You Looking for an Apartment",
         ]);
 
         // num of beds
@@ -584,12 +584,118 @@ class FormController extends Controller
         return Redirect::route('form.edit', $form->uuid);
     }
 
-    public function buyHome(Request $request) {
+    public function contact(Request $request) {
         $form = Form::create([
             'id_color' => $request->get('formColor'),
             'user_id' => $request->user()->id,
-            'title' => "I'm Thinking About Buying a Home",
+            'title' => "Contact Me!",
         ]);
+        $questions = [
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Section Break',
+                'title' => 'Contact Me!',
+                'subtitle' => 'Feel free to ask me about anything!',
+                'index' => 0,
+            ]),
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Name',
+                'title' => 'What is your full name?',
+                'tagline' => 'Let\'s get acquainted',
+                'index' => 1,
+            ]),
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Email',
+                'title' => 'Please provide your email.',
+                'tagline' => 'Nice to meet you',
+                'index' => 2,
+            ]),
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Phone Number',
+                'title' => 'What\'s your phone number?',
+                'tagline' => 'One more bit of contact...',
+                'index' => 3,
+            ]),
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Text',
+                'title' => 'So what did you want to talk about?',
+                'tagline' => 'Great!',
+                'subtitle' => 'The more specific, the better!',
+                'index' => 4,
+            ]),
+        ];
+
+        return Redirect::route('form.edit', $form->uuid);
+    }
+
+    public function buyingHome(Request $request) {
+        $form = Form::create([
+            'id_color' => $request->get('formColor'),
+            'user_id' => $request->user()->id,
+            'title' => "Are You Planning On Buying a Home?",
+        ]);
+        $questions = [
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Name',
+                'title' => 'What is your full name?',
+                'tagline' => 'Let\'s get acquainted',
+                'index' => 0,
+            ]),
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Email',
+                'title' => 'Please provide your email.',
+                'tagline' => 'Nice to meet you',
+                'index' => 1,
+            ]),
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Phone Number',
+                'title' => 'What\'s your phone number?',
+                'tagline' => 'One more bit of contact...',
+                'index' => 2,
+            ]),
+        ];
+
+        return Redirect::route('form.edit', $form->uuid);
+    }
+
+    public function newAgent(Request $request) {
+        $form = Form::create([
+            'id_color' => $request->get('formColor'),
+            'user_id' => $request->user()->id,
+            'title' => "Do You Need a New Agent?",
+        ]);
+        $questions = [
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Name',
+                'title' => 'What is your full name?',
+                'tagline' => 'Let\'s get acquainted',
+                'index' => 0,
+            ]),
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Email',
+                'title' => 'Please provide your email.',
+                'tagline' => 'Nice to meet you',
+                'index' => 1,
+            ]),
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Phone Number',
+                'title' => 'What\'s your phone number?',
+                'tagline' => 'One more bit of contact...',
+                'index' => 2,
+            ]),
+        ];
+
+        return Redirect::route('form.edit', $form->uuid);
     }
 
 }

@@ -133,7 +133,7 @@
                             <div class="vff-animate q-form q-is-active f-fade-in-up field-sectionbreak">
                                 <div class="q-inner">
                                     <div class="f-section-wrap">
-                                        <div class="">
+                                        <div class="fh2">
 <!--                                            <span class="f-tagline" contenteditable placeholder="Tagline (optional)" @input="updateTagline">{{ question.tagline }}</span>-->
 <!--                                            <span class="fh2" contenteditable placeholder="Message" @input="updateTitle">{{ question.title }}</span>-->
 <!--                                            <span class="f-sub" contenteditable placeholder="Subtitle (optional)" @input="updateSubtitle">-->
@@ -143,9 +143,14 @@
                                             <span class="f-sub"><!----> <!---->
                                                 <span contenteditable class="f-help" placeholder="Tagline (optional)" @input="updateTagline">{{ question.tagline }}</span>
                                             </span>
-                                            <span class="fh2"><!----> <!---->
-                                                <span contenteditable class="f-help" placeholder="Message" @input="updateTitle">{{ question.title }}</span>
-                                            </span>
+
+
+                                            <span contenteditable class="f-sub"
+                                                  :class="'text-left text-gray-900 border-0 border-gray-300 border-solid'"
+                                                  style='color: #000000; font-family: "Inter var"; font-size: 2.25rem; line-height: 2.5rem; font-weight: 900; outline: transparent solid 0px; line-height: 51.456px; overflow-wrap: break-word;'
+                                                  placeholder="Message"
+                                                  @input="updateTitle">{{ question.title }}</span>
+
 
                                             <span class="f-sub"><!----> <!---->
                                                 <span contenteditable class="f-help" placeholder="Subtitle (optional)" @input="updateSubtitle">{{ question.subtitle }}</span>
@@ -505,8 +510,9 @@ export default {
     @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.css';
     @import'../../../css/flow-form-amaan.css';
 
-    [contenteditable] {
-        outline: 0px solid transparent;
+    [contenteditable]:hover {
+        border-radius: 5px;
+        box-shadow: 0px 0px 0px 2px #2563EB;
     }
 
     [contenteditable]:hover {

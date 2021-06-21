@@ -1,7 +1,7 @@
 <template>
         <div :style="cssProps">
-            <header class="vff-header" :style="accentColor">
-                <div class="f-container">
+<!--            <header class="vff-header" style="z-index: -10; background-color: transparent">-->
+<!--                <div class="f-container">-->
                     <!-- Add custom logo here -->
 <!--                    <svg class="f-logo" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMid meet" viewBox="0 0 200 11.211">-->
 <!--                        &lt;!&ndash;                        <path d="M.134.837H3.21V8.01h4.203v2.18H.134V.837z"/>&ndash;&gt;-->
@@ -12,8 +12,12 @@
 <!--                            <tspan font-weight="bold" class="font-extrabold	" :fill="this.getContrastYIQ(this.site.accent_color)">{{ $page.props.user.name.toUpperCase() }}</tspan>-->
 <!--                        </text>-->
 <!--                    </svg>-->
-                </div>
-            </header>
+<!--                </div>-->
+<!--            </header>-->
+
+
+            <img class="fixed h-screen w-screen object-cover top-0" :src="site.cover_photo"/>
+            <div class="fixed h-screen w-screen object-cover top-0 bg-black opacity-50"/>
 
             <flow-form
                 ref="flowform"
@@ -105,7 +109,8 @@ export default {
                         })
                     : null,
                     allowOther: question.allow_other,
-                    type: question.type == "Text" ? QuestionType.Text : question.type == "Section Break" ? QuestionType.SectionBreak : question.type == "Multiple Choice" ? QuestionType.MultipleChoice : question.type == "Email" ? QuestionType.Email : QuestionType.Phone,
+                    // type: QuestionType.Text,
+                    type: question.type == "Text" ? QuestionType.Text : question.type == "Section Break" ? QuestionType.SectionBreak : question.type == "Multiple Choice" ? QuestionType.MultipleChoice : question.type == "Email" ? QuestionType.Email : question.type == "Name" ? QuestionType.Text : QuestionType.Phone,
                     multiple: question.type == "Multiple Choice" ? question.multiple : false,
                     required: true,
                     placeholder: question.type == "Text" ? 'Start typing here...' : question.type == "Section Break" ? '' : question.type == "Multiple Choice" ? '' : question.type == "Email" ? 'jane@doe.com' : question.type == "Name" ? "Start typing here..." : '(###)-###-####',
@@ -197,19 +202,24 @@ export default {
 </script>
 
 <style lang="css">
-@import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.css';
-@import'../../../css/flow-form-amaan.css';
+    @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.css';
+    @import'../../../css/flow-form-amaan.css';
 
-button.o-btn-action {
-    background-color: var(--bg-accent-color) !important;
-}
+    button.o-btn-action {
+        background-color: var(--bg-accent-color) !important;
+    }
 
-* {
-    font-family: "Inter var";
-}
+    * {
+        font-family: "Inter var";
+    }
 
-.f-key {
-    color: var(--bg-accent-color) !important;
-}
+    .f-key {
+        color: var(--bg-accent-color) !important;
+    }
+
+    textarea:focus, input:focus{
+        /*outline: none !important;*/
+        outline: transparent !important;
+    }
 
 </style>

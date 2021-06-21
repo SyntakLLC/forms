@@ -30,7 +30,7 @@
 
                                         <div class="max-w-md mx-auto sm:max-w-lg lg:mx-0">
                                             <h2 class="text-center text-3xl font-extrabold tracking-tight sm:text-4xl">
-                                                {{$page['props']['user']['name']}}
+                                                {{ $page.props.name }}
                                             </h2>
                                             <p class="text-center font-medium mt-4 text-lg text-gray-500 sm:mt-3">
                                                 {{$page['props']['site']['message']}}
@@ -483,7 +483,7 @@
                                                     {{ $page.props.name }}
                                                 </h1>
                                                 <div class="box-border">
-                                                    {{ $page.props.message }}
+                                                    {{ $page.props.site.message }}
                                                 </div>
                                             </div>
                                         </div>
@@ -508,10 +508,10 @@
                                         <div class="flex overflow-scroll items-start py-px px-12">
                                             <!-- List of forms -->
                                             <div v-for="(form) in $page['props']['forms']"
-                                                 @click="$inertia.get(route('form.edit', form.uuid))"
+                                                 @click="$inertia.get(route('form.show', form.uuid))"
                                                  class="flex flex-col flex-none self-stretch pr-6 w-11/12">
                                                 <a
-                                                    :href="route('form.edit', form.uuid)"
+                                                    :href="route('form.show', form.uuid)"
                                                     class="inline-block overflow-hidden w-full max-w-full text-sm text-black no-underline  cursor-pointer box-border hover:text-black hover:no-underline"
                                                     :style="'background-color: ' + colors"
                                                     style="border-radius: 14px; transition: transform 150ms ease-in-out 0s, -webkit-transform 150ms ease-in-out 0s;"
@@ -852,7 +852,7 @@
                                             <div class="text-sm" style="min-width: 40px;">{{index + 1 + '.'}}</div>
                                             <a
                                                 class="minimalistFormItem"
-                                                :href="route('form.edit', form.uuid)"
+                                                :href="route('form.show', form.uuid)"
                                                 :class="'flex items-center py-1 px-2 -ml-3 max-w-full text-lg font-medium tracking-tight no-underline bg-transparent rounded-sm cursor-pointer hover:bg-gray-900 hover:text-gray-100'"
                                                 style="grid-auto-columns: 1fr; grid-template-columns: auto 1fr; grid-template-rows: auto; transition: background-color 400ms ease 0s, color 100ms ease 0s; line-height: 100%;"
                                             >

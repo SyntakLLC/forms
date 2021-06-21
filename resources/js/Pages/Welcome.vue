@@ -89,12 +89,12 @@
                                                         <button type="submit" class="block w-full py-4 px-6 rounded-md shadow bg-blue-500 text-white font-medium hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 focus:ring-offset-gray-900">Start free trial</button>
                                                     </a>
                                                 </div>
-                                                <p class="mt-3 text-sm text-gray-800 sm:mt-4">Start your free 7-day trial, no credit card necessary. By providing your email, you agree to our <a :href="route('terms.show')" class="font-medium text-blue-500">terms of service</a>.</p>
+                                                <p class="mt-3 text-sm text-gray-800 pb-4 sm:pb-0 sm:mt-4">Start your free 7-day trial, no credit card necessary. By providing your email, you agree to our <a :href="route('terms.show')" class="font-medium text-blue-500">terms of service</a>.</p>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="mt-12 -mb-16 sm:-mb-48 lg:m-0 lg:mt-40 lg:relative pb-10 sm:pb-0">
+                                <div class="hidden sm:block mt-12 -mb-16 sm:-mb-48 lg:m-0 lg:mt-40 lg:relative pb-10 sm:pb-0">
                                     <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
 <!--                                         Illustration taken from Lucid Illustrations: https://lucid.pixsellz.io/-->
 <!--                                        <img class="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none" src="https://tailwindui.com/img/component-images/cloud-illustration-indigo-400.svg" alt="">-->

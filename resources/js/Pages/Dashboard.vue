@@ -377,7 +377,7 @@
                                                             <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
                                                               about.contact/
                                                             </span>
-                                                                <input v-model="wantsThisNewDomain" type="text" name="company_website" id="company_website" class="flex-1 min-w-0 block w-full px-3 py-2 pr-10 rounded-none rounded-r-md focus:ring-blue-500 focus:border-blue-500 sm:text-sm border-gray-300" :class="this.initialSiteUUID === this.possiblyChangedSiteUUID ? 'border-red-300' : 'border-gray-300'" :placeholder="site.uuid">
+                                                                <input v-model="wantsThisNewDomain" type="text" name="company_website" id="company_website" class="flex-1 min-w-0 block w-full px-3 py-2 pr-10 rounded-none rounded-r-md focus:ring-blue-500 focus:border-blue-500 sm:text-sm border-gray-300" :class="this.initialSiteUUID === this.possiblyChangedSiteUUID ? 'border-red-300' : 'border-gray-300'" :placeholder="site.slug">
                                                             </div>
                                                             <p v-show="errors.slug" class="mt-2 text-sm text-red-600" id="email-error">This domain ending has already been taken.</p>
                                                         </div>
@@ -433,7 +433,7 @@
                                             <div class="flex items-center">
                                                 <div class="w-0 flex-1 flex justify-between">
                                                     <p class="w-0 flex-1 text-sm font-medium text-gray-900">
-                                                        Your billing plan is inactive. Your site will remain offline until you resubscribe.
+                                                        Your billing plan is inactive. Your site will remain offline <a :href="route('spark.portal')" class="font-medium text-blue-600 hover:underline">until you resubscribe.</a>
                                                     </p>
                                                     <!--                                                    <button @click="dontShowNotifAgain" class="ml-3 flex-shrink-0 bg-white rounded-md text-sm font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">-->
                                                     <!--                                                        Don't Show Again-->
@@ -710,7 +710,7 @@
                             </div>
 
                             <!--Name and message-->
-                            <div class="relative pb-1 px-4 sm:px-6 lg:px-8 lg:max-w-7xl lg:mx-auto lg:w-3/4 justify-center">
+                            <div class="relative pb-1 px-4 sm:px-6 lg:px-8 lg:max-w-7xl lg:mx-auto lg:w-1/2 justify-center">
                                 <div class="2xl:block mt-3 min-w-0 flex-1">
                                     <h1 class="text-2xl font-bold text-gray-900 truncate text-center">
                                         {{ $page.props.user.name }}
@@ -725,7 +725,7 @@
                             </div>
 
                             <!--Forms-->
-                            <div class="relative pb-8 px-4 sm:pb-12 sm:px-6 md:px-8 md:max-w-7xl md:mx-auto lg:pb-16 md:w-3/4 justify-center pt-4 sm:pt-6 lg:pt-8">
+                            <div class="relative pb-8 px-4 sm:pb-12 sm:px-6 lg:px-8 md:max-w-7xl md:mx-auto md:pb-16 lg:w-1/2 md:w-3/4 justify-center pt-4 sm:pt-6 lg:pt-8">
                                         <ul class="mt-2" v-if="$page['props']['forms'].length">
                                             <li v-for="(form) in $page['props']['forms']"
                                                 class="group">
@@ -1839,12 +1839,9 @@ img {
     opacity: 0.4;
 }
 
-/*#pattern {*/
-/*    background-color: #ffffff;*/
-/*    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238b5cf6' fill-opacity='1'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");*/
-/*}*/
-[contenteditable] {
-    outline: 0px solid transparent;
+[contenteditable]:hover {
+    border-radius: 5px;
+    box-shadow: 0px 0px 0px 2px #2563EB;
 }
 
 [contenteditable]:empty:before {
