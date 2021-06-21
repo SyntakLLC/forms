@@ -1,20 +1,9 @@
 <template>
     <edit :form="$page['props']['form']" :questions="$page['props']['questions']">
         <div class="bg-white rounded-md h-screen">
-            <header class="vff-header rounded-t-md" :style="accentColor">
-                <div class="f-container">
-                    <!-- Add custom logo here -->
-<!--                    <svg class="f-logo" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMid meet" viewBox="0 0 200 11.211">-->
-<!--&lt;!&ndash;                        <path d="M.134.837H3.21V8.01h4.203v2.18H.134V.837z"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <path d="M11.875.59c1.48 0 2.668.448 3.567 1.344s1.35 2.052 1.35 3.47c0 1.48-.445 2.7-1.336 3.632S13.38 10.45 11.9 10.45c-1.678 0-2.954-.54-3.827-1.622-.717-.9-1.08-2.022-1.09-3.397-.01-1.36.39-2.484 1.193-3.374C9.06 1.08 10.292.59 11.875.59zm0 2.283c-.563 0-1.003.222-1.323.662-.338.467-.507 1.124-.507 1.972 0 .865.162 1.524.487 1.978a1.58 1.58 0 0 0 1.369.682c.588 0 1.04-.223 1.355-.668s.474-1.07.474-1.875c0-1.834-.62-2.75-1.855-2.75z"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <path d="M21.565 7.078V5.055h4.217v5.163h-1.986l-.13-.908c-.693.76-1.617 1.142-2.777 1.142-1.383 0-2.488-.437-3.313-1.3s-1.243-2.03-1.252-3.464c-.01-1.462.385-2.65 1.18-3.567.875-1.012 2.11-1.518 3.7-1.518 1.21 0 2.207.303 3 .907s1.264 1.457 1.447 2.556h-2.92c-.207-.787-.73-1.182-1.57-1.182-.553 0-.988.236-1.303.707s-.475 1.153-.475 2.043c0 1.695.652 2.542 1.96 2.542.363 0 .695-.103.998-.306a1.29 1.29 0 0 0 .572-.784h-1.35v.002z"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <path d="M30.556.59c1.48 0 2.668.448 3.568 1.344s1.348 2.052 1.348 3.47c0 1.48-.443 2.7-1.336 3.632S32.06 10.45 30.58 10.45c-1.678 0-2.953-.54-3.826-1.622-.72-.892-1.082-2.022-1.1-3.398-.008-1.357.39-2.48 1.193-3.372C27.74 1.08 28.974.59 30.556.59zm0 2.283c-.563 0-1.002.222-1.322.662-.336.467-.506 1.125-.506 1.972 0 .865.162 1.524.486 1.978s.78.682 1.37.682 1.04-.223 1.355-.668.475-1.07.475-1.875c-.002-1.834-.62-2.75-1.857-2.75z"/>&ndash;&gt;-->
-<!--                            <text y="12">-->
-<!--                                <tspan font-weight="bold" :fill="this.getContrastYIQ(this.site.accent_color)">{{ $page.props.user.name.toUpperCase() }}</tspan>-->
-<!--                            </text>-->
-<!--                    </svg>-->
-                </div>
-            </header>
+
+            <img class="absolute h-full w-full max-h-screen max-w-screen object-cover top-0" :src="site.cover_photo"/>
+            <div class="absolute h-full w-full max-h-screen max-w-screen object-cover top-0 bg-black opacity-60"/>
 
 
             <!-- Global notification live region, render this permanently at the end of the document -->
@@ -83,8 +72,8 @@
                                                 contenteditable="true"
                                                 placeholder="Question"
                                                 @input="updateTitle"
-                                                :class="'text-left text-gray-900 border-0 border-gray-300 border-solid'"
-                                                style='color: #000000; font-family: "Inter var"; font-size: 2.25rem; line-height: 2.5rem; font-weight: 900; outline: transparent solid 0px; line-height: 51.456px; overflow-wrap: break-word;'
+                                                :class="'text-left border-0 border-gray-300 border-solid'"
+                                                style='font-family: "Inter var"; font-size: 2.25rem; line-height: 2.5rem; font-weight: 900; outline: transparent solid 0px; line-height: 51.456px; overflow-wrap: break-word;'
                                             >{{ question.title }}</span>
 
                                             <span class="f-sub"><!----> <!---->
@@ -106,7 +95,7 @@
                                                                 <!--DELETE OPTION-->
 <!--                                                                <button -->
 <!--                                                                        class="w-5 pr-10 text-gray-500 hover:text-gray-600 focus:outline-none">-->
-                                                                    <svg @click="deleteOption(option.uuid)" v-on:click.stop class="text-gray-500 right-3 h-5 w-5 pt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                    <svg @click="deleteOption(option.uuid)" v-on:click.stop class="text-white right-3 h-5 w-5 pt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                                     </svg>
 <!--                                                                </button>-->
@@ -119,7 +108,8 @@
                                     </div>
 
                                     <div class="vff-animate f-fade-in f-enter">
-                                        <button @click="addOption" type="button" href="#" aria-label="Press to continue" class="o-btn-action-custom" :class="'text-white'" :style="accentColor">
+                                        <button @click="addOption" type="button" href="#" aria-label="Press to continue" class="o-btn-action-custom" :class="'text-white'"
+                                                :style="'background-color: #' + site.accent_color + '; color: ' + getContrastYIQ(site.accent_color)">
                                             <span>Add Option</span>
                                         </button>
 <!--                                        <a href="#" class="f-enter-desc">Press <span class="f-string-em">Enter</span></a>-->
@@ -146,8 +136,8 @@
 
 
                                             <span contenteditable class="f-sub"
-                                                  :class="'text-left text-gray-900 border-0 border-gray-300 border-solid'"
-                                                  style='color: #000000; font-family: "Inter var"; font-size: 2.25rem; line-height: 2.5rem; font-weight: 900; outline: transparent solid 0px; line-height: 51.456px; overflow-wrap: break-word;'
+                                                  :class="'text-left border-0 border-gray-300 border-solid'"
+                                                  style='font-family: "Inter var"; font-size: 2.25rem; line-height: 2.5rem; font-weight: 900; outline: transparent solid 0px; line-height: 51.456px; overflow-wrap: break-word;'
                                                   placeholder="Message"
                                                   @input="updateTitle">{{ question.title }}</span>
 
@@ -186,8 +176,8 @@
                                                 contenteditable="true"
                                                 placeholder="Question"
                                                 @input="updateTitle"
-                                                :class="'text-left text-gray-900 border-0 border-gray-300 border-solid'"
-                                                style='color: #000000; font-family: "Inter var"; font-size: 2.25rem; line-height: 2.5rem; font-weight: 900; outline: transparent solid 0px; line-height: 51.456px; overflow-wrap: break-word;'
+                                                :class="'text-left border-0 border-gray-300 border-solid'"
+                                                style='font-family: "Inter var"; font-size: 2.25rem; line-height: 2.5rem; font-weight: 900; outline: transparent solid 0px; line-height: 51.456px; overflow-wrap: break-word;'
                                             >{{ question.title }}</span>
 
 
@@ -197,7 +187,7 @@
 
                                             <div class="f-answer f-full-width">
                                                 <span>
-                                                    <input class="focus:outline-none" :type="question.type === 'Text' ? 'text' : question.type === 'Email' ? 'email' : 'text'" required="required" :placeholder="question.type === 'Text' ? 'Start typing here...' : question.type === 'Email' ? 'jane@doe.com' : question.type === 'Phone' ? '(###)-###-####' : 'Start typing here...'">
+                                                    <input disabled class="focus:outline-none" :type="question.type === 'Text' ? 'text' : question.type === 'Email' ? 'email' : 'text'" required="required" :placeholder="question.type === 'Text' ? 'Start typing here...' : question.type === 'Email' ? 'jane@doe.com' : question.type === 'Phone' ? '(###)-###-####' : 'Start typing here...'">
                                                 </span>
                                             </div>
 

@@ -4,7 +4,7 @@
         <div v-if="$page.props.site.initialized" class="h-full">
             <div class="flex items-center flex-shrink-0 border-b border-gray-200">
 
-                <div class="w-full bg-white border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8 lg:fixed lg:mt-16 z-20">
+                <div class="w-full bg-white border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 md-bottom-20 lg:px-8 lg:fixed lg:mt-16 z-20">
                     <!-- Edit Site title -->
                     <div class="flex-1 min-w-0">
                         <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
@@ -47,7 +47,7 @@
                         <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
                         <button @click="showingCoverPhotoDropdown=!showingCoverPhotoDropdown; showingLayoutDropdown=false; showingAccentColorDropdown=false; showingSocialDropdown=false"
                                 :class="showingCoverPhotoDropdown ? 'text-gray-900' : 'text-gray-500'" type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-expanded="false">
-                            <span>Select Background Photo</span>
+                            <span>Change Background Photo</span>
 
                             <svg class="text-gray-400 ml-2 h-5 w-5 group-hover:text-gray-500"
                                  :class="showingCoverPhotoDropdown ? 'text-gray-600' : 'text-gray-400'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -414,7 +414,7 @@
             <div class="flex overflow-hidden bg-white">
                 <!-- Main column -->
                 <div class="flex flex-col w-0 flex-1 overflow-hidden">
-                    <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none" tabindex="0">
+                    <main class="flex-1 sm:bottom-12 lg:bottom-0 relative z-0 overflow-y-auto focus:outline-none" tabindex="0">
 
                         <!-- Notifications -->
                         <div aria-live="assertive" class="fixed sm:relative inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start z-30">

@@ -27,11 +27,13 @@ class FormController extends Controller
     public function index(Request $request) {
         $homeWorthIcon = Storage::url('marketing-photos/Home_Worth_Form_Icon.png');
         $apartmentIcon = Storage::url('marketing-photos/Apartment_Form_Icon.png');
+        $contactIcon = Storage::url('marketing-photos/Contact_Me_Form_Icon.png');
 
         return Inertia::render('Forms/Index', [
             'forms' => $request->user()->forms,
             'homeWorthIcon' => $homeWorthIcon,
             'apartmentIcon' => $apartmentIcon,
+            'contactIcon' => $contactIcon,
         ]);
     }
 
@@ -641,24 +643,31 @@ class FormController extends Controller
         $questions = [
             Question::create([
                 'form_id' => $form->id,
+                'type' => 'Section Break',
+                'title' => 'Are You Planning On Buying a Home?',
+                'subtitle' => 'Let me know a little about your dream home and we can be in touch!',
+                'index' => 0,
+            ]),
+            Question::create([
+                'form_id' => $form->id,
                 'type' => 'Name',
                 'title' => 'What is your full name?',
                 'tagline' => 'Let\'s get acquainted',
-                'index' => 0,
+                'index' => 1,
             ]),
             Question::create([
                 'form_id' => $form->id,
                 'type' => 'Email',
                 'title' => 'Please provide your email.',
                 'tagline' => 'Nice to meet you',
-                'index' => 1,
+                'index' => 2,
             ]),
             Question::create([
                 'form_id' => $form->id,
                 'type' => 'Phone Number',
                 'title' => 'What\'s your phone number?',
                 'tagline' => 'One more bit of contact...',
-                'index' => 2,
+                'index' => 3,
             ]),
         ];
 
@@ -674,24 +683,31 @@ class FormController extends Controller
         $questions = [
             Question::create([
                 'form_id' => $form->id,
+                'type' => 'Section Break',
+                'title' => 'Do You Need a New Agent?',
+                'subtitle' => 'Let\'s see how I can help you.',
+                'index' => 0,
+            ]),
+            Question::create([
+                'form_id' => $form->id,
                 'type' => 'Name',
                 'title' => 'What is your full name?',
                 'tagline' => 'Let\'s get acquainted',
-                'index' => 0,
+                'index' => 1,
             ]),
             Question::create([
                 'form_id' => $form->id,
                 'type' => 'Email',
                 'title' => 'Please provide your email.',
                 'tagline' => 'Nice to meet you',
-                'index' => 1,
+                'index' => 2,
             ]),
             Question::create([
                 'form_id' => $form->id,
                 'type' => 'Phone Number',
                 'title' => 'What\'s your phone number?',
                 'tagline' => 'One more bit of contact...',
-                'index' => 2,
+                'index' => 3,
             ]),
         ];
 

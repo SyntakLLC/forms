@@ -45,7 +45,7 @@ Route::post('form/home_worth', 'App\Http\Controllers\FormController@homeWorth');
 Route::post('form/apartment', 'App\Http\Controllers\FormController@apartment');
 Route::post('form/new-agent', 'App\Http\Controllers\FormController@newAgent');
 Route::post('form/buying-home', 'App\Http\Controllers\FormController@buyingHome');
-Route::post('form/contact', 'App\Http\Controllers\FormController@contact');
+Route::post('form/contact-me', 'App\Http\Controllers\FormController@contact');
 
 // when adding a question, we have 5 different vue forms as options
 Route::post('form/add_name', 'App\Http\Controllers\QuestionController@addName');

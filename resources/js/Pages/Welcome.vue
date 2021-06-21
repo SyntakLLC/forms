@@ -331,7 +331,7 @@
                                 &copy; 2021 AboutContact. All rights reserved.
                             </p>
                             <p class="text-base text-gray-400 xl:text-center">
-                                amaan@macdronemedia.com
+                                help@about.contact
                             </p>
                         </div>
                     </div>

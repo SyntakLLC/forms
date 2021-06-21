@@ -132,7 +132,7 @@
                 </transition>
             </div>
 
-            <div class="h-full flex overflow-hidden bg-white">
+            <div class="h-full max-h-screen flex overflow-hidden bg-white">
                 <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
                 <div class="lg:hidden">
                     <transition
@@ -253,7 +253,7 @@
                 </div>
 
                 <!-- Static sidebar for desktop -->
-                <div class="hidden lg:flex lg:flex-shrink-0">
+                <div class="hidden lg:flex lg:flex-shrink-0 lg:pb-40">
                     <!--below thing used to be pt-5 and pb-4-->
                     <div class="flex flex-col w-64 border-r border-gray-200 pt-0 pb-0 bg-white">
 
@@ -262,7 +262,7 @@
 
                             <!-- Navigation, below nav before was mt-6 -->
                             <nav class="mt-0">
-                                <div class="space-y-1">
+                                <div class="space-y-1 overflow-scroll">
 
                                     <!--ADD QUESTION-->
                                     <div class="w-full absolute hover:bg-gray-50 relative inline-block text-left">
@@ -375,7 +375,7 @@
                 <div class="flex flex-col w-0 flex-1 overflow-hidden">
                     <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none" tabindex="0">
                         <!-- Page title & actions -->
-                        <div class="p-5 bg-gray-50">
+                        <div>
 
                             <!--New Question dropdown-->
                             <transition
@@ -719,7 +719,7 @@
                                 </div>
                             </transition>
 
-                            <slot class="shadow-md"/>
+                            <slot/>
                         </div>
                     </main>
                 </div>

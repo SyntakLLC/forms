@@ -136,7 +136,7 @@ header.vff-header svg.f-logo{
 .vff ul.f-radios li.f-selected,
 .vff ul.f-radios li:active {
     border-color: var(--vff-main-text-color);
-    color: var(--vff-main-text-color);
+    color: #000000;
     background-color: var(--vff-tertiary-text-color);
 }
 

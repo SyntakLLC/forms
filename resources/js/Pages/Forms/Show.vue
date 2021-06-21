@@ -17,7 +17,7 @@
 
 
             <img class="fixed h-screen w-screen object-cover top-0" :src="site.cover_photo"/>
-            <div class="fixed h-screen w-screen object-cover top-0 bg-black opacity-50"/>
+            <div class="fixed h-screen w-screen object-cover top-0 bg-black opacity-60"/>
 
             <flow-form
                 ref="flowform"
@@ -195,6 +195,7 @@ export default {
         cssProps() {
             return {
                 '--bg-accent-color': '#' + this.site.accent_color,
+                '--correct-text-color': this.getContrastYIQ(this.site.accent_color),
             }
         }
     }
@@ -207,6 +208,7 @@ export default {
 
     button.o-btn-action {
         background-color: var(--bg-accent-color) !important;
+        color: var(--correct-text-color) !important;
     }
 
     * {

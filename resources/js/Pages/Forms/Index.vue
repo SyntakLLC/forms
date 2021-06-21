@@ -126,25 +126,25 @@
 <!--                                </form>-->
 <!--                            </li>-->
                             <!--Contact Me-->
-                            <li>
-                                <form @submit.prevent="contactForm.post('/form/contact-me')">
-                                    <button type="submit" class="focus:outline-none w-full h-full -mt-12">
-                                        <div class="space-y-4">
-                                            <div class="aspect-w-10 aspect-h-10">
-                                                <img class="object-cover shadow-lg rounded-lg hover:opacity-75" :src="$page.props.apartmentIcon" style="object-position: -10px 0;" alt="Form Icon">
-                                            </div>
+<!--                            <li>-->
+<!--                                <form @submit.prevent="contactForm.post('/form/contact-me')">-->
+<!--                                    <button type="submit" class="focus:outline-none w-full h-full -mt-12">-->
+<!--                                        <div class="space-y-4">-->
+<!--                                            <div class="aspect-w-10 aspect-h-10">-->
+<!--                                                <img class="object-cover shadow-lg rounded-lg hover:opacity-75" :src="$page.props.contactIcon" style="object-position: -10px 0;" alt="Form Icon">-->
+<!--                                            </div>-->
 
-                                            <div class="space-y-2">
-                                                <div class="text-lg leading-6 font-medium space-y-1">
-                                                    <h3>Contact Me!</h3>
-                                                    <p class="text-blue-600">Premade Form</p>
-                                                </div>
+<!--                                            <div class="space-y-2">-->
+<!--                                                <div class="text-lg leading-6 font-medium space-y-1">-->
+<!--                                                    <h3>Contact Me!</h3>-->
+<!--                                                    <p class="text-blue-600">Premade Form</p>-->
+<!--                                                </div>-->
 
-                                            </div>
-                                        </div>
-                                    </button>
-                                </form>
-                            </li>
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </button>-->
+<!--                                </form>-->
+<!--                            </li>-->
 
                             <!-- And More Soon -->
                             <li class="hover:opacity-90">
