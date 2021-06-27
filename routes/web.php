@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
-URL::forceScheme('https');
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -103,8 +102,14 @@ Route::post('update-social', 'App\Http\Controllers\SiteController@updateSocial')
 // to delete a form
 Route::post('delete-form', 'App\Http\Controllers\FormController@destroy');
 
+// to delete a property
+Route::post('property-form', 'App\Http\Controllers\PropertyController@destroy');
+
 // initialize a site
 Route::post('create-site', 'App\Http\Controllers\SiteController@create');
 
 // to change the domain name
 Route::post('tryToUpdateDomain/{site}', 'App\Http\Controllers\SiteController@tryToUpdateDomain')->name('site.slug.update');
+
+// make a new listing
+Route::post('create-listing', 'App\Http\Controllers\PropertyController@create')->name('create-listing');

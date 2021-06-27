@@ -1,5 +1,5 @@
 <template>
-        <div :style="cssProps">
+        <div v-if="$page.props.onTrial || $page.props.subscribed" :style="cssProps">
 <!--            <header class="vff-header" style="z-index: -10; background-color: transparent">-->
 <!--                <div class="f-container">-->
                     <!-- Add custom logo here -->
@@ -67,6 +67,35 @@
 
 <!--            <form @submit.prevent="submitForm.post('/form/submit_results')" />-->
         </div>
+
+    <!-- Else show alert -->
+    <div v-else class="relative flex items-top justify-center min-h-screen w-screen sm:items-center sm:pt-0">
+        <div class="font-medium leading-7 text-gray-700">
+            <div
+                class="flex flex-col mx-0 mt-0 mb-4 w-full leading-7 text-center box-border"
+            >
+                <h2
+                    class="mt-0 mb-5 font-sans text-5xl tracking-normal leading-4 text-gray-900 uppercase"
+                >
+                    404 - Page Not Found
+                </h2>
+                <div class="text-center mt-4 box-border">
+                    The page you are looking for doesn't exist or has been moved.
+                </div>
+                <div class="flex mx-auto mt-8 text-center">
+                    <a
+                        :href="route('welcome')"
+                        class="inline-block overflow-hidden relative py-3 px-5 max-w-full text-base font-semibold leading-6 text-white no-underline bg-gray-900 rounded cursor-pointer"
+                        style="transition: transform 200ms ease 0s, -webkit-transform 200ms ease 0s;"
+                    ><div class="box-border">Back to Home</div>
+                        <div class="absolute top-0 left-0 h-full bg-white box-border"></div
+                        ></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </template>
 
 <script>

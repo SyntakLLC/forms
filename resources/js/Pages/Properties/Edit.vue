@@ -48,10 +48,94 @@
 
                 <!-- Change domain & Preview -->
                 <div class="mt-4 flex sm:mt-0 sm:ml-4">
+                    <button @click="showingDeleteModal=!showingDeleteModal"
+                            type="button"
+                            class="truncate inline-flex items-center px-4 py-2 border border-red-500 shadow-sm text-sm font-medium rounded-md text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        Delete Form
+                    </button>
                     <inertia-link :href="route('property.show', $page.props.property.uuid)" type="button" class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:order-1 ml-3">
                         Preview
                     </inertia-link>
                 </div>
+
+                <!--the delete modal-->
+                <transition
+                    enter-active-class="transition ease-out duration-300"
+                    enter-class="opacity-0"
+                    enter-to-class="opacity-100"
+                    leave-active-class="transition ease-in duration-200"
+                    leave-class="opacity-100"
+                    leave-to-class="opacity-0">
+                    <div class="fixed z-10 inset-0 overflow-y-auto " v-show="showingDeleteModal">
+                        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+
+                            <!-- The gray background -->
+                            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                            </div>
+
+                            <!-- This element is to trick the browser into centering the modal contents. -->
+                            <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
+                                  aria-hidden="true">&#8203;</span>
+
+                            <transition
+                                enter-active-class="transition ease-out duration-300"
+                                enter-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                enter-to-class="opacity-100 translate-y-0 sm:scale-100"
+                                leave-active-class="transition ease-in duration-200"
+                                leave-class="opacity-100 translate-y-0 sm:scale-100"
+                                leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+                                <!--
+                                  Modal panel, show/hide based on modal state.
+                                  Entering: "ease-out duration-300"
+                                    From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                    To: "opacity-100 translate-y-0 sm:scale-100"
+                                  Leaving: "ease-in duration-200"
+                                    From: "opacity-100 translate-y-0 sm:scale-100"
+                                    To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                -->
+                                <div v-if="showingDeleteModal"
+                                     class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+                                    <div class="sm:flex sm:items-start">
+                                        <div
+                                            class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                                            <!-- Heroicon name: outline/exclamation -->
+                                            <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg"
+                                                 fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                                 aria-hidden="true">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                                            </svg>
+                                        </div>
+                                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                                Delete listing
+                                            </h3>
+                                            <div class="mt-2">
+                                                <p class="text-sm text-gray-500">
+                                                    Are you sure you want to delete this listing? Any leads generated from
+                                                    this listing will not be deleted. This action cannot be undone.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+                                        <button @click="this.deleteForm"
+                                                type="button"
+                                                class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                                            Delete
+                                        </button>
+                                        <button @click="showingDeleteModal=!showingDeleteModal"
+                                                type="button"
+                                                class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:w-auto sm:text-sm">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </transition>
+                        </div>
+                    </div>
+                </transition>
             </div>
         </div>
 
@@ -77,10 +161,10 @@
                 <div class="px-6 mx-auto w-full text-gray-900" style="max-width: 1344px;">
                     <div class="mx-auto w-full box-border" style="max-width: 584px;">
                         <div class="flex flex-col items-center text-center box-border">
-                            <h6 class="mt-0 mb-1 font-sans text-lg italic font-normal leading-7">
+                            <h6 contenteditable placeholder="Town or State" @input="updateTownAndState" class="mt-0 mb-1 font-sans text-lg italic font-normal leading-7">
                                 {{this.property.town_and_state}}
                             </h6>
-                            <h3
+                            <h3 contenteditable placeholder="Street Address" @input="updateStreetAddress"
                                 class="mt-0 mb-6 font-sans text-5xl font-normal"
                                 style="line-height: 60px;"
                             >
@@ -103,29 +187,26 @@
                                             </g>
                                         </g>
                                     </svg>
-                                    <div class="box-border">{{this.property.bed}}</div>
+                                    <div contenteditable placeholder="0" @input="updateBed" class="box-border">{{this.property.bed}}</div>
                                     <div class="box-border">&nbsp;Bed</div>
                                 </div>
                                 <div class="flex items-center my-1 mx-6">
                                     <svg class="h-6 w-6 inline-block mr-3 max-w-full align-middle border-0 box-border" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 48 48">
                                         <path fill="#000000" id="i-465" d="M25,34h2v4h-2V34z M25,45h2v-4h-2V45z M17,31h2v-4h-2V31z M17,45h2v-4h-2V45z M17,38h2v-4h-2V38z M25,31h2v-4h-2V31z M33,38 h2v-4h-2V38z M41,31h2v-4h-2V31z M48,23v1H12v-1c0-8.471,4.407-12.33,15-12.912V10c0-2.131,1.022-2.746,1.964-2.926 C28.6,2.221,25.194,2,18,2h-5C5.393,2,2,4.467,2,10v38H0V10C0,0,9.785,0,13,0h5c6.685,0,12.48,0.02,12.954,7.061 C31.917,7.219,33,7.807,33,10v0.109C45.3,11.006,48,17.492,48,23z M45.966,22C45.505,15.273,40.27,12,30,12 c-12.657,0-15.706,3.799-15.979,10H45.966z M41,38h2v-4h-2V38z M33,31h2v-4h-2V31z M33,45h2v-4h-2V45z M41,45h2v-4h-2V45z"/>
                                     </svg>
-                                    <div class="box-border">{{this.property.bath}}</div>
+                                    <div contenteditable placeholder="0" @input="updateBath" class="box-border">{{this.property.bath}}</div>
                                     <div class="box-border">&nbsp;Bath</div>
                                 </div>
                                 <div class="flex items-center my-1 mx-6">
                                     <svg class="h-6 w-6 inline-block mr-3 max-w-full align-middle border-0 box-border" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
                                         <path d="M0.586,34L16,49.414L49.414,16L34,0.586L0.586,34z M16,46.586L3.414,34L5.5,31.914l4.793,4.793l1.414-1.414L6.914,30.5   l3.586-3.586l2.793,2.793l1.414-1.414L11.914,25.5l3.586-3.586l4.793,4.793l1.414-1.414L16.914,20.5l3.586-3.586l2.793,2.793   l1.414-1.414L21.914,15.5l3.586-3.586l4.793,4.793l1.414-1.414L26.914,10.5L30.5,6.914l2.793,2.793l1.414-1.414L31.914,5.5   L34,3.414L46.586,16L16,46.586z"/>
                                     </svg>
-                                    <div class="box-border">{{this.property.square_feet}}</div>
+                                    <div contenteditable placeholder="0" @input="updateSquareFeet" class="box-border">{{this.property.square_feet}}</div>
                                     <div class="box-border">&nbsp;Sq Ft</div>
                                 </div>
                             </div>
-                            <div class="text-xl leading-7">
-                                A restrained curation of modern neutral tones creates soothing yet
-                                energetic spaces, anchored by high-end finishes. Floor to ceiling
-                                windows invite sunlight to soak the living spaces and create a
-                                seamless flow from indoors to out.
+                            <div contenteditable placeholder="Description" @input="updateDescription" class="text-xl box-border leading-7">
+                                {{ this.property.description == '' ? "Description" : this.property.description }}
                             </div>
                         </div>
                     </div>
@@ -143,7 +224,7 @@
                         style="max-width: 879px; direction: ltr;"
                     >
                         <div class="sm:ml-20 m-0 box-border">
-                            <flow-form v-on:submit="onSubmit">
+                            <flow-form>
                                 <question type="sectionbreak" title="If you'd like to request a visit, hit continue and we can be in touch."></question>
                                 <question type="text" title="What is your name?" v-model="name" required></question>
                                 <question type="sectionbreak" :title="'Nice to meet you, ' + name + '.'" subtitle="I'd love to talk about this property. Fill out some contact information and I'll reach out shortly."></question>
@@ -203,9 +284,89 @@ export default {
             message: "",
             showingCoverPhotoDropdown: false,
             showingLoadingScreen: false,
+            timeoutId: 0,
+            showingDeleteModal: false,
         }
     },
     methods: {
+        /**
+         * Destroy property
+         */
+        async deleteForm() {
+            let data = {'property_uuid': this.property.uuid}
+            this.$inertia.post('/delete-property', data)
+        },
+
+        /**
+         * Update fields
+         */
+        async updateTownAndState(e) {
+            clearTimeout(this.timeoutId)
+            let data = {
+                'text': e.target.innerText,
+                'property': this.property.uuid,
+            }
+            this.timeoutId = setTimeout(async function() {
+                let response = await axios.post('/api/update-town-and-state', data)
+            })
+        },
+
+        async updateStreetAddress(e) {
+            clearTimeout(this.timeoutId)
+            let data = {
+                'text': e.target.innerText,
+                'property': this.property.uuid,
+            }
+            this.timeoutId = setTimeout(async function() {
+                let response = await axios.post('/api/update-street-address', data)
+            })
+        },
+
+        async updateBed(e) {
+            clearTimeout(this.timeoutId)
+            let data = {
+                'text': e.target.innerText,
+                'property': this.property.uuid,
+            }
+            this.timeoutId = setTimeout(async function() {
+                let response = await axios.post('/api/update-bed', data)
+            })
+        },
+
+        async updateBath(e) {
+            clearTimeout(this.timeoutId)
+            let data = {
+                'text': e.target.innerText,
+                'property': this.property.uuid,
+            }
+            this.timeoutId = setTimeout(async function() {
+                let response = await axios.post('/api/update-bath', data)
+            })
+        },
+
+        async updateSquareFeet(e) {
+            clearTimeout(this.timeoutId)
+            let data = {
+                'text': e.target.innerText,
+                'property': this.property.uuid,
+            }
+            this.timeoutId = setTimeout(async function() {
+                let response = await axios.post('/api/update-square-feet', data)
+            })
+        },
+
+        async updateDescription(e) {
+            clearTimeout(this.timeoutId)
+            let data = {
+                'text': e.target.innerText,
+                'property': this.property.uuid,
+            }
+            this.timeoutId = setTimeout(async function() {
+                let response = await axios.post('/api/update-description', data)
+            })
+        },
+
+
         /**
          * Update Cover photo
          */
@@ -294,5 +455,23 @@ div.vff-footer {
 button.o-btn-action {
     background-color: var(--bg-accent-color) !important;
     color: var(--correct-text-color) !important;
+}
+img {
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+[contenteditable]:hover {
+    border-radius: 5px;
+    box-shadow: 0px 0px 0px 2px #2563EB;
+}
+
+[contenteditable]:empty:before {
+    color: #999999;
+    content: attr(placeholder);
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div :style="cssProps">
+    <div v-if="$page.props.onTrial || $page.props.subscribed" :style="cssProps">
             <!-- Photo -->
             <div class="leading-6 text-white bg-gray-900 box-border">
                 <div
@@ -7,7 +7,7 @@
                     style="max-width: 1680px;">
                     <img
                         loading="lazy"
-                        src="https://assets.website-files.com/6036d53e8cf2c506425f69d4/6048387945928f61afa958f8_property-22.jpg"
+                        :src="this.property.property_photo"
                         alt=""
                         sizes="100vw"
                         class="inline-block object-cover w-full max-w-full align-middle border-0 box-border"
@@ -22,13 +22,13 @@
                     <div class="mx-auto w-full box-border" style="max-width: 584px;">
                         <div class="flex flex-col items-center text-center box-border">
                             <h6 class="mt-0 mb-1 font-sans text-lg italic font-normal leading-7">
-                                South Yarra
+                                {{ this.property.town_and_state }}
                             </h6>
                             <h3
                                 class="mt-0 mb-6 font-sans text-5xl font-normal"
                                 style="line-height: 60px;"
                             >
-                                2 Hamilton Road
+                                {{ this.property.street_address }}
                             </h3>
                             <div class="flex flex-wrap justify-center items-center mb-12">
                                 <div class="flex items-center my-1 mx-6">
@@ -47,29 +47,26 @@
                                             </g>
                                         </g>
                                     </svg>
-                                    <div class="box-border">4</div>
+                                    <div class="box-border">{{ this.property.bed }}</div>
                                     <div class="box-border">&nbsp;Bed</div>
                                 </div>
                                 <div class="flex items-center my-1 mx-6">
                                     <svg class="h-6 w-6 inline-block mr-3 max-w-full align-middle border-0 box-border" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 48 48">
                                         <path fill="#000000" id="i-465" d="M25,34h2v4h-2V34z M25,45h2v-4h-2V45z M17,31h2v-4h-2V31z M17,45h2v-4h-2V45z M17,38h2v-4h-2V38z M25,31h2v-4h-2V31z M33,38 h2v-4h-2V38z M41,31h2v-4h-2V31z M48,23v1H12v-1c0-8.471,4.407-12.33,15-12.912V10c0-2.131,1.022-2.746,1.964-2.926 C28.6,2.221,25.194,2,18,2h-5C5.393,2,2,4.467,2,10v38H0V10C0,0,9.785,0,13,0h5c6.685,0,12.48,0.02,12.954,7.061 C31.917,7.219,33,7.807,33,10v0.109C45.3,11.006,48,17.492,48,23z M45.966,22C45.505,15.273,40.27,12,30,12 c-12.657,0-15.706,3.799-15.979,10H45.966z M41,38h2v-4h-2V38z M33,31h2v-4h-2V31z M33,45h2v-4h-2V45z M41,45h2v-4h-2V45z"/>
                                     </svg>
-                                    <div class="box-border">3</div>
+                                    <div class="box-border">{{ this.property.bath }}</div>
                                     <div class="box-border">&nbsp;Bath</div>
                                 </div>
                                 <div class="flex items-center my-1 mx-6">
                                     <svg class="h-6 w-6 inline-block mr-3 max-w-full align-middle border-0 box-border" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
                                         <path d="M0.586,34L16,49.414L49.414,16L34,0.586L0.586,34z M16,46.586L3.414,34L5.5,31.914l4.793,4.793l1.414-1.414L6.914,30.5   l3.586-3.586l2.793,2.793l1.414-1.414L11.914,25.5l3.586-3.586l4.793,4.793l1.414-1.414L16.914,20.5l3.586-3.586l2.793,2.793   l1.414-1.414L21.914,15.5l3.586-3.586l4.793,4.793l1.414-1.414L26.914,10.5L30.5,6.914l2.793,2.793l1.414-1.414L31.914,5.5   L34,3.414L46.586,16L16,46.586z"/>
                                     </svg>
-                                    <div class="box-border">3,000</div>
+                                    <div class="box-border">{{ this.property.square_feet }}</div>
                                     <div class="box-border">&nbsp;Sq Ft</div>
                                 </div>
                             </div>
                             <div class="text-xl leading-7">
-                                A restrained curation of modern neutral tones creates soothing yet
-                                energetic spaces, anchored by high-end finishes. Floor to ceiling
-                                windows invite sunlight to soak the living spaces and create a
-                                seamless flow from indoors to out.
+                                {{ this.property.description }}
                             </div>
                         </div>
                     </div>
@@ -101,6 +98,35 @@
             </div>
 
         </div>
+
+    <!-- Else show alert -->
+    <div v-else class="relative flex items-top justify-center min-h-screen w-screen sm:items-center sm:pt-0">
+        <div class="font-medium leading-7 text-gray-700">
+            <div
+                class="flex flex-col mx-0 mt-0 mb-4 w-full leading-7 text-center box-border"
+            >
+                <h2
+                    class="mt-0 mb-5 font-sans text-5xl tracking-normal leading-4 text-gray-900 uppercase"
+                >
+                    404 - Page Not Found
+                </h2>
+                <div class="text-center mt-4 box-border">
+                    The page you are looking for doesn't exist or has been moved.
+                </div>
+                <div class="flex mx-auto mt-8 text-center">
+                    <a
+                        :href="route('welcome')"
+                        class="inline-block overflow-hidden relative py-3 px-5 max-w-full text-base font-semibold leading-6 text-white no-underline bg-gray-900 rounded cursor-pointer"
+                        style="transition: transform 200ms ease 0s, -webkit-transform 200ms ease 0s;"
+                    ><div class="box-border">Back to Home</div>
+                        <div class="absolute top-0 left-0 h-full bg-white box-border"></div
+                        ></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </template>
 
 <script>
@@ -114,7 +140,7 @@ name: "Show.vue",
         Question
     },
 
-    props: ['site'],
+    props: ['site', 'property'],
 
     data() {
         return {
@@ -138,7 +164,7 @@ name: "Show.vue",
                 }).join(),
                 'email': this.email,
                 'phone': this.phone,
-                'message': this.message,
+                'message': "Regarding " + this.property.street_address + ": " + this.message,
                 site: this.site.slug,
             }
             this.$inertia.post('/contact', data)

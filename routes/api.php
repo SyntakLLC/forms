@@ -74,3 +74,11 @@ Route::post('dontshowformnotif', 'App\Http\Controllers\SiteController@dontshowfo
 
 // to change the domain name
 Route::post('tryToUpdateDomain', 'App\Http\Controllers\SiteController@tryToUpdateDomain');
+
+// updating the property page
+Route::post('update-town-and-state', 'App\Http\Controllers\PropertyController@updateTownAndState');
+Route::post('update-street-address', 'App\Http\Controllers\PropertyController@updateStreetAddress');
+Route::post('update-bed', 'App\Http\Controllers\PropertyController@updateBed');
+Route::post('update-bath', 'App\Http\Controllers\PropertyController@updateBath');
+Route::post('update-square-feet', 'App\Http\Controllers\PropertyController@updateSquareFeet');
+Route::post('update-description', 'App\Http\Controllers\PropertyController@updateDescription');

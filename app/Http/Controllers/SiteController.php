@@ -65,6 +65,7 @@ class SiteController extends Controller
             'profile_photo_url' => $user->profile_photo_url,
             'name' => $user->name,
             'forms' => $user->forms,
+            'properties' => $user->properties,
             'email' => $user->email,
             'onTrial' => $user->onTrial(),
             'subscribed' => $user->subscribed(),

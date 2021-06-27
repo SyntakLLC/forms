@@ -27,6 +27,7 @@ class Property extends Model
         'town_and_state',
         'description',
         'property_photo_url',
+        'photo_url',
     ];
 
     protected $appends = [

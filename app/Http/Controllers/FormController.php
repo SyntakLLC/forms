@@ -590,14 +590,13 @@ class FormController extends Controller
         $form = Form::create([
             'id_color' => $request->get('formColor'),
             'user_id' => $request->user()->id,
-            'title' => "Contact Me!",
+            'title' => "Ask me Anything!",
         ]);
         $questions = [
             Question::create([
                 'form_id' => $form->id,
                 'type' => 'Section Break',
-                'title' => 'Contact Me!',
-                'subtitle' => 'Feel free to ask me about anything!',
+                'title' => 'Ask me Anything!',
                 'index' => 0,
             ]),
             Question::create([

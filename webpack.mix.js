@@ -19,10 +19,7 @@ mix.js('resources/js/app.js', 'public/js').vue()
     ])
     .webpackConfig(require('./webpack.config')).version();
 
-if (process.env.APP_ENV === "production" || process.env.APP_ENV === "staging") {
-
-    mix.version();
-
+if (process.env.APP_ENV === 'production' || process.env.APP_ENV === 'demo'  || process.env.APP_ENV === "staging") {
     const ASSET_URL = process.env.ASSET_URL + "/";
 
     mix.webpackConfig(webpack => {
@@ -36,5 +33,28 @@ if (process.env.APP_ENV === "production" || process.env.APP_ENV === "staging") {
                 publicPath: ASSET_URL
             }
         };
+    });
+} else {
+    mix.browserSync({
+        proxy: 'https://forms.test',
+        files: [
+            'app/**/*.php',
+            'resources/views/**/*.php',
+            'packages/mixdinternet/frontend/src/**/*.php',
+            'public/js/**/*.js',
+            'public/css/**/*.css'
+        ],
+        host: '192.168.10.10',
+        port: 3000,
+        open: false,
+        https: {
+            key: '/etc/ssl/certs/forms.test.key',
+            cert: '/etc/ssl/certs/forms.test.crt',
+        },
+        watchOptions: {
+            usePolling: true,
+            interval: 500,
+        },
+        notify: false
     });
 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Middleware;
 
@@ -39,7 +41,9 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'logoImageURL' => Storage::url('marketing-photos/Aboutcontact Logo Image.png'),
-            'logoTextURL' => Storage::url('marketing-photos/Aboutcontact Logo Text.png')
+            'logoTextURL' => Storage::url('marketing-photos/Aboutcontact Logo Text.png'),
+            'onTrial' => User::findByUuid(Auth::user()->uuid)->onTrial(),
+            'subscribed' => User::findByUuid(Auth::user()->uuid)->subscribed(),
         ]);
     }
 }
