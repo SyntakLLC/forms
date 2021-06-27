@@ -203,7 +203,7 @@ export default {
 </script>
 
 <style lang="css">
-    @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.css';
+    @import '../../../css/flow-form-text.css';
     @import'../../../css/flow-form-amaan.css';
 
     button.o-btn-action {

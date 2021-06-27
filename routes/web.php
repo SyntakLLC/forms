@@ -3,8 +3,9 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
-
+URL::forceScheme('https');
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +33,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
 
 // the forms route:
 Route::resource('form', 'App\Http\Controllers\FormController');
+// properties
+Route::resource('property', 'App\Http\Controllers\PropertyController');
 
 // when filtering leads by only one form
 //Route::get('response/{form}', 'App\Http\Controllers\LeadController@filter')->name('response.filter');
@@ -81,6 +84,12 @@ Route::post('update-profile-picture','App\Http\Controllers\Controller@updateProf
 
 // remove a cover photo
 Route::post('remove-cover-picture','App\Http\Controllers\Controller@removeCoverPicture');
+
+// update the property photo
+Route::post('update-property-picture','App\Http\Controllers\PropertyController@updatePropertyPicture');
+
+// remove a property photo
+Route::post('remove-property-picture','App\Http\Controllers\PropertyController@removePropertyPicture');
 
 // this is the final page
 Route::get('{site}', 'App\Http\Controllers\SiteController@show')->name('site.show');

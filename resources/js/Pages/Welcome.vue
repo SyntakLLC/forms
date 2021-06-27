@@ -77,11 +77,11 @@
                                     <div class="lg:py-24">
 
                                         <h1 class="mt-4 text-4xl tracking-tight font-extrabold sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
-                                            <span class="block">Lead gen forms</span>
-                                            <span class="pb-3 block bg-clip-text text-blue-500 sm:pb-5">in 8 minutes or less</span>
+                                            <span class="block">There's a better way</span>
+                                            <span class="pb-3 block bg-clip-text text-blue-500 sm:pb-5">to present yourself</span>
                                         </h1>
                                         <p class="text-base text-gray-800 sm:text-xl lg:text-lg xl:text-xl">
-                                            AboutContact provides you conversational forms that sit in professionally-designed website templates so that you can collect leads organically. No code required.
+                                            You want a good first impression. And your followers craves one. Set up a landing page with us and watch your leads come to you.
                                         </p>
                                         <div class="mt-10 sm:mt-12">
                                                 <div class="sm:flex">

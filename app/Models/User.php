@@ -36,6 +36,11 @@ class User extends Authenticatable
         return $this->hasMany(Form::class);
     }
 
+    public function properties()
+    {
+        return $this->hasMany(Property::class);
+    }
+
     public function site()
     {
         return $this->hasOne(Site::class, 'user_id', 'uuid');

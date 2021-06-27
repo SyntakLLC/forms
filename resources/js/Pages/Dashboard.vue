@@ -2,9 +2,65 @@
     <app-layout>
         <!-- Initialized -->
         <div v-if="$page.props.site.initialized" class="h-full">
-            <div class="flex items-center flex-shrink-0 border-b border-gray-200">
+            <!-- First time explanation -->
+            <transition
+                enter-active-class="transition ease-out duration-300"
+                enter-class="opacity-0"
+                enter-to-class="opacity-100"
+                leave-active-class="transition ease-in duration-200"
+                leave-class="opacity-100"
+                leave-to-class="opacity-0">
+                <div class="fixed z-50 inset-0 overflow-y-auto " v-show="showingFirstTimeNotification && $page.props.justInitialized">
+                    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
 
-                <div class="w-full bg-white border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 md-bottom-20 lg:px-8 lg:fixed lg:mt-16 z-20">
+                        <!-- The gray background -->
+                        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                        </div>
+
+                        <!-- This element is to trick the browser into centering the modal contents. -->
+                        <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
+                              aria-hidden="true">&#8203;</span>
+
+                        <transition
+                            enter-active-class="transition ease-out duration-300"
+                            enter-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                            enter-to-class="opacity-100 translate-y-0 sm:scale-100"
+                            leave-active-class="transition ease-in duration-200"
+                            leave-class="opacity-100 translate-y-0 sm:scale-100"
+                            leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+                            <div v-if="showingFirstTimeNotification && $page.props.justInitialized" class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6">
+                                <div>
+                                    <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
+                                        <!-- Heroicon name: outline/check -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </div>
+                                    <div class="mt-3 text-center sm:mt-5">
+                                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title-2">
+                                            Welcome
+                                        </h3>
+                                        <div class="mt-2">
+                                            <p class="text-sm text-gray-500">
+                                                Here you'll be editing your landing page and managing your forms.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-5 sm:mt-6">
+                                    <button @click="showingFirstTimeNotification=false" type="button" class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">
+                                        Enter
+                                    </button>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+                </div>
+            </transition>
+
+            <div class="flex items-center flex-shrink-0 border-b border-gray-200">
+                <div class="w-full bg-white border-gray-200 border-b px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 md-bottom-20 lg:px-8 lg:fixed lg:mt-16 z-20">
                     <!-- Edit Site title -->
                     <div class="flex-1 min-w-0">
                         <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
@@ -548,6 +604,33 @@
                                                         </li>
                                                     </ul>
 
+                                            <!--Listings-->
+                                            <ul class="mt-2" v-if="$page['props']['properties'].length">
+                                                <li v-for="(property) in $page['props']['properties']"
+                                                    class="group">
+                                                    <inertia-link :href="route('property.edit', property.uuid)">
+                                                        <div class="mb-5 bg-white hover:bg-gray-50 sm:rounded-lg sm:mb-4 border">
+                                                            <div class="px-4 py-5 sm:p-6">
+                                                                <div class="sm:flex sm:items-start sm:justify-between">
+                                                                    <div>
+                                                                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                                                            {{ property.street_address }}
+                                                                        </h3>
+                                                                    </div>
+                                                                    <div class="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
+                                                                        <button type="button"
+                                                                                class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"
+                                                                                :style="'background: ' + colors + '; color: ' + getContrastYIQ(colors)">
+                                                                            Edit Listing
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </inertia-link>
+                                                </li>
+                                            </ul>
+
                                             <!-- Make a new form -->
                                             <inertia-link :href="route('form.index')">
                                                 <div class="mb-5 bg-white hover:bg-gray-50 sm:rounded-lg sm:mb-4 border-2 border-gray-300 border-dashed">
@@ -556,6 +639,21 @@
                                                             <div>
                                                                 <h3 class="text-lg leading-6 font-medium text-gray-400">
                                                                     Make a New Form
+                                                                </h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </inertia-link>
+
+                                            <!-- Add a listing -->
+                                            <inertia-link :href="route('property.index')">
+                                                <div class="mb-5 bg-white hover:bg-gray-50 sm:rounded-lg sm:mb-4 border-2 border-gray-300 border-dashed">
+                                                    <div class="px-4 py-5 sm:p-6">
+                                                        <div class="sm:flex sm:items-start sm:justify-between">
+                                                            <div>
+                                                                <h3 class="text-lg leading-6 font-medium text-gray-400">
+                                                                    Add a Listing
                                                                 </h3>
                                                             </div>
                                                         </div>
@@ -765,6 +863,21 @@
                                                 </div>
                                             </div>
                                         </inertia-link>
+
+                                <!-- Add a listing -->
+                                <inertia-link :href="route('property.index')">
+                                    <div class="mb-5 bg-white hover:bg-gray-50 sm:rounded-lg sm:mb-4 border-2 border-gray-300 border-dashed">
+                                        <div class="px-4 py-5 sm:p-6">
+                                            <div class="sm:flex sm:items-start sm:justify-between">
+                                                <div>
+                                                    <h3 class="text-lg leading-6 font-medium text-gray-400">
+                                                        Add a Listing
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </inertia-link>
                                     </div>
 
                             <!--Article-->
@@ -1011,6 +1124,39 @@
                                                                 class="mt-0 mb-1 font-sans text-2xl font-normal tracking-tight leading-tight"
                                                             >
                                                                 Make a New Form
+                                                            </h2>
+                                                            <!--                                                            <div class="leading-5 box-border">-->
+                                                            <!--                                                                Display your physical products through this beautiful template-->
+                                                            <!--                                                                made for Photoshop, Sketch &amp; Figma.-->
+                                                            <!--                                                            </div>-->
+                                                        </div>
+                                                        <div class="flex items-center w-full box-border">
+                                                            <div
+                                                                class="inline-block py-1 px-4 mr-5 font-semibold leading-5 text-center text-white bg-black border-2 border-black border-solid hover:shadow-xs hover:text-white"
+                                                                style="border-radius: 40px; transition: box-shadow 200ms ease-in-out 0s;"
+                                                            >
+                                                                Go
+                                                            </div>
+                                                            <!--                                                            <div class="leading-5 box-border">$22</div>-->
+                                                        </div>
+                                                    </div>
+                                                </a
+                                                >
+                                            </div>
+
+                                            <!-- Add a listing -->
+                                            <div class="flex flex-col flex-none self-stretch pr-6 w-11/12">
+                                                <a
+                                                    :href="route('property.index')"
+                                                    class="inline-block overflow-hidden w-full max-w-full text-sm text-black no-underline  cursor-pointer box-border hover:text-black hover:no-underline border-dashed border-2 rounded-md hover:bg-gray-100"
+                                                    style="border-radius: 14px; transition: transform 150ms ease-in-out 0s, -webkit-transform 150ms ease-in-out 0s;"
+                                                >
+                                                    <div class="flex-1 p-6">
+                                                        <div class="mb-4 box-border">
+                                                            <h2
+                                                                class="mt-0 mb-1 font-sans text-2xl font-normal tracking-tight leading-tight"
+                                                            >
+                                                                Add a Listing
                                                             </h2>
                                                             <!--                                                            <div class="leading-5 box-border">-->
                                                             <!--                                                                Display your physical products through this beautiful template-->
@@ -1417,6 +1563,15 @@
                                             class="absolute w-full h-1 bg-white box-border"
                                         ></div>
 
+                                        <!-- Add a Listing -->
+                                        <div class="flex mb-4 items-baseline box-border">
+                                            <div class="text-sm" style="min-width: 40px;">→</div>
+                                            <a :href="route('property.index')" class="minimalistFormItem" :class="'flex items-center py-1 px-2 -ml-3 max-w-full text-lg font-medium tracking-tight no-underline bg-transparent rounded-sm cursor-pointer hover:text-gray-100'"
+                                               style="grid-auto-columns: 1fr; grid-template-columns: auto 1fr; grid-template-rows: auto; transition: background-color 400ms ease 0s, color 100ms ease 0s; line-height: 100%;">
+                                                <div class="leading-4 box-border">Add a Listing</div>
+                                            </a>
+                                        </div>
+
                                             <!-- Make a New Form -->
                                             <div class="flex mb-4 items-baseline box-border">
                                                 <div class="text-sm" style="min-width: 40px;">→</div>
@@ -1455,6 +1610,29 @@
                     </main>
                 </div>
             </div>
+
+            <!-- Loading screen -->
+            <div v-show="showingLoadingScreen" class="fixed z-50 inset-0 overflow-y-auto ">
+                <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+
+                    <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                    </div>
+
+                    <!-- This element is to trick the browser into centering the modal contents. -->
+                    <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
+                          aria-hidden="true">&#8203;</span>
+
+                    <div class="inline-block align-bottom rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; display: block; shape-rendering: auto;" width="121px" height="121px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                            <circle cx="50" cy="50" fill="none" stroke="#c8c8c8" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138">
+                                <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"/>
+                            </circle>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- Not initialized -->
@@ -1472,14 +1650,14 @@
                 </div>
             </div>
 
-            <div class="min-h-full flex overflow-hidden bg-white">
-                <div class="max-w-7xl py-8 px-4 sm:px-6">
+            <div class="min-h-full w-full overflow-hidden bg-white">
+                <div class="py-8 px-4 sm:px-6">
 
                     <div class="bg-white">
                         <div class="">
                             <div class="space-y-12">
 
-                                <ul class="grid grid-cols-2 gap-x-6 gap-y-12 space-y-0 sm:grid sm:grid-cols-3 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:grid-cols-4">
+                                <ul class="grid grid-cols-2 gap-x-6 gap-y-12 space-y-0 sm:grid sm:grid-cols-3 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 md:grid-cols-4 lg:grid-cols-5">
 
                                     <!-- Top align -->
                                     <li @click="createSite(3)" class="hover:opacity-90">
@@ -1604,10 +1782,21 @@
             'swatches-picker': Swatches,
         },
 
-        props: ['user', 'site', 'logoImageURL', 'logoTextURL', 'errors', 'onTrial', 'subscribed'],
+        props: [
+            'user',
+            'site',
+            'logoImageURL',
+            'logoTextURL',
+            'errors',
+            'onTrial',
+            'subscribed',
+            'justInitialized',
+        ],
 
         data() {
             return {
+                showingLoadingScreen: false,
+                showingFirstTimeNotification: true,
                 showingBillingNotification: this.onTrial===false && this.subscribed===false,
                 timeoutId: 0,
                 domainSavingText: "Save",
@@ -1741,7 +1930,7 @@
             removePhoto() {
                 this.$inertia.post('remove-cover-picture')
             },
-            updatePhotoPreview() {
+            async updatePhotoPreview() {
                 const reader = new FileReader();
                 let photo = null;
                 reader.onload = (e) => {
@@ -1751,18 +1940,18 @@
 
                 reader.readAsDataURL(this.$refs.photo.files[0]);
 
-                Vapor.store(this.$refs.photo.files[0], {
+                this.showingLoadingScreen = true;
+
+                await Vapor.store(this.$refs.photo.files[0], {
                     visibility: 'public-read'
-                }).then(response => {
-                    this.$inertia.post('/update-cover-picture', {
+                }).then(async(response) => {
+                    await this.$inertia.post('/update-cover-picture', {
                         uuid: response.uuid,
                         key: response.key,
                         extension: response.extension
                     })
                 });
-
-                // let response = await axios.post('/api/update-cover-picture', {photo: this.$refs.photo.files[0]})
-                // this.$inertia.post('update-cover-picture', {photo: this.$refs.photo.files[0]})
+                this.showingLoadingScreen = false;
             },
 
             /**

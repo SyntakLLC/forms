@@ -17,6 +17,7 @@ class AddSocialToSites extends Migration
             $table->text('facebook')->nullable();
             $table->text('instagram')->nullable();
             $table->text('twitter')->nullable();
+            $table->boolean('first_time_saw_site')->default(false);
             $table->boolean('saw_autosave_message_on_site')->default(false);
             $table->boolean('saw_autosave_message_on_form')->default(false);
         });

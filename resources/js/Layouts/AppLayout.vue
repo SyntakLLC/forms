@@ -3,7 +3,7 @@
 
         <!-- Header -->
         <nav class="bg-white shadow lg:fixed lg:top-0 z-40 lg:w-full">
-            <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+            <div class=" mx-auto px-2 sm:px-6 lg:px-8">
                 <div class="relative flex justify-between h-16">
                     <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
 

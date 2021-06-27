@@ -1,6 +1,6 @@
 <template>
     <edit :form="$page['props']['form']" :questions="$page['props']['questions']">
-        <div class="bg-white rounded-md h-screen">
+        <div class="bg-white rounded-md">
 
             <img class="absolute h-full w-full max-h-screen max-w-screen object-cover top-0" :src="site.cover_photo"/>
             <div class="absolute h-full w-full max-h-screen max-w-screen object-cover top-0 bg-black opacity-60"/>
@@ -562,6 +562,10 @@ export default {
         outline: transparent solid 0px;
         line-height: 51.456px;
         overflow-wrap: break-word;
+    }
+
+    * {
+        font-weight: normal !important;
     }
 
 </style>

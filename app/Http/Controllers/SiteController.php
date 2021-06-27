@@ -19,10 +19,13 @@ class SiteController extends Controller
         if ($request->get('layout') === 4) {
             $site->accent_color = 'F1E7DF';
         }
+//        $site->first_time_saw_site = true;
         $site->initialized = true;
         $site->save();
 
-        return Redirect::route('dashboard');
+        return Redirect::route('dashboard', [
+            'new_site' => true,
+        ]);
     }
 
     public function updateSocial(Request $request) {

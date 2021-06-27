@@ -1,6 +1,6 @@
 <template>
     <app-layout :forms="$page['props']['forms']">
-        <div tabindex="0"
+        <div tabindex="0" class="h-screen max-h-screen"
              @keydown.esc="showingQuestionTypeDropdown=false; showingQuestionsDropdown=false; showingDeleteModal=false">
             <div class="flex items-center flex-shrink-0 border-b border-gray-200">
                 <!-- icon -->
@@ -132,7 +132,7 @@
                 </transition>
             </div>
 
-            <div class="h-full max-h-screen flex overflow-hidden bg-white">
+            <div class="h-full flex overflow-hidden bg-white">
                 <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
                 <div class="lg:hidden">
                     <transition

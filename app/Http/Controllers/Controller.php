@@ -14,6 +14,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class Controller extends BaseController
 {
@@ -62,10 +63,13 @@ class Controller extends BaseController
         $brandedRight = Storage::url('marketing-photos/Brand_Right.png');
         $minimalist = Storage::url('marketing-photos/Minimalist.png');
 
+        $site = Site::findByUuid($request->user()->site->uuid);
+
         return Inertia::render('Dashboard', [
             'forms' => $request->user()->forms,
+            'properties' => $request->user()->properties,
             'user' => $request->user(),
-            'site' => $request->user()->site,
+            'site' => $site,
             'logoImageURL' => $logoImageURL,
             'logoTextURL' => $logoTextURL,
             'standard' => $standard,
@@ -75,6 +79,7 @@ class Controller extends BaseController
             'minimalist' => $minimalist,
             'onTrial' => $request->user()->onTrial(),
             'subscribed' => $request->user()->subscribed(),
+            'justInitialized' => $request->new_site,
         ]);
     }
 

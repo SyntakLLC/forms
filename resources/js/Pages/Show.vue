@@ -931,7 +931,7 @@ export default {
                 email: '',
                 phone: '',
                 message: '',
-                site: this.site.uuid,
+                site: this.site.slug,
             }),
         };
     },
