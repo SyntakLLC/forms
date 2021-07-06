@@ -433,7 +433,7 @@
 
                                 <!-- Forms -->
                                 <div class="pb-12 leading-6 box-border">
-                                    <div class="px-12 mx-auto w-full text-gray-700" style="max-width: 648px;">
+                                    <div v-show="$page['props']['forms'].length" class="px-12 mx-auto w-full text-gray-700" style="max-width: 648px;">
                                         <div
                                             class="flex justify-between items-center pb-3 mb-6 border-b border-gray-400 border-solid box-border"
                                         >
@@ -486,7 +486,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="pt-6 px-12 mx-auto w-full text-gray-700" style="max-width: 648px;">
+                                    <div v-show="$page['props']['properties'].length" class="pt-6 px-12 mx-auto w-full text-gray-700" style="max-width: 648px;">
                                         <div class="flex justify-between items-center pb-3 mb-6 border-b border-gray-400 border-solid box-border">
                                             <h2 class="my-0 font-sans text-base tracking-normal text-black box-border"
                                                 style="line-height: 1.35;">

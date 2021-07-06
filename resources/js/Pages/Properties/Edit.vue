@@ -294,7 +294,7 @@ export default {
          */
         async deleteForm() {
             let data = {'property_uuid': this.property.uuid}
-            this.$inertia.post('/delete-property', data)
+            this.$inertia.post('/delete-listing', data)
         },
 
         /**

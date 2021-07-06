@@ -3929,6 +3929,11 @@ imagemin@^7.0.1:
     p-pipe "^3.0.0"
     replace-ext "^1.0.0"
 
+img-comparison-slider@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/img-comparison-slider/-/img-comparison-slider-7.1.0.tgz#d5f2acb4852eb9b2a19a457aa7416120a516b68a"
+  integrity sha512-xlAc7mRfHYzOybuhy7PRIu942wFYtZFxwYh+t1ZsRarAK5u07W3x9jjPul9WC1esKiIRzNs+pMNZAanN1RNB3Q==
+
 img-loader@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/img-loader/-/img-loader-3.0.2.tgz#423d39cb45f017e88c7959b2740226ce4c9001aa"

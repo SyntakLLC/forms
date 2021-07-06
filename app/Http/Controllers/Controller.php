@@ -24,7 +24,7 @@ class Controller extends BaseController
         $codelessURL = Storage::url('marketing-photos/Codeless.png');
         $beautifulForms = Storage::url('marketing-photos/Beautiful_Forms.png');
         $leads = Storage::url('marketing-photos/Leads.png');
-        $twoPeopleAroundLaptop = Storage::url('marketing-photos/people_working_on_laptop.jpg');
+        $twoPeopleAroundLaptop = Storage::url('marketing-photos/people_working_on_laptop.jpeg');
         $davidTran = Storage::url('marketing-photos/david_tran.jpg');
 
         $standard = Storage::url('marketing-photos/Standard.png');
@@ -34,6 +34,9 @@ class Controller extends BaseController
 
         $loganMiller = Storage::url('marketing-photos/LoganMiller.png');
         $ricardoCooper = Storage::url('marketing-photos/RicardoCooper.png');
+
+        $linktree = Storage::url('marketing-photos/Linktree.png');
+        $us = Storage::url('marketing-photos/Us.png');
 
         $marketingVideo = Storage::url('marketing-photos/Marketing_Video.mov');
 
@@ -50,6 +53,8 @@ class Controller extends BaseController
             'loganMiller' => $loganMiller,
             'ricardoCooper' => $ricardoCooper,
             'marketingVideo' => $marketingVideo,
+            'linktree' => $linktree,
+            'us' => $us,
         ]);
     }
 

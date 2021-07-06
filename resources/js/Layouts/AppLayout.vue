@@ -37,7 +37,7 @@
                         <!-- Logo -->
                         <div class="flex-shrink-0 flex items-center">
                             <img class="block h-8 w-auto" :src="$page.props.logoImageURL" alt="AboutContact">
-                            <img class="hidden lg:block h-8 w-auto" :src="$page.props.logoTextURL" alt="AboutContact">
+<!--                            <img class="hidden lg:block h-8 w-auto" :src="$page.props.logoTextURL" alt="AboutContact">-->
                         </div>
 
                         <!-- Nav options -->

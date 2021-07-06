@@ -15,6 +15,8 @@ class PropertyController extends Controller
     public function show(Property $property) {
         return Inertia::render('Properties/Show', [
             'property' => $property,
+            'onTrial' => $property->user->onTrial(),
+            'subscribed' => $property->user->subscribed(),
             'site' => $property->user->site,
         ]);
     }

@@ -52,6 +52,8 @@ class FormController extends Controller
         return Inertia::render('Forms/Show', [
             'form' => $form,
             'site' => $user->site,
+            'onTrial' => $user->onTrial(),
+            'subscribed' => $user->subscribed(),
 //            'user' => Auth::user(),
             'questionlist' => $questions,
             'options' => $questions->each(function ($question) {
