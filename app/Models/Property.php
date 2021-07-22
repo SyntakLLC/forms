@@ -57,4 +57,9 @@ class Property extends Model
     {
         return $this->belongsTo(Site::class);
     }
+
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
+    }
 }

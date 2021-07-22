@@ -87,6 +87,9 @@ Route::post('remove-cover-picture','App\Http\Controllers\Controller@removeCoverP
 // update the property photo
 Route::post('update-property-picture','App\Http\Controllers\PropertyController@updatePropertyPicture');
 
+// add a photo to a listing
+Route::post('add-property-picture','App\Http\Controllers\PropertyController@addPropertyPicture');
+
 // remove a property photo
 Route::post('remove-property-picture','App\Http\Controllers\PropertyController@removePropertyPicture');
 
@@ -98,6 +101,9 @@ Route::post('contact', 'App\Http\Controllers\ResponseController@contact');
 
 // updates the three social media links
 Route::post('update-social', 'App\Http\Controllers\SiteController@updateSocial');
+
+// updates the matterport link
+Route::post('update-matterport', 'App\Http\Controllers\PropertyController@updateMatterport');
 
 // to delete a form
 Route::post('delete-form', 'App\Http\Controllers\FormController@destroy');

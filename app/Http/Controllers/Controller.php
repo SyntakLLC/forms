@@ -26,6 +26,7 @@ class Controller extends BaseController
         $leads = Storage::url('marketing-photos/Leads.png');
         $twoPeopleAroundLaptop = Storage::url('marketing-photos/people_working_on_laptop.jpeg');
         $davidTran = Storage::url('marketing-photos/david_tran.jpg');
+        $chrisWhalen = Storage::url('marketing-photos/chris_whalen.jpg');
 
         $standard = Storage::url('marketing-photos/Standard.png');
         $mobileProfile = Storage::url('marketing-photos/Mobile_Profile.png');
@@ -46,6 +47,7 @@ class Controller extends BaseController
             'leads' => $leads,
             'twoPeopleAroundLaptop' => $twoPeopleAroundLaptop,
             'davidTran' => $davidTran,
+            'chrisWhalen' => $chrisWhalen,
             'standard' => $standard,
             'mobileProfile' => $mobileProfile,
             'brandedLeft' => $brandedLeft,

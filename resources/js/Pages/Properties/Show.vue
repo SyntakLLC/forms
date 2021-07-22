@@ -1,7 +1,7 @@
 <template>
     <div v-if="$page.props.onTrial || $page.props.subscribed" :style="cssProps">
-            <!-- Photo -->
-            <div class="leading-6 text-white bg-gray-900 box-border">
+        <!-- Photo -->
+        <div class="leading-6 text-white bg-gray-900 box-border">
                 <div
                     class="relative mx-auto text-white box-border"
                     style="max-width: 1680px;">
@@ -16,8 +16,8 @@
                 </div>
             </div>
 
-            <!-- Details -->
-            <div class="pt-24 pb-20 leading-6 text-gray-900">
+        <!-- Details -->
+        <div class="pt-24 pb-20 leading-6 text-gray-900">
                 <div class="px-6 mx-auto w-full text-gray-900" style="max-width: 1344px;">
                     <div class="mx-auto w-full box-border" style="max-width: 584px;">
                         <div class="flex flex-col items-center text-center box-border">
@@ -73,8 +73,29 @@
                 </div>
             </div>
 
-            <!-- Contact -->
-            <div class="pb-24 leading-6 text-gray-900 bg-gray-100">
+        <!-- Photos -->
+        <div class="mx-auto pb-20 max-w-7xl">
+            <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+                <li class="relative" v-for="(photo) in $page['props']['photos']">
+                    <div @click="openPhoto(photo.photo)"  class="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
+                        <img :src="photo.photo" alt="" class="object-cover group-hover:opacity-75">
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Video -->
+        <iframe width="853" height="480" class="pb-20 mx-auto" v-if="$page.props.property.video_url"
+                :src="videoHttps === 'https://' ? $page.props.property.video_url.replace('watch?v=', 'embed/').split('&ab_channel')[0] : videoHttp.replace('watch?v=', 'embed/').split('&ab_channel')[0] === 'http://' ? $page.props.property.video_url.replace('watch?v=', 'embed/').split('&ab_channel')[0] : '//' + $page.props.property.video_url.replace('watch?v=', 'embed/').split('&ab_channel')[0]"
+                frameborder="0" allowfullscreen allow="xr-spatial-tracking"></iframe>
+
+        <!-- Matterport -->
+        <iframe width="853" height="480" class="pb-20 mx-auto" v-if="$page.props.property.matterport_url"
+                :src="matterportHttps === 'https://' ? $page.props.property.matterport_url : twitterHttp === 'http://' ? $page.props.property.matterport_url : '//' + $page.props.property.matterport_url"
+                frameborder="0" allowfullscreen allow="xr-spatial-tracking"></iframe>
+
+        <!-- Contact -->
+        <div class="pb-24 leading-6 text-gray-900 bg-gray-100">
                 <div class="px-6 mx-auto w-full text-gray-900" style="max-width: 1344px;">
                     <div class="mx-auto w-full box-border">
                         <div class="flex flex-col items-center mx-auto mb-20 text-center"></div>
@@ -96,6 +117,28 @@
                     </div>
                 </div>
             </div>
+
+        <!-- Single Image screen -->
+        <div v-show="showingPhotoScreen" class="fixed z-50 inset-0 overflow-y-auto w-screen">
+            <div class="flex items-end justify-center min-h-screen text-center sm:block sm:p-0 w-screen">
+
+                <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                    <div @click="showingPhotoScreen=!showingPhotoScreen" class="absolute inset-0 bg-gray-900 opacity-75"></div>
+                </div>
+
+                <svg @click="showingPhotoScreen=!showingPhotoScreen" class="h-20 w-20 right-0 text-white p-5 absolute" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+
+                <!-- This element is to trick the browser into centering the modal contents. -->
+                <!--                    <span class="hidden sm:inline-block sm:align-middle sm:h-screen "-->
+                <!--                          aria-hidden="true">&#8203;</span>-->
+
+                <!--                    <div class="inline-block text-left transform sm:align-middle sm:max-w-lg sm:w-full w-screen h-screen bg-green-500">-->
+                <img :src="showPhotoUrl" alt="" class="inline-block transform h-screen align-middle">
+                <!--                    </div>-->
+            </div>
+        </div>
 
         </div>
 
@@ -148,9 +191,21 @@ name: "Show.vue",
             email: "",
             phone: "",
             message: "",
+            showingPhotoScreen: false,
+
+            matterportHttps: this.property.matterport_url == null ? "" : this.property.matterport_url.length > 7 ? this.property.matterport_url.substring(0, 8) : this.property.matterport_url,
+            matterportHttp: this.property.matterport_url == null ? "" : this.property.matterport_url.length > 6 ? this.property.matterport_url.substring(0, 7) : this.property.matterport_url,
+
+            videoHttps: this.property.video_url == null ? "" : this.property.video_url.length > 7 ? this.property.video_url.substring(0, 8).replace('watch?v=', 'embed/').split('&ab_channel')[0] : this.property.video_url.replace('watch?v=', 'embed/').split('&ab_channel')[0],
+            videoHttp: this.property.video_url == null ? "" : this.property.video_url.length > 6 ? this.property.video_url.substring(0, 7).replace('watch?v=', 'embed/').split('&ab_channel')[0] : this.property.video_url.replace('watch?v=', 'embed/').split('&ab_channel')[0],
+
         }
     },
     methods: {
+        openPhoto(photo) {
+            this.showingPhotoScreen=!this.showingPhotoScreen;
+            this.showPhotoUrl=photo;
+        },
         // submits the contact form
         onSubmit(questionList) {
             let data = {

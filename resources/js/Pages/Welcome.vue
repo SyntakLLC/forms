@@ -84,7 +84,7 @@
                                             <span class="pb-3 block bg-clip-text mt-3 sm:pb-5">can do more</span>
                                         </h1>
                                         <p class="text-base text-gray-800 sm:text-xl lg:text-lg xl:text-xl md:mr-10">
-                                            You want a good first impression. And your followers crave one. Set up a landing page with us and watch your leads come to you.
+                                            Don’t lose your leads at the finish line. Incentivize your following to reach out with inviting, valuable forms and beautiful listing presentations. Social leads have never converted better.
                                         </p>
                                         <div class="mt-10 sm:mt-12">
                                                 <div class="sm:flex sm:justify-center lg:justify-start">
@@ -123,7 +123,7 @@
 
                     <!-- Codeless site building, mt-10 if we do crooked -->
                     <!-- What's wrong with linktree? -->
-                    <div class="relative bg-gray-50 pt-8 sm:pt-12 lg:pt-16">
+                    <div class="relative bg-gray-50 pt-8 sm:pt-12 lg:pt-16 pb-32">
                         <div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
                             <div>
 <!--                                <h2 class="text-base font-semibold tracking-wider text-blue-500 uppercase">Codeless</h2>-->
@@ -131,7 +131,7 @@
                                     What's Wrong With Linktree?
                                 </p>
                                 <p class="mt-5 max-w-prose mx-auto text-xl text-gray-600">
-                                    Linktree's are incredibly useful for consumers who want to share their social media links. For businesses, though, it can look tacky. When a potential client clicks through, you want them to be greeted by a beautiful landing page filled with user-friendly interaction points. From forms to listings to social links, we've got you covered. Check out the two platforms side by side below.
+                                    A link tree is very useful for sharing social links between friends. For professionals, though, it can be underwhelming. When a potential client views your landing page, you need them to be incentivized to reach out and to feel that they can trust you. You need a more powerful landing page, one that can display all your information while collecting leads passively. See the difference for yourself below.
                                 </p>
                             </div>
 <!--                            used to have  -mb-10 sm:-mb-24 lg:-mb-80 -->
@@ -155,11 +155,43 @@
                         </div>
                     </div>
 
+                    <!-- Testimonial section #1 -->
+                    <div class="pb-16 bg-blueGray-200 lg:pb-0 lg:z-10 lg:relative">
+                        <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-8">
+                            <div class="relative lg:-my-8">
+                                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-1/3 bg-white lg:hidden"></div>
+                                <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:p-0 lg:h-full">
+                                    <div class="aspect-w-10 aspect-h-6 rounded-xl shadow-xl overflow-hidden sm:aspect-w-16 sm:aspect-h-7 lg:aspect-none lg:h-full">
+                                        <img class="object-cover object-top lg:h-full lg:w-full" :src="$page.props.davidTran" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-12 lg:m-0 lg:col-span-2 lg:pl-8">
+                                <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:px-0 lg:py-20 lg:max-w-none">
+                                    <blockquote>
+                                        <div>
+                                            <svg class="h-12 w-12 text-gray-900 opacity-25" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
+                                                <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
+                                            </svg>
+                                            <p class="mt-6 text-2xl font-medium text-gray-900">
+                                                “I have been using it for 5 months now and I love the form’s aesthetic. I have had others in my office ask if I made the website and how long it took me and I just send them here.”
+                                            </p>
+                                        </div>
+                                        <footer class="mt-6">
+                                            <p class="text-base font-medium text-gray-900">David Tran</p>
+                                            <p class="text-base font-medium text-blue-900">Realtor in Boston</p>
+                                        </footer>
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Forms -->
                     <div class="relative bg-gray-50 bg-white pt-16 pb-32 overflow-hidden">
-                        <div class="relative">
+                        <div class="mt-24 relative">
                             <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
-                                <div class="px-4 max-w-xl mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
+                                <div class="px-4 max-w-xl mx-auto sm:px-6 lg:py-32 lg:max-w-none lg:mx-0 lg:px-0">
                                     <div>
                                         <div>
                                             <span class="h-12 w-12 rounded-md flex items-center justify-center bg-blue-600">
@@ -174,7 +206,7 @@
                                                 Build beautiful forms
                                             </h2>
                                             <p class="mt-4 text-lg text-gray-600">
-                                                Don't lose your client at the finish line. Create forms that engage them by asking them questions conversationally to increase your completion rate and generate organic leads.
+                                                Don't lose your client at the finish line. Create forms that engage them by asking them questions conversationally to increase your conversion rate and generate social leads.
                                             </p>
                                         </div>
                                     </div>
@@ -184,6 +216,11 @@
                                         <img class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none" :src="$page.props.beautifulForms" alt="Conversational Forms interface">
                                     </div>
                                 </div>
+<!--                                <div class="mt-12 sm:mt-16 lg:mt-0 lg:col-start-1">-->
+<!--                                    <div class="pr-4 -ml-48 sm:pr-6 md:-ml-16 lg:px-0 lg:m-0 lg:relative lg:h-full">-->
+<!--                                        <img class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none" :src="$page.props.leads" alt="List of leads interface">-->
+<!--                                    </div>-->
+<!--                                </div>-->
                             </div>
                         </div>
                         <div class="mt-24">
@@ -203,7 +240,7 @@
                                                 Manage all your leads in one place.
                                             </h2>
                                             <p class="mt-4 text-lg text-gray-600">
-                                                Never lose information on a lead again. We compile responses and contact information in an easy-to-use manner that ensures everyone is always just a phone call away.
+                                                Never lose information on a lead again. We compile responses and contact information in an easy-to-use CRM that ensures everyone is always just a phone call away. Manage your leads by leaving notes based on where they are in your sales funnel.
                                             </p>
                                         </div>
                                     </div>
@@ -217,33 +254,33 @@
                         </div>
                     </div>
 
-                    <!-- Testimonial section -->
-                    <div class="pb-16 bg-blue-500 lg:pb-0 lg:z-10 lg:relative">
+                    <!-- Testimonial section #2 -->
+                    <div class="pb-16 bg-blueGray-200 lg:pb-0 lg:z-10 lg:relative">
                         <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-8">
-                            <div class="relative lg:-my-8">
-                                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-1/3 bg-white lg:hidden"></div>
-                                <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:p-0 lg:h-full">
-                                    <div class="aspect-w-10 aspect-h-6 rounded-xl shadow-xl overflow-hidden sm:aspect-w-16 sm:aspect-h-7 lg:aspect-none lg:h-full">
-                                        <img class="object-cover object-top lg:h-full lg:w-full" :src="$page.props.davidTran" alt="">
-                                    </div>
-                                </div>
-                            </div>
                             <div class="mt-12 lg:m-0 lg:col-span-2 lg:pl-8">
                                 <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:px-0 lg:py-20 lg:max-w-none">
                                     <blockquote>
                                         <div>
-                                            <svg class="h-12 w-12 text-white opacity-25" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
+                                            <svg class="h-12 w-12 text-gray-900 opacity-25" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
                                                 <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                                             </svg>
-                                            <p class="mt-6 text-2xl font-medium text-white">
-                                                I can't believe I used to use a Linktree. My new landing page is bright, dynamic, and contains all the info I need.
+                                            <p class="mt-6 text-2xl font-medium text-gray-900">
+                                                “The form templates are great and I am able to promote them with stories and posts. By advertising the form 'Get a free home appraisal' I've already gotten 6 leads this month.”
                                             </p>
                                         </div>
                                         <footer class="mt-6">
-                                            <p class="text-base font-medium text-white">David Tran</p>
-                                            <p class="text-base font-medium text-blue-100">Realtor in Boston</p>
+                                            <p class="text-base font-medium text-gray-900">Chris Whalen</p>
+                                            <p class="text-base font-medium text-blue-900">Realtor in Tucson</p>
                                         </footer>
                                     </blockquote>
+                                </div>
+                            </div>
+                            <div class="relative lg:-my-8 right-0">
+                                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-1/3 bg-white lg:hidden"></div>
+                                <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:p-0 lg:h-full">
+                                    <div class="aspect-w-10 aspect-h-6 rounded-xl shadow-xl overflow-hidden sm:aspect-w-16 sm:aspect-h-7 lg:aspect-none lg:h-full">
+                                        <img class="object-cover object-top lg:h-full lg:w-full" :src="$page.props.chrisWhalen" alt="">
+                                    </div>
                                 </div>
                             </div>
                         </div>

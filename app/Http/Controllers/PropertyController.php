@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Form;
+use App\Models\Photo;
 use App\Models\Property;
+use App\Models\Site;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -12,12 +14,22 @@ use Inertia\Inertia;
 
 class PropertyController extends Controller
 {
+    public function updateMatterport(Request $request) {
+        $property = Property::findByUuid($request->property);
+        $property->video_url = $request->video;
+        $property->matterport_url = $request->matterport;
+        $property->save();
+
+        return Redirect::route('property.edit', $request->property);
+    }
+
     public function show(Property $property) {
         return Inertia::render('Properties/Show', [
             'property' => $property,
             'onTrial' => $property->user->onTrial(),
             'subscribed' => $property->user->subscribed(),
             'site' => $property->user->site,
+            'photos' => $property->photos,
         ]);
     }
 
@@ -25,6 +37,7 @@ class PropertyController extends Controller
         return Inertia::render('Properties/Edit', [
             'property' => $property,
             'site' => $property->user->site,
+            'photos' => $property->photos,
         ]);
     }
 
@@ -54,6 +67,24 @@ class PropertyController extends Controller
         $property = Property::findByUuid($request->property);
         $property->property_photo_url = $filepath;
         $property->save();
+
+        return Redirect::route('property.edit', [
+            'property' => $property
+        ]);
+    }
+
+    public function addPropertyPicture(Request $request) {
+        $filepath = 'listing-photos/' . $request->uuid . '.' . $request->extension;
+        Storage::move($request->key, $filepath);
+
+        $property = Property::findByUuid($request->property);
+//        $property->property_photo_url = $filepath;
+//        $property->save();
+
+        $photo = Photo::create([
+            'property_id' => $property->id,
+            'photo_url' => $filepath,
+        ]);
 
         return Redirect::route('property.edit', [
             'property' => $property

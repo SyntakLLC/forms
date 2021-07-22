@@ -46,12 +46,63 @@
                     </transition>
                 </div>
 
+                <!-- Social media dropdown -->
+                <div class="relative mt-2 sm:mt-0 sm:ml-3">
+                    <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
+                    <button @click="showingSocialDropdown=!showingSocialDropdown; showingLayoutDropdown=false; showingAccentColorDropdown=false; showingCoverPhotoDropdown=false"
+                            :class="showingSocialDropdown ? 'text-gray-900' : 'text-gray-500'" type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-expanded="false">
+                        <span>Add Media</span>
+
+                        <svg class="text-gray-400 ml-2 h-5 w-5 group-hover:text-gray-500"
+                             :class="showingSocialDropdown ? 'text-gray-600' : 'text-gray-400'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+
+                    <transition
+                        enter-active-class="transition ease-out duration-200"
+                        enter-class="opacity-0 translate-y-1"
+                        enter-to-class="opacity-100 translate-y-0"
+                        leave-active-class="transition ease-in duration-150"
+                        leave-class="opacity-100 translate-y-0"
+                        leave-to-class="opacity-0 translate-y-1">
+                        <div v-show="showingSocialDropdown" class="absolute z-10 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-xs sm:px-0">
+                            <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden bg-white p-5">
+                                <form @submit.prevent="updateLinksForm.post('/update-matterport')">
+
+                                    <!-- Video -->
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Video</label>
+                                        <div class="mt-1">
+                                            <input v-model="updateLinksForm.video" type="text" name="url" id="url1" class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="www.video.com/xxxxxxxxxxx">
+                                        </div>
+                                    </div>
+
+                                    <!-- Matterport 3D -->
+                                    <div class="mt-3">
+                                        <label class="block text-sm font-medium text-gray-700">Matterport 3D</label>
+                                        <div class="mt-1">
+                                            <input v-model="updateLinksForm.matterport" type="text" name="url" id="url2" class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="www.my.matterport.com/show/?m=xxxxxxxxxxx">
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="mt-3 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                        {{ updateLinksForm.recentlySuccessful ? "Saved" : updateLinksForm.processing ? "Saving..." : "Save" }}
+                                    </button>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </transition>
+                </div>
+
                 <!-- Change domain & Preview -->
                 <div class="mt-4 flex sm:mt-0 sm:ml-4">
                     <button @click="showingDeleteModal=!showingDeleteModal"
                             type="button"
                             class="truncate inline-flex items-center px-4 py-2 border border-red-500 shadow-sm text-sm font-medium rounded-md text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                        Delete Form
+                        Delete Listing
                     </button>
                     <inertia-link :href="route('property.show', $page.props.property.uuid)" type="button" class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:order-1 ml-3">
                         Preview
@@ -213,6 +264,44 @@
                 </div>
             </div>
 
+            <!-- Photos -->
+            <div class="mx-auto pb-20 max-w-7xl ">
+                <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+                    <input type="file" class="hidden"
+                           ref="createPhotoButton"
+                           @change="addPhoto">
+
+                    <div>
+                    <div @click="addNewPhoto" class="group block w-full aspect-w-10 aspect-h-7 rounded-lg hover:bg-gray-50 border-2 border-gray-300 border-dashed rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-8 -8 40 40"
+                             stroke="currentColor" class="text-gray-300">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                        </svg>
+                    </div>
+                        <div class="mt-4 text-lg leading-6 font-medium text-center text-gray-500 space-y-1">
+                            <h3>Add Photo</h3>
+                        </div>
+                    </div>
+
+                    <li class="relative" v-for="(photo) in $page['props']['photos']">
+                        <div @click="openPhoto(photo.photo)" class="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
+                            <img :src="photo.photo" alt="" class="object-cover group-hover:opacity-75">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Video -->
+            <iframe width="853" height="480" class="pb-20 mx-auto" v-if="$page.props.property.video_url"
+                     :src="videoHttps === 'https://' ? $page.props.property.video_url.replace('watch?v=', 'embed/').split('&ab_channel')[0] : videoHttp.replace('watch?v=', 'embed/').split('&ab_channel')[0] === 'http://' ? $page.props.property.video_url.replace('watch?v=', 'embed/').split('&ab_channel')[0] : '//' + $page.props.property.video_url.replace('watch?v=', 'embed/').split('&ab_channel')[0]"
+                     frameborder="0" allowfullscreen allow="xr-spatial-tracking"></iframe>
+
+            <!-- Matterport -->
+            <iframe width="853" height="480" class="pb-20 mx-auto" v-if="$page.props.property.matterport_url"
+                    :src="matterportHttps === 'https://' ? $page.props.property.matterport_url : matterportHttp === 'http://' ? $page.props.property.matterport_url : '//' + $page.props.property.matterport_url"
+                    frameborder="0" allowfullscreen allow="xr-spatial-tracking"></iframe>
+
             <!-- Contact -->
             <div class="pb-24 leading-6 text-gray-900 bg-gray-100">
                 <div class="px-6 mx-auto w-full text-gray-900" style="max-width: 1344px;">
@@ -259,6 +348,28 @@
                 </div>
             </div>
 
+            <!-- Single Image screen -->
+            <div v-show="showingPhotoScreen" class="fixed z-50 inset-0 overflow-y-auto w-screen">
+                <div class="flex items-end justify-center min-h-screen text-center sm:block sm:p-0 w-screen">
+
+                    <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                        <div @click="showingPhotoScreen=!showingPhotoScreen" class="absolute inset-0 bg-gray-900 opacity-75"></div>
+                    </div>
+
+                    <svg @click="showingPhotoScreen=!showingPhotoScreen" class="h-20 w-20 right-0 text-white p-5 absolute" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+
+                    <!-- This element is to trick the browser into centering the modal contents. -->
+<!--                    <span class="hidden sm:inline-block sm:align-middle sm:h-screen "-->
+<!--                          aria-hidden="true">&#8203;</span>-->
+
+<!--                    <div class="inline-block text-left transform sm:align-middle sm:max-w-lg sm:w-full w-screen h-screen bg-green-500">-->
+                        <img :src="showPhotoUrl" alt="" class="inline-block transform h-screen align-middle">
+<!--                    </div>-->
+                </div>
+            </div>
+
         </div>
     </app-layout>
 </template>
@@ -284,11 +395,62 @@ export default {
             message: "",
             showingCoverPhotoDropdown: false,
             showingLoadingScreen: false,
+            showingPhotoScreen: false,
             timeoutId: 0,
             showingDeleteModal: false,
+            showingSocialDropdown: false,
+            showPhotoUrl: '',
+
+            matterportHttps: this.property.matterport_url == null ? "" : this.property.matterport_url.length > 7 ? this.property.matterport_url.substring(0, 8) : this.property.matterport_url,
+            matterportHttp: this.property.matterport_url == null ? "" : this.property.matterport_url.length > 6 ? this.property.matterport_url.substring(0, 7) : this.property.matterport_url,
+
+            videoHttps: this.property.video_url == null ? "" : this.property.video_url.length > 7 ? this.property.video_url.substring(0, 8).replace('watch?v=', 'embed/').split('&ab_channel')[0] : this.property.video_url.replace('watch?v=', 'embed/').split('&ab_channel')[0],
+            videoHttp: this.property.video_url == null ? "" : this.property.video_url.length > 6 ? this.property.video_url.substring(0, 7).replace('watch?v=', 'embed/').split('&ab_channel')[0] : this.property.video_url.replace('watch?v=', 'embed/').split('&ab_channel')[0],
+
+            updateLinksForm: this.$inertia.form({
+                property: this.property.uuid,
+                video: this.property.video_url,
+                matterport: this.property.matterport_url,
+            }),
         }
     },
     methods: {
+        openPhoto(photo) {
+            this.showingPhotoScreen=!this.showingPhotoScreen;
+            this.showPhotoUrl=photo;
+        },
+        /**
+         * Add another photo
+         */
+        addNewPhoto() {
+            this.$refs.createPhotoButton.click();
+        },
+        async addPhoto() {
+            const reader = new FileReader();
+            let photo = null;
+            reader.onload = (e) => {
+                this.photoPreview = e.target.result;
+                photo = e.target.result;
+            };
+
+            reader.readAsDataURL(this.$refs.createPhotoButton.files[0]);
+
+            this.showingLoadingScreen = true;
+
+            await Vapor.store(this.$refs.createPhotoButton.files[0], {
+                visibility: 'public-read'
+            }).then(async(response) => {
+                await this.$inertia.post('/add-property-picture', {
+                    uuid: response.uuid,
+                    key: response.key,
+                    extension: response.extension,
+                    property: this.property.uuid,
+                })
+            });
+
+            this.showingLoadingScreen = false;
+        },
+
         /**
          * Destroy property
          */
