@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use BinaryCabin\LaravelUUID\Traits\HasUUID;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Form extends Model
 {
@@ -18,8 +19,22 @@ class Form extends Model
     protected $fillable = [
         'user_id',
         'title',
-        'id_color'
+        'id_color',
+        'cover_photo_url'
     ];
+
+    protected $appends = [
+        'cover_photo',
+    ];
+
+    public function getCoverPhotoAttribute()
+    {
+        if ($this->cover_photo_url==null) {
+            return null;
+        } else {
+            return Storage::url($this->cover_photo_url);
+        }
+    }
 
     public function getRouteKeyName()
     {

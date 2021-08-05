@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Form;
 use App\Models\Site;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -98,11 +99,12 @@ class Controller extends BaseController
         $filepath = 'cover-photos/' . $request->uuid . '.' . $request->extension;
         Storage::move($request->key, $filepath);
 
-        $site = auth()->user()->site;
-        $site->cover_photo_url = $filepath;
-        $site->save();
+        $form = Form::findByUuid($request->form);
 
-        return Redirect::route('dashboard');
+        $form->cover_photo_url = $filepath;
+        $form->save();
+
+        return Redirect::route('form.edit', $form->uuid);
     }
 
     public function updateProfilePicture(Request $request) {

@@ -16,6 +16,7 @@
                         </svg>
                     </button>
                 </div>
+
                 <!-- title -->
                 <div class="relative min-w-0 py-2 px-6 hidden lg:flex">
                     <h1 contenteditable @input="updateTitle" placeholder="Untitled Form"
@@ -33,7 +34,15 @@
                     </h1>
                 </div>
 
-                <div class="flex-1 "/>
+                <div class="flex-1"/>
+
+                <button @click="selectNewPhoto" type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-expanded="false">
+                    <span>Change Background Photo</span>
+
+                    <input type="file" class="hidden"
+                           ref="photo"
+                           @change="updatePhotoPreview">
+                </button>
 
                 <!--the two header buttons-->
                 <div class="flex sm:ml-4 px-6">
@@ -265,14 +274,59 @@
                                 <div class="space-y-1 overflow-scroll">
 
                                     <!--ADD QUESTION-->
-                                    <div class="w-full absolute hover:bg-gray-50 relative inline-block text-left">
-                                        <div>
-                                            <button @click="showingQuestionTypeDropdown=!showingQuestionTypeDropdown"
-                                                    type="button"
-                                                    class="inline-flex justify-center w-full border-b border-gray-300 shadow-sm px-4 py-4 bg-white text-sm font-medium text-blue-500 hover:bg-gray-50 focus:outline-none"
-                                                    id="options-menu" aria-expanded="true" aria-haspopup="true">
-                                                <h3>Add Question</h3>
+                                    <div class="w-full absolute relative inline-block text-left">
+                                        <div class="inline-flex justify-center w-full py-3">
+<!--                                            <button @click="showingQuestionTypeDropdown=!showingQuestionTypeDropdown"-->
+<!--                                                    type="button"-->
+<!--                                                    class="inline-flex justify-center w-full border-b border-gray-300 shadow-sm px-4 py-4 bg-white text-sm font-medium text-blue-500 hover:bg-gray-50 focus:outline-none"-->
+<!--                                                    id="options-menu" aria-expanded="true" aria-haspopup="true">-->
+<!--                                                <h3>Add Question</h3>-->
+<!--                                            </button>-->
+
+                                            <button
+                                                @click="showingQuestionTypeDropdown=!showingQuestionTypeDropdown"
+                                                aria-label="Add new question"
+                                                color="#262627"
+                                                data-qa="add-new-block-button"
+                                                aria-controls="kitt-52"
+                                                aria-haspopup="true"
+                                                aria-expanded="false"
+                                                class="overflow-visible relative p-0 m-0 w-8 h-8 text-center normal-case bg-blue-600 rounded border border-transparent border-solid cursor-pointer hover:bg-blue-500"
+                                                aria-describedby="kitt-53"
+                                                style="outline: none; transition: all 0.4s ease 0s;"
+                                            >
+                                                <div
+                                                    height="auto"
+                                                    width="auto"
+                                                    color="#262627"
+                                                    class="flex justify-center items-center w-auto h-auto font-sans text-sm leading-5 text-gray-900"
+                                                >
+    <span class="text-center"
+    ><svg
+        class="block text-gray-900"
+        width="10"
+        height="10"
+        viewBox="0 0 10 10"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        style="fill: white; transition: all 0.4s ease 0s;"
+    >
+        <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M0 6c0-1.10457.89543-2 2-2h8c0 1.10457-.89543 2-2 2H0z"
+            class="cursor-pointer"
+        ></path>
+        <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M6 0v8c0 1.10457-.89543 2-2 2V2c0-1.104569.89543-2 2-2z"
+            class="cursor-pointer"
+        ></path></svg
+    ></span>
+                                                </div>
                                             </button>
+
                                         </div>
                                     </div>
 
@@ -724,6 +778,30 @@
                     </main>
                 </div>
             </div>
+
+            <!-- Loading screen -->
+            <div v-show="showingLoadingScreen" class="fixed z-50 inset-0 overflow-y-auto ">
+                <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+
+                    <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                    </div>
+
+                    <!-- This element is to trick the browser into centering the modal contents. -->
+                    <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
+                          aria-hidden="true">&#8203;</span>
+
+                    <div class="inline-block align-bottom rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; display: block; shape-rendering: auto;" width="121px" height="121px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                            <circle cx="50" cy="50" fill="none" stroke="#c8c8c8" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138">
+                                <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"/>
+                            </circle>
+                        </svg>
+                    </div>
+                    <div class="text-sm text-gray-900"></div>
+                </div>
+            </div>
+
         </div>
     </app-layout>
 </template>
@@ -751,8 +829,7 @@ export default {
             questionList: this.questions.map((question) => {
                 return question
             }),
-            // showingDecoyQuestion: false,
-            // decoyType: "",
+            showingLoadingScreen: false,
         }
     },
 
@@ -771,6 +848,40 @@ export default {
     },
 
     methods: {
+        /**
+         * Update Cover photo
+         */
+        selectNewPhoto() {
+            this.$refs.photo.click();
+        },
+        removePhoto() {
+            this.$inertia.post('remove-cover-picture')
+        },
+        async updatePhotoPreview() {
+            const reader = new FileReader();
+            let photo = null;
+            reader.onload = (e) => {
+                this.photoPreview = e.target.result;
+                photo = e.target.result;
+            };
+
+            reader.readAsDataURL(this.$refs.photo.files[0]);
+
+            this.showingLoadingScreen = true;
+
+            await Vapor.store(this.$refs.photo.files[0], {
+                visibility: 'public-read'
+            }).then(async(response) => {
+                await this.$inertia.post('/update-cover-picture', {
+                    uuid: response.uuid,
+                    key: response.key,
+                    extension: response.extension,
+                    form: this.form.uuid,
+                })
+            });
+            this.showingLoadingScreen = false;
+        },
+
         // deleting the entire form
         async deleteForm() {
             let data = {'form_uuid': this.form.uuid}

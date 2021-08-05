@@ -10,9 +10,9 @@
 
 :root {
     --vff-bg-color: #fff;
-    --vff-main-text-color: #fff;
-    --vff-secondary-text-color: #fff;
-    --vff-tertiary-text-color: #fff;
+    --vff-main-text-color: #000;
+    --vff-secondary-text-color: #000;
+    --vff-tertiary-text-color: #000;
     --vff-main-accent-color: #27ae60;
     --vff-secondary-accent-color: #2ecc71;
     --vff-tertiary-accent-color: #8e44ad;
@@ -27,7 +27,7 @@
     --vff-field-key-color: var(--vff-main-accent-color);
     --vff-arrow-color: var(--vff-main-text-color);
     --vff-arrow-hover-color: rgba(0,0,0,0.07);
-    --vff-footer-color: #475A6D;
+    --vff-footer-color: #E5E7EB;
     --vff-progress-bar-color: var(--vff-main-text-color);
 }
 

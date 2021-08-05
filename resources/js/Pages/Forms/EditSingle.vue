@@ -1,208 +1,488 @@
 <template>
     <edit :form="$page['props']['form']" :questions="$page['props']['questions']">
-        <div class="bg-white rounded-md">
 
-            <img class="absolute h-full w-full max-h-screen max-w-screen object-cover top-0" :src="site.cover_photo"/>
-            <div class="absolute h-full w-full max-h-screen max-w-screen object-cover top-0 bg-black opacity-60"/>
+        <div
+            class="relative flex-1 px-8 pt-8 pb-12 h-full font-sans text-sm leading-5 text-gray-900 bg-gray-50"
+            style="min-width: 0px; z-index: 5;"
+        >
+            <div
+                class="flex relative justify-center items-center w-full h-full text-sm text-gray-900"
+            >
+                <div
+                    class="relative flex-none w-64 leading-5 w-full aspect-h-9 aspect-w-16"
+                    style="transform-origin: center top;"
+                >
+                    <div
+                        class="flex relative justify-center items-center h-full text-gray-900"
+                    >
+                        <div
+                            data-qa="toolkit-builder"
+                            class="overflow-hidden relative w-full h-full bg-transparent rounded-lg shadow-md"
+                            style="animation: 1s cubic-bezier(0.22, 1, 0.36, 1) 0s 1 normal none running expand;"
+                        >
+                            <div
+                                class="h-full text-base leading-6 text-gray-800"
+                                style="height: 100%;"
+                            >
+                                <div
+                                    data-qa="slide-editor-layout-stack"
+                                    font-family='"Quicksand", sans-serif'
+                                    class="w-full h-full"
+                                >
+                                    <img v-if="form.cover_photo !== null"
+                                        class="inline-block absolute top-0 left-0 w-full h-full bg-white bg-cover opacity-100 object-cover"
+                                        style='z-index: -20; line-height: 0px; background-position: center top;'
+                                        :src="form.cover_photo"
+                                    />
+                                    <div v-else
+                                         class="inline-block absolute top-0 left-0 w-full h-full bg-white bg-cover opacity-100 object-cover"
+                                         style='z-index: -20; line-height: 0px; background-position: center top;'
+                                    />
+                                        <div
+                                            class="inline overflow-hidden invisible p-0 m-0 w-0 h-0"
+                                            style="visibility: hidden; display: inline; width: 0px; height: 0px; z-index: -1; overflow: hidden; margin: 0px; padding: 0px; animation-duration: 0.1s; animation-name: erd_scroll_detection_container_animation; line-height: 0px;"
+                                        >
+                                            <div
+                                                dir="ltr"
+                                                class="overflow-hidden absolute top-0 left-0 flex-none w-full h-full"
+                                                style="position: absolute; flex: 0 0 auto; overflow: hidden; z-index: -1; visibility: hidden; width: 100%; height: 100%; left: 0px; top: 0px; line-height: 0px;"
+                                            >
+                                                <div
+                                                    class="overflow-hidden absolute flex-none"
+                                                    style="position: absolute; flex: 0 0 auto; overflow: hidden; z-index: -1; visibility: hidden; inset: -1px 0px 0px -1px; line-height: 0px;"
+                                                >
+                                                    <div
+                                                        style="position: absolute; flex: 0 0 auto; overflow: scroll; z-index: -1; visibility: hidden; width: 100%; height: 100%; line-height: 0px;"
+                                                        class="overflow-scroll absolute flex-none w-full h-full"
+                                                    >
+                                                        <div
+                                                            style="position: absolute; left: 0px; top: 0px; width: 1317px; height: 746px; line-height: 0px;"
+                                                            class="absolute top-0 left-0 w-64"
+                                                        ></div>
+                                                    </div>
+                                                    <div
+                                                        style="position: absolute; flex: 0 0 auto; overflow: scroll; z-index: -1; visibility: hidden; width: 100%; height: 100%; line-height: 0px;"
+                                                        class="overflow-scroll absolute flex-none w-full h-full"
+                                                    >
+                                                        <div
+                                                            style="position: absolute; width: 192%; height: 192%; line-height: 0px;"
+                                                            class="absolute"
+                                                        ></div>
 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-            <!-- Global notification live region, render this permanently at the end of the document -->
-            <div aria-live="assertive" class="fixed sm:relative inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start">
-                <div class="w-full flex flex-col items-center space-y-4 sm:items-end relative">
+                                    <!-- Darken the Photo -->
+                                    <div class="absolute h-full w-full max-h-screen max-w-screen object-cover top-0 bg-white opacity-60"/>
 
-                    <transition
-                        enter-active-class="transform ease-out duration-300 transition"
-                        enter-class="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
-                        enter-to-class="translate-y-0 opacity-100 sm:translate-x-0"
-                        leave-active-class="transition ease-in duration-100"
-                        leave-class="opacity-100"
-                        leave-to-class="opacity-0">
-                        <div v-show="showingAutosaveNotification" class="max-w-sm z-50 sm:absolute w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
-                            <div class="p-4 z-50">
-                                <div class="flex items-center z-50">
-                                    <div class="w-0 z-50 flex-1 flex justify-between">
-                                        <p class="w-0 z-50 flex-1 text-sm font-medium text-gray-900">
-                                            Any changes you make will automatically be saved.
-                                        </p>
-                                        <button @click="dontShowNotifAgain" class="ml-3 z-50 flex-shrink-0 bg-white rounded-md text-sm font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                            Don't Show Again
-                                        </button>
+                                    <!-- Global notification live region, render this permanently at the end of the document -->
+                                    <div aria-live="assertive" class="fixed sm:relative inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start">
+                                        <div class="w-full flex flex-col items-center space-y-4 sm:items-end relative">
+
+                                            <transition
+                                                enter-active-class="transform ease-out duration-300 transition"
+                                                enter-class="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
+                                                enter-to-class="translate-y-0 opacity-100 sm:translate-x-0"
+                                                leave-active-class="transition ease-in duration-100"
+                                                leave-class="opacity-100"
+                                                leave-to-class="opacity-0">
+                                                <div v-show="showingAutosaveNotification" class="max-w-sm z-50 sm:absolute w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+                                                    <div class="p-4 z-50">
+                                                        <div class="flex items-center z-50">
+                                                            <div class="w-0 z-50 flex-1 flex justify-between">
+                                                                <p class="w-0 z-50 flex-1 text-sm font-medium text-gray-900">
+                                                                    Any changes you make will automatically be saved.
+                                                                </p>
+                                                                <button @click="dontShowNotifAgain" class="ml-3 z-50 flex-shrink-0 bg-white rounded-md text-sm font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                                                    Don't Show Again
+                                                                </button>
+                                                            </div>
+                                                            <div class="ml-4 z-50 flex-shrink-0 flex">
+                                                                <button @click="showingAutosaveNotification=!showingAutosaveNotification" class="bg-white z-50 rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                                                    <span class="sr-only z-50">Close</span>
+                                                                    <!-- Heroicon name: solid/x -->
+                                                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                                                    </svg>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </transition>
+                                        </div>
                                     </div>
-                                    <div class="ml-4 z-50 flex-shrink-0 flex">
-                                        <button @click="showingAutosaveNotification=!showingAutosaveNotification" class="bg-white z-50 rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                            <span class="sr-only z-50">Close</span>
-                                            <!-- Heroicon name: solid/x -->
-                                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </transition>
-                </div>
-            </div>
 
+                                    <!-- Question -->
+                                    <div class="vff">
+                                        <div class="f-container">
+                                            <div class="f-form-wrap">
 
-            <div class="vff">
-                <div class="f-container">
-                    <div class="f-form-wrap">
-
-                        <!--MULTIPLE CHOICE-->
-                        <div v-if="question.type === 'Multiple Choice'">
-                            <div class="vff-animate q-form q-is-active f-fade-in-up f-has-value field-multiplechoice">
-                                <div class="q-inner">
-                                    <div class="">
-                                        <div class="fh2"><!---->
-                                            <span class="f-sub"><!----> <!---->
+                                                <!--MULTIPLE CHOICE-->
+                                                <div v-if="question.type === 'Multiple Choice'">
+                                                    <div class="vff-animate q-form q-is-active f-fade-in-up f-has-value field-multiplechoice">
+                                                        <div class="q-inner">
+                                                            <div class="">
+                                                                <div class="fh2"><!---->
+                                                                    <span class="f-sub"><!----> <!---->
                                                 <span contenteditable class="f-help" placeholder="Tagline (optional)" @input="updateTagline">{{ question.tagline }}</span>
                                             </span>
 
-<!--                                            <span class="f-text">-->
-<!--                                                <span contenteditable placeholder="Title" @input="updateTitle">-->
-<!--                                                    {{ question.title }}&nbsp;-->
-<!--                                                    <span aria-label="This step is required" role="note" class="f-required">-->
-<!--                                                        <span aria-hidden="true">*</span>-->
-<!--                                                    </span> &lt;!&ndash;&ndash;&gt;-->
-<!--                                                </span> &lt;!&ndash;&ndash;&gt;-->
-<!--                                            </span>-->
-                                            <span
-                                                class="f-sub"
-                                                contenteditable="true"
-                                                placeholder="Question"
-                                                @input="updateTitle"
-                                                :class="'text-left border-0 border-gray-300 border-solid'"
-                                                style='font-family: "Inter var"; font-size: 2.25rem; line-height: 2.5rem; font-weight: 900; outline: transparent solid 0px; line-height: 51.456px; overflow-wrap: break-word;'
-                                            >{{ question.title }}</span>
+                                                                    <!--                                            <span class="f-text">-->
+                                                                    <!--                                                <span contenteditable placeholder="Title" @input="updateTitle">-->
+                                                                    <!--                                                    {{ question.title }}&nbsp;-->
+                                                                    <!--                                                    <span aria-label="This step is required" role="note" class="f-required">-->
+                                                                    <!--                                                        <span aria-hidden="true">*</span>-->
+                                                                    <!--                                                    </span> &lt;!&ndash;&ndash;&gt;-->
+                                                                    <!--                                                </span> &lt;!&ndash;&ndash;&gt;-->
+                                                                    <!--                                            </span>-->
+                                                                    <span
+                                                                        class="f-sub"
+                                                                        contenteditable="true"
+                                                                        placeholder="Question"
+                                                                        @input="updateTitle"
+                                                                        :class="'text-left border-0 border-gray-300 border-solid'"
+                                                                        style='font-family: "Inter var"; font-size: 2.25rem; line-height: 2.5rem; font-weight: 900; outline: transparent solid 0px; line-height: 51.456px; overflow-wrap: break-word;'
+                                                                    >{{ question.title }}</span>
 
-                                            <span class="f-sub"><!----> <!---->
+                                                                    <span class="f-sub"><!----> <!---->
                                                 <span contenteditable class="f-help" placeholder="Subtitle (optional)" @input="updateSubtitle">{{ question.subtitle }}</span>
                                             </span>
 
-                                            <span class="f-sub"><!----> <!---->
+                                                                    <span class="f-sub"><!----> <!---->
                                                 <span class="f-help">{{ question.multiple ? 'Choose as many as you like' : 'Choose only one answer' }}</span>
                                             </span>
 
-                                            <div class="f-answer f-full-width">
-                                                <div class="f-radios-wrap">
-                                                    <ul v-if="question.options.length" v-for="(option, index) in optionsList" role="listbox" class="f-radios">
-                                                        <li :aria-label="'Press ' + mcLetters[index] + ' to select'" role="option" class=""><!---->
-                                                            <div class="f-label-wrap">
-                                                                <span class="f-key" :style="accentColorStyle">{{ mcLetters[index] }}</span>
-                                                                <span contenteditable @input="updateOption($event, option.id)" :placeholder="'Type in option ' + mcLetters[index]" class="f-label" :class="'h-full w-full'">{{ option.title }}</span>
+                                                                    <div class="f-answer f-full-width">
+                                                                        <div class="f-radios-wrap">
+                                                                            <ul v-if="question.options.length" v-for="(option, index) in optionsList" role="listbox" class="f-radios">
+                                                                                <li :aria-label="'Press ' + mcLetters[index] + ' to select'" role="option" class=""><!---->
+                                                                                    <div class="f-label-wrap">
+                                                                                        <span class="f-key" :style="accentColorStyle">{{ mcLetters[index] }}</span>
+                                                                                        <span contenteditable @input="updateOption($event, option.id)" :placeholder="'Type in option ' + mcLetters[index]" class="f-label" :class="'h-full w-full'">{{ option.title }}</span>
 
-                                                                <!--DELETE OPTION-->
-<!--                                                                <button -->
-<!--                                                                        class="w-5 pr-10 text-gray-500 hover:text-gray-600 focus:outline-none">-->
-                                                                    <svg @click="deleteOption(option.uuid)" v-on:click.stop class="text-white right-3 h-5 w-5 pt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                                    </svg>
-<!--                                                                </button>-->
+                                                                                        <!--DELETE OPTION-->
+                                                                                        <!--                                                                <button -->
+                                                                                        <!--                                                                        class="w-5 pr-10 text-gray-500 hover:text-gray-600 focus:outline-none">-->
+                                                                                        <svg @click="deleteOption(option.uuid)" v-on:click.stop class="text-white right-3 h-5 w-5 pt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                                                        </svg>
+                                                                                        <!--                                                                </button>-->
+                                                                                    </div>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div> <!---->
                                                             </div>
-                                                        </li>
-                                                    </ul>
+
+                                                            <div class="vff-animate f-fade-in f-enter">
+                                                                <button @click="addOption" type="button" href="#" aria-label="Press to continue" class="o-btn-action-custom" :class="'text-white'"
+                                                                        :style="'background-color: #' + site.accent_color + '; color: ' + getContrastYIQ(site.accent_color)">
+                                                                    <span>Add Option</span>
+                                                                </button>
+                                                                <!--                                        <a href="#" class="f-enter-desc">Press <span class="f-string-em">Enter</span></a>-->
+                                                            </div> <!---->
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div> <!---->
-                                    </div>
 
-                                    <div class="vff-animate f-fade-in f-enter">
-                                        <button @click="addOption" type="button" href="#" aria-label="Press to continue" class="o-btn-action-custom" :class="'text-white'"
-                                                :style="'background-color: #' + site.accent_color + '; color: ' + getContrastYIQ(site.accent_color)">
-                                            <span>Add Option</span>
-                                        </button>
-<!--                                        <a href="#" class="f-enter-desc">Press <span class="f-string-em">Enter</span></a>-->
-                                    </div> <!---->
-                                </div>
-                            </div>
-                        </div>
+                                                <!--SECTION BREAK-->
+                                                <div v-if="question.type === 'Section Break'">
+                                                    <div class="vff-animate q-form q-is-active f-fade-in-up field-sectionbreak">
+                                                        <div class="q-inner">
+                                                            <div class="f-section-wrap">
+                                                                <div class="fh2">
+                                                                    <!--                                            <span class="f-tagline" contenteditable placeholder="Tagline (optional)" @input="updateTagline">{{ question.tagline }}</span>-->
+                                                                    <!--                                            <span class="fh2" contenteditable placeholder="Message" @input="updateTitle">{{ question.title }}</span>-->
+                                                                    <!--                                            <span class="f-sub" contenteditable placeholder="Subtitle (optional)" @input="updateSubtitle">-->
+                                                                    <!--                                                <span placeholder="Subtitle (optional)">{{ question.subtitle }}</span>-->
+                                                                    <!--                                            </span>-->
 
-                        <!--SECTION BREAK-->
-                        <div v-if="question.type === 'Section Break'">
-                            <div class="vff-animate q-form q-is-active f-fade-in-up field-sectionbreak">
-                                <div class="q-inner">
-                                    <div class="f-section-wrap">
-                                        <div class="fh2">
-<!--                                            <span class="f-tagline" contenteditable placeholder="Tagline (optional)" @input="updateTagline">{{ question.tagline }}</span>-->
-<!--                                            <span class="fh2" contenteditable placeholder="Message" @input="updateTitle">{{ question.title }}</span>-->
-<!--                                            <span class="f-sub" contenteditable placeholder="Subtitle (optional)" @input="updateSubtitle">-->
-<!--                                                <span placeholder="Subtitle (optional)">{{ question.subtitle }}</span>-->
-<!--                                            </span>-->
-
-                                            <span class="f-sub"><!----> <!---->
+                                                                    <span class="f-sub"><!----> <!---->
                                                 <span contenteditable class="f-help" placeholder="Tagline (optional)" @input="updateTagline">{{ question.tagline }}</span>
                                             </span>
 
 
-                                            <span contenteditable class="f-sub"
-                                                  :class="'text-left border-0 border-gray-300 border-solid'"
-                                                  style='font-family: "Inter var"; font-size: 2.25rem; line-height: 2.5rem; font-weight: 900; outline: transparent solid 0px; line-height: 51.456px; overflow-wrap: break-word;'
-                                                  placeholder="Message"
-                                                  @input="updateTitle">{{ question.title }}</span>
+                                                                    <span contenteditable class="f-sub"
+                                                                          :class="'text-left border-0 border-gray-300 border-solid'"
+                                                                          style='font-family: "Inter var"; font-size: 2.25rem; line-height: 2.5rem; font-weight: 900; outline: transparent solid 0px; line-height: 51.456px; overflow-wrap: break-word;'
+                                                                          placeholder="Message"
+                                                                          @input="updateTitle">{{ question.title }}</span>
 
 
-                                            <span class="f-sub"><!----> <!---->
+                                                                    <span class="f-sub"><!----> <!---->
                                                 <span contenteditable class="f-help" placeholder="Subtitle (optional)" @input="updateSubtitle">{{ question.subtitle }}</span>
                                             </span>
 
-                                            <div class="f-answer f-full-width"><!---->
-                                            </div>
-                                        </div> <!---->
-                                    </div>
-                                    <div class="vff-animate f-fade-in f-enter">
-                                        <button type="button" href="#" aria-label="Press to continue" class="o-btn-action-custom" :class="'text-white'" :style="accentColor">
-                                            <span>Continue</span>
-                                        </button>
-                                        <a href="#" class="f-enter-desc">Press <span class="f-string-em">Enter</span></a></div> <!----></div>
-                            </div>
-                        </div>
+                                                                    <div class="f-answer f-full-width"><!---->
+                                                                    </div>
+                                                                </div> <!---->
+                                                            </div>
+                                                            <div class="vff-animate f-fade-in f-enter">
+                                                                <button type="button" href="#" aria-label="Press to continue" class="o-btn-action-custom" :class="'text-white'" :style="accentColor">
+                                                                    <span>Continue</span>
+                                                                </button>
+                                                                <a href="#" class="f-enter-desc">Press <span class="f-string-em">Enter</span></a></div> <!----></div>
+                                                    </div>
+                                                </div>
 
-                        <!--TEXT/EMAIL/PHONE/NAME-->
-                        <div v-if="question.type === 'Name' || question.type === 'Text' || question.type === 'Email' || question.type === 'Phone Number'">
-                            <div class="vff-animate q-form q-is-active f-fade-in-up field-text">
-                                <div class="q-inner">
-                                    <div class="">
-                                        <div class="fh2">
+                                                <!--TEXT/EMAIL/PHONE/NAME-->
+                                                <div v-if="question.type === 'Name' || question.type === 'Text' || question.type === 'Email' || question.type === 'Phone Number'">
+                                                    <div class="vff-animate q-form q-is-active f-fade-in-up field-text">
+                                                        <div class="q-inner">
+                                                            <div class="">
+                                                                <div class="fh2">
 
                                             <span class="f-sub"><!----> <!---->
                                                 <span contenteditable class="f-help" placeholder="Tagline (optional)" @input="updateTagline">{{ question.tagline }}</span>
                                             </span>
-<!--                                            <span class="f-text">&lt;!&ndash;&ndash;&gt; &lt;!&ndash;&ndash;&gt;-->
-<!--                                                <span contenteditable class="f-help" placeholder="Question" @input="updateTitle">{{ question.title }}</span>-->
-<!--                                            </span>-->
-                                            <span
-                                                class="f-sub"
-                                                contenteditable="true"
-                                                placeholder="Question"
-                                                @input="updateTitle"
-                                                :class="'text-left border-0 border-gray-300 border-solid'"
-                                                style='font-family: "Inter var"; font-size: 2.25rem; line-height: 2.5rem; font-weight: 900; outline: transparent solid 0px; line-height: 51.456px; overflow-wrap: break-word;'
-                                            >{{ question.title }}</span>
+                                                                    <!--                                            <span class="f-text">&lt;!&ndash;&ndash;&gt; &lt;!&ndash;&ndash;&gt;-->
+                                                                    <!--                                                <span contenteditable class="f-help" placeholder="Question" @input="updateTitle">{{ question.title }}</span>-->
+                                                                    <!--                                            </span>-->
+                                                                    <span
+                                                                        class="f-sub"
+                                                                        contenteditable="true"
+                                                                        placeholder="Question"
+                                                                        @input="updateTitle"
+                                                                        :class="'text-left border-0 border-gray-300 border-solid'"
+                                                                        style='font-family: "Inter var"; font-size: 2.25rem; line-height: 2.5rem; font-weight: 900; outline: transparent solid 0px; line-height: 51.456px; overflow-wrap: break-word;'
+                                                                    >{{ question.title }}</span>
 
 
-                                            <span class="f-sub"><!----> <!---->
+                                                                    <span class="f-sub"><!----> <!---->
                                                 <span contenteditable class="f-help" placeholder="Subtitle (optional)" @input="updateSubtitle">{{ question.subtitle }}</span>
                                             </span>
 
-                                            <div class="f-answer f-full-width">
+                                                                    <div class="f-answer f-full-width">
                                                 <span>
                                                     <input disabled class="focus:outline-none" :type="question.type === 'Text' ? 'text' : question.type === 'Email' ? 'email' : 'text'" required="required" :placeholder="question.type === 'Text' ? 'Start typing here...' : question.type === 'Email' ? 'jane@doe.com' : question.type === 'Phone' ? '(###)-###-####' : 'Start typing here...'">
                                                 </span>
+                                                                    </div>
+
+                                                                </div> <!---->
+                                                            </div> <!----> <!---->
+                                                        </div>
+                                                    </div>  <!---->
+                                                </div>
+
                                             </div>
+                                        </div>
+                                    </div>
 
-                                        </div> <!---->
-                                    </div> <!----> <!---->
                                 </div>
-                            </div>  <!---->
+                            </div>
                         </div>
-
                     </div>
                 </div>
-
-
             </div>
         </div>
+
+<!--        <div class="bg-white rounded-md">-->
+
+<!--            <img class="absolute h-full w-full max-h-screen max-w-screen object-cover top-0" :src="site.cover_photo"/>-->
+<!--            <div class="absolute h-full w-full max-h-screen max-w-screen object-cover top-0 bg-black opacity-60"/>-->
+
+
+<!--            &lt;!&ndash; Global notification live region, render this permanently at the end of the document &ndash;&gt;-->
+<!--            <div aria-live="assertive" class="fixed sm:relative inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start">-->
+<!--                <div class="w-full flex flex-col items-center space-y-4 sm:items-end relative">-->
+
+<!--                    <transition-->
+<!--                        enter-active-class="transform ease-out duration-300 transition"-->
+<!--                        enter-class="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"-->
+<!--                        enter-to-class="translate-y-0 opacity-100 sm:translate-x-0"-->
+<!--                        leave-active-class="transition ease-in duration-100"-->
+<!--                        leave-class="opacity-100"-->
+<!--                        leave-to-class="opacity-0">-->
+<!--                        <div v-show="showingAutosaveNotification" class="max-w-sm z-50 sm:absolute w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">-->
+<!--                            <div class="p-4 z-50">-->
+<!--                                <div class="flex items-center z-50">-->
+<!--                                    <div class="w-0 z-50 flex-1 flex justify-between">-->
+<!--                                        <p class="w-0 z-50 flex-1 text-sm font-medium text-gray-900">-->
+<!--                                            Any changes you make will automatically be saved.-->
+<!--                                        </p>-->
+<!--                                        <button @click="dontShowNotifAgain" class="ml-3 z-50 flex-shrink-0 bg-white rounded-md text-sm font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">-->
+<!--                                            Don't Show Again-->
+<!--                                        </button>-->
+<!--                                    </div>-->
+<!--                                    <div class="ml-4 z-50 flex-shrink-0 flex">-->
+<!--                                        <button @click="showingAutosaveNotification=!showingAutosaveNotification" class="bg-white z-50 rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">-->
+<!--                                            <span class="sr-only z-50">Close</span>-->
+<!--                                            &lt;!&ndash; Heroicon name: solid/x &ndash;&gt;-->
+<!--                                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">-->
+<!--                                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />-->
+<!--                                            </svg>-->
+<!--                                        </button>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </transition>-->
+<!--                </div>-->
+<!--            </div>-->
+
+
+<!--            <div class="vff">-->
+<!--                <div class="f-container">-->
+<!--                    <div class="f-form-wrap">-->
+
+<!--                        &lt;!&ndash;MULTIPLE CHOICE&ndash;&gt;-->
+<!--                        <div v-if="question.type === 'Multiple Choice'">-->
+<!--                            <div class="vff-animate q-form q-is-active f-fade-in-up f-has-value field-multiplechoice">-->
+<!--                                <div class="q-inner">-->
+<!--                                    <div class="">-->
+<!--                                        <div class="fh2">&lt;!&ndash;&ndash;&gt;-->
+<!--                                            <span class="f-sub">&lt;!&ndash;&ndash;&gt; &lt;!&ndash;&ndash;&gt;-->
+<!--                                                <span contenteditable class="f-help" placeholder="Tagline (optional)" @input="updateTagline">{{ question.tagline }}</span>-->
+<!--                                            </span>-->
+
+<!--&lt;!&ndash;                                            <span class="f-text">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <span contenteditable placeholder="Title" @input="updateTitle">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    {{ question.title }}&nbsp;&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <span aria-label="This step is required" role="note" class="f-required">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <span aria-hidden="true">*</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    </span> &lt;!&ndash;&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </span> &lt;!&ndash;&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </span>&ndash;&gt;-->
+<!--                                            <span-->
+<!--                                                class="f-sub"-->
+<!--                                                contenteditable="true"-->
+<!--                                                placeholder="Question"-->
+<!--                                                @input="updateTitle"-->
+<!--                                                :class="'text-left border-0 border-gray-300 border-solid'"-->
+<!--                                                style='font-family: "Inter var"; font-size: 2.25rem; line-height: 2.5rem; font-weight: 900; outline: transparent solid 0px; line-height: 51.456px; overflow-wrap: break-word;'-->
+<!--                                            >{{ question.title }}</span>-->
+
+<!--                                            <span class="f-sub">&lt;!&ndash;&ndash;&gt; &lt;!&ndash;&ndash;&gt;-->
+<!--                                                <span contenteditable class="f-help" placeholder="Subtitle (optional)" @input="updateSubtitle">{{ question.subtitle }}</span>-->
+<!--                                            </span>-->
+
+<!--                                            <span class="f-sub">&lt;!&ndash;&ndash;&gt; &lt;!&ndash;&ndash;&gt;-->
+<!--                                                <span class="f-help">{{ question.multiple ? 'Choose as many as you like' : 'Choose only one answer' }}</span>-->
+<!--                                            </span>-->
+
+<!--                                            <div class="f-answer f-full-width">-->
+<!--                                                <div class="f-radios-wrap">-->
+<!--                                                    <ul v-if="question.options.length" v-for="(option, index) in optionsList" role="listbox" class="f-radios">-->
+<!--                                                        <li :aria-label="'Press ' + mcLetters[index] + ' to select'" role="option" class="">&lt;!&ndash;&ndash;&gt;-->
+<!--                                                            <div class="f-label-wrap">-->
+<!--                                                                <span class="f-key" :style="accentColorStyle">{{ mcLetters[index] }}</span>-->
+<!--                                                                <span contenteditable @input="updateOption($event, option.id)" :placeholder="'Type in option ' + mcLetters[index]" class="f-label" :class="'h-full w-full'">{{ option.title }}</span>-->
+
+<!--                                                                &lt;!&ndash;DELETE OPTION&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                <button &ndash;&gt;-->
+<!--&lt;!&ndash;                                                                        class="w-5 pr-10 text-gray-500 hover:text-gray-600 focus:outline-none">&ndash;&gt;-->
+<!--                                                                    <svg @click="deleteOption(option.uuid)" v-on:click.stop class="text-white right-3 h-5 w-5 pt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">-->
+<!--                                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />-->
+<!--                                                                    </svg>-->
+<!--&lt;!&ndash;                                                                </button>&ndash;&gt;-->
+<!--                                                            </div>-->
+<!--                                                        </li>-->
+<!--                                                    </ul>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div> &lt;!&ndash;&ndash;&gt;-->
+<!--                                    </div>-->
+
+<!--                                    <div class="vff-animate f-fade-in f-enter">-->
+<!--                                        <button @click="addOption" type="button" href="#" aria-label="Press to continue" class="o-btn-action-custom" :class="'text-white'"-->
+<!--                                                :style="'background-color: #' + site.accent_color + '; color: ' + getContrastYIQ(site.accent_color)">-->
+<!--                                            <span>Add Option</span>-->
+<!--                                        </button>-->
+<!--&lt;!&ndash;                                        <a href="#" class="f-enter-desc">Press <span class="f-string-em">Enter</span></a>&ndash;&gt;-->
+<!--                                    </div> &lt;!&ndash;&ndash;&gt;-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                        &lt;!&ndash;SECTION BREAK&ndash;&gt;-->
+<!--                        <div v-if="question.type === 'Section Break'">-->
+<!--                            <div class="vff-animate q-form q-is-active f-fade-in-up field-sectionbreak">-->
+<!--                                <div class="q-inner">-->
+<!--                                    <div class="f-section-wrap">-->
+<!--                                        <div class="fh2">-->
+<!--&lt;!&ndash;                                            <span class="f-tagline" contenteditable placeholder="Tagline (optional)" @input="updateTagline">{{ question.tagline }}</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <span class="fh2" contenteditable placeholder="Message" @input="updateTitle">{{ question.title }}</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <span class="f-sub" contenteditable placeholder="Subtitle (optional)" @input="updateSubtitle">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <span placeholder="Subtitle (optional)">{{ question.subtitle }}</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </span>&ndash;&gt;-->
+
+<!--                                            <span class="f-sub">&lt;!&ndash;&ndash;&gt; &lt;!&ndash;&ndash;&gt;-->
+<!--                                                <span contenteditable class="f-help" placeholder="Tagline (optional)" @input="updateTagline">{{ question.tagline }}</span>-->
+<!--                                            </span>-->
+
+
+<!--                                            <span contenteditable class="f-sub"-->
+<!--                                                  :class="'text-left border-0 border-gray-300 border-solid'"-->
+<!--                                                  style='font-family: "Inter var"; font-size: 2.25rem; line-height: 2.5rem; font-weight: 900; outline: transparent solid 0px; line-height: 51.456px; overflow-wrap: break-word;'-->
+<!--                                                  placeholder="Message"-->
+<!--                                                  @input="updateTitle">{{ question.title }}</span>-->
+
+
+<!--                                            <span class="f-sub">&lt;!&ndash;&ndash;&gt; &lt;!&ndash;&ndash;&gt;-->
+<!--                                                <span contenteditable class="f-help" placeholder="Subtitle (optional)" @input="updateSubtitle">{{ question.subtitle }}</span>-->
+<!--                                            </span>-->
+
+<!--                                            <div class="f-answer f-full-width">&lt;!&ndash;&ndash;&gt;-->
+<!--                                            </div>-->
+<!--                                        </div> &lt;!&ndash;&ndash;&gt;-->
+<!--                                    </div>-->
+<!--                                    <div class="vff-animate f-fade-in f-enter">-->
+<!--                                        <button type="button" href="#" aria-label="Press to continue" class="o-btn-action-custom" :class="'text-white'" :style="accentColor">-->
+<!--                                            <span>Continue</span>-->
+<!--                                        </button>-->
+<!--                                        <a href="#" class="f-enter-desc">Press <span class="f-string-em">Enter</span></a></div> &lt;!&ndash;&ndash;&gt;</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                        &lt;!&ndash;TEXT/EMAIL/PHONE/NAME&ndash;&gt;-->
+<!--                        <div v-if="question.type === 'Name' || question.type === 'Text' || question.type === 'Email' || question.type === 'Phone Number'">-->
+<!--                            <div class="vff-animate q-form q-is-active f-fade-in-up field-text">-->
+<!--                                <div class="q-inner">-->
+<!--                                    <div class="">-->
+<!--                                        <div class="fh2">-->
+
+<!--                                            <span class="f-sub">&lt;!&ndash;&ndash;&gt; &lt;!&ndash;&ndash;&gt;-->
+<!--                                                <span contenteditable class="f-help" placeholder="Tagline (optional)" @input="updateTagline">{{ question.tagline }}</span>-->
+<!--                                            </span>-->
+<!--&lt;!&ndash;                                            <span class="f-text">&lt;!&ndash;&ndash;&gt; &lt;!&ndash;&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <span contenteditable class="f-help" placeholder="Question" @input="updateTitle">{{ question.title }}</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </span>&ndash;&gt;-->
+<!--                                            <span-->
+<!--                                                class="f-sub"-->
+<!--                                                contenteditable="true"-->
+<!--                                                placeholder="Question"-->
+<!--                                                @input="updateTitle"-->
+<!--                                                :class="'text-left border-0 border-gray-300 border-solid'"-->
+<!--                                                style='font-family: "Inter var"; font-size: 2.25rem; line-height: 2.5rem; font-weight: 900; outline: transparent solid 0px; line-height: 51.456px; overflow-wrap: break-word;'-->
+<!--                                            >{{ question.title }}</span>-->
+
+
+<!--                                            <span class="f-sub">&lt;!&ndash;&ndash;&gt; &lt;!&ndash;&ndash;&gt;-->
+<!--                                                <span contenteditable class="f-help" placeholder="Subtitle (optional)" @input="updateSubtitle">{{ question.subtitle }}</span>-->
+<!--                                            </span>-->
+
+<!--                                            <div class="f-answer f-full-width">-->
+<!--                                                <span>-->
+<!--                                                    <input disabled class="focus:outline-none" :type="question.type === 'Text' ? 'text' : question.type === 'Email' ? 'email' : 'text'" required="required" :placeholder="question.type === 'Text' ? 'Start typing here...' : question.type === 'Email' ? 'jane@doe.com' : question.type === 'Phone' ? '(###)-###-####' : 'Start typing here...'">-->
+<!--                                                </span>-->
+<!--                                            </div>-->
+
+<!--                                        </div> &lt;!&ndash;&ndash;&gt;-->
+<!--                                    </div> &lt;!&ndash;&ndash;&gt; &lt;!&ndash;&ndash;&gt;-->
+<!--                                </div>-->
+<!--                            </div>  &lt;!&ndash;&ndash;&gt;-->
+<!--                        </div>-->
+
+<!--                    </div>-->
+<!--                </div>-->
+
+
+<!--            </div>-->
+<!--        </div>-->
     </edit>
 </template>
 
@@ -220,7 +500,7 @@ export default {
         Edit
     },
 
-    props: ['question', 'options', 'user', 'site'],
+    props: ['question', 'options', 'user', 'site', 'form'],
 
     data() {
         return {
@@ -497,7 +777,7 @@ export default {
 </script>
 
 <style lang="css">
-    @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.css';
+    @import '../../../css/flow-form-text.css';
     @import'../../../css/flow-form-amaan.css';
 
     [contenteditable]:hover {
@@ -564,7 +844,7 @@ export default {
         overflow-wrap: break-word;
     }
 
-    * {
+    .f-sub {
         font-weight: normal !important;
     }
 

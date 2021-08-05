@@ -18,6 +18,7 @@ class CreateFormsTable extends Migration
             $table->uuid('uuid');
             $table->integer('user_id');
             $table->string('title');
+            $table->string('cover_photo_url')->nullable();
             $table->timestamps();
         });
     }

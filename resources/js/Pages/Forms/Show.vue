@@ -16,8 +16,8 @@
 <!--            </header>-->
 
 
-            <img class="fixed h-screen w-screen object-cover top-0" :src="site.cover_photo"/>
-            <div class="fixed h-screen w-screen object-cover top-0 bg-black opacity-60"/>
+            <img v-if="form.cover_photo !== null" class="fixed h-screen w-screen object-cover top-0" :src="form.cover_photo"/>
+            <div class="fixed h-screen w-screen object-cover top-0 bg-white opacity-60"/>
 
             <flow-form
                 ref="flowform"
