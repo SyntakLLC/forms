@@ -91,7 +91,7 @@ return [
     */
 
     'receipt_data' => [
-        'vendor' => 'Aboutme',
+        'vendor' => 'HomeForms',
         'product' => 'Monthly Subscription',
         'street' => '409 Waverly Road',
         'location' => 'North Andover, MA',
@@ -123,14 +123,14 @@ return [
             'plans' => [
                 [
                     'name' => 'Standard',
-                    'short_description' => 'Upon subscribing, you\'ll immediately get access to a variety of professionally designed website
-                    templates. From there, you can create conversational forms or use our prebuilt forms to collect leads, which we will collate for you along with their responses.',
+                    'short_description' => 'Upon subscribing, you\'ll immediately get access to a variety of form templates you can use on your homepage.
+                    From there, you can edit or create custom conversational forms to collect leads, which we will collate for you along with their responses.',
                     'monthly_id' => 'price_1J6yzDIi2QHxCfvng6MVPG97',
                     'yearly_id' => 'price_1J6z08Ii2QHxCfvnnC5oDx9n',
                     'features' => [
                         'Collects leads for you',
-                        'Customizable domain endings',
                         'Conversational forms',
+                        'Customizable form templates',
                     ],
                 ],
             ],

@@ -4,7 +4,7 @@
     https://www.ditdot.hr/en
 */
 .vff {
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.34;
     min-height: 220px;
     -webkit-text-size-adjust: 100%;
@@ -69,7 +69,7 @@
 }
 
 .vff b, .vff strong {
-    font-weight: bolder
+    font-weight: 500
 }
 
 .vff a {
@@ -94,7 +94,7 @@
 }
 
 .vff .text-thin {
-    font-weight: 300
+    font-weight: 500
 }
 
 .vff .disabled, .vff [disabled] {
@@ -323,11 +323,11 @@ header.vff-header img.f-logo, header.vff-header svg.f-logo {
     outline: 0;
     padding: .16em .2em;
     font-size: .72em;
-    font-weight: normal
+    font-weight: 500
 }
 
 .vff .f-other.f-selected .f-label {
-    font-weight: normal
+    font-weight: 500
 }
 
 .vff textarea {
@@ -363,12 +363,12 @@ header.vff-header img.f-logo, header.vff-header svg.f-logo {
     display: inline-block;
     min-width: 3em;
     padding-right: 28px;
-    font-weight: 300;
+    font-weight: 500;
     padding-bottom: 4px
 }
 
 .vff span.f-answered {
-    font-weight: normal
+    font-weight: 500
 }
 
 .vff .f-arrow-down {
@@ -424,13 +424,13 @@ header.vff-header img.f-logo, header.vff-header svg.f-logo {
 }
 
 .vff .fh1, .vff h1 {
-    font-weight: normal;
+    font-weight: 500;
     font-size: 3em;
     margin: .67em 0
 }
 
 .vff .fh2, .vff h2 {
-    font-weight: normal;
+    font-weight: 500;
     font-size: 2.4em;
     line-height: 1.34;
     padding-right: 1.8em;
@@ -438,7 +438,7 @@ header.vff-header img.f-logo, header.vff-header svg.f-logo {
 }
 
 .vff .fh3, .vff h3 {
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.5em;
     margin-top: 0;
     margin-bottom: 0
@@ -449,7 +449,7 @@ header.vff-header img.f-logo, header.vff-header svg.f-logo {
 }
 
 .vff span.f-sub, .vff span.f-tagline {
-    font-weight: 400;
+    font-weight: 500;
     display: block
 }
 
@@ -501,7 +501,7 @@ header.vff-header img.f-logo, header.vff-header svg.f-logo {
 .vff ul.f-radios li {
     padding: .6em .68em;
     margin: .5em 0 .6em;
-    font-weight: 300;
+    font-weight: 500;
     line-height: 1.24;
     cursor: default;
     -webkit-touch-callout: none;
@@ -610,7 +610,7 @@ header.vff-header img.f-logo, header.vff-header svg.f-logo {
     bottom: 0;
     right: 0;
     width: 100%;
-    font-weight: 300;
+    font-weight: 500;
     line-height: 1.2
 }
 

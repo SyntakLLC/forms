@@ -176,8 +176,10 @@
                                     class="relative bg-white rounded-lg cursor-pointer shadow-md hover:shadow-lg  hover:shadow-lg"
                                     style="animation: 0.5s ease-in-out 0s 1 normal none running jBcSpD; transition: all 0.3s ease-in 0s;"
                                 >
+                                    <form @submit.prevent="homeWorthForm.post('/form/home_worth')">
                                     <button
                                         data-qa-form-id="sQt6ZB"
+                                        type="submit"
                                         class="overflow-visible relative p-0 m-0 text-center text-black normal-case bg-none appearance-none"
                                         style="font-family: sans-serif; font-size: 128%; line-height: 1.15; outline: none;"
                                     >
@@ -194,8 +196,8 @@
                                                 style="min-width: 0px; min-height: 0px; font-family: sans-serif;"
                                             >
                                                 <img
-                                                    alt="thumbs 54 political poll"
-                                                    src="//images.ctfassets.net/zkqwmjl9nf4n/1HeM4bwdAkyAG4oIecMk0o/a4d9323c276de120903fa3ecb43fe1f8/thumbs_54_political_poll.jpg"
+                                                    alt="home worth form icon"
+                                                    :src="$page.props.homeWorthIcon"
                                                     class="w-full h-full border-none"
                                                     style="border-radius: 4px 4px 0px 0px; font-family: sans-serif;"
                                                 />
@@ -216,13 +218,14 @@
                             color="highContrast"
                             font-family="sans"
                             class="block text-left text-sm"
-                        >Political Survey Template</span
+                        >Home Appraisal Template</span
                         >
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </button>
+                                    </form>
                                 </div>
                             </div>
                             <div class="mx-2 mb-8">
@@ -230,8 +233,10 @@
                                     class="relative bg-white rounded-lg cursor-pointer shadow-md hover:shadow-lg  hover:shadow-lg"
                                     style="animation: 0.5s ease-in-out 0s 1 normal none running jBcSpD; transition: all 0.3s ease-in 0s;"
                                 >
+                                    <form @submit.prevent="apartmentForm.post('/form/apartment')">
                                     <button
                                         data-qa-form-id="Nlh6G0"
+                                        type="submit"
                                         class="overflow-visible relative p-0 m-0 text-center text-black normal-case bg-none appearance-none"
                                         style="font-family: sans-serif; font-size: 128%; line-height: 1.15; outline: none;"
                                     >
@@ -248,8 +253,8 @@
                                                 style="min-width: 0px; min-height: 0px; font-family: sans-serif;"
                                             >
                                                 <img
-                                                    alt="thumbs40 market research"
-                                                    src="//images.ctfassets.net/zkqwmjl9nf4n/1kBx3LZATueKsWuCGMSS44/fbcf0361c119a8bce96d1b5e771821f9/thumbs40_market_research.jpg"
+                                                    alt="apartment search form icon"
+                                                    :src="$page.props.apartmentIcon"
                                                     class="w-full h-full border-none"
                                                     style="border-radius: 4px 4px 0px 0px; font-family: sans-serif;"
                                                 />
@@ -270,13 +275,14 @@
                             color="highContrast"
                             font-family="sans"
                             class="block text-left text-sm"
-                        >Market Research Survey Template</span
+                        >Apartment Search Template</span
                         >
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -298,6 +304,7 @@
                                     class="relative bg-white rounded-lg cursor-pointer shadow-md hover:shadow-lg  hover:shadow-lg"
                                     style="animation: 0.5s ease-in-out 0s 1 normal none running jBcSpD; transition: all 0.3s ease-in 0s;"
                                 >
+                                    <form @submit.prevent="openHouseForm.post('/form/open_house')">
                                     <button
                                         data-qa-form-id="Bu4ZIK"
                                         class="overflow-visible relative p-0 m-0 text-center text-black normal-case bg-none appearance-none"
@@ -316,8 +323,8 @@
                                                 style="min-width: 0px; min-height: 0px; font-family: sans-serif;"
                                             >
                                                 <img
-                                                    alt="thumbs01 event registration"
-                                                    src="//images.ctfassets.net/zkqwmjl9nf4n/5jYlODmeKsOWUkMICkY0OA/e76572d47c390c64a15609d55baaefb5/thumbs01_event_registration.jpg"
+                                                    alt="open house form icon"
+                                                    :src="$page.props.openHouseIcon"
                                                     class="w-full h-full border-none"
                                                     style="border-radius: 4px 4px 0px 0px; font-family: sans-serif;"
                                                 />
@@ -345,6 +352,7 @@
                                             </div>
                                         </div>
                                     </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -547,6 +555,10 @@ export default {
             apartmentForm: this.$inertia.form({
                 formColor: this.getNewIdColor(),
                 type: 'apartment'
+            }),
+            openHouseForm: this.$inertia.form({
+                formColor: this.getNewIdColor(),
+                type: 'openHouse'
             }),
             newAgentForm: this.$inertia.form({
                 formColor: this.getNewIdColor(),

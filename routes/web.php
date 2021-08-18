@@ -45,6 +45,7 @@ Route::resource('response', 'App\Http\Controllers\LeadController');
 Route::post('form/custom', 'App\Http\Controllers\FormController@custom');
 Route::post('form/home_worth', 'App\Http\Controllers\FormController@homeWorth');
 Route::post('form/apartment', 'App\Http\Controllers\FormController@apartment');
+Route::post('form/open_house', 'App\Http\Controllers\FormController@openHouse');
 Route::post('form/new-agent', 'App\Http\Controllers\FormController@newAgent');
 Route::post('form/buying-home', 'App\Http\Controllers\FormController@buyingHome');
 Route::post('form/contact-me', 'App\Http\Controllers\FormController@contact');

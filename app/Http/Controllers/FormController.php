@@ -25,15 +25,15 @@ class FormController extends Controller
     }
 
     public function index(Request $request) {
-        $homeWorthIcon = Storage::url('marketing-photos/Home_Worth_Form_Icon.png');
-        $apartmentIcon = Storage::url('marketing-photos/Apartment_Form_Icon.png');
-        $contactIcon = Storage::url('marketing-photos/Contact_Me_Form_Icon.png');
+        $homeWorthIcon = Storage::url('cover-photos/home-worth.jpg');
+        $apartmentIcon = Storage::url('cover-photos/apartment-search.jpg');
+        $openHouseIcon = Storage::url('cover-photos/open-house.jpg');
 
         return Inertia::render('Forms/Index', [
             'forms' => $request->user()->forms,
             'homeWorthIcon' => $homeWorthIcon,
             'apartmentIcon' => $apartmentIcon,
-            'contactIcon' => $contactIcon,
+            'openHouseIcon' => $openHouseIcon,
         ]);
     }
 
@@ -134,6 +134,7 @@ class FormController extends Controller
             'id_color' => $request->get('formColor'),
             'user_id' => $request->user()->id,
             'title' => "How Much is Your Home Worth?",
+            'cover_photo_url' => "cover-photos/home-worth.jpg"
         ]);
         $propertyMC = Question::create([
             'form_id' => $form->id,
@@ -292,7 +293,8 @@ class FormController extends Controller
         $form = Form::create([
             'id_color' => $request->get('formColor'),
             'user_id' => $request->user()->id,
-            'title' => "Are You Looking for an Apartment",
+            'title' => "Are You Looking for an Apartment?",
+            'cover_photo_url' => "cover-photos/apartment-search.jpg"
         ]);
 
         // num of beds
@@ -582,6 +584,78 @@ class FormController extends Controller
                 'title' => 'Anything else you want to have?',
                 'subtitle' => 'Any "must-haves" like a dishwasher, patio, balcony, etc.?',
                 'index' => 16,
+            ]),
+        ];
+
+        return Redirect::route('form.edit', $form->uuid);
+    }
+
+    public function openHouse(Request $request) {
+        $form = Form::create([
+            'id_color' => $request->get('formColor'),
+            'user_id' => $request->user()->id,
+            'title' => "Open House",
+            'cover_photo_url' => "cover-photos/open-house.jpg"
+        ]);
+
+        // what time works best
+        $timeWorksBest = Question::create([
+            'form_id' => $form->id,
+            'type' => 'Multiple Choice',
+            'title' => 'What time works best for you?',
+            'index' => 1,
+        ]);
+
+        // the $numOfBeds questions
+        Option::create([
+            'question_id' => $timeWorksBest->id,
+            'title' => '2:30-3:30',
+            'index' => 0,
+        ]);
+        Option::create([
+            'question_id' => $timeWorksBest->id,
+            'title' => '3:30-4:30',
+            'index' => 1,
+        ]);
+        Option::create([
+            'question_id' => $timeWorksBest->id,
+            'title' => '4:30-5:30',
+            'index' => 2,
+        ]);
+        Option::create([
+            'question_id' => $timeWorksBest->id,
+            'title' => '5:30-6:30',
+            'index' => 3,
+        ]);
+
+        $questions = [
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Section Break',
+                'title' => 'Open House at 101 Main Street',
+                'tagline' => 'December 21st',
+                'index' => 0,
+            ]),
+            $timeWorksBest,
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Name',
+                'title' => 'What is your full name?',
+                'tagline' => 'Let\'s get acquainted',
+                'index' => 2,
+            ]),
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Email',
+                'title' => 'Please provide your email.',
+                'tagline' => 'Nice to meet you',
+                'index' => 3,
+            ]),
+            Question::create([
+                'form_id' => $form->id,
+                'type' => 'Section Break',
+                'title' => 'Thanks! I\'ll see you there!',
+                'index' => 4,
             ]),
         ];
 

@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="min-h-screen h-screen max-h-screen">
 
         <!-- Header -->
-        <nav class="bg-white shadow lg:fixed lg:top-0 z-40 lg:w-full">
+        <nav class="bg-white shadow z-40 lg:w-full">
             <div class=" mx-auto px-2 sm:px-6 lg:px-8">
                 <div class="relative flex justify-between h-16">
                     <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -103,7 +103,7 @@
                 <div class="pt-2 pb-4 space-y-1">
                     <!-- Current: "bg-blue-50 border-blue-500 text-blue-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
                     <a :href="route('dashboard')" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-                       :class="route().current('dashboard') ? 'bg-blue-50 border-blue-500 text-blue-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'">Edit Site</a>
+                       :class="route().current('dashboard') ? 'bg-blue-50 border-blue-500 text-blue-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'">My Flowforms</a>
                     <a :href="route('response.index')" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                        :class="route().current('response.index') || route().current('response.show') ? 'bg-blue-50 border-blue-500 text-blue-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'">Responses</a>
                     <a :href="route('help')" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
@@ -112,7 +112,7 @@
             </div>
         </nav>
 
-        <main class="mx-auto lg:mt-16">
+        <main class="mx-auto">
             <slot/>
         </main>
     </div>

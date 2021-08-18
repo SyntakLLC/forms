@@ -77,6 +77,7 @@ class Controller extends BaseController
             'forms' => $request->user()->forms,
             'properties' => $request->user()->properties,
             'user' => $request->user(),
+            'leads' => $request->user()->leads,
             'site' => $site,
             'logoImageURL' => $logoImageURL,
             'logoTextURL' => $logoTextURL,

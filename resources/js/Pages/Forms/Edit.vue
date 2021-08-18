@@ -1,6 +1,6 @@
 <template>
     <app-layout :forms="$page['props']['forms']">
-        <div tabindex="0" class="h-screen max-h-screen"
+        <div tabindex="0" class="h-screen max-h-screen overflow-hidden"
              @keydown.esc="showingQuestionTypeDropdown=false; showingQuestionsDropdown=false; showingDeleteModal=false">
             <div class="flex items-center flex-shrink-0 border-b border-gray-200">
                 <!-- icon -->
@@ -52,13 +52,12 @@
                         Delete Form
                     </button>
 
-                    <inertia-link :href="route('form.show', form.uuid)"
-                                  class="truncate hover:text-gray-600 block h-full">
+                    <a :href="route('form.show', form.uuid)">
                         <button type="button"
                                 class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:order-1 ml-3">
                             Preview
                         </button>
-                    </inertia-link>
+                    </a>
                 </div>
 
                 <!--the delete modal-->
@@ -262,7 +261,7 @@
                 </div>
 
                 <!-- Static sidebar for desktop -->
-                <div class="hidden lg:flex lg:flex-shrink-0 lg:pb-40">
+                <div class="hidden lg:flex lg:flex-shrink-0">
                     <!--below thing used to be pt-5 and pb-4-->
                     <div class="flex flex-col w-64 border-r border-gray-200 pt-0 pb-0 bg-white">
 
@@ -419,6 +418,15 @@
                                             </button>
                                         </a>
                                     </inertia-link>
+
+                                    <!-- Blank spot -->
+                                        <div class="text-gray-700 hover:text-gray-900 group flex items-center py-4 text-sm font-medium h-96 truncate bg-gray-100">
+                                            <div class="pl-3 w-5">
+                                            </div>
+                                            <div class="pl-6 pr-3 w-5/6 truncate pb-32">
+                                                <p>That's the end of the form!</p>
+                                            </div>
+                                        </div>
                                 </div>
                             </nav>
                         </div>
@@ -430,354 +438,353 @@
                     <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none" tabindex="0">
                         <!-- Page title & actions -->
                         <div>
-
-                            <!--New Question dropdown-->
-                            <transition
-                                enter-active-class="transition ease-out duration-300"
-                                enter-class="opacity-0"
-                                enter-to-class="opacity-100"
-                                leave-active-class="transition ease-in duration-200"
-                                leave-class="opacity-100"
-                                leave-to-class="opacity-0">
-                                <div class="fixed z-10 inset-0 overflow-y-auto " v-show="showingQuestionTypeDropdown">
-                                    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-
-                                        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
-                                            <div @click="showingQuestionTypeDropdown=!showingQuestionTypeDropdown" class="absolute inset-0 bg-gray-500 opacity-75"></div>
-                                        </div>
-
-                                        <!-- This element is to trick the browser into centering the modal contents. -->
-                                        <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
-                                              aria-hidden="true">&#8203;</span>
-
-                                        <transition
-                                            enter-active-class="transition ease-out duration-300"
-                                            enter-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                            enter-to-class="opacity-100 translate-y-0 sm:scale-100"
-                                            leave-active-class="transition ease-in duration-200"
-                                            leave-class="opacity-100 translate-y-0 sm:scale-100"
-                                            leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-                                            <!--
-                                              Modal panel, show/hide based on modal state.
-                                              Entering: "ease-out duration-300"
-                                                From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                                To: "opacity-100 translate-y-0 sm:scale-100"
-                                              Leaving: "ease-in duration-200"
-                                                From: "opacity-100 translate-y-0 sm:scale-100"
-                                                To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                            -->
-                                            <div v-if="showingQuestionTypeDropdown"
-                                                 class="z-20 inline-block align-bottom rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 left-1/2 transform mt-3 mx-2 max-w-md sm:px-0 lg:max-w-3xl">
-
-                                                <div class="hidden sm:block absolute top-0 right-0 pt-10 pr-4">
-                                                    <button @click="showingQuestionTypeDropdown=!showingQuestionTypeDropdown"
-                                                            type="button" class="rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                                        <span class="sr-only">Close</span>
-                                                        <!-- Heroicon name: outline/x -->
-                                                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                                        </svg>
-                                                    </button>
-                                                </div>
-
-                                                <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-
-                                                    <div class="p-5 bg-gray-50 sm:p-8">
-                                                            <span class="flex items-center">
-                                                                <span class="text-base font-medium text-gray-900">
-                                                                    Add Question
-                                                                </span>
-                                                            </span>
-                                                        <span class="mt-1 block text-sm text-gray-500">
-                                                                There are five different types of questions. Pick the one best suited for your need.
-                                                            </span>
-                                                    </div>
-                                                    <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
-                                                        <button @click="addText"
-                                                                type="submit"
-                                                                class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">
-                                                            <!--                                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">-->
-                                                            <div
-                                                                class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">
-                                                                <!-- TEXT ICON -->
-                                                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                                     viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                                          stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="ml-4">
-                                                                <p class="text-base font-medium text-gray-900">
-                                                                    Text
-                                                                </p>
-                                                                <p class="mt-1 text-sm text-gray-500 hidden md:block">
-                                                                    Sufficient for most uses, this question allows for plain text
-                                                                    input from the lead.
-                                                                </p>
-                                                            </div>
-                                                            <!--                                </a>-->
-                                                        </button>
-
-                                                        <!--EMAIL-->
-                                                        <button @click="addEmail"
-                                                                type="submit"
-                                                                class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">
-                                                            <div
-                                                                class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">
-                                                                <!-- EMAIL ICON -->
-                                                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                                     viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                                          stroke-width="2"
-                                                                          d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="ml-4">
-                                                                <p class="text-base font-medium text-gray-900">
-                                                                    Email
-                                                                </p>
-                                                                <p class="mt-1 text-sm text-gray-500 hidden md:block">
-                                                                    The most common way to communicate with a lead.
-                                                                </p>
-                                                            </div>
-                                                        </button>
-
-                                                        <!--PHONE-->
-                                                        <button @click="addPhone"
-                                                                type="submit"
-                                                                class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">
-                                                            <div
-                                                                class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">
-                                                                <!-- PHONE ICON -->
-                                                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                                     viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                                          stroke-width="2"
-                                                                          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="ml-4">
-                                                                <p class="text-base font-medium text-gray-900">
-                                                                    Phone Number
-                                                                </p>
-                                                                <p class="mt-1 text-sm text-gray-500 hidden md:block">
-                                                                    Useful if you want to contact the lead via phone number.
-                                                                </p>
-                                                            </div>
-                                                        </button>
-
-                                                        <!--MC-->
-                                                        <button @click="addMultipleChoice"
-                                                                type="submit"
-                                                                class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">
-                                                            <div
-                                                                class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">
-                                                                <!-- MC ICON -->
-                                                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                                     viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                                          stroke-width="2"
-                                                                          d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="ml-4">
-                                                                <p class="text-base font-medium text-gray-900">
-                                                                    Multiple Choice
-                                                                </p>
-                                                                <p class="mt-1 text-sm text-gray-500 hidden md:block">
-                                                                    If you want the lead to choose from a few options.
-                                                                </p>
-                                                            </div>
-                                                        </button>
-
-                                                        <!--SECTION BREAK-->
-                                                        <button @click="addSectionBreak"
-                                                                type="submit"
-                                                                class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">
-                                                            <div
-                                                                class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">
-                                                                <!-- BREAK ICON -->
-                                                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                                     viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                                          stroke-width="2"
-                                                                          d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="ml-4">
-                                                                <p class="text-base font-medium text-gray-900">
-                                                                    Section Break
-                                                                </p>
-                                                                <p class="mt-1 text-sm text-gray-500 hidden md:block">
-                                                                    Add a message in the middle of the form to keep things from
-                                                                    feeling monotonous.
-                                                                </p>
-                                                            </div>
-                                                        </button>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </transition>
-
-<!--                                            <transition-->
-<!--                                                enter-active-class="transition ease-out duration-200"-->
-<!--                                                enter-class="opacity-0 translate-y-1"-->
-<!--                                                enter-to-class="opacity-100 translate-y-0"-->
-<!--                                                leave-active-class="transition ease-in duration-150"-->
-<!--                                                leave-class="opacity-100 translate-y-0"-->
-<!--                                                leave-to-class="opacity-0 translate-y-1">-->
-<!--                                                <div v-if="showingQuestionTypeDropdown"-->
-<!--                                                    class="absolute z-10 w-full left-1/2 transform -translate-x-1/2 mt-3 mx-2 max-w-md sm:px-0 lg:max-w-3xl">-->
-
-<!--                                                <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">-->
-
-<!--                                                        <div class="p-5 bg-gray-50 sm:p-8">-->
-<!--                                                            <span class="flex items-center">-->
-<!--                                                                <span class="text-base font-medium text-gray-900">-->
-<!--                                                                    Add Question-->
-<!--                                                                </span>-->
-<!--                                                            </span>-->
-<!--                                                            <span class="mt-1 block text-sm text-gray-500">-->
-<!--                                                                There are five different types of questions. Pick the one best suited for your need.-->
-<!--                                                            </span>-->
-<!--                                                        </div>-->
-<!--                                                        <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">-->
-<!--                                                            <button @click="addText"-->
-<!--                                                                    type="submit"-->
-<!--                                                                    class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">-->
-<!--                                                                &lt;!&ndash;                                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">&ndash;&gt;-->
-<!--                                                                <div-->
-<!--                                                                    class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">-->
-<!--                                                                    &lt;!&ndash; TEXT ICON &ndash;&gt;-->
-<!--                                                                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"-->
-<!--                                                                         viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
-<!--                                                                        <path stroke-linecap="round" stroke-linejoin="round"-->
-<!--                                                                              stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path>-->
-<!--                                                                    </svg>-->
-<!--                                                                </div>-->
-<!--                                                                <div class="ml-4">-->
-<!--                                                                    <p class="text-base font-medium text-gray-900">-->
-<!--                                                                        Text-->
-<!--                                                                    </p>-->
-<!--                                                                    <p class="mt-1 text-sm text-gray-500">-->
-<!--                                                                        Sufficient for most uses, this question allows for plain text-->
-<!--                                                                        input from the lead.-->
-<!--                                                                    </p>-->
-<!--                                                                </div>-->
-<!--                                                                &lt;!&ndash;                                </a>&ndash;&gt;-->
-<!--                                                            </button>-->
-
-<!--                                                            &lt;!&ndash;EMAIL&ndash;&gt;-->
-<!--                                                            <button @click="addEmail"-->
-<!--                                                                    type="submit"-->
-<!--                                                                    class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">-->
-<!--                                                                <div-->
-<!--                                                                    class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">-->
-<!--                                                                    &lt;!&ndash; EMAIL ICON &ndash;&gt;-->
-<!--                                                                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"-->
-<!--                                                                         viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
-<!--                                                                        <path stroke-linecap="round" stroke-linejoin="round"-->
-<!--                                                                              stroke-width="2"-->
-<!--                                                                              d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path>-->
-<!--                                                                    </svg>-->
-<!--                                                                </div>-->
-<!--                                                                <div class="ml-4">-->
-<!--                                                                    <p class="text-base font-medium text-gray-900">-->
-<!--                                                                        Email-->
-<!--                                                                    </p>-->
-<!--                                                                    <p class="mt-1 text-sm text-gray-500">-->
-<!--                                                                        The most common way to communicate with a lead.-->
-<!--                                                                    </p>-->
-<!--                                                                </div>-->
-<!--                                                            </button>-->
-
-<!--                                                            &lt;!&ndash;PHONE&ndash;&gt;-->
-<!--                                                            <button @click="addPhone"-->
-<!--                                                                    type="submit"-->
-<!--                                                                    class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">-->
-<!--                                                                <div-->
-<!--                                                                    class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">-->
-<!--                                                                    &lt;!&ndash; PHONE ICON &ndash;&gt;-->
-<!--                                                                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"-->
-<!--                                                                         viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
-<!--                                                                        <path stroke-linecap="round" stroke-linejoin="round"-->
-<!--                                                                              stroke-width="2"-->
-<!--                                                                              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>-->
-<!--                                                                    </svg>-->
-<!--                                                                </div>-->
-<!--                                                                <div class="ml-4">-->
-<!--                                                                    <p class="text-base font-medium text-gray-900">-->
-<!--                                                                        Phone Number-->
-<!--                                                                    </p>-->
-<!--                                                                    <p class="mt-1 text-sm text-gray-500">-->
-<!--                                                                        Useful if you want to contact the lead via phone number.-->
-<!--                                                                    </p>-->
-<!--                                                                </div>-->
-<!--                                                            </button>-->
-
-<!--                                                            &lt;!&ndash;MC&ndash;&gt;-->
-<!--                                                            <button @click="addMultipleChoice"-->
-<!--                                                                    type="submit"-->
-<!--                                                                    class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">-->
-<!--                                                                <div-->
-<!--                                                                    class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">-->
-<!--                                                                    &lt;!&ndash; MC ICON &ndash;&gt;-->
-<!--                                                                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"-->
-<!--                                                                         viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
-<!--                                                                        <path stroke-linecap="round" stroke-linejoin="round"-->
-<!--                                                                              stroke-width="2"-->
-<!--                                                                              d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>-->
-<!--                                                                    </svg>-->
-<!--                                                                </div>-->
-<!--                                                                <div class="ml-4">-->
-<!--                                                                    <p class="text-base font-medium text-gray-900">-->
-<!--                                                                        Multiple Choice-->
-<!--                                                                    </p>-->
-<!--                                                                    <p class="mt-1 text-sm text-gray-500">-->
-<!--                                                                        If you want the lead to choose from a few options.-->
-<!--                                                                    </p>-->
-<!--                                                                </div>-->
-<!--                                                            </button>-->
-
-<!--                                                            &lt;!&ndash;SECTION BREAK&ndash;&gt;-->
-<!--                                                            <button @click="addSectionBreak"-->
-<!--                                                                    type="submit"-->
-<!--                                                                    class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">-->
-<!--                                                                <div-->
-<!--                                                                    class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">-->
-<!--                                                                    &lt;!&ndash; BREAK ICON &ndash;&gt;-->
-<!--                                                                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"-->
-<!--                                                                         viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
-<!--                                                                        <path stroke-linecap="round" stroke-linejoin="round"-->
-<!--                                                                              stroke-width="2"-->
-<!--                                                                              d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/>-->
-<!--                                                                    </svg>-->
-<!--                                                                </div>-->
-<!--                                                                <div class="ml-4">-->
-<!--                                                                    <p class="text-base font-medium text-gray-900">-->
-<!--                                                                        Section Break-->
-<!--                                                                    </p>-->
-<!--                                                                    <p class="mt-1 text-sm text-gray-500">-->
-<!--                                                                        Add a message in the middle of the form to keep things from-->
-<!--                                                                        feeling monotonous.-->
-<!--                                                                    </p>-->
-<!--                                                                </div>-->
-<!--                                                            </button>-->
-
-<!--                                                        </div>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                            </transition>-->
-                                    </div>
-                                </div>
-                            </transition>
-
                             <slot/>
                         </div>
                     </main>
                 </div>
             </div>
+
+            <!--New Question dropdown-->
+            <transition
+                enter-active-class="transition ease-out duration-300"
+                enter-class="opacity-0"
+                enter-to-class="opacity-100"
+                leave-active-class="transition ease-in duration-200"
+                leave-class="opacity-100"
+                leave-to-class="opacity-0">
+                <div class="fixed z-50 inset-0 overflow-y-auto " v-show="showingQuestionTypeDropdown">
+                    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+
+                        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                            <div @click="showingQuestionTypeDropdown=!showingQuestionTypeDropdown" class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                        </div>
+
+                        <!-- This element is to trick the browser into centering the modal contents. -->
+                        <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
+                              aria-hidden="true">&#8203;</span>
+
+                        <transition
+                            enter-active-class="transition ease-out duration-300"
+                            enter-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                            enter-to-class="opacity-100 translate-y-0 sm:scale-100"
+                            leave-active-class="transition ease-in duration-200"
+                            leave-class="opacity-100 translate-y-0 sm:scale-100"
+                            leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+                            <!--
+                              Modal panel, show/hide based on modal state.
+                              Entering: "ease-out duration-300"
+                                From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                To: "opacity-100 translate-y-0 sm:scale-100"
+                              Leaving: "ease-in duration-200"
+                                From: "opacity-100 translate-y-0 sm:scale-100"
+                                To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                            -->
+                            <div v-if="showingQuestionTypeDropdown"
+                                 class="z-20 inline-block align-bottom rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 left-1/2 transform mt-3 mx-2 max-w-md sm:px-0 lg:max-w-3xl">
+
+                                <div class="hidden sm:block absolute top-0 right-0 pt-10 pr-4">
+                                    <button @click="showingQuestionTypeDropdown=!showingQuestionTypeDropdown"
+                                            type="button" class="rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                        <span class="sr-only">Close</span>
+                                        <!-- Heroicon name: outline/x -->
+                                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
+
+                                    <div class="p-5 bg-gray-50 sm:p-8">
+                                                            <span class="flex items-center">
+                                                                <span class="text-base font-medium text-gray-900">
+                                                                    Add Question
+                                                                </span>
+                                                            </span>
+                                        <span class="mt-1 block text-sm text-gray-500">
+                                                                There are five different types of questions. Pick the one best suited for your need.
+                                                            </span>
+                                    </div>
+                                    <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
+                                        <button @click="addText"
+                                                type="submit"
+                                                class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">
+                                            <!--                                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">-->
+                                            <div
+                                                class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">
+                                                <!-- TEXT ICON -->
+                                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                     viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="ml-4">
+                                                <p class="text-base font-medium text-gray-900">
+                                                    Text
+                                                </p>
+                                                <p class="mt-1 text-sm text-gray-500 hidden md:block">
+                                                    Sufficient for most uses, this question allows for plain text
+                                                    input from the lead.
+                                                </p>
+                                            </div>
+                                            <!--                                </a>-->
+                                        </button>
+
+                                        <!--EMAIL-->
+                                        <button @click="addEmail"
+                                                type="submit"
+                                                class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">
+                                            <div
+                                                class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">
+                                                <!-- EMAIL ICON -->
+                                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                     viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2"
+                                                          d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="ml-4">
+                                                <p class="text-base font-medium text-gray-900">
+                                                    Email
+                                                </p>
+                                                <p class="mt-1 text-sm text-gray-500 hidden md:block">
+                                                    The most common way to communicate with a lead.
+                                                </p>
+                                            </div>
+                                        </button>
+
+                                        <!--PHONE-->
+                                        <button @click="addPhone"
+                                                type="submit"
+                                                class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">
+                                            <div
+                                                class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">
+                                                <!-- PHONE ICON -->
+                                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                     viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2"
+                                                          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="ml-4">
+                                                <p class="text-base font-medium text-gray-900">
+                                                    Phone Number
+                                                </p>
+                                                <p class="mt-1 text-sm text-gray-500 hidden md:block">
+                                                    Useful if you want to contact the lead via phone number.
+                                                </p>
+                                            </div>
+                                        </button>
+
+                                        <!--MC-->
+                                        <button @click="addMultipleChoice"
+                                                type="submit"
+                                                class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">
+                                            <div
+                                                class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">
+                                                <!-- MC ICON -->
+                                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                     viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2"
+                                                          d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="ml-4">
+                                                <p class="text-base font-medium text-gray-900">
+                                                    Multiple Choice
+                                                </p>
+                                                <p class="mt-1 text-sm text-gray-500 hidden md:block">
+                                                    If you want the lead to choose from a few options.
+                                                </p>
+                                            </div>
+                                        </button>
+
+                                        <!--SECTION BREAK-->
+                                        <button @click="addSectionBreak"
+                                                type="submit"
+                                                class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">
+                                            <div
+                                                class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">
+                                                <!-- BREAK ICON -->
+                                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                     viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2"
+                                                          d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/>
+                                                </svg>
+                                            </div>
+                                            <div class="ml-4">
+                                                <p class="text-base font-medium text-gray-900">
+                                                    Section Break
+                                                </p>
+                                                <p class="mt-1 text-sm text-gray-500 hidden md:block">
+                                                    Add a message in the middle of the form to keep things from
+                                                    feeling monotonous.
+                                                </p>
+                                            </div>
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
+
+                        <!--                                            <transition-->
+                        <!--                                                enter-active-class="transition ease-out duration-200"-->
+                        <!--                                                enter-class="opacity-0 translate-y-1"-->
+                        <!--                                                enter-to-class="opacity-100 translate-y-0"-->
+                        <!--                                                leave-active-class="transition ease-in duration-150"-->
+                        <!--                                                leave-class="opacity-100 translate-y-0"-->
+                        <!--                                                leave-to-class="opacity-0 translate-y-1">-->
+                        <!--                                                <div v-if="showingQuestionTypeDropdown"-->
+                        <!--                                                    class="absolute z-10 w-full left-1/2 transform -translate-x-1/2 mt-3 mx-2 max-w-md sm:px-0 lg:max-w-3xl">-->
+
+                        <!--                                                <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">-->
+
+                        <!--                                                        <div class="p-5 bg-gray-50 sm:p-8">-->
+                        <!--                                                            <span class="flex items-center">-->
+                        <!--                                                                <span class="text-base font-medium text-gray-900">-->
+                        <!--                                                                    Add Question-->
+                        <!--                                                                </span>-->
+                        <!--                                                            </span>-->
+                        <!--                                                            <span class="mt-1 block text-sm text-gray-500">-->
+                        <!--                                                                There are five different types of questions. Pick the one best suited for your need.-->
+                        <!--                                                            </span>-->
+                        <!--                                                        </div>-->
+                        <!--                                                        <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">-->
+                        <!--                                                            <button @click="addText"-->
+                        <!--                                                                    type="submit"-->
+                        <!--                                                                    class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">-->
+                        <!--                                                                &lt;!&ndash;                                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">&ndash;&gt;-->
+                        <!--                                                                <div-->
+                        <!--                                                                    class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">-->
+                        <!--                                                                    &lt;!&ndash; TEXT ICON &ndash;&gt;-->
+                        <!--                                                                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"-->
+                        <!--                                                                         viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
+                        <!--                                                                        <path stroke-linecap="round" stroke-linejoin="round"-->
+                        <!--                                                                              stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path>-->
+                        <!--                                                                    </svg>-->
+                        <!--                                                                </div>-->
+                        <!--                                                                <div class="ml-4">-->
+                        <!--                                                                    <p class="text-base font-medium text-gray-900">-->
+                        <!--                                                                        Text-->
+                        <!--                                                                    </p>-->
+                        <!--                                                                    <p class="mt-1 text-sm text-gray-500">-->
+                        <!--                                                                        Sufficient for most uses, this question allows for plain text-->
+                        <!--                                                                        input from the lead.-->
+                        <!--                                                                    </p>-->
+                        <!--                                                                </div>-->
+                        <!--                                                                &lt;!&ndash;                                </a>&ndash;&gt;-->
+                        <!--                                                            </button>-->
+
+                        <!--                                                            &lt;!&ndash;EMAIL&ndash;&gt;-->
+                        <!--                                                            <button @click="addEmail"-->
+                        <!--                                                                    type="submit"-->
+                        <!--                                                                    class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">-->
+                        <!--                                                                <div-->
+                        <!--                                                                    class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">-->
+                        <!--                                                                    &lt;!&ndash; EMAIL ICON &ndash;&gt;-->
+                        <!--                                                                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"-->
+                        <!--                                                                         viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
+                        <!--                                                                        <path stroke-linecap="round" stroke-linejoin="round"-->
+                        <!--                                                                              stroke-width="2"-->
+                        <!--                                                                              d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path>-->
+                        <!--                                                                    </svg>-->
+                        <!--                                                                </div>-->
+                        <!--                                                                <div class="ml-4">-->
+                        <!--                                                                    <p class="text-base font-medium text-gray-900">-->
+                        <!--                                                                        Email-->
+                        <!--                                                                    </p>-->
+                        <!--                                                                    <p class="mt-1 text-sm text-gray-500">-->
+                        <!--                                                                        The most common way to communicate with a lead.-->
+                        <!--                                                                    </p>-->
+                        <!--                                                                </div>-->
+                        <!--                                                            </button>-->
+
+                        <!--                                                            &lt;!&ndash;PHONE&ndash;&gt;-->
+                        <!--                                                            <button @click="addPhone"-->
+                        <!--                                                                    type="submit"-->
+                        <!--                                                                    class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">-->
+                        <!--                                                                <div-->
+                        <!--                                                                    class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">-->
+                        <!--                                                                    &lt;!&ndash; PHONE ICON &ndash;&gt;-->
+                        <!--                                                                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"-->
+                        <!--                                                                         viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
+                        <!--                                                                        <path stroke-linecap="round" stroke-linejoin="round"-->
+                        <!--                                                                              stroke-width="2"-->
+                        <!--                                                                              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>-->
+                        <!--                                                                    </svg>-->
+                        <!--                                                                </div>-->
+                        <!--                                                                <div class="ml-4">-->
+                        <!--                                                                    <p class="text-base font-medium text-gray-900">-->
+                        <!--                                                                        Phone Number-->
+                        <!--                                                                    </p>-->
+                        <!--                                                                    <p class="mt-1 text-sm text-gray-500">-->
+                        <!--                                                                        Useful if you want to contact the lead via phone number.-->
+                        <!--                                                                    </p>-->
+                        <!--                                                                </div>-->
+                        <!--                                                            </button>-->
+
+                        <!--                                                            &lt;!&ndash;MC&ndash;&gt;-->
+                        <!--                                                            <button @click="addMultipleChoice"-->
+                        <!--                                                                    type="submit"-->
+                        <!--                                                                    class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">-->
+                        <!--                                                                <div-->
+                        <!--                                                                    class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">-->
+                        <!--                                                                    &lt;!&ndash; MC ICON &ndash;&gt;-->
+                        <!--                                                                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"-->
+                        <!--                                                                         viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
+                        <!--                                                                        <path stroke-linecap="round" stroke-linejoin="round"-->
+                        <!--                                                                              stroke-width="2"-->
+                        <!--                                                                              d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>-->
+                        <!--                                                                    </svg>-->
+                        <!--                                                                </div>-->
+                        <!--                                                                <div class="ml-4">-->
+                        <!--                                                                    <p class="text-base font-medium text-gray-900">-->
+                        <!--                                                                        Multiple Choice-->
+                        <!--                                                                    </p>-->
+                        <!--                                                                    <p class="mt-1 text-sm text-gray-500">-->
+                        <!--                                                                        If you want the lead to choose from a few options.-->
+                        <!--                                                                    </p>-->
+                        <!--                                                                </div>-->
+                        <!--                                                            </button>-->
+
+                        <!--                                                            &lt;!&ndash;SECTION BREAK&ndash;&gt;-->
+                        <!--                                                            <button @click="addSectionBreak"-->
+                        <!--                                                                    type="submit"-->
+                        <!--                                                                    class="focus:outline-none -m-3 p-3 flex items-start text-left rounded-lg hover:bg-gray-100 transition ease-in-out duration-150">-->
+                        <!--                                                                <div-->
+                        <!--                                                                    class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-500 text-white sm:h-12 sm:w-12">-->
+                        <!--                                                                    &lt;!&ndash; BREAK ICON &ndash;&gt;-->
+                        <!--                                                                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"-->
+                        <!--                                                                         viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">-->
+                        <!--                                                                        <path stroke-linecap="round" stroke-linejoin="round"-->
+                        <!--                                                                              stroke-width="2"-->
+                        <!--                                                                              d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/>-->
+                        <!--                                                                    </svg>-->
+                        <!--                                                                </div>-->
+                        <!--                                                                <div class="ml-4">-->
+                        <!--                                                                    <p class="text-base font-medium text-gray-900">-->
+                        <!--                                                                        Section Break-->
+                        <!--                                                                    </p>-->
+                        <!--                                                                    <p class="mt-1 text-sm text-gray-500">-->
+                        <!--                                                                        Add a message in the middle of the form to keep things from-->
+                        <!--                                                                        feeling monotonous.-->
+                        <!--                                                                    </p>-->
+                        <!--                                                                </div>-->
+                        <!--                                                            </button>-->
+
+                        <!--                                                        </div>-->
+                        <!--                                                    </div>-->
+                        <!--                                                </div>-->
+                        <!--                                            </transition>-->
+                    </div>
+                </div>
+            </transition>
 
             <!-- Loading screen -->
             <div v-show="showingLoadingScreen" class="fixed z-50 inset-0 overflow-y-auto ">
@@ -931,7 +938,9 @@ export default {
         },
 
         // deleting a question
-        deleteQuestion(deletedUuid) {
+        async deleteQuestion(deletedUuid) {
+            this.showingLoadingScreen = true;
+
             let newQuestions = this.questionList.filter((question) => {
                 return question.uuid !== deletedUuid;
             });
@@ -939,7 +948,9 @@ export default {
 
             let data = {'deletedUUID': deletedUuid, 'form_uuid': this.form.uuid}
             // let response = await axios.post('/api/delete-question', data)
-            this.$inertia.post('/form/delete-question', data)
+            await this.$inertia.post('/form/delete-question', data)
+
+            this.showingLoadingScreen = false;
         },
 
         // changing the title of the question
@@ -958,50 +969,70 @@ export default {
             this.$data.showingQuestionTypeDropdown = !this.$data.showingQuestionTypeDropdown;
             this.$inertia.post('/form/add_name', data)
         },
-        addText() {
+        async addText() {
+            this.showingLoadingScreen = true;
+
             let data = {
                 'index': this.$page.props.questions[this.$page.props.questions.length - 1].index + 1,
                 'form_id': this.form.id,
                 'form_uuid': this.form.uuid
             }
             this.$data.showingQuestionTypeDropdown = !this.$data.showingQuestionTypeDropdown;
-            this.$inertia.post('/form/add_text', data)
+            await this.$inertia.post('/form/add_text', data)
+
+            this.showingLoadingScreen = false;
         },
-        addEmail() {
+        async addEmail() {
+            this.showingLoadingScreen = true;
+
             let data = {
                 'index': this.$page.props.questions.length,
                 'form_id': this.form.id,
                 'form_uuid': this.form.uuid
             }
             this.$data.showingQuestionTypeDropdown = !this.$data.showingQuestionTypeDropdown;
-            this.$inertia.post('/form/add_email', data)
+            await this.$inertia.post('/form/add_email', data)
+
+            this.showingLoadingScreen = false;
         },
-        addPhone() {
+        async addPhone() {
+            this.showingLoadingScreen = true;
+
             let data = {
                 'index': this.$page.props.questions.length,
                 'form_id': this.form.id,
                 'form_uuid': this.form.uuid
             }
             this.$data.showingQuestionTypeDropdown = !this.$data.showingQuestionTypeDropdown;
-            this.$inertia.post('/form/add_phone', data)
+            await this.$inertia.post('/form/add_phone', data)
+
+            this.showingLoadingScreen = false;
         },
-        addMultipleChoice() {
+        async addMultipleChoice() {
+            this.showingLoadingScreen = true;
+
             let data = {
                 'index': this.$page.props.questions.length,
                 'form_id': this.form.id,
                 'form_uuid': this.form.uuid
             }
             this.$data.showingQuestionTypeDropdown = !this.$data.showingQuestionTypeDropdown;
-            this.$inertia.post('/form/add_multiple_choice', data)
+            await this.$inertia.post('/form/add_multiple_choice', data)
+
+            this.showingLoadingScreen = false;
         },
-        addSectionBreak() {
+        async addSectionBreak() {
+            this.showingLoadingScreen = true;
+
             let data = {
                 'index': this.$page.props.questions.length,
                 'form_id': this.form.id,
                 'form_uuid': this.form.uuid
             }
             this.$data.showingQuestionTypeDropdown = !this.$data.showingQuestionTypeDropdown;
-            this.$inertia.post('/form/add_section_break', data)
+            await this.$inertia.post('/form/add_section_break', data)
+
+            this.showingLoadingScreen = false;
         },
 
         convertToLetter(number) {

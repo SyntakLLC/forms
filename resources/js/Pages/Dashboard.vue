@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <div class="h-screen flex overflow-hidden">
+        <div class="flex overflow-hidden">
 
         <!-- Main column -->
         <div class="flex flex-col w-0 flex-1 overflow-hidden">
@@ -14,11 +14,12 @@
                         </h1>
                     </div>
                     <div class="mt-4 flex sm:mt-0 sm:ml-4">
-                        <inertia-link type="button"
-                                :href="route('spark.portal')"
-                                class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:order-1 sm:ml-3">
-                            Upgrade
-                        </inertia-link>
+                        <a :href="route('spark.portal')">
+                            <button type="button"
+                                    class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:order-1 sm:ml-3">
+                                Upgrade
+                            </button>
+                        </a>
                     </div>
                 </div>
 
@@ -126,63 +127,13 @@
                                         <div class="relative p-4 bg-white shadow-xs"
                                              style="border-radius: 0px 0px 8px 8px;">
                                             <div orientation="horizontal"
-                                                 class="flex flex-row justify-between items-center">
+                                                 class="flex flex-row justify-center items-center">
                                                 <a href="/form/c9eQQK0O/results#responses"
                                                    class="overflow-hidden relative py-1 px-2 text-xs leading-4 no-underline bg-gray-200 rounded opacity-100 cursor-pointer whitespace-no-wrap hover:bg-gray-200 hover:text-gray-900 hover:no-underline"
                                                    style="outline: none;">
-                                                    <span font-family="sans" class="block flex-shrink truncate">1 response</span>
+                                                    <span font-family="sans" class="block flex-shrink truncate">{{$page.props.leads.filter((lead) => lead.form_filled === form.uuid).length == 1 ? $page.props.leads.filter((lead) => lead.form_filled === form.uuid).length + " response" : $page.props.leads.filter((lead) => lead.form_filled === form.uuid).length + " responses"}}</span>
                                                 </a>
-                                                <button
-                                                    aria-label="form item menu"
-                                                    color="icon"
-                                                    data-qa="form-item-menu-button"
-                                                    aria-controls="kitt-6"
-                                                    aria-haspopup="true"
-                                                    aria-expanded="false"
-                                                    class="overflow-visible relative p-0 m-0 w-6 h-6 text-center text-black normal-case bg-transparent rounded border border-transparent border-solid cursor-pointer hover:bg-gray-300"
-                                                    style="font-family: sans-serif; font-size: 128%; line-height: 1.15; outline: none; transition: all 0.4s ease 0s;">
-                                                    <div
-                                                        height="auto"
-                                                        width="auto"
-                                                        color="icon"
-                                                        class="flex justify-center items-center w-auto h-auto leading-4"
-                                                        style="font-family: sans-serif;">
-                                                        <span class="" style="font-family: sans-serif;">
-                                                            <svg class="block"
-                                                                 width="14"
-                                                                 height="4"
-                                                                 viewBox="0 0 14 4"
-                                                                 xmlns="http://www.w3.org/2000/svg"
-                                                                 style="fill: rgb(137, 137, 137); transition: all 0.4s ease 0s; font-family: sans-serif;">
-                                                                <g
-                                                                    transform="rotate(90 7 7)"
-                                                                    fill-rule="evenodd"
-                                                                    class=""
-                                                                    style="font-family: sans-serif;">
-                                                                    <circle cx="2"
-                                                                            cy="2"
-                                                                            r="1.5"
-                                                                            class=""
-                                                                            style="font-family: sans-serif;">
-                                                                    </circle>
-                                                                    <circle cx="2"
-                                                                            cy="7"
-                                                                            r="1.5"
-                                                                            class=""
-                                                                            style="font-family: sans-serif;">
-                                                                    </circle>
-                                                                    <circle
-                                                                        cx="2"
-                                                                        cy="12"
-                                                                        r="1.5"
-                                                                        class=""
-                                                                        style="font-family: sans-serif;">
-                                                                    </circle>
-                                                                </g>
-                                                            </svg>
-                                                        </span>
-                                                    </div>
-                                                </button>
+
                                             </div>
                                         </div>
                                     </div>
@@ -227,6 +178,7 @@ export default {
         'errors',
         'onTrial',
         'subscribed',
+        'leads',
         'justInitialized',
     ],
 

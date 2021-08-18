@@ -235,6 +235,14 @@ export default {
     @import '../../../css/flow-form-text.css';
     @import'../../../css/flow-form-amaan.css';
 
+    .vff ul.f-radios li:active {
+        background-color: #00000010 !important;
+    }
+
+    .vff ul.f-radios {
+        color: black !important;
+    }
+
     button.o-btn-action {
         background-color: var(--bg-accent-color) !important;
         color: var(--correct-text-color) !important;
@@ -242,10 +250,6 @@ export default {
 
     * {
         font-family: "Inter var";
-    }
-
-    .f-key {
-        color: var(--bg-accent-color) !important;
     }
 
     textarea:focus, input:focus{

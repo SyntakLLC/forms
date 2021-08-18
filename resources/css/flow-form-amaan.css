@@ -13,8 +13,8 @@
     --vff-main-text-color: #000;
     --vff-secondary-text-color: #000;
     --vff-tertiary-text-color: #000;
-    --vff-main-accent-color: #27ae60;
-    --vff-secondary-accent-color: #2ecc71;
+    --vff-main-accent-color: #2563EB;
+    --vff-secondary-accent-color: #2563EB;
     --vff-tertiary-accent-color: #8e44ad;
     --vff-header-color: var(--vff-tertiary-accent-color);
     --vff-header-border-color: transparent;
@@ -94,31 +94,31 @@ header.vff-header svg.f-logo{
 .vff ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     color: var(--vff-secondary-text-color);
     opacity: 1;
-    font-weight: 300;
+    font-weight: 500;
 }
 
 .vff ::-moz-placeholder { /* Firefox 19+ */
     color: var(--vff-secondary-text-color);
     opacity: 1;
-    font-weight: 300;
+    font-weight: 500;
 }
 
 .vff :-ms-input-placeholder { /* IE 10+ */
     color: var(--vff-secondary-text-color)!important;
     opacity: 1!important;
-    font-weight: 300!important;
+    font-weight: 500!important;
 }
 
 .vff :-moz-placeholder { /* Firefox 18- */
     color: #999;
     opacity: 1;
-    font-weight: 300;
+    font-weight: 500;
 }
 
 /*faux input type date placeholder for iOS*/
 .vff.vff-is-ios .field-date:not(.f-has-value) .f-answer > span::before{
     color: var(--vff-secondary-text-color);
-    font-weight: 300;
+    font-weight: 500;
     font-size: .72em;
 }
 
@@ -126,7 +126,7 @@ header.vff-header svg.f-logo{
 .vff ul.f-radios li {
     border: 1px solid var(--vff-secondary-text-color);
     font-weight: 900;
-    color: var(--vff-secondary-text-color);
+    color: #000000 !important;
 }
 
 .vff ul.f-radios li.f-other.f-selected input {
@@ -134,10 +134,15 @@ header.vff-header svg.f-logo{
 }
 
 .vff ul.f-radios li.f-selected,
+/*.vff ul.f-radios li:active {*/
+/*    border-color: var(--vff-main-text-color);*/
+/*    color: #000000;*/
+/*    background-color: #ffffff;*/
+/*}*/
 .vff ul.f-radios li:active {
     border-color: var(--vff-main-text-color);
-    color: #000000;
-    background-color: var(--vff-tertiary-text-color);
+    color: var(--vff-main-text-color);
+    background-color: #00000010;
 }
 
 .vff .f-key{
