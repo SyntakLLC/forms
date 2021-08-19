@@ -22,7 +22,7 @@
                             type="submit"
                             data-qa="start-from-scratch-button"
                             class="inline-flex overflow-visible relative justify-center items-center py-2 px-4 m-0 text-base leading-6 text-center text-white no-underline normal-case bg-gray-900 rounded border-0 cursor-pointer whitespace-no-wrap hover:bg-gray-600"
-                            style="outline: none; transition: all 0.4s ease 0s;"
+                            style="outline: none;"
                         >
                             <div orientation="horizontal" class="flex">
                                 <span font-family="sans" class="block flex-none">Start from scratch</span>
@@ -38,130 +38,131 @@
                         class="pb-6 w-full text-gray-900"
                         style="animation: 0.5s ease-in-out 0s 1 normal none running jBcSpD; transition: all 0.3s ease-in 0s;"
                     >
-        <span
-            font-family="sans"
-            font-weight="semibold"
-            class="block text-xs font-semibold tracking-widest leading-4 pt-8"
-        >FUN HOMEPAGE TEASERS</span>
-                        <div class="mt-2 w-full h-px bg-gray-300"></div>
-                        <div class="mb-8"></div>
-                        <div
-                            data-qa="template-gallery-templates-feedback"
-                            class="grid overflow-auto pb-6 w-auto"
-                            style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); justify-items: center;"
-                        >
-                            <div class="mx-2 mb-8">
-                                <div
-                                    class="relative bg-white rounded-lg cursor-pointer shadow-md hover:shadow-lg  hover:shadow-lg"
-                                    style="animation: 0.5s ease-in-out 0s 1 normal none running jBcSpD; transition: all 0.3s ease-in 0s;"
-                                >
-                                    <button
-                                        data-qa-form-id="mEzKnY"
-                                        class="overflow-visible relative p-0 m-0 text-center text-black normal-case bg-none appearance-none"
-                                        style="font-family: sans-serif; font-size: 128%; line-height: 1.15; outline: none;"
-                                    >
-                                        <div
-                                            height="192px"
-                                            orientation="vertical"
-                                            width="192px"
-                                            class="flex w-48 h-48 leading-4"
-                                            style="flex-flow: column nowrap; font-family: sans-serif;"
-                                        >
-                                            <div
-                                                height="120px"
-                                                class="flex-shrink-0 h-32"
-                                                style="min-width: 0px; min-height: 0px; font-family: sans-serif;"
-                                            >
-                                                <img
-                                                    alt="thumbs14 employee evaluation"
-                                                    src="//images.ctfassets.net/zkqwmjl9nf4n/7BZlk4xq1iyiQcGSOUau8C/0e280a0e29c9c89a751180951c2ab33d/thumbs14_employee_evaluation.jpg"
-                                                    class="w-full h-full border-none"
-                                                    style="border-radius: 4px 4px 0px 0px; font-family: sans-serif;"
-                                                />
-                                            </div>
-                                            <div
-                                                height="remaining"
-                                                class="flex-1"
-                                                style="min-width: 0px; min-height: 0px; font-family: sans-serif;"
-                                            >
-                                                <div
-                                                    width="100%"
-                                                    height="100%"
-                                                    class="flex justify-start items-center w-full h-full"
-                                                    style="font-family: sans-serif;"
-                                                >
-                                                    <div class="mx-4" style="font-family: sans-serif;">
-                        <span
-                            color="highContrast"
-                            font-family="sans"
-                            class="block text-left text-sm text-sm"
-                        >Employee Evaluation Form Template</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="mx-2 mb-8">
-                                <div
-                                    class="relative bg-white rounded-lg cursor-pointer shadow-md hover:shadow-lg  hover:shadow-lg"
-                                    style="animation: 0.5s ease-in-out 0s 1 normal none running jBcSpD; transition: all 0.3s ease-in 0s;"
-                                >
-                                    <button
-                                        data-qa-form-id="zlQY2E"
-                                        class="overflow-visible relative p-0 m-0 text-center text-black normal-case bg-none appearance-none"
-                                        style="font-family: sans-serif; font-size: 128%; line-height: 1.15; outline: none;"
-                                    >
-                                        <div
-                                            height="192px"
-                                            orientation="vertical"
-                                            width="192px"
-                                            class="flex w-48 h-48 leading-4"
-                                            style="flex-flow: column nowrap; font-family: sans-serif;"
-                                        >
-                                            <div
-                                                height="120px"
-                                                class="flex-shrink-0 h-32"
-                                                style="min-width: 0px; min-height: 0px; font-family: sans-serif;"
-                                            >
-                                                <img
-                                                    alt="thumbs41 candidate experience"
-                                                    src="//images.ctfassets.net/zkqwmjl9nf4n/3BFo5PxIVqU0WsMsQW2s0M/d599478c68dd0cfd7ad15ddac4dceec8/thumbs41_candidate_experience.jpg"
-                                                    class="w-full h-full border-none"
-                                                    style="border-radius: 4px 4px 0px 0px; font-family: sans-serif;"
-                                                />
-                                            </div>
-                                            <div
-                                                height="remaining"
-                                                class="flex-1"
-                                                style="min-width: 0px; min-height: 0px; font-family: sans-serif;"
-                                            >
-                                                <div
-                                                    width="100%"
-                                                    height="100%"
-                                                    class="flex justify-start items-center w-full h-full"
-                                                    style="font-family: sans-serif;"
-                                                >
-                                                    <div class="mx-4" style="font-family: sans-serif;">
-                        <span
-                            color="highContrast"
-                            font-family="sans"
-                            class="block text-left text-sm"
-                        >Candidate Experience Survey Template</span
-                        >
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+<!--        <span-->
+<!--            font-family="sans"-->
+<!--            font-weight="semibold"-->
+<!--            class="block text-xs font-semibold tracking-widest leading-4 pt-8"-->
+<!--        >FUN HOMEPAGE TEASERS</span>-->
+<!--                        <div class="mt-2 w-full h-px bg-gray-300"></div>-->
+<!--                        <div class="mb-8"></div>-->
+<!--                        <div-->
+<!--                            data-qa="template-gallery-templates-feedback"-->
+<!--                            class="grid overflow-auto pb-6 w-auto"-->
+<!--                            style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); justify-items: center;"-->
+<!--                        >-->
+<!--                            <div class="mx-2 mb-8">-->
+<!--                                <div-->
+<!--                                    class="relative bg-white rounded-lg cursor-pointer shadow-md hover:shadow-lg  hover:shadow-lg"-->
+<!--                                    style="animation: 0.5s ease-in-out 0s 1 normal none running jBcSpD; transition: all 0.3s ease-in 0s;"-->
+<!--                                >-->
+<!--                                    <button-->
+<!--                                        data-qa-form-id="mEzKnY"-->
+<!--                                        class="overflow-visible relative p-0 m-0 text-center text-black normal-case bg-none appearance-none"-->
+<!--                                        style="font-family: sans-serif; font-size: 128%; line-height: 1.15; outline: none;"-->
+<!--                                    >-->
+<!--                                        <div-->
+<!--                                            height="192px"-->
+<!--                                            orientation="vertical"-->
+<!--                                            width="192px"-->
+<!--                                            class="flex w-48 h-48 leading-4"-->
+<!--                                            style="flex-flow: column nowrap; font-family: sans-serif;"-->
+<!--                                        >-->
+<!--                                            <div-->
+<!--                                                height="120px"-->
+<!--                                                class="flex-shrink-0 h-32"-->
+<!--                                                style="min-width: 0px; min-height: 0px; font-family: sans-serif;"-->
+<!--                                            >-->
+<!--                                                <img-->
+<!--                                                    alt="thumbs14 employee evaluation"-->
+<!--                                                    src="//images.ctfassets.net/zkqwmjl9nf4n/7BZlk4xq1iyiQcGSOUau8C/0e280a0e29c9c89a751180951c2ab33d/thumbs14_employee_evaluation.jpg"-->
+<!--                                                    class="w-full h-full border-none"-->
+<!--                                                    style="border-radius: 4px 4px 0px 0px; font-family: sans-serif;"-->
+<!--                                                />-->
+<!--                                            </div>-->
+<!--                                            <div-->
+<!--                                                height="remaining"-->
+<!--                                                class="flex-1"-->
+<!--                                                style="min-width: 0px; min-height: 0px; font-family: sans-serif;"-->
+<!--                                            >-->
+<!--                                                <div-->
+<!--                                                    width="100%"-->
+<!--                                                    height="100%"-->
+<!--                                                    class="flex justify-start items-center w-full h-full"-->
+<!--                                                    style="font-family: sans-serif;"-->
+<!--                                                >-->
+<!--                                                    <div class="mx-4" style="font-family: sans-serif;">-->
+<!--                        <span-->
+<!--                            color="highContrast"-->
+<!--                            font-family="sans"-->
+<!--                            class="block text-left text-sm text-sm"-->
+<!--                        >Employee Evaluation Form Template</span>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="mx-2 mb-8">-->
+<!--                                <div-->
+<!--                                    class="relative bg-white rounded-lg cursor-pointer shadow-md hover:shadow-lg  hover:shadow-lg"-->
+<!--                                    style="animation: 0.5s ease-in-out 0s 1 normal none running jBcSpD; transition: all 0.3s ease-in 0s;"-->
+<!--                                >-->
+<!--                                    <button-->
+<!--                                        data-qa-form-id="zlQY2E"-->
+<!--                                        class="overflow-visible relative p-0 m-0 text-center text-black normal-case bg-none appearance-none"-->
+<!--                                        style="font-family: sans-serif; font-size: 128%; line-height: 1.15; outline: none;"-->
+<!--                                    >-->
+<!--                                        <div-->
+<!--                                            height="192px"-->
+<!--                                            orientation="vertical"-->
+<!--                                            width="192px"-->
+<!--                                            class="flex w-48 h-48 leading-4"-->
+<!--                                            style="flex-flow: column nowrap; font-family: sans-serif;"-->
+<!--                                        >-->
+<!--                                            <div-->
+<!--                                                height="120px"-->
+<!--                                                class="flex-shrink-0 h-32"-->
+<!--                                                style="min-width: 0px; min-height: 0px; font-family: sans-serif;"-->
+<!--                                            >-->
+<!--                                                <img-->
+<!--                                                    alt="thumbs41 candidate experience"-->
+<!--                                                    src="//images.ctfassets.net/zkqwmjl9nf4n/3BFo5PxIVqU0WsMsQW2s0M/d599478c68dd0cfd7ad15ddac4dceec8/thumbs41_candidate_experience.jpg"-->
+<!--                                                    class="w-full h-full border-none"-->
+<!--                                                    style="border-radius: 4px 4px 0px 0px; font-family: sans-serif;"-->
+<!--                                                />-->
+<!--                                            </div>-->
+<!--                                            <div-->
+<!--                                                height="remaining"-->
+<!--                                                class="flex-1"-->
+<!--                                                style="min-width: 0px; min-height: 0px; font-family: sans-serif;"-->
+<!--                                            >-->
+<!--                                                <div-->
+<!--                                                    width="100%"-->
+<!--                                                    height="100%"-->
+<!--                                                    class="flex justify-start items-center w-full h-full"-->
+<!--                                                    style="font-family: sans-serif;"-->
+<!--                                                >-->
+<!--                                                    <div class="mx-4" style="font-family: sans-serif;">-->
+<!--                        <span-->
+<!--                            color="highContrast"-->
+<!--                            font-family="sans"-->
+<!--                            class="block text-left text-sm"-->
+<!--                        >Candidate Experience Survey Template</span-->
+<!--                        >-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        i added pt-8 to this below-->
                         <span
                             font-family="sans"
                             font-weight="semibold"
-                            class="block text-xs font-semibold tracking-widest leading-4"
+                            class="block text-xs font-semibold tracking-widest leading-4 pt-8"
                         >QUESTIONNAIRES</span
                         >
                         <div class="mt-2 w-full h-px bg-gray-300"></div>

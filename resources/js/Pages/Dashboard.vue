@@ -10,14 +10,14 @@
                 <div class="border-b border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
                     <div class="flex-1 min-w-0">
                         <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
-                            My Flowforms
+                            My Homeforms
                         </h1>
                     </div>
                     <div class="mt-4 flex sm:mt-0 sm:ml-4">
                         <a :href="route('spark.portal')">
                             <button type="button"
                                     class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:order-1 sm:ml-3">
-                                Upgrade
+                                Billing
                             </button>
                         </a>
                     </div>
@@ -29,7 +29,7 @@
                         <div class="leading-5"></div>
                     </div>
 
-                    <!-- New Flowform -->
+                    <!-- New homeform -->
                     <inertia-link class="ml-5 mb-5 text-sm text-gray-900"
                                   :href="route('form.index')">
                             <div orientation="horizontal"
@@ -46,7 +46,7 @@
                                           font-family="sans"
                                           class="block text-xl font-bold leading-7 text-left">
                                         <p class="m-0">New</p>
-                                        <p class="m-0">flowform</p>
+                                        <p class="m-0">homeform</p>
                                     </span>
                                         <div class="mx-auto mt-8 mb-0"
                                              style="line-height: 0px; font-family: sans-serif;">
@@ -154,7 +154,7 @@
 
 <script>
 import AppLayout from '@/Layouts/AppLayout'
-import FlowForm, {Question} from '@ditdot-dev/vue-flow-form';
+import homeform, {Question} from '@ditdot-dev/vue-flow-form';
 import Welcome from '@/Jetstream/Welcome'
 import {Chrome, Swatches} from 'vue-color'
 import Show from "@/Pages/Show";
@@ -164,7 +164,7 @@ export default {
         Show,
         AppLayout,
         Welcome,
-        FlowForm,
+        homeform,
         Question,
         'chrome-picker': Chrome,
         'swatches-picker': Swatches,

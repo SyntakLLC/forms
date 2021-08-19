@@ -44,11 +44,16 @@
                            @change="updatePhotoPreview">
                 </button>
 
-                <!--the two header buttons-->
+                <!--the three header buttons-->
                 <div class="flex sm:ml-4 px-6">
+                    <button @click="showingEmbedModal=!showingEmbedModal"
+                            type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Embed
+                    </button>
+
                     <button @click="showingDeleteModal=!showingDeleteModal"
                             type="button"
-                            class="truncate inline-flex items-center px-4 py-2 border border-red-500 shadow-sm text-sm font-medium rounded-md text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                            class="truncate inline-flex items-center px-4 py-2 border border-red-500 shadow-sm text-sm font-medium rounded-md text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 ml-3">
                         Delete Form
                     </button>
 
@@ -59,6 +64,66 @@
                         </button>
                     </a>
                 </div>
+
+                <!--the embed modal-->
+                <transition
+                    enter-active-class="transition ease-out duration-300"
+                    enter-class="opacity-0"
+                    enter-to-class="opacity-100"
+                    leave-active-class="transition ease-in duration-200"
+                    leave-class="opacity-100"
+                    leave-to-class="opacity-0">
+                    <div v-show="showingEmbedModal" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+                            <!-- This element is to trick the browser into centering the modal contents. -->
+                            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+                            <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6">
+
+                                <div>
+                                    <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-gray-100">
+                                        <!-- Heroicon name: outline/check -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                        </svg>
+                                    </div>
+                                    <div class="mt-3 text-center sm:mt-5">
+                                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                            Copy this embed code
+                                        </h3>
+                                        <div class="mt-2">
+                                            <!-- code snippet -->
+                                            <span
+                                                data-qa="modal-body"
+                                                class="flex overflow-auto w-full flex-col px-8 font-sans text-sm leading-5 text-gray-900 border-0 border-gray-200 border-solid shadow-xs"
+                                            >
+                                                <code class="font-mono text-base">
+                                                                <div
+                                                                    class="flex-shrink-0 py-3 px-4 text-white bg-gray-900 rounded-lg overflow-scroll text-sm"
+                                                                    style="min-width: 0px;"
+                                                                >
+                                                                            <pre class="m-0 break-words" style="overflow-wrap: break-word;">
+{{
+                                                                                    '&lt;div style = "width:400; height:400; position:relative;"&gt; \n &lt;iframe src = "https://homeform.app/form/' + form.uuid + '" style = "position:absolute; top:0px; left:0px; \n width:100 %; height:100 %; border: none; overflow: hidden;"&gt;&lt;/iframe&gt; \n &lt;/div&gt;'
+                                                                                }}
+                                                                            </pre>
+                                                                </div>
+                                                </code>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-5 sm:mt-6">
+                                    <button @click="showingEmbedModal=false" type="button" class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm">
+                                        Done
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </transition>
 
                 <!--the delete modal-->
                 <transition
@@ -135,6 +200,30 @@
                                     </div>
                                 </div>
                             </transition>
+                        </div>
+                    </div>
+                </transition>
+
+                <!--the preview popup modal-->
+                <transition
+                    enter-active-class="transition ease-out duration-300"
+                    enter-class="opacity-0"
+                    enter-to-class="opacity-100"
+                    leave-active-class="transition ease-in duration-200"
+                    leave-class="opacity-100"
+                    leave-to-class="opacity-0">
+                    <div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+                            <!-- This element is to trick the browser into centering the modal contents. -->
+                            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+                            <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-7xl sm:w-full sm:h-full sm:p-6">
+
+                                <!-- the form goes here -->
+
+                            </div>
                         </div>
                     </div>
                 </transition>
@@ -420,7 +509,7 @@
                                     </inertia-link>
 
                                     <!-- Blank spot -->
-                                        <div class="text-gray-700 hover:text-gray-900 group flex items-center py-4 text-sm font-medium h-96 truncate bg-gray-100">
+                                        <div class="group flex items-center py-4 text-sm font-medium h-96 truncate bg-gradient-to-b from-gray-100">
                                             <div class="pl-3 w-5">
                                             </div>
                                             <div class="pl-6 pr-3 w-5/6 truncate pb-32">
@@ -833,6 +922,7 @@ export default {
             showingQuestionTypeDropdown: false,
             showingQuestionsDropdown: false,
             showingDeleteModal: false,
+            showingEmbedModal: false,
             questionList: this.questions.map((question) => {
                 return question
             }),

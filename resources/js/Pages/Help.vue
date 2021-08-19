@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <div class="min-h-screen bg-white">
+        <div class="">
             <main>
                 <!-- Side-by-side grid -->
 <!--                <div class="bg-white">-->
@@ -113,7 +113,7 @@
 <!--                </div>-->
 
                 <!-- FAQ -->
-                <div class="bg-white">
+                <div class="">
                     <div class="max-w-md mx-auto py-12 px-4 sm:max-w-3xl sm:py-16 sm:px-6 lg:max-w-7xl lg:px-8">
                         <div class="lg:grid lg:grid-cols-3 lg:gap-8">
                             <div>
