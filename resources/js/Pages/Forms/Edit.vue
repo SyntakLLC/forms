@@ -57,12 +57,12 @@
                         Delete Form
                     </button>
 
-                    <a :href="route('form.show', form.uuid)">
-                        <button type="button"
+<!--                    <a :href="route('form.show', form.uuid)">-->
+                        <button @click="showingPreviewModal=true" type="button"
                                 class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:order-1 ml-3">
                             Preview
                         </button>
-                    </a>
+<!--                    </a>-->
                 </div>
 
                 <!--the embed modal-->
@@ -212,18 +212,36 @@
                     leave-active-class="transition ease-in duration-200"
                     leave-class="opacity-100"
                     leave-to-class="opacity-0">
-                    <div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                    <div v-show="showingPreviewModal" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                         <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-                            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+                            <div @click="showingPreviewModal=false" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
 
                             <!-- This element is to trick the browser into centering the modal contents. -->
                             <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
 
-                            <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-7xl sm:w-full sm:h-full sm:p-6">
+                            <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-7xl sm:w-full sm:h-full sm:p-6" style="height: 40rem">
 
                                 <!-- the form goes here -->
+                                <img v-if="form.cover_photo !== null" class="fixed h-full w-full object-cover top-0" :src="form.cover_photo"/>
+                                <div class="fixed h-full w-full object-cover top-0 bg-white opacity-60"/>
 
+                                <flow-form
+                                    ref="flowform"
+                                    v-on:complete="onComplete"
+                                    v-on:submit="onSubmit"
+                                    v-bind:questions="flowformQuestions"
+                                    v-bind:language="language"
+                                    v-bind:standalone="true"
+                                >
+                                </flow-form>
+
+                                <div class="z-50 bottom-0 px-4 pb-2 sm:px-6 sm:flex sm:flex-row-reverse fixed">
+                                    <button @click="showingPreviewModal=false" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
+                                        Close
+                                    </button>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </transition>
@@ -905,17 +923,20 @@
 <script>
 import AppLayout from "@/Layouts/AppLayout";
 import Button from "@/Jetstream/Button";
-import JetBanner from '@/Jetstream/Banner'
+import JetBanner from '@/Jetstream/Banner';
+import FlowForm, { Question, QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form';
 
 export default {
     name: "Edit.vue",
     components: {
         Button,
         AppLayout,
-        JetBanner
+        JetBanner,
+        FlowForm,
+        Question
     },
 
-    props: ['form', 'questions'],
+    props: ['form', 'questions', 'questionlist', 'options'],
 
     data() {
         return {
@@ -927,6 +948,39 @@ export default {
                 return question
             }),
             showingLoadingScreen: false,
+            showingPreviewModal: false,
+
+
+            // flowform vars
+            submitted: false,
+            completed: false,
+            language: new LanguageModel(),
+            thing: [new ChoiceOption({
+                label: 'option.title'
+            })],
+
+            flowformQuestions: Object.entries(this.questionlist).map(function (question, key) {
+                question = question[1];
+                return new QuestionModel({
+                    id: 'first_name',
+                    tagline: question.tagline,
+                    title: question.title,
+                    subtitle: question.subtitle,
+                    content: question.content,
+                    options: question.type == "Multiple Choice" ? question.options.map(function (option, key) {
+                            return new ChoiceOption({
+                                label: option.title
+                            })
+                        })
+                        : null,
+                    allowOther: question.allow_other,
+                    // type: QuestionType.Text,
+                    type: question.type == "Text" ? QuestionType.Text : question.type == "Section Break" ? QuestionType.SectionBreak : question.type == "Multiple Choice" ? QuestionType.MultipleChoice : question.type == "Email" ? QuestionType.Email : question.type == "Name" ? QuestionType.Text : QuestionType.Phone,
+                    multiple: question.type == "Multiple Choice" ? question.multiple : false,
+                    required: true,
+                    placeholder: question.type == "Text" ? 'Start typing here...' : question.type == "Section Break" ? '' : question.type == "Multiple Choice" ? '' : question.type == "Email" ? 'jane@doe.com' : question.type == "Name" ? "Start typing here..." : '(###)-###-####',
+                })
+            }),
         }
     },
 
@@ -945,6 +999,60 @@ export default {
     },
 
     methods: {
+        // flowform methods
+        onKeyListener($event) {
+            // We've overriden the default "complete" slot so
+            // we need to implement the "keyup" listener manually.
+            if ($event.key === 'Enter' && this.completed && !this.submitted) {
+                this.onSendData()
+            }
+        },
+        /* eslint-disable-next-line no-unused-vars */
+        onComplete(completed, questionList) {
+            // This method is called whenever the "completed" status is changed.
+            this.completed = completed
+        },
+        /* eslint-disable-next-line no-unused-vars */
+        onSubmit(questionList) {
+            // This method will only be called if you don't override the
+            // completeButton slot.
+            this.onSendData()
+        },
+
+        onSendData() {
+            // Set `submitted` to true so the form knows not to allow back/forward
+            // navigation anymore.
+            this.$refs.flowform.submitted = true
+            this.submitted = true
+            /* eslint-disable-next-line no-unused-vars */
+            const data = this.getData()
+            // data is an object of {questions, answers} where each is an array
+            // what we want is one array of 3 objects, [{question, array}, {question, array}, {question, array}]
+            console.log(data);
+            let formattedData = this.questions.filter((question) => question.type !== "Section Break").map((question, index) => {
+                return {question: question.title, answer: data.answers.filter((data) => data !== null)[index], type: question.type}
+            })
+            formattedData.unshift({form_id: this.form.uuid});
+            this.$inertia.post('/form/submit_results', {data: formattedData})
+        },
+        getData() {
+            const data = {
+                questions: [],
+                answers: []
+            }
+            this.questions.forEach(question => {
+                // if (question.title) {
+                let answer = question.answer
+                if (Array.isArray(answer)) {
+                    answer = answer.join(', ')
+                }
+                data.questions.push(question.title)
+                data.answers.push(answer)
+                // }
+            })
+            return data
+        },
+
         /**
          * Update Cover photo
          */

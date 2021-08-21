@@ -18,7 +18,7 @@
 
             <img v-if="form.cover_photo !== null" class="fixed h-screen w-screen object-cover top-0" :src="form.cover_photo"/>
             <div class="fixed h-screen w-screen object-cover top-0 bg-white opacity-60"/>
-
+{{this.questionlist}}
             <flow-form
                 ref="flowform"
                 v-on:complete="onComplete"

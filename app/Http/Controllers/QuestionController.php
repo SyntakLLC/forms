@@ -137,9 +137,14 @@ class QuestionController extends Controller
         if (!in_array(Question::findByUuid($question), $questions)) {
 //            $questions = array_push($questions, Question::findByUuid($question));
         }
+        $questionsaaa = $form->questions->sortBy('index')->values();
 
         return Inertia::render('Forms/EditSingle', [
             'form' => $form,
+            'questionlist' => $questionsaaa,
+            'options' => $questionsaaa->each(function ($question) {
+                return $question->options;
+            }),
             'user' => $request->user(),
             'questions' => $questions,
             'options' => $question == null ? Form::findByUuid($form->uuid)->questions->first()->options : $question->options,

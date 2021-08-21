@@ -1,5 +1,5 @@
 <template>
-    <edit :form="$page['props']['form']" :questions="$page['props']['questions']">
+    <edit :form="$page['props']['form']" :questions="$page['props']['questions']" :questionlist="$page['props']['questionlist']">
 
 <!--        <div-->
 <!--            class="relative flex-1 px-8 pt-8 pb-12 font-sans text-sm leading-5 text-gray-900 w-full h-full"-->
