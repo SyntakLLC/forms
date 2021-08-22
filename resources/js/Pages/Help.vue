@@ -126,19 +126,10 @@
                                 <dl class="space-y-12">
                                     <div>
                                         <dt class="text-lg font-medium text-gray-900">
-                                            How do I save my site?
+                                            How do I save my form?
                                         </dt>
                                         <dd class="mt-2 text-base text-gray-500">
-                                            You don't need to manually save your site. We automatically save both your site and forms for you as you edit them.
-                                        </dd>
-                                    </div>
-
-                                    <div>
-                                        <dt class="text-lg font-medium text-gray-900">
-                                            Can I create a custom layout?
-                                        </dt>
-                                        <dd class="mt-2 text-base text-gray-500">
-                                            AboutContact creates rigid layouts built by professional designers, so we've decided to not allow custom layouts. We aim to provide great-looking sites out of the box, and to prioritize efficiency, we don't include some customization features.
+                                            You don't need to manually save your forms. We automatically save for you as you edit them.
                                         </dd>
                                     </div>
 
@@ -153,10 +144,10 @@
 
                                     <div>
                                         <dt class="text-lg font-medium text-gray-900">
-                                            Will you be adding new site layouts?
+                                            Will you be adding new form templates?
                                         </dt>
                                         <dd class="mt-2 text-base text-gray-500">
-                                            Of course! As we grow, we will continue to focus on adding beautiful new site designs as well as providing more prebuilt forms for your convenience!
+                                            Of course! As we grow, we will continue to focus on adding functional new form templates for your convenience!
                                         </dd>
                                     </div>
                                 </dl>

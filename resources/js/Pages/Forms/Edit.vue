@@ -46,10 +46,13 @@
 
                 <!--the three header buttons-->
                 <div class="flex sm:ml-4 px-6">
-                    <button @click="showingEmbedModal=!showingEmbedModal"
-                            type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                        Embed
+
+                    <!--                    <a :href="route('form.show', form.uuid)">-->
+                    <button @click="showingPreviewModal=true" type="button"
+                            class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Preview
                     </button>
+                    <!--                    </a>-->
 
                     <button @click="showingDeleteModal=!showingDeleteModal"
                             type="button"
@@ -57,12 +60,10 @@
                         Delete Form
                     </button>
 
-<!--                    <a :href="route('form.show', form.uuid)">-->
-                        <button @click="showingPreviewModal=true" type="button"
-                                class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:order-1 ml-3">
-                            Preview
-                        </button>
-<!--                    </a>-->
+                    <button @click="showingEmbedModal=!showingEmbedModal"
+                            type="button" class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:order-1 ml-3">
+                        Share
+                    </button>
                 </div>
 
                 <!--the embed modal-->
@@ -89,15 +90,41 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                                         </svg>
                                     </div>
+
+                                    <!-- copy this url -->
                                     <div class="mt-3 text-center sm:mt-5">
                                         <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                                            Copy this embed code
+                                            Copy this link
+                                        </h3>
+                                        <div class="mt-2">
+                                            <!-- link -->
+                                            <span
+                                                data-qa="modal-body"
+                                                class="flex overflow-auto w-full flex-col font-sans text-sm leading-5 text-gray-900 border-0 border-gray-200 border-solid shadow-xs"
+                                            >
+                                                <code class="text-base">
+                                                    <div
+                                                        class="flex-shrink-0 py-3 px-4 text-gray-900 bg-gray-100 rounded-lg overflow-scroll text-sm"
+                                                        style="min-width: 0px;"
+                                                    >
+                                                        <pre class="m-0 break-words" style="overflow-wrap: break-word;">
+{{ 'https://homeform.app/form/' + form.uuid  }}</pre>
+                                                    </div>
+                                                </code>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- or copy this embed code -->
+                                    <div class="mt-3 text-center sm:mt-5">
+                                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                            Or copy this embed code
                                         </h3>
                                         <div class="mt-2">
                                             <!-- code snippet -->
                                             <span
                                                 data-qa="modal-body"
-                                                class="flex overflow-auto w-full flex-col px-8 font-sans text-sm leading-5 text-gray-900 border-0 border-gray-200 border-solid shadow-xs"
+                                                class="flex overflow-auto w-full flex-col font-sans text-sm leading-5 text-gray-900 border-0 border-gray-200 border-solid shadow-xs"
                                             >
                                                 <code class="font-mono text-base">
                                                                 <div
@@ -112,6 +139,12 @@
                                                                 </div>
                                                 </code>
                                             </span>
+
+                                            <div class="mt-4">
+                                                <p class="text-sm text-gray-500">
+                                                    Note: you will not be able to share without <a :href="route('spark.portal')" class="text-blue-600">a subscription.</a>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -222,8 +255,8 @@
                             <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-7xl sm:w-full sm:h-full sm:p-6" style="height: 40rem">
 
                                 <!-- the form goes here -->
-                                <img v-if="form.cover_photo !== null" class="fixed h-full w-full object-cover top-0" :src="form.cover_photo"/>
-                                <div class="fixed h-full w-full object-cover top-0 bg-white opacity-60"/>
+                                <img v-if="form.cover_photo !== null" class="fixed h-full w-full object-cover top-0 -ml-4 sm:-ml-6" :src="form.cover_photo" style="height: 40rem"/>
+                                <div class="fixed h-full w-full object-cover top-0 bg-white opacity-60 -ml-4 sm:-ml-6" style="height: 40rem"/>
 
                                 <flow-form
                                     ref="flowform"
@@ -235,9 +268,9 @@
                                 >
                                 </flow-form>
 
-                                <div class="z-50 bottom-0 px-4 pb-2 sm:px-6 sm:flex sm:flex-row-reverse fixed">
-                                    <button @click="showingPreviewModal=false" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
-                                        Close
+                                <div class="z-50 bottom-0 pb-2 sm:flex sm:flex-row-reverse fixed">
+                                    <button @click="showingPreviewModal=false" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:w-auto sm:text-sm">
+                                        Close Preview
                                     </button>
                                 </div>
                             </div>

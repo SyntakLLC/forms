@@ -39,7 +39,7 @@ environments:
             - CategoryContentFetcher
             - CategoryArchiver
         runtime: 'php-8.0:al2'
-        domain: about.contact
+        domain: homeform.app
         build:
             - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
             - 'php artisan config:cache'
@@ -58,7 +58,7 @@ environments:
         database: 'platform-staging'
         storage: 'about-contact-platform-staging'
         separate-vendor: true
-        domain: staging.about.contact
+        domain: staging.homeform.app
         capacity: 2
         queues: false
         firewall:

@@ -14,12 +14,17 @@
                         </h1>
                     </div>
                     <div class="mt-4 flex sm:mt-0 sm:ml-4">
-                        <a :href="route('spark.portal')">
+                        <a v-if="!subscribed" :href="route('spark.portal')">
                             <button type="button"
                                     class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:order-1 sm:ml-3">
-                                Billing
+                                Subscribe
                             </button>
                         </a>
+                        <div v-else>
+                            <div class="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white sm:order-1 sm:ml-3">
+                                Subscribe
+                            </div>
+                        </div>
                     </div>
                 </div>
 
