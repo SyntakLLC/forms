@@ -91,9 +91,15 @@
                                         </svg>
                                     </div>
 
+                                    <div class="mt-4 p-2 bg-yellow-100 rounded-lg">
+                                        <p class="text-sm text-gray-500">
+                                            Note: you will not be able to share without a <a :href="route('spark.portal')" class="text-blue-600">subscription.</a>
+                                        </p>
+                                    </div>
+
                                     <!-- copy this url -->
                                     <div class="mt-3 text-center sm:mt-5">
-                                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                        <h3 class="text-lg leading-6 font-medium text-gray-900">
                                             Copy this link
                                         </h3>
                                         <div class="mt-2">
@@ -133,18 +139,12 @@
                                                                 >
                                                                             <pre class="m-0 break-words" style="overflow-wrap: break-word;">
 {{
-                                                                                    '&lt;div style = "width:400; height:400; position:relative;"&gt; \n &lt;iframe src = "https://homeform.app/form/' + form.uuid + '" style = "position:absolute; top:0px; left:0px; \n width:100 %; height:100 %; border: none; overflow: hidden;"&gt;&lt;/iframe&gt; \n &lt;/div&gt;'
+                                                                                    '&lt;div style = "width: 400px; height: 400px; position:relative; justify-self: center; align-self: center; border-radius: 0.5rem; overflow: hidden"&gt; \n &lt;iframe src = "https://homeform.app/form/' + form.uuid + '" style = "position:absolute; top:0px; left:0px; \n width:100%; height:100%; border: none; overflow: hidden;"&gt;&lt;/iframe&gt; \n &lt;/div&gt;'
                                                                                 }}
                                                                             </pre>
                                                                 </div>
                                                 </code>
                                             </span>
-
-                                            <div class="mt-4">
-                                                <p class="text-sm text-gray-500">
-                                                    Note: you will not be able to share without <a :href="route('spark.portal')" class="text-blue-600">a subscription.</a>
-                                                </p>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

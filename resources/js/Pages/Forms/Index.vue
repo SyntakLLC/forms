@@ -21,7 +21,7 @@
                         <button
                             type="submit"
                             data-qa="start-from-scratch-button"
-                            class="inline-flex overflow-visible relative justify-center items-center py-2 px-4 m-0 text-base leading-6 text-center text-white no-underline normal-case bg-blue-600 rounded border-0 cursor-pointer whitespace-no-wrap hover:bg-gray-600"
+                            class="inline-flex overflow-visible relative justify-center items-center py-2 px-4 m-0 text-base leading-6 text-center text-white no-underline normal-case bg-blue-600 rounded border-0 cursor-pointer whitespace-no-wrap hover:bg-blue-700"
                             style="outline: none;"
                         >
                             <div orientation="horizontal" class="flex">

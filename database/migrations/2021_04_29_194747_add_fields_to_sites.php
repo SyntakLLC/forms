@@ -14,7 +14,7 @@ class AddFieldsToSites extends Migration
     public function up()
     {
         Schema::table('sites', function (Blueprint $table) {
-            $table->string('accent_color')->default('2563EB');
+            $table->string('accent_color')->default('000000');
         });
     }
 

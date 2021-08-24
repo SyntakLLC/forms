@@ -22,42 +22,20 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function welcome(Request $request) {
-        $codelessURL = Storage::url('marketing-photos/Codeless.png');
-        $beautifulForms = Storage::url('marketing-photos/Beautiful_Forms.png');
-        $leads = Storage::url('marketing-photos/Leads.png');
-        $twoPeopleAroundLaptop = Storage::url('marketing-photos/people_working_on_laptop.jpeg');
+
+        $whatsDifferent = Storage::url('marketing-photos/what\'s_different_newpage.png');
+        $usableAnywhere = Storage::url('marketing-photos/usable_anywhere_newpage.png');
+        $leads = Storage::url('marketing-photos/leads_newpage.png');
+
         $davidTran = Storage::url('marketing-photos/david_tran.jpg');
-        $chrisWhalen = Storage::url('marketing-photos/chris_whalen.jpg');
-
-        $standard = Storage::url('marketing-photos/Standard.png');
-        $mobileProfile = Storage::url('marketing-photos/Mobile_Profile.png');
-        $brandedLeft = Storage::url('marketing-photos/Brand_Left.png');
-        $brandedRight = Storage::url('marketing-photos/Brand_Right.png');
-
-        $loganMiller = Storage::url('marketing-photos/LoganMiller.png');
-        $ricardoCooper = Storage::url('marketing-photos/RicardoCooper.png');
-
-        $linktree = Storage::url('marketing-photos/Linktree.png');
-        $us = Storage::url('marketing-photos/Us.png');
-
-        $marketingVideo = Storage::url('marketing-photos/Marketing_Video.mov');
+        $chrisWhalen = Storage::url('marketing-photos/ chris_whalen.jpg');
 
         return Inertia::render('Welcome', [
-            'codelessURL' => $codelessURL,
-            'beautifulForms' => $beautifulForms,
             'leads' => $leads,
-            'twoPeopleAroundLaptop' => $twoPeopleAroundLaptop,
+            'usableAnywhere' => $usableAnywhere,
+            'whatsDifferent' => $whatsDifferent,
             'davidTran' => $davidTran,
             'chrisWhalen' => $chrisWhalen,
-            'standard' => $standard,
-            'mobileProfile' => $mobileProfile,
-            'brandedLeft' => $brandedLeft,
-            'brandedRight' => $brandedRight,
-            'loganMiller' => $loganMiller,
-            'ricardoCooper' => $ricardoCooper,
-            'marketingVideo' => $marketingVideo,
-            'linktree' => $linktree,
-            'us' => $us,
         ]);
     }
 

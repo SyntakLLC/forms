@@ -77,10 +77,10 @@
                 <h2
                     class="mt-0 mb-5 font-sans text-5xl tracking-normal leading-4 text-gray-900 uppercase"
                 >
-                    404 - Page Not Found
+                    Sorry!
                 </h2>
                 <div class="text-center mt-4 box-border">
-                    The page you are looking for doesn't exist or has been moved.
+                    This form is not currently active.
                 </div>
                 <div class="flex mx-auto mt-8 text-center">
                     <a
@@ -142,7 +142,7 @@ export default {
                     type: question.type == "Text" ? QuestionType.Text : question.type == "Section Break" ? QuestionType.SectionBreak : question.type == "Multiple Choice" ? QuestionType.MultipleChoice : question.type == "Email" ? QuestionType.Email : question.type == "Name" ? QuestionType.Text : QuestionType.Phone,
                     multiple: question.type == "Multiple Choice" ? question.multiple : false,
                     required: true,
-                    placeholder: question.type == "Text" ? 'Start typing here...' : question.type == "Section Break" ? '' : question.type == "Multiple Choice" ? '' : question.type == "Email" ? 'jane@doe.com' : question.type == "Name" ? "Start typing here..." : '(###)-###-####',
+                    placeholder: question.type == "Text" ? 'Start typing here...' : question.type == "Section Break" ? '' : question.type == "Multiple Choice" ? '' : question.type == "Email" ? 'jane@doe.com' : question.type == "Name" ? "Start typing here..." : '(###) ###-####',
                 })
             }),
             accentColor: {
