@@ -40,8 +40,8 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request)
     {
         return array_merge(parent::share($request), [
-            'logoImageURL' => Storage::url('marketing-photos/Aboutcontact Logo Image.png'),
-            'logoTextURL' => Storage::url('marketing-photos/Aboutcontact Logo Text.png'),
+            'logoImageURL' => Storage::url('marketing-photos/Homeform Logo Image.png'),
+            'logoTextURL' => Storage::url('marketing-photos/Homeform Logo Text.png'),
         ]);
     }
 }

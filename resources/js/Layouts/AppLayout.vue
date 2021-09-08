@@ -35,13 +35,13 @@
                     <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
 
                         <!-- Logo -->
-                        <div class="flex-shrink-0 flex items-center">
-                            <img class="block h-8 w-auto" :src="$page.props.logoImageURL" alt="AboutContact">
-<!--                            <img class="hidden lg:block h-8 w-auto" :src="$page.props.logoTextURL" alt="AboutContact">-->
-                        </div>
+<!--                        <div class="flex-shrink-0 flex items-center">-->
+<!--                            <img class="block h-8 w-auto" :src="$page.props.logoImageURL" alt="Homeform">-->
+<!--&lt;!&ndash;                            <img class="hidden lg:block h-8 w-auto" :src="$page.props.logoTextURL" alt="Homeform">&ndash;&gt;-->
+<!--                        </div>-->
 
-                        <!-- Nav options -->
-                        <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <!-- Nav options. below used to have  sm:ml-6 -->
+                        <div class="hidden sm:flex sm:space-x-8">
                             <!-- Current: "border-blue-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
                             <inertia-link :href="route('dashboard')" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                                           :class="route().current('dashboard') ? 'border-blue-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'">

@@ -34,6 +34,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
 Route::resource('form', 'App\Http\Controllers\FormController');
 // properties
 Route::resource('property', 'App\Http\Controllers\PropertyController');
+// virtual staging
+Route::resource('staging', 'App\Http\Controllers\StagingController');
 
 // when filtering leads by only one form
 //Route::get('response/{form}', 'App\Http\Controllers\LeadController@filter')->name('response.filter');

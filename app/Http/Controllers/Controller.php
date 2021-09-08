@@ -40,8 +40,8 @@ class Controller extends BaseController
     }
 
     public function dashboard(Request $request, Site $site) {
-        $logoImageURL = Storage::url('marketing-photos/Aboutcontact Logo Image.png');
-        $logoTextURL = Storage::url('marketing-photos/Aboutcontact Logo Text.png');
+        $logoImageURL = Storage::url('marketing-photos/Homeform Logo Image.png');
+        $logoTextURL = Storage::url('marketing-photos/Homeform Logo Text.png');
 
         $standard = Storage::url('marketing-photos/Standard.png');
         $mobileProfile = Storage::url('marketing-photos/Mobile_Profile.png');

@@ -8,7 +8,7 @@
     <!--                            <div class="flex items-center flex-1">-->
     <!--                                <div class="flex items-center justify-between w-full md:w-auto">-->
     <!--                                    <a href="#">-->
-    <!--                                        <span class="sr-only">AboutContact</span>-->
+    <!--                                        <span class="sr-only">Homeform</span>-->
     <!--                                        <img class="h-8 w-auto sm:h-10" :src="$page.props.logoTextURL" alt="">-->
     <!--                                    </a>-->
     <!--                                    <div class="-mr-2 flex items-center md:hidden">-->
@@ -44,7 +44,7 @@
     <!--                            <div class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">-->
     <!--                                <div class="px-5 pt-4 flex items-center justify-between">-->
     <!--                                    <div>-->
-    <!--                                        <span class="sr-only">AboutContact</span>-->
+    <!--                                        <span class="sr-only">Homeform</span>-->
     <!--                                        <img class="h-8 w-auto" :src="$page.props.logoImageURL" alt="">-->
     <!--                                    </div>-->
     <!--                                    <div class="-mr-2">-->
@@ -300,7 +300,7 @@
     <!--                            </div>-->
     <!--                            <div class="mt-12 mx-auto max-w-md px-4 grid gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-3 lg:max-w-7xl">-->
 
-    <!--                                <a href="http://about.contact/ExampleOne" class="hover:opacity-75">-->
+    <!--                                <a href="http://homeform.app/ExampleOne" class="hover:opacity-75">-->
     <!--                                    <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">-->
     <!--                                        <div class="flex-shrink-0">-->
     <!--                                            <img class="h-48 w-full object-cover" :src="$page.props.standard" alt="">-->
@@ -308,7 +308,7 @@
     <!--                                        <div class="flex-1 bg-white p-6 flex flex-col justify-between bg-gray-100">-->
     <!--                                            <div class="flex-1">-->
     <!--                                                <p class="text-xl font-semibold text-gray-900">-->
-    <!--                                                    <a href="http://about.contact/ExampleOne" class="hover:underline">-->
+    <!--                                                    <a href="http://homeform.app/ExampleOne" class="hover:underline">-->
     <!--                                                        Uses the Standard Layout-->
     <!--                                                    </a>-->
     <!--                                                </p>-->
@@ -317,7 +317,7 @@
     <!--                                    </div>-->
     <!--                                </a>-->
 
-    <!--                                <a href="http://about.contact/ExampleTwo" class="hover:opacity-75">-->
+    <!--                                <a href="http://homeform.app/ExampleTwo" class="hover:opacity-75">-->
     <!--                                    <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">-->
     <!--                                        <div class="flex-shrink-0">-->
     <!--                                            <img class="h-48 w-full object-cover" :src="$page.props.loganMiller" alt="">-->
@@ -325,7 +325,7 @@
     <!--                                        <div class="flex-1 bg-white p-6 flex flex-col justify-between bg-gray-100">-->
     <!--                                            <div class="flex-1">-->
     <!--                                                <p class="text-xl font-semibold text-gray-900">-->
-    <!--                                                    <a href="http://about.contact/ExampleTwo" class="hover:underline">-->
+    <!--                                                    <a href="http://homeform.app/ExampleTwo" class="hover:underline">-->
     <!--                                                        Uses the Mobile Profile Layout-->
     <!--                                                    </a>-->
     <!--                                                </p>-->
@@ -334,7 +334,7 @@
     <!--                                    </div>-->
     <!--                                </a>-->
 
-    <!--                                <a href="http://about.contact/ExampleThree" class="hover:opacity-75">-->
+    <!--                                <a href="http://homeform.app/ExampleThree" class="hover:opacity-75">-->
     <!--                                    <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">-->
     <!--                                        <div class="flex-shrink-0">-->
     <!--                                            <img class="h-48 w-full object-cover" :src="$page.props.ricardoCooper" alt="">-->
@@ -342,7 +342,7 @@
     <!--                                        <div class="flex-1 bg-white p-6 flex flex-col justify-between bg-gray-100">-->
     <!--                                            <div class="flex-1">-->
     <!--                                                <p class="text-xl font-semibold text-gray-900">-->
-    <!--                                                    <a href="http://about.contact/ExampleThree" class="hover:underline">-->
+    <!--                                                    <a href="http://homeform.app/ExampleThree" class="hover:underline">-->
     <!--                                                        Uses the Branded Left Layout-->
     <!--                                                    </a>-->
     <!--                                                </p>-->
@@ -393,10 +393,10 @@
     <!--                        </div>-->
     <!--                        <div class="mt-12 border-t border-gray-200 py-8">-->
     <!--                            <p class="text-base text-gray-400 xl:text-center">-->
-    <!--                                &copy; 2021 AboutContact. All rights reserved.-->
+    <!--                                &copy; 2021 Homeform. All rights reserved.-->
     <!--                            </p>-->
     <!--                            <p class="text-base text-gray-400 xl:text-center">-->
-    <!--                                help@about.contact-->
+    <!--                                help@homeform.app-->
     <!--                            </p>-->
     <!--                        </div>-->
     <!--                    </div>-->
@@ -445,24 +445,24 @@
                             <div>
                                 <div class="h-16 flex items-center justify-between">
                                     <!-- Logo (lg+) -->
-                                    <div class="hidden lg:flex-1 lg:flex lg:items-center">
-                                        <a href="#">
-                                            <span class="sr-only">Workflow</span>
-                                            <img class="h-8 w-auto"
-                                                 src="https://tailwindui.com/img/logos/workflow-mark.svg?color=white"
-                                                 alt="">
-                                        </a>
-                                    </div>
+<!--                                    <div class="hidden lg:flex-1 lg:flex lg:items-center">-->
+<!--                                        <a href="#">-->
+<!--                                            <span class="sr-only">Workflow</span>-->
+<!--                                            <img class="h-8 w-auto"-->
+<!--                                                 src="https://tailwindui.com/img/logos/workflow-mark.svg?color=white"-->
+<!--                                                 alt="">-->
+<!--                                        </a>-->
+<!--                                    </div>-->
 
                                     <div class="hidden h-full lg:flex">
                                     </div>
 
                                     <!-- Logo (lg-) -->
-                                    <a href="#" class="lg:hidden">
-                                        <span class="sr-only">Workflow</span>
-                                        <img src="https://tailwindui.com/img/logos/workflow-mark.svg?color=white" alt=""
-                                             class="h-8 w-auto">
-                                    </a>
+<!--                                    <a href="#" class="lg:hidden">-->
+<!--                                        <span class="sr-only">Workflow</span>-->
+<!--                                        <img src="https://tailwindui.com/img/logos/workflow-mark.svg?color=white" alt=""-->
+<!--                                             class="h-8 w-auto">-->
+<!--                                    </a>-->
 
                                     <div class="flex-1 flex items-center justify-end">
                                         <a :href="route('login')" class="text-sm font-medium text-white block">

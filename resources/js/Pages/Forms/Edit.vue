@@ -252,11 +252,11 @@
                             <!-- This element is to trick the browser into centering the modal contents. -->
                             <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
 
-                            <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-7xl sm:w-full sm:h-full sm:p-6" style="height: 40rem">
+                            <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-scroll shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-7xl sm:w-full sm:h-full sm:p-6" style="min-height: 40rem">
 
                                 <!-- the form goes here -->
-                                <img v-if="form.cover_photo !== null" class="fixed h-full w-full object-cover top-0 -ml-4 sm:-ml-6" :src="form.cover_photo" style="height: 40rem"/>
-                                <div class="fixed h-full w-full object-cover top-0 bg-white opacity-60 -ml-4 sm:-ml-6" style="height: 40rem"/>
+                                <img v-if="form.cover_photo !== null" class="fixed h-full w-full object-cover top-0 -ml-4 sm:-ml-6" :src="form.cover_photo" style="min-height: 40rem"/>
+                                <div class="fixed h-full w-full object-cover top-0 bg-white opacity-60 -ml-4 sm:-ml-6" style="min-height: 40rem"/>
 
                                 <flow-form
                                     ref="flowform"

@@ -120,7 +120,7 @@
                                 <h2 class="text-3xl font-extrabold text-gray-900">
                                     Frequently asked questions
                                 </h2>
-                                <p class="mt-4 text-lg text-gray-500">Can’t find the answer you’re looking for? Reach out to our customer support team at help@about.contact.</p>
+                                <p class="mt-4 text-lg text-gray-500">Can’t find the answer you’re looking for? Reach out to our customer support team at help@homeform.app.</p>
                             </div>
                             <div class="mt-12 lg:mt-0 lg:col-span-2">
                                 <dl class="space-y-12">
